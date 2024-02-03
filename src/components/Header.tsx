@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import NavLink from './ui/NavLink';
 
 export default function Header() {
 	return (
@@ -14,9 +15,9 @@ export default function Header() {
 				</Link>
 			</div>
 			<nav className='hidden md:flex items-center gap-5'>
-				<Link href={'/services'}>Find Talent</Link>
-				<Link href={'/jobs'}>Find Work</Link>
-				<Link href={'/support'}>Support</Link>
+				<NavLink href='/services'>Find Talent</NavLink>
+				<NavLink href='/jobs'>Find Work</NavLink>
+				<NavLink href='/support'>Support</NavLink>
 			</nav>
 			<div className='hidden md:flex gap-4'>
 				<Input type='search' placeholder='Search' />
