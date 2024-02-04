@@ -1,111 +1,31 @@
 import Hero from "@/components/section/Hero";
+import { popular_categories } from '@/data/popular_categories';
+import SectionTop from '@/components/layouts/SectionTop';
 
 export default function LandingPage() {
 	return (
 		<>
 			<main className='w-11/12 m-auto'>
-        <Hero />
-				<section className='info-section'>
-					<aside className='img-wrapper'>
-						<img
-							src='https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvY2Vzc3xlbnwwfHwwfHx8MA%3D%3D'
-							alt=''
-						/>
-					</aside>
-					<aside className='text-container'>
-						<article className='head'>
-							<h2>
-								Getting work done has <br />
-								never been easier
-							</h2>
-							<a href='/register'>
-								<button className='btn-primary'>Register for free</button>
-							</a>
-						</article>
-						<article className='list-wrapper'>
-							<li className='list-item'>
-								<div>
-									<img src='/assets/screwdriver.svg' alt='' />
-								</div>
-								<div>
-									<h3>No cost to join</h3>
-									<p>
-										Register and browse professionals, explore projects, or even
-										book a consultation.
-									</p>
-								</div>
-							</li>
-							<li className='list-item'>
-								<div>
-									<img src='/assets/briefcase.svg' alt='' />
-								</div>
-								<div>
-									<h3>Post a job and hire top talent</h3>
-									<p>
-										Finding talent doesn’t have to be a chore. Post a job or we
-										can search for you!
-									</p>
-								</div>
-							</li>
-							<li className='list-item'>
-								<div>
-									<img src='/assets/headphone.svg' alt='' />
-								</div>
-								<div>
-									<h3>Work with the best—without breaking the bank</h3>
-									<p>
-										Upwork makes it affordable to up your work and take
-										advantage of low transaction rates.
-									</p>
-								</div>
-							</li>
-						</article>
-					</aside>
-				</section>
+				<Hero />
 
-				<section className='popular_categories'>
-					<div>
-						<h2>Explore popular categories.</h2>
-						<p>Looking for work? Browse jobs</p>
-					</div>
-					<div className='box-container'>
-						<div className='box'>
-							<div>
-								<img src='/assets/treadmill.svg' alt='' />
-							</div>
-							<p>Development and IT</p>
-						</div>
-						<div className='box'>
-							<div>
-								<img src='/assets/elliptical.svg' alt='' />
-							</div>
-							<p>AI Services</p>
-						</div>
-						<div className='box'>
-							<div>
-								<img src='/assets/indoorcycle.svg' alt='' />
-							</div>
-							<p>Sales and Marketing</p>
-						</div>
-						<div className='box'>
-							<div>
-								<img src='/assets/climber.svg' alt='' />
-							</div>
-							<p>Writing and Translation</p>
-						</div>
-						<div className='box'>
-							<div>
-								<img src='/assets/rower.svg' alt='' />
-							</div>
-							<p>Finance and Accounting</p>
-						</div>
-						<div className='box'>
-							<div>
-								<img src='/assets/accessories.svg' alt='' />
-							</div>
-							<p>Design and Creative</p>
-						</div>
-					</div>
+				<section className="mb-24">
+					<SectionTop
+						heading='Browse talent by category'
+						subhead='Explore diverse expertise and Skills across categories'
+					/>
+					<article className='grid md:grid-cols-2 lg:grid-cols-4 gap-4'>
+						{popular_categories.map((item) => (
+							<menu className='flex flex-col gap-3 rounded-lg bg-card bg-slate-100 p-6 hover:bg-slate-200 cursor-pointer'>
+								<h2 className='font-semibold text-lg'>
+									{item.title}
+								</h2>
+								<div className="flex gap-6 text-stone-600 font-semibold">
+									<p>{item.rating}</p>
+									<p>{item.skills} skills</p>
+								</div>
+							</menu>
+						))}
+					</article>
 				</section>
 
 				<section className='info-section'>
