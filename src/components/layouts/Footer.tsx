@@ -1,4 +1,11 @@
 import Link from "next/link";
+import {
+	FaGithub,
+	FaLinkedin,
+	FaTwitter,
+	FaYoutube,
+	FaInstagram,
+} from 'react-icons/fa';
 
 const footerData = [
 	{
@@ -51,21 +58,24 @@ export default function Footer() {
 				))}
 			</section>
 			<section className='w-11/12 m-auto flex flex-col gap-6'>
-				<article className='flex flex-wrap gap-2'>
+				<article className='flex flex-wrap gap-2 text-2xl'>
 					<Link href='https://github.com/shahbaz4783' target='_blank'>
-						GitHub
+						<FaGithub />
 					</Link>
 					<Link href='https://www.linkedin.com/in/shahbaz4783' target='_blank'>
-            LinkedIn
+						<FaLinkedin />
 					</Link>
 					<Link href='https://twitter.com/shahbaz4783' target='_blank'>
-						Twitter
+						<FaTwitter />
 					</Link>
-					<Link href='https://www.youtube.com/@indimerz/featured' target='_blank'>
-						Youtube
+					<Link
+						href='https://www.youtube.com/@indimerz/featured'
+						target='_blank'
+					>
+						<FaYoutube />
 					</Link>
 					<Link href='https://www.instagram.com/shahbaz04783' target='_blank'>
-						Instagram
+						<FaInstagram />
 					</Link>
 				</article>
 				<article className='border-t-[1px] pt-4'>
