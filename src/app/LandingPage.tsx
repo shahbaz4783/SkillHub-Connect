@@ -1,4 +1,4 @@
-import Hero from "@/components/section/Hero";
+import Hero from '@/components/section/Hero';
 import {
 	popular_categories,
 	getStartedList,
@@ -18,7 +18,7 @@ export default function LandingPage() {
 		<>
 			<main className='w-10/12 m-auto'>
 				<Hero />
-
+				{/* Popular Categories */}
 				<section className='mb-24'>
 					<SectionTop
 						heading='Browse talent by category'
@@ -39,12 +39,18 @@ export default function LandingPage() {
 						))}
 					</article>
 				</section>
-
-				<section className='flex mb-24'>
-					<aside className='hidden md:flex flex-[3]'>
-						<Image src='/hero-img.png' alt='' width={500} height={500} />
+				{/* Getting Started */}
+				<section className='flex flex-col md:flex-row mb-24 gap-8 justify-between'>
+					<aside className='rounded-md overflow-hidden md:flex flex-[4]'>
+						<Image
+							draggable={false}
+							src='/images/working.png'
+							alt=''
+							width={600}
+							height={600}
+						/>
 					</aside>
-					<aside className='flex-[5]'>
+					<aside className='flex-[6]'>
 						<SectionTop
 							heading='Getting work done has never been easier'
 							subhead=''
@@ -63,7 +69,11 @@ export default function LandingPage() {
 					</aside>
 				</section>
 
-				<section className='rounded-md p-6 mb-24 bg-gradient-to-r from-blue-800 to-indigo-900'>
+				{/* For Client Section */}
+				<section
+					className='rounded-md p-6 mb-24 bg-[url] bg-cover bg-center'
+					style={{ backgroundImage: 'url(/images/cube.jpg)' }}
+				>
 					<h3 className='mb-24 text-xl text-stone-100'>For clients</h3>
 
 					<DescHeading
@@ -75,7 +85,7 @@ export default function LandingPage() {
 							<Link
 								href={data.link}
 								key={data.title}
-								className='flex flex-col justify-center gap-4 bg-green-600 text-stone-100 hover:bg-stone-100 hover:text-green-600 p-4 rounded-lg'
+								className='flex flex-col justify-center gap-4 bg-green-700 text-slate-200 hover:bg-slate-300 hover:text-green-700 p-4 rounded-lg'
 							>
 								<h2 className='text-2xl w-4/5 font-bold '>{data.heading}</h2>
 								<p className='text-lg'>
@@ -86,6 +96,7 @@ export default function LandingPage() {
 					</menu>
 				</section>
 
+				{/* Why we */}
 				<section className='flex mb-24'>
 					<aside className='flex-[5]'>
 						<SectionTop
@@ -105,28 +116,44 @@ export default function LandingPage() {
 						</article>
 					</aside>
 
-					<aside className='hidden md:flex flex-[3]'>
-						<Image src='/hero-img.png' alt='' width={500} height={500} />
+					<aside className='hidden md:flex flex-[3] rounded-md overflow-hidden object-cover'>
+						<Image
+							draggable={false}
+							src='/images/linkedin-sales-solutions.jpg'
+							alt=''
+							width={500}
+							height={500}
+						/>
 					</aside>
 				</section>
 
+				{/* For Client */}
 				<section className='text-stone-100 rounded-md p-6 mb-24 bg-gradient-to-r from-blue-800 to-indigo-900'>
-					<h3 className='mb-10 text-xl'>For talent</h3>
-
-					<DescHeading
-						heading='Find great work'
-						subhead='Meet clients you’re excited to work with and take your career or business to new heights.'
-					/>
-					<menu className='grid md:grid-cols-3 gap-6 border-t-2 pt-8'>
-						{forTalent.map((data) => (
-							<p>{data}</p>
-						))}
-						<Link href={'/jobs'}>
-							<Button variant={'secondary'}>Find Opportunities</Button>
-						</Link>
-					</menu>
+					<aside>
+						<Image
+							draggable={false}
+							src='/images/firosnv-photography.jpg'
+							alt=''
+							width={500}
+							height={500}
+						/>
+					</aside>
+					<aside>
+						<h3 className='mb-10 text-xl'>For talent</h3>
+						<DescHeading
+							heading='Find great work'
+							subhead='Meet clients you’re excited to work with and take your career or business to new heights.'
+						/>
+						<menu className='grid md:grid-cols-3 gap-6 border-t-2 pt-8'>
+							{forTalent.map((data) => (
+								<p>{data}</p>
+							))}
+							<Link href={'/jobs'}>
+								<Button variant={'secondary'}>Find Opportunities</Button>
+							</Link>
+						</menu>
+					</aside>
 				</section>
-
 				<section className='flex flex-col md:flex-row gap-4 text-black mb-24'>
 					<aside className='flex flex-col gap-8 rounded-md bg-gradient-to-r p-8 from-stone-100 to-stone-200'>
 						<h1 className='text-3xl md:text-6xl font-serif md:w-3/4'>

@@ -41,7 +41,7 @@ export default function Hero() {
 				</article>
 			</aside>
 			<aside className='flex-1 hidden md:flex'>
-        <Image src={'/hero-img.png'} width={700} height={500} alt='Image of hero section' />
+        <Image src={'/images/working.png'} width={600} height={600} alt='Image of hero section' />
       </aside>
 		</section>
 	);
