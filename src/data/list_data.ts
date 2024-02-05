@@ -81,3 +81,27 @@ export const getStartedList: ListItem[] = [
 		icon: GiProgression,
 	},
 ];
+
+export const forClient = [
+	{
+		heading: 'Post a job and hire a pro',
+		link: '/services',
+		title: 'Talent Marketplace',
+	},
+	{
+		heading: 'Browse and buy projects',
+		link: '/services',
+		title: 'Project Catalog',
+	},
+	{
+		heading: 'Get advice from industry expert',
+		link: '/services',
+		title: 'Consultations',
+	},
+];
+
+export const forTalent = [
+	'Find opportunities for every stage of your freelance career',
+	'Control when, where, and how you work',
+	'Explore different ways to earn',
+];
