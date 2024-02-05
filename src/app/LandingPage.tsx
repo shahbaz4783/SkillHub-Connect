@@ -128,9 +128,10 @@ export default function LandingPage() {
 				</section>
 
 				{/* For Client */}
-				<section className='text-stone-100 rounded-md p-6 mb-24 bg-gradient-to-r from-blue-800 to-indigo-900'>
-					<aside>
+				<section className='flex gap-4 flex-col md:flex-row text-stone-100 rounded-md mb-24 bg-gradient-to-r from-blue-800 to-indigo-900'>
+					<aside className=''>
 						<Image
+							className=' object-cover h-full'
 							draggable={false}
 							src='/images/firosnv-photography.jpg'
 							alt=''
@@ -138,7 +139,7 @@ export default function LandingPage() {
 							height={500}
 						/>
 					</aside>
-					<aside>
+					<aside className='flex-1 py-6 px-4'>
 						<h3 className='mb-10 text-xl'>For talent</h3>
 						<DescHeading
 							heading='Find great work'
