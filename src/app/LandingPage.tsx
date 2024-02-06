@@ -149,8 +149,8 @@ export default function LandingPage() {
 							subhead='Meet clients you’re excited to work with and take your career or business to new heights.'
 						/>
 						<menu className='grid md:grid-cols-3 gap-6 border-t-2 pt-8'>
-							{forTalent.map((data) => (
-								<p>{data}</p>
+							{forTalent.map((data, index) => (
+								<p key={index}>{data}</p>
 							))}
 							<Link href={'/jobs'}>
 								<Button variant={'secondary'}>Find Opportunities</Button>

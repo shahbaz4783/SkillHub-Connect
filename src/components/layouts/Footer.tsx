@@ -13,12 +13,12 @@ export default function Footer() {
 	return (
 		<footer className='bg-black text-white flex flex-col gap-8 py-8'>
 			<section className='md:flex justify-between gap-5 w-11/12 m-auto'>
-				{footerData.map((data) => (
-					<article className='flex flex-col gap-4'>
+				{footerData.map((data, index) => (
+					<article key={index} className='flex flex-col gap-4'>
 						<h2 className='text-2xl'>{data.heading}</h2>
 						<ul>
-							{data.lists.map((item) => (
-								<li>{item.name}</li>
+							{data.lists.map((item, index) => (
+								<li key={index}>{item.name}</li>
 							))}
 						</ul>
 					</article>
