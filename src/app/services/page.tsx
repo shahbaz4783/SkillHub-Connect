@@ -5,6 +5,8 @@ import SectionTop from '@/components/layouts/SectionTop';
 import { shopByCategory } from '@/data/carousel-data';
 import { howServicesWorks } from '@/data/static-lists_data';
 import Image from 'next/image';
+import { serviceData } from '@/data/temp-data';
+import ServiceCard from '@/components/layouts/ServiceCard';
 
 export default function Services() {
 	return (
@@ -46,6 +48,26 @@ export default function Services() {
 						height={600}
 					/>
 				</aside>
+			</section>
+
+			<section className='mb-16'>
+				<SectionTop
+					heading='Get inspired with projects like these'
+					subhead=''
+				/>
+				<article className='grid md:grid-cols-3 lg:grid-cols-4 gap-4'>
+					{serviceData.map((data) => (
+						<ServiceCard
+            key={data.id}
+							img={'/images/cube.jpg'}
+							title={data.title}
+							price={data.price}
+							profile='Adam'
+              days={10}
+              rating={data.rating.rate}
+              />
+					))}
+				</article>
 			</section>
 		</main>
 	);
