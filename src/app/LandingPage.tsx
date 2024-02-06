@@ -4,7 +4,10 @@ import {
 	getStartedList,
 	forClient,
 	forTalent,
-} from '@/data/list_data';
+	whyWe,
+	ourFeatures,
+	ourAchievement,
+} from '@/data/landing-page_data';
 import SectionTop from '@/components/layouts/SectionTop';
 import ListItem from '@/components/layouts/ListItem';
 import Link from 'next/link';
@@ -44,7 +47,7 @@ export default function LandingPage() {
 					<aside className='rounded-md overflow-hidden md:flex flex-[4]'>
 						<Image
 							draggable={false}
-							src='/images/working.png'
+							src='/images/form-fill.jpg'
 							alt=''
 							width={600}
 							height={600}
@@ -104,7 +107,7 @@ export default function LandingPage() {
 							subhead='Access the top 1% on SkillHub Connect, coupled with a suite of cutting-edge workforce management tools. Redefine innovation and embrace the future of success'
 						/>
 						<article className='flex flex-col gap-2'>
-							{getStartedList.map((data) => (
+							{whyWe.map((data) => (
 								<ListItem
 									key={data.heading}
 									title={data.heading}
@@ -127,8 +130,8 @@ export default function LandingPage() {
 					</aside>
 				</section>
 
-				{/* For Client */}
-				<section className='flex gap-4 flex-col md:flex-row text-stone-100 rounded-md mb-24 bg-gradient-to-r from-blue-800 to-indigo-900'>
+				{/* For talent */}
+				<section className='overflow-hidden flex gap-4 flex-col md:flex-row text-stone-100 rounded-lg mb-24 bg-gradient-to-r from-blue-800 to-indigo-900'>
 					<aside className=''>
 						<Image
 							className=' object-cover h-full'
@@ -155,13 +158,15 @@ export default function LandingPage() {
 						</menu>
 					</aside>
 				</section>
+
+				{/* We are trustful */}
 				<section className='flex flex-col md:flex-row gap-4 text-black mb-24'>
 					<aside className='flex flex-col gap-8 rounded-md bg-gradient-to-r p-8 from-stone-100 to-stone-200'>
 						<h1 className='text-3xl md:text-6xl font-serif md:w-3/4'>
 							Why businesses turn to SkillHub
 						</h1>
 						<article className='flex flex-col gap-2'>
-							{getStartedList.map((data) => (
+							{ourFeatures.map((data) => (
 								<ListItem
 									key={data.heading}
 									title={data.heading}
@@ -177,7 +182,7 @@ export default function LandingPage() {
 							We’re the world’s work marketplace
 						</h2>
 						<article className='flex flex-col gap-2'>
-							{getStartedList.map((data) => (
+							{ourAchievement.map((data) => (
 								<ListItem
 									key={data.heading}
 									title={data.heading}

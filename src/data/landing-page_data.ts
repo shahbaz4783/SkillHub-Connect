@@ -1,8 +1,11 @@
 import { FaEdit } from 'react-icons/fa';
 import { TiPin } from 'react-icons/ti';
-import { GiProgression } from 'react-icons/gi';
-
-
+import { GiProgression, GiMagnifyingGlass } from 'react-icons/gi';
+import { GoGlobe } from 'react-icons/go';
+import { FaListCheck, FaAward, FaStar } from 'react-icons/fa6';
+import { MdOutlineStars } from 'react-icons/md';
+import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
+import { AiOutlineSafety } from 'react-icons/ai';
 
 interface ListItem {
 	heading: string;
@@ -104,4 +107,57 @@ export const forTalent = [
 	'Find opportunities for every stage of your freelance career',
 	'Control when, where, and how you work',
 	'Explore different ways to earn',
+];
+
+export const whyWe: ListItem[] = [
+	{
+		heading: 'Find the Perfect Experts for Your Needs',
+		subheading: 'Access a vast pool of talent to bridge your skill gaps.',
+		icon: GiMagnifyingGlass,
+	},
+	{
+		heading: ' Take Control of Your Projects',
+		subheading: 'Seamlessly hire, manage, and pay your freelance workforce.',
+		icon: FaListCheck,
+	},
+	{
+		heading: 'Get Expert Support at Every Step',
+		subheading:
+			'Skillhub offers end-to-end guidance for successful collaborations.',
+		icon: GoGlobe,
+	},
+];
+
+export const ourFeatures: ListItem[] = [
+	{
+		heading: 'Proof of quality',
+		subheading:
+			'Check any pro’s work samples, client reviews, and identity verification.',
+		icon: MdOutlineStars,
+	},
+	{
+		heading: 'No cost until you hire',
+		subheading:
+			'Interview potential fits for your job, negotiate rates, and only pay for work you approve.',
+		icon: HiOutlineCurrencyDollar,
+	},
+	{
+		heading: 'Safe and secure',
+		subheading:
+			'Focus on your work knowing we help protect your data and privacy. We’re here with 24/7 support if you need it.',
+		icon: AiOutlineSafety,
+	},
+];
+
+export const ourAchievement: ListItem[] = [
+	{
+		heading: '4.8/5',
+		subheading: 'Clients rate professionals on SkillHub',
+		icon: FaStar,
+	},
+	{
+		heading: 'Award Winner',
+		subheading: 'G2’s 2021 Best Software Awards',
+		icon: FaAward,
+	},
 ];

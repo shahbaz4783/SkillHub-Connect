@@ -7,10 +7,10 @@ export default function Hero() {
 			<aside className='flex-1 flex gap-12 flex-col justify-center'>
 				<article className='flex flex-col gap-6'>
 					<div>
-						<h1 className='text-7xl font-serif font-semibold text-green-600'>
+						<h1 className='text-6xl font-serif font-semibold text-green-600'>
 							Redefine
 						</h1>
-						<h1 className='text-7xl font-serif font-semibold text-green-600'>
+						<h1 className='text-6xl font-serif font-semibold text-green-600'>
 							the norm...
 						</h1>
 					</div>
@@ -41,7 +41,7 @@ export default function Hero() {
 				</article>
 			</aside>
 			<aside className='flex-1 hidden md:flex'>
-        <Image src={'/images/working.png'} width={600} height={600} alt='Image of hero section' />
+        <Image draggable={false} src={'/images/working.png'} width={600} height={600} alt='Image of hero section' />
       </aside>
 		</section>
 	);
