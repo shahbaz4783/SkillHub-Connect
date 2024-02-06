@@ -1,11 +1,12 @@
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaShoppingCart, FaUserCheck } from 'react-icons/fa';
 import { TiPin } from 'react-icons/ti';
 import { GiProgression, GiMagnifyingGlass } from 'react-icons/gi';
 import { GoGlobe } from 'react-icons/go';
-import { FaListCheck, FaAward, FaStar } from 'react-icons/fa6';
+import { FaListCheck, FaAward, FaStar, FaEye } from 'react-icons/fa6';
 import { MdOutlineStars } from 'react-icons/md';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { AiOutlineSafety } from 'react-icons/ai';
+
 
 interface ListItem {
 	heading: string;
@@ -159,5 +160,25 @@ export const ourAchievement: ListItem[] = [
 		heading: 'Award Winner',
 		subheading: 'G2’s 2021 Best Software Awards',
 		icon: FaAward,
+	},
+];
+
+export const howServicesWorks: ListItem[] = [
+	{
+		heading: 'Browse',
+		subheading:
+			'Find the type of work you need, clearly defined and ready to start.',
+		icon: FaEye,
+	},
+	{
+		heading: 'Buy',
+		subheading: 'Work begins as soon as you purchase and provide requirements.',
+		icon: FaShoppingCart,
+	},
+	{
+		heading: 'Approve',
+		subheading:
+			'Receive your project by a set deadline. Review, approve, and pay.',
+		icon: FaUserCheck,
 	},
 ];

@@ -7,7 +7,7 @@ import {
 	whyWe,
 	ourFeatures,
 	ourAchievement,
-} from '@/data/landing-page_data';
+} from '@/data/static-lists_data';
 import SectionTop from '@/components/layouts/SectionTop';
 import ListItem from '@/components/layouts/ListItem';
 import Link from 'next/link';
