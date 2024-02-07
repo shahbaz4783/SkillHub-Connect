@@ -55,7 +55,7 @@ export default function Services() {
 					heading='Get inspired with projects like these'
 					subhead=''
 				/>
-				<article className='grid md:grid-cols-3 lg:grid-cols-4 gap-4'>
+				<article className='grid md:grid-cols-3 lg:grid-cols-4 gap-8'>
 					{serviceData.map((data) => (
 						<ServiceCard
             key={data.id}

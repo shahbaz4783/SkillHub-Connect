@@ -25,18 +25,18 @@ export default function ServiceCard({
 	rating,
 }: ServiceCardProps) {
 	return (
-		<Card>
-			<CardHeader className='p-0'>
+		<Card className='flex flex-col justify-between'>
+			<CardHeader>
 				<Image src={img} width={500} height={500} alt='' />
 			</CardHeader>
-			<CardContent>
-				<CardTitle>{title}</CardTitle>
-				<div>
-					<p>{days} delivery</p>
-					<p>From {price}</p>
+			<CardContent className='flex flex-col gap-2 justify-between'>
+				<CardTitle className='line-clamp-2'>{title}</CardTitle>
+				<div className='flex justify-between'>
+					<p>{days} day delivery</p>
+					<p>From ${price}</p>
 				</div>
 			</CardContent>
-			<CardFooter className='flex justify-between'>
+			<CardFooter className='flex justify-between items-center border-t-[1px]'>
 				<p className=''>{profile}</p>
 				<p className=''>{rating}</p>
 			</CardFooter>
