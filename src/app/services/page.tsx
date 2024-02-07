@@ -65,6 +65,7 @@ export default function Services() {
 							profile='Adam'
               days={10}
               rating={data.rating.rate}
+							totalRating={data.rating.count}
               />
 					))}
 				</article>

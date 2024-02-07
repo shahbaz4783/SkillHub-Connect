@@ -6,6 +6,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import Image from 'next/image';
+import { FaStar, FaUser } from 'react-icons/fa6';
 
 interface ServiceCardProps {
 	title: string;
@@ -14,6 +15,7 @@ interface ServiceCardProps {
 	days: number;
 	profile: string;
 	rating: number;
+	totalRating: number;
 }
 
 export default function ServiceCard({
@@ -23,22 +25,29 @@ export default function ServiceCard({
 	days,
 	profile,
 	rating,
+	totalRating,
 }: ServiceCardProps) {
 	return (
-		<Card className='flex flex-col justify-between'>
+		<Card className=''>
 			<CardHeader>
 				<Image src={img} width={500} height={500} alt='' />
 			</CardHeader>
 			<CardContent className='flex flex-col gap-2 justify-between'>
-				<CardTitle className='line-clamp-2'>{title}</CardTitle>
-				<div className='flex justify-between'>
-					<p>{days} day delivery</p>
-					<p>From ${price}</p>
+				<div className='flex gap-2 items-center'>
+				<FaUser />
+				<CardTitle>{profile}</CardTitle>
 				</div>
+				<p className='line-clamp-2'>{title}</p>
 			</CardContent>
-			<CardFooter className='flex justify-between items-center border-t-[1px]'>
-				<p className=''>{profile}</p>
-				<p className=''>{rating}</p>
+			<CardFooter className='flex-col items-start'>
+				<div className='flex items-center gap-1'>
+					<FaStar />
+					<p className='font-semibold'>{rating}</p>
+					<p className='font-light'>({totalRating})</p>
+				</div>
+				<div>
+					<p className='font-semibold'>From ${price}</p>
+				</div>
 			</CardFooter>
 		</Card>
 	);
