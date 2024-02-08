@@ -1,4 +1,4 @@
-import Hero from '@/components/section/Hero';
+import Hero from '@/components/layouts/Hero';
 import {
 	popular_categories,
 	getStartedList,
@@ -8,11 +8,11 @@ import {
 	ourFeatures,
 	ourAchievement,
 } from '@/data/static-lists_data';
-import SectionTop from '@/components/layouts/SectionTop';
-import ListItem from '@/components/layouts/ListItem';
+import SectionTop from '@/components/ui/SectionTop';
+import ListItem from '@/components/ui/ListItem';
 import Link from 'next/link';
 import Image from 'next/image';
-import DescHeading from '@/components/layouts/DescHeading';
+import DescHeading from '@/components/ui/DescHeading';
 import { FaArrowRight } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 

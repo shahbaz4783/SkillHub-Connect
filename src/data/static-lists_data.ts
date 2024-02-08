@@ -182,3 +182,76 @@ export const howServicesWorks: ListItem[] = [
 		icon: FaUserCheck,
 	},
 ];
+
+
+export const howToGetWork: ListItem[] = [
+	{
+		heading: '1. Create a profile',
+		subheading:
+			'Highlight your skills and experience, show your portfolio, and set your ideal pay rate',
+		icon: FaEye,
+	},
+	{
+		heading: '2. Search for jobs',
+		subheading:
+			'Search on Talent Marketplace™ for the hourly or fixed-price work you’re looking for.',
+		icon: FaShoppingCart,
+	},
+	{
+		heading: '3. Submit a proposal',
+		subheading:
+			'Set your rate and tell clients why you’re the right person for the job!',
+		icon: FaUserCheck,
+	},
+	{
+		heading: '4. Get contract',
+		subheading:
+			'If the client likes your proposal they’ll send you a contract to begin working.',
+		icon: FaUserCheck,
+	},
+	{
+		heading: '5. Complete the work',
+		subheading:
+			'Check steps off as you finish and work with your client if you have questions.',
+		icon: FaUserCheck,
+	},
+	{
+		heading: '6. Get paid securely',
+		subheading:
+			'Once the client approves your work, you will get paid and they can leave you feedback.',
+		icon: FaUserCheck,
+	},
+];
+
+export const howToPostService: ListItem[] = [
+	{
+		heading: '1. Create a project',
+		subheading: 'Create a unique project that showcases your expertise.',
+		icon: FaEye,
+	},
+	{
+		heading: '2. Project is reviewed',
+		subheading:
+			'We will let you know if you need to make any changes before its visible to clients.',
+		icon: FaShoppingCart,
+	},
+	{
+		heading: '3. Get an order',
+		subheading:
+			'Your timeline starts once the client provides the info you need.',
+		icon: FaUserCheck,
+	},
+	{
+		heading: '4. Complete the work',
+		subheading:
+			'Check steps off as you finish and work with your client if you have questions.',
+		icon: FaShoppingCart,
+	},
+	{
+		heading: '5. Get paid securely',
+		subheading:
+			'Once the client approves your work, you will get paid and they can leave you feedback.',
+		icon: FaUserCheck,
+	},
+];
+

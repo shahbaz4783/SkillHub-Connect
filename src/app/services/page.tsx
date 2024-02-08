@@ -1,7 +1,7 @@
 import Banner from '@/components/layouts/Banner';
 import CarouselLayout from '@/components/layouts/CarouselLayout';
-import ListItem from '@/components/layouts/ListItem';
-import SectionTop from '@/components/layouts/SectionTop';
+import ListItem from '@/components/ui/ListItem';
+import SectionTop from '@/components/ui/SectionTop';
 import { shopByCategory } from '@/data/carousel-data';
 import { howServicesWorks } from '@/data/static-lists_data';
 import Image from 'next/image';

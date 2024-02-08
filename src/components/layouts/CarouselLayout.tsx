@@ -7,7 +7,7 @@ import {
 	CarouselPrevious,
 } from '@/components/ui/carousel';
 import Image from 'next/image';
-import SectionTop from './SectionTop';
+import SectionTop from '../ui/SectionTop';
 
 interface CarouselProps {
 	heading: string;
