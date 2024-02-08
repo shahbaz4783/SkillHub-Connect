@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { serviceData } from '@/data/temp-data';
 import ServiceCard from '@/components/layouts/ServiceCard';
 
-export default function Services() {
+const Services = () => {
 	return (
 		<main className='w-10/12 m-auto'>
 			<Banner
@@ -58,18 +58,20 @@ export default function Services() {
 				<article className='grid md:grid-cols-3 lg:grid-cols-4 gap-8'>
 					{serviceData.map((data) => (
 						<ServiceCard
-            key={data.id}
+							key={data.id}
 							img={'/images/cube.jpg'}
 							title={data.title}
 							price={data.price}
 							profile='Adam'
-              days={10}
-              rating={data.rating.rate}
+							days={10}
+							rating={data.rating.rate}
 							totalRating={data.rating.count}
-              />
+						/>
 					))}
 				</article>
 			</section>
 		</main>
 	);
-}
+};
+
+export default Services;

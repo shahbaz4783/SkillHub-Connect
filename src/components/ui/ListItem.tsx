@@ -1,10 +1,12 @@
+import { FC } from 'react';
+
 interface ListInterface {
 	title: string;
 	subheading: string;
 	children: React.ReactNode;
 }
 
-export default function ListItem({ title, subheading, children }: ListInterface) {
+const ListItem: FC<ListInterface> = ({ title, subheading, children }) => {
 	return (
 		<menu className='flex gap-4 p-2'>
 			<div className='pt-1' style={{ fontSize: '1.6em' }}>
@@ -16,4 +18,6 @@ export default function ListItem({ title, subheading, children }: ListInterface)
 			</ul>
 		</menu>
 	);
-}
+};
+
+export default ListItem;

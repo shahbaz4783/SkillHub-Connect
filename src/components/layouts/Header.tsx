@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import NavLink from '../ui/NavLink';
 
-export default function Header() {
+const Header = () => {
 	return (
 		<header className='border-b-2 flex items-start top-0 justify-between px-4 py-3 sticky z-10 bg-white'>
 			<div className='flex items-center'>
@@ -26,4 +26,6 @@ export default function Header() {
 			</div>
 		</header>
 	);
-}
+};
+
+export default Header;

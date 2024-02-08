@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Button } from '../ui/button';
 
-export default function Hero() {
+const Hero = () => {
 	return (
 		<section className='flex min-h-[80dvh]'>
 			<aside className='flex-1 flex gap-12 flex-col justify-center'>
@@ -41,8 +41,16 @@ export default function Hero() {
 				</article>
 			</aside>
 			<aside className='flex-1 hidden md:flex'>
-        <Image draggable={false} src={'/images/working.png'} width={600} height={600} alt='Image of hero section' />
-      </aside>
+				<Image
+					draggable={false}
+					src={'/images/working.png'}
+					width={600}
+					height={600}
+					alt='Image of hero section'
+				/>
+			</aside>
 		</section>
 	);
-}
+};
+
+export default Hero;

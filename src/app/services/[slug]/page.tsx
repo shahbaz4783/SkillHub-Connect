@@ -1,3 +1,5 @@
-export default function ServiceDetails() {
+const ServiceDetails = () => {
 	return <div>Service Info</div>;
-}
+};
+
+export default ServiceDetails;

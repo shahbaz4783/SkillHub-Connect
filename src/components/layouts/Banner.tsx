@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Input } from '../ui/input';
+import { FC } from 'react';
 
 interface BannerProps {
 	title: string;
@@ -7,7 +8,7 @@ interface BannerProps {
 	description: string;
 }
 
-export default function Banner({ title, slogan, description }: BannerProps) {
+const Banner: FC<BannerProps> = ({ title, slogan, description }) => {
 	return (
 		<section className='p-6 mt-8 mb-16 rounded-lg bg-gradient-to-r from-teal-800 to-teal-700 text-stone-100'>
 			<aside className='md:w-2/5 flex flex-col gap-12'>
@@ -47,4 +48,6 @@ export default function Banner({ title, slogan, description }: BannerProps) {
 			</aside>
 		</section>
 	);
-}
+};
+
+export default Banner;

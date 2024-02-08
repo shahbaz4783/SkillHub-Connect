@@ -1,3 +1,5 @@
-export default function Support() {
+const Support = () => {
 	return <div>Contact Us</div>;
-}
+};
+
+export default Support;

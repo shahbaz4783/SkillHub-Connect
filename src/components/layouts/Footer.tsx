@@ -9,7 +9,7 @@ import {
 
 import { footerData } from '@/data/footer_data';
 
-export default function Footer() {
+const Footer = () => {
 	return (
 		<footer className='bg-black text-white flex flex-col gap-8 py-8'>
 			<section className='md:flex justify-between gap-5 w-11/12 m-auto'>
@@ -52,3 +52,5 @@ export default function Footer() {
 		</footer>
 	);
 }
+
+export default Footer

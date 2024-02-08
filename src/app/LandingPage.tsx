@@ -16,7 +16,7 @@ import DescHeading from '@/components/ui/DescHeading';
 import { FaArrowRight } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 
-export default function LandingPage() {
+const LandingPage = () => {
 	return (
 		<>
 			<main className='w-10/12 m-auto'>
@@ -198,3 +198,5 @@ export default function LandingPage() {
 		</>
 	);
 }
+
+export default LandingPage;

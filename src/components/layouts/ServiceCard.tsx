@@ -6,6 +6,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import Image from 'next/image';
+import { FC } from 'react';
 import { FaStar, FaUser } from 'react-icons/fa6';
 
 interface ServiceCardProps {
@@ -18,15 +19,14 @@ interface ServiceCardProps {
 	totalRating: number;
 }
 
-export default function ServiceCard({
+const ServiceCard: FC<ServiceCardProps> = ({
 	title,
 	img,
 	price,
-	days,
 	profile,
 	rating,
 	totalRating,
-}: ServiceCardProps) {
+}) => {
 	return (
 		<Card className=''>
 			<CardHeader>
@@ -34,8 +34,8 @@ export default function ServiceCard({
 			</CardHeader>
 			<CardContent className='flex flex-col gap-2 justify-between'>
 				<div className='flex gap-2 items-center'>
-				<FaUser />
-				<CardTitle>{profile}</CardTitle>
+					<FaUser />
+					<CardTitle>{profile}</CardTitle>
 				</div>
 				<p className='line-clamp-2'>{title}</p>
 			</CardContent>
@@ -51,4 +51,6 @@ export default function ServiceCard({
 			</CardFooter>
 		</Card>
 	);
-}
+};
+
+export default ServiceCard;

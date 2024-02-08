@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
 	Carousel,
 	CarouselContent,
@@ -11,15 +11,15 @@ import SectionTop from '../ui/SectionTop';
 
 interface CarouselProps {
 	heading: string;
-	subhead: string
+	subhead: string;
 	carouselItem: { img: string; title: string; link?: string }[];
 }
 
-export default function CarouselLayout({
+const CarouselLayout: FC<CarouselProps> = ({
 	heading,
 	subhead,
 	carouselItem,
-}: CarouselProps) {
+}) => {
 	return (
 		<Carousel
 			opts={{
@@ -32,7 +32,12 @@ export default function CarouselLayout({
 				{carouselItem.map((data, index) => (
 					<CarouselItem key={index} className='md:basis-1/2 lg:basis-1/4'>
 						<div className='border rounded-xl overflow-hidden'>
-							<Image src={data.img} alt='carousel image' width={500} height={500} />
+							<Image
+								src={data.img}
+								alt='carousel image'
+								width={500}
+								height={500}
+							/>
 							<p className='p-2 font-semibold text-stone-600'>{data.title}</p>
 						</div>
 					</CarouselItem>
@@ -42,4 +47,6 @@ export default function CarouselLayout({
 			<CarouselNext className='hidden' />
 		</Carousel>
 	);
-}
+};
+
+export default CarouselLayout;
