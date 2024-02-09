@@ -2,7 +2,12 @@ import Banner from '@/components/layouts/Banner';
 import ListItem from '@/components/ui/ListItem';
 import SectionTop from '@/components/ui/SectionTop';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { howToPostService, howToGetWork } from '@/data/static-lists_data';
+import {
+	howToPostService,
+	howToGetWork,
+	popular_categories,
+} from '@/data/static-lists_data';
+import { FaCode } from 'react-icons/fa6';
 
 const Services = () => {
 	return (
@@ -35,7 +40,7 @@ const Services = () => {
 					</TabsContent>
 					<TabsContent
 						value='project'
-						className='grid md:grid-cols-3 gap-6 md:gap-16 md:text-center mt-0 '
+						className='grid md:grid-cols-3 gap-6 md:gap-16 md:text-center mt-0'
 					>
 						{howToPostService.map((data, index) => (
 							<ListItem
@@ -48,6 +53,21 @@ const Services = () => {
 						))}
 					</TabsContent>
 				</Tabs>
+			</section>
+
+			<section className='mb-16'>
+				<SectionTop heading='Work that’s waiting for you' subhead='' />
+				<article className='grid md:grid-cols-2 gap-8'>
+					{popular_categories.map((data, index) => (
+						<ListItem
+							key={index}
+							title={data.title}
+							subheading='10K jobs posted weekly'
+						>
+							<FaCode />
+						</ListItem>
+					))}
+				</article>
 			</section>
 		</main>
 	);
