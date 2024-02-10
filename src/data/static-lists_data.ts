@@ -1,4 +1,4 @@
-import { FaEdit, FaShoppingCart, FaUserCheck } from 'react-icons/fa';
+import { FaEdit, FaMoneyCheck, FaShoppingCart, FaUserCheck } from 'react-icons/fa';
 import { TiPin } from 'react-icons/ti';
 import {
 	GiProgression,
@@ -15,17 +15,18 @@ import {
 	FaSearchengin,
 	FaFileContract,
 	FaLaptopCode,
+	FaRocket,
+	FaRegFileCode,
 } from 'react-icons/fa6';
-import { MdOutlineStars } from 'react-icons/md';
+import { MdOutlinePayment, MdOutlineStars } from 'react-icons/md';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { AiOutlineSafety } from 'react-icons/ai';
 import { ImProfile } from 'react-icons/im';
-import { IoNewspaperOutline } from 'react-icons/io5';
+import { IoNewspaperOutline, IoRocketOutline } from 'react-icons/io5';
 import { IoIosCreate, IoIosDoneAll } from 'react-icons/io';
-
-
-
-
+import { CiMemoPad } from 'react-icons/ci';
+import { VscWorkspaceTrusted } from 'react-icons/vsc';
+import { GrCatalogOption } from 'react-icons/gr';
 
 interface ListItem {
 	heading: string;
@@ -273,3 +274,45 @@ export const howToPostService: ListItem[] = [
 	},
 ];
 
+export const supportOptions: ListItem[] = [
+	{
+		heading: 'Get Started',
+		subheading: 'How it works, Getting Started, Fees & Protection',
+		icon: IoRocketOutline,
+	},
+	{
+		heading: 'Build Your Profile',
+		subheading: 'Settings, Programs, Stats',
+		icon: ImProfile,
+	},
+	{
+		heading: 'Find a Project',
+		subheading: 'Search, Send Proposals, Interview, Accept Offers',
+		icon: CiMemoPad,
+	},
+	{
+		heading: 'Start Working',
+		subheading: 'Messages, Work Diary, Contracts, Feedback',
+		icon: FaLaptopCode,
+	},
+	{
+		heading: 'Payment Issues',
+		subheading: 'Timing, Issues, Refunds',
+		icon: MdOutlinePayment,
+	},
+	{
+		heading: 'Project Catalog',
+		subheading: 'Pre-packaged projects',
+		icon: GrCatalogOption,
+	},
+	{
+		heading: 'Trust & Safety',
+		subheading: 'Terms of Service, Online Safety, Personal Data',
+		icon: VscWorkspaceTrusted,
+	},
+	{
+		heading: 'SkillHub API',
+		subheading: 'Development Resources',
+		icon: FaRegFileCode,
+	},
+];
