@@ -1,6 +1,6 @@
 import Hero from '@/components/layouts/Hero';
 import {
-	popular_categories,
+	work_categories,
 	getStartedList,
 	forClient,
 	forTalent,
@@ -28,7 +28,7 @@ const LandingPage = () => {
 						subhead='Explore diverse expertise and Skills across categories'
 					/>
 					<article className='grid md:grid-cols-2 lg:grid-cols-4 gap-4'>
-						{popular_categories.map((item) => (
+						{work_categories.map((item) => (
 							<menu
 								key={item.title}
 								className='flex flex-col gap-3 rounded-lg bg-card bg-slate-100 p-6 hover:bg-slate-200 cursor-pointer'

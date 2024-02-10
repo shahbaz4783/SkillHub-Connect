@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
 	howToPostService,
 	howToGetWork,
-	popular_categories,
+	work_categories,
 } from '@/data/static-lists_data';
 import { FaCode } from 'react-icons/fa6';
 
@@ -17,23 +17,23 @@ const Services = () => {
 				slogan='Do the work you love, your way'
 				description='Build rewarding relationships in the world’s Work Marketplace. Your home for the work you want.'
 			/>
-			<section className='mb-16'>
+			<section className='mb-28'>
 				<SectionTop heading='Explore the different ways to earn' subhead='' />
-				<Tabs defaultValue='talent' className='flex flex-col '>
-					<TabsList className='py-6'>
+				<Tabs defaultValue='talent' className='flex flex-col'>
+					<TabsList className='py-6 mb-8'>
 						<TabsTrigger value='talent'>Talent Marketplace</TabsTrigger>
 						<TabsTrigger value='project'>Project Catalog</TabsTrigger>
 					</TabsList>
 					<TabsContent
 						value='talent'
-						className='grid md:grid-cols-3 gap-6 md:gap-16 md:text-center'
+						className='grid md:grid-cols-3 gap-6 md:gap-16 md:text-center md:w-3/4 m-auto'
 					>
 						{howToGetWork.map((data, index) => (
 							<ListItem
 								key={index}
 								title={data.heading}
 								subheading={data.subheading}
-								className='flex-col items-center'
+								className='md:flex-col md:items-center'
 								iconSize='3.5em'
 							>
 								{data.icon && <data.icon />}
@@ -42,14 +42,14 @@ const Services = () => {
 					</TabsContent>
 					<TabsContent
 						value='project'
-						className='grid md:grid-cols-3 gap-6 md:gap-16 md:text-center mt-0'
+						className='grid md:grid-cols-3 gap-6 md:gap-16 md:text-center mt-0 md:w-3/4 m-auto'
 					>
 						{howToPostService.map((data, index) => (
 							<ListItem
 								key={index}
 								title={data.heading}
 								subheading={data.subheading}
-								className='flex-col items-center'
+								className='md:flex-col md:items-center'
 								iconSize='3.5em'
 							>
 								{data.icon && <data.icon />}
@@ -62,14 +62,15 @@ const Services = () => {
 			<section className='mb-16'>
 				<SectionTop heading='Work that’s waiting for you' subhead='' />
 				<article className='grid md:grid-cols-2 gap-8'>
-					{popular_categories.map((data, index) => (
+					{work_categories.map((data, index) => (
 						<ListItem
 							key={index}
 							title={data.title}
-							subheading='10K jobs posted weekly'
+							subheading={data.jobs + ' jobs available'}
 							className='bg-slate-100 rounded-lg p-4'
+							iconSize='2.8em'
 						>
-							<FaCode />
+							{data.icon && <data.icon />}
 						</ListItem>
 					))}
 				</article>

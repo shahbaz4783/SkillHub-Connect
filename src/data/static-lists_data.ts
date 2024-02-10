@@ -1,4 +1,8 @@
-import { FaEdit, FaMoneyCheck, FaShoppingCart, FaUserCheck } from 'react-icons/fa';
+import {
+	FaEdit,
+	FaShoppingCart,
+	FaUserCheck,
+} from 'react-icons/fa';
 import { TiPin } from 'react-icons/ti';
 import {
 	GiProgression,
@@ -15,10 +19,11 @@ import {
 	FaSearchengin,
 	FaFileContract,
 	FaLaptopCode,
-	FaRocket,
 	FaRegFileCode,
+	FaChartPie,
+	FaRegFileVideo,
 } from 'react-icons/fa6';
-import { MdOutlinePayment, MdOutlineStars } from 'react-icons/md';
+import { MdOutlineAccountBalanceWallet, MdOutlineEngineering, MdOutlinePayment, MdOutlineStars } from 'react-icons/md';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { AiOutlineSafety } from 'react-icons/ai';
 import { ImProfile } from 'react-icons/im';
@@ -27,6 +32,9 @@ import { IoIosCreate, IoIosDoneAll } from 'react-icons/io';
 import { CiMemoPad } from 'react-icons/ci';
 import { VscWorkspaceTrusted } from 'react-icons/vsc';
 import { GrCatalogOption } from 'react-icons/gr';
+import { RiRobot2Line } from 'react-icons/ri';
+import { TfiWrite } from 'react-icons/tfi';
+import { CgDesignmodo } from 'react-icons/cg';
 
 interface ListItem {
 	heading: string;
@@ -34,54 +42,70 @@ interface ListItem {
 	icon?: React.ElementType;
 }
 
-export const popular_categories = [
+export const work_categories = [
 	{
 		title: 'Development and IT',
 		img: '/ibm.svg',
+		icon: FaLaptopCode,
 		rating: '4.86/5',
 		skills: 134,
+		jobs: 289,
 	},
 	{
 		title: 'AI Services',
 		img: '/ibm.svg',
+		icon: RiRobot2Line,
 		rating: '4.72/5',
-		skills: 134,
+		skills: 89,
+		jobs: 113,
 	},
 	{
 		title: 'Sales and Marketing',
 		img: '/ibm.svg',
+		icon: FaChartPie,
 		rating: '4.89/5',
-		skills: 134,
+		skills: 424,
+		jobs: 514,
 	},
 	{
 		title: 'Writing and Translation',
 		img: '/ibm.svg',
+		icon: TfiWrite,
 		rating: '4.93/5',
-		skills: 134,
+		skills: 434,
+		jobs: 531,
 	},
 	{
 		title: 'Finance and Accounting',
 		img: '/ibm.svg',
+		icon: MdOutlineAccountBalanceWallet,
 		rating: '4.69/5',
-		skills: 134,
+		skills: 128,
+		jobs: 159,
 	},
 	{
 		title: 'Design and Creative',
 		img: '/ibm.svg',
+		icon: CgDesignmodo,
 		rating: '4.88/5',
-		skills: 134,
+		skills: 194,
+		jobs: 356,
 	},
 	{
 		title: 'Engineering & Architecture',
 		img: '/ibm.svg',
+		icon: MdOutlineEngineering,
 		rating: '4.81/5',
-		skills: 134,
+		skills: 84,
+		jobs: 119,
 	},
 	{
-		title: 'Writing & Translation',
+		title: 'Video Editing',
 		img: '/ibm.svg',
+		icon: FaRegFileVideo,
 		rating: '4.75/5',
-		skills: 134,
+		skills: 304,
+		jobs: 424,
 	},
 ];
 
