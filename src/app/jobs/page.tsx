@@ -19,8 +19,8 @@ const Services = () => {
 			/>
 			<section className='mb-16'>
 				<SectionTop heading='Explore the different ways to earn' subhead='' />
-				<Tabs defaultValue='talent'>
-					<TabsList className='w-full'>
+				<Tabs defaultValue='talent' className='flex flex-col '>
+					<TabsList className='py-6'>
 						<TabsTrigger value='talent'>Talent Marketplace</TabsTrigger>
 						<TabsTrigger value='project'>Project Catalog</TabsTrigger>
 					</TabsList>
@@ -33,6 +33,8 @@ const Services = () => {
 								key={index}
 								title={data.heading}
 								subheading={data.subheading}
+								className='flex-col items-center'
+								iconSize='3.5em'
 							>
 								{data.icon && <data.icon />}
 							</ListItem>
@@ -47,6 +49,8 @@ const Services = () => {
 								key={index}
 								title={data.heading}
 								subheading={data.subheading}
+								className='flex-col items-center'
+								iconSize='3.5em'
 							>
 								{data.icon && <data.icon />}
 							</ListItem>
@@ -63,6 +67,7 @@ const Services = () => {
 							key={index}
 							title={data.title}
 							subheading='10K jobs posted weekly'
+							className='bg-slate-100 rounded-lg p-4'
 						>
 							<FaCode />
 						</ListItem>

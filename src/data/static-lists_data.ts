@@ -1,11 +1,30 @@
 import { FaEdit, FaShoppingCart, FaUserCheck } from 'react-icons/fa';
 import { TiPin } from 'react-icons/ti';
-import { GiProgression, GiMagnifyingGlass } from 'react-icons/gi';
+import {
+	GiProgression,
+	GiMagnifyingGlass,
+	GiMoneyStack,
+	GiOnTarget,
+} from 'react-icons/gi';
 import { GoGlobe } from 'react-icons/go';
-import { FaListCheck, FaAward, FaStar, FaEye } from 'react-icons/fa6';
+import {
+	FaListCheck,
+	FaAward,
+	FaStar,
+	FaEye,
+	FaSearchengin,
+	FaFileContract,
+	FaLaptopCode,
+} from 'react-icons/fa6';
 import { MdOutlineStars } from 'react-icons/md';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { AiOutlineSafety } from 'react-icons/ai';
+import { ImProfile } from 'react-icons/im';
+import { IoNewspaperOutline } from 'react-icons/io5';
+import { IoIosCreate, IoIosDoneAll } from 'react-icons/io';
+
+
+
 
 
 interface ListItem {
@@ -183,43 +202,42 @@ export const howServicesWorks: ListItem[] = [
 	},
 ];
 
-
 export const howToGetWork: ListItem[] = [
 	{
 		heading: '1. Create a profile',
 		subheading:
 			'Highlight your skills and experience, show your portfolio, and set your ideal pay rate',
-		icon: FaEye,
+		icon: ImProfile,
 	},
 	{
 		heading: '2. Search for jobs',
 		subheading:
 			'Search on Talent Marketplace™ for the hourly or fixed-price work you’re looking for.',
-		icon: FaShoppingCart,
+		icon: FaSearchengin,
 	},
 	{
 		heading: '3. Submit a proposal',
 		subheading:
 			'Set your rate and tell clients why you’re the right person for the job!',
-		icon: FaUserCheck,
+		icon: IoNewspaperOutline,
 	},
 	{
 		heading: '4. Get contract',
 		subheading:
 			'If the client likes your proposal they’ll send you a contract to begin working.',
-		icon: FaUserCheck,
+		icon: FaFileContract,
 	},
 	{
 		heading: '5. Complete the work',
 		subheading:
 			'Check steps off as you finish and work with your client if you have questions.',
-		icon: FaUserCheck,
+		icon: FaLaptopCode,
 	},
 	{
 		heading: '6. Get paid securely',
 		subheading:
 			'Once the client approves your work, you will get paid and they can leave you feedback.',
-		icon: FaUserCheck,
+		icon: GiMoneyStack,
 	},
 ];
 
@@ -227,31 +245,31 @@ export const howToPostService: ListItem[] = [
 	{
 		heading: '1. Create a project',
 		subheading: 'Create a unique project that showcases your expertise.',
-		icon: FaEye,
+		icon: IoIosCreate,
 	},
 	{
 		heading: '2. Project is reviewed',
 		subheading:
 			'We will let you know if you need to make any changes before its visible to clients.',
-		icon: FaShoppingCart,
+		icon: IoIosDoneAll,
 	},
 	{
 		heading: '3. Get an order',
 		subheading:
 			'Your timeline starts once the client provides the info you need.',
-		icon: FaUserCheck,
+		icon: GiOnTarget,
 	},
 	{
 		heading: '4. Complete the work',
 		subheading:
 			'Check steps off as you finish and work with your client if you have questions.',
-		icon: FaShoppingCart,
+		icon: FaLaptopCode,
 	},
 	{
 		heading: '5. Get paid securely',
 		subheading:
 			'Once the client approves your work, you will get paid and they can leave you feedback.',
-		icon: FaUserCheck,
+		icon: GiMoneyStack,
 	},
 ];
 
