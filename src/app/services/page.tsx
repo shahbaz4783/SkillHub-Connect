@@ -59,7 +59,7 @@ const Services = () => {
 					{serviceData.map((data) => (
 						<ServiceCard
 							key={data.id}
-							img={'/images/cube.jpg'}
+							img={data.image}
 							title={data.title}
 							price={data.price}
 							profile='Adam'

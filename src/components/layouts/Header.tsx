@@ -21,8 +21,12 @@ const Header = () => {
 			</nav>
 			<div className='hidden md:flex gap-4'>
 				<Input type='search' placeholder='Search' />
-				<Button variant={'ghost'}>Login</Button>
-				<Button variant={'default'}>Sign up</Button>
+				<NavLink href='/login'>
+					<Button variant={'ghost'}>Login</Button>
+				</NavLink>
+				<NavLink href='/signup'>
+					<Button variant={'default'}>Sign up</Button>
+				</NavLink>
 			</div>
 		</header>
 	);

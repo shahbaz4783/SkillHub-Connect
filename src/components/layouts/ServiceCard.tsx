@@ -30,7 +30,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
 	return (
 		<Card className=''>
 			<CardHeader>
-				<Image src={img} width={500} height={500} alt='' />
+				<Image src={img} width={500} height={500} alt='' className='object-contain aspect-square' />
 			</CardHeader>
 			<CardContent className='flex flex-col gap-2 justify-between'>
 				<div className='flex gap-2 items-center'>
