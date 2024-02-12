@@ -5,7 +5,7 @@ import NavLink from '../ui/NavLink';
 
 const Header = () => {
 	return (
-		<header className='border-b-2 flex items-start top-0 justify-between px-4 py-3 sticky z-10 bg-white'>
+		<header className='shadow-sm flex items-start top-0 justify-between px-4 py-3 sticky z-10 bg-slate-50'>
 			<div className='flex items-center'>
 				<Link
 					href={'/'}
@@ -14,7 +14,7 @@ const Header = () => {
 					SkillHub Connect
 				</Link>
 			</div>
-			<nav className='hidden md:flex items-center gap-5'>
+			<nav className='hidden md:flex items-center gap-5 text-lg'>
 				<NavLink href='/services'>Find Talent</NavLink>
 				<NavLink href='/jobs'>Find Work</NavLink>
 				<NavLink href='/support'>Support</NavLink>

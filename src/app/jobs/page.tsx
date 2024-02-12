@@ -7,6 +7,7 @@ import {
 	howToGetWork,
 	work_categories,
 } from '@/data/static-lists_data';
+import Link from 'next/link';
 import { FaCode } from 'react-icons/fa6';
 
 const Services = () => {
@@ -63,15 +64,19 @@ const Services = () => {
 				<SectionTop heading='Work that’s waiting for you' subhead='' />
 				<article className='grid md:grid-cols-2 gap-8'>
 					{work_categories.map((data, index) => (
-						<ListItem
-							key={index}
-							title={data.title}
-							subheading={data.jobs + ' jobs available'}
-							className='bg-slate-100 rounded-lg p-4'
-							iconSize='2.8em'
+						<Link
+							href={`/jobs/${encodeURIComponent(data.title.toLowerCase()).replace(/%20/g, '-').replace(/%26/g, '&')}`}
 						>
-							{data.icon && <data.icon />}
-						</ListItem>
+							<ListItem
+								key={index}
+								title={data.title}
+								subheading={data.jobs + ' jobs available'}
+								className='bg-slate-100 rounded-lg p-4'
+								iconSize='2.8em'
+							>
+								{data.icon && <data.icon />}
+							</ListItem>
+						</Link>
 					))}
 				</article>
 			</section>

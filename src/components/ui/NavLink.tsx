@@ -13,7 +13,12 @@ const NavLink: FC<NavLink> = ({ href, children }) => {
 	const isActive = path.startsWith(href);
 
 	return (
-		<Link href={href} className={`${isActive && 'text-purple-700'}`}>
+		<Link
+			href={href}
+			className={`hover:text-green-900 transition-all ${
+				isActive && 'text-green-700'
+			}`}
+		>
 			{children}
 		</Link>
 	);
