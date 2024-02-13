@@ -7,12 +7,12 @@ interface Params {
 }
 
 const JobDetails: FC<Params> = ({ params }) => {
-	return (
-		<main>
-			<h2>{params.title}</h2>
-			<div>Hello</div>
-		</main>
-	);
+		return (
+			<main>
+				<h2>{params.title}</h2>
+				<div>Hello</div>
+			</main>
+		);
 };
 
 export default JobDetails;
