@@ -197,6 +197,6 @@ const LandingPage = () => {
 			</main>
 		</>
 	);
-}
+};
 
 export default LandingPage;

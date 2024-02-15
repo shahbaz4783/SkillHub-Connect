@@ -8,7 +8,6 @@ import {
 	work_categories,
 } from '@/data/static-lists_data';
 import Link from 'next/link';
-import { FaCode } from 'react-icons/fa6';
 
 const Services = () => {
 	return (
