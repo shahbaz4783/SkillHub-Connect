@@ -19,10 +19,10 @@ import { Button } from '@/components/ui/button';
 const LandingPage = () => {
 	return (
 		<>
-			<main className='w-10/12 m-auto'>
+			<main className='md:w-10/12 m-auto'>
 				<Hero />
 				{/* Popular Categories */}
-				<section className='mb-24'>
+				<section className='mb-24 px-4 md:px-0'>
 					<SectionTop
 						heading='Browse talent by category'
 						subhead='Explore diverse expertise and Skills across categories'
@@ -43,7 +43,7 @@ const LandingPage = () => {
 					</article>
 				</section>
 				{/* Getting Started */}
-				<section className='flex flex-col md:flex-row mb-24 gap-8 justify-between'>
+				<section className='flex flex-col md:flex-row mb-24 gap-8 justify-between px-4 md:px-0'>
 					<aside className='rounded-md overflow-hidden md:flex flex-[4]'>
 						<Image
 							draggable={false}
@@ -74,7 +74,7 @@ const LandingPage = () => {
 
 				{/* For Client Section */}
 				<section
-					className='rounded-md p-6 mb-24 bg-[url] bg-cover bg-center'
+					className='md:rounded-md p-6 mb-24 bg-[url] bg-cover bg-center'
 					style={{ backgroundImage: 'url(/images/cube.jpg)' }}
 				>
 					<h3 className='mb-24 text-xl text-stone-100'>For clients</h3>
@@ -100,7 +100,7 @@ const LandingPage = () => {
 				</section>
 
 				{/* Why we */}
-				<section className='flex mb-24'>
+				<section className='flex mb-24 px-4 md:px-0'>
 					<aside className='flex-[5]'>
 						<SectionTop
 							heading='Where Industry Leaders Find Top Talent'
@@ -131,7 +131,7 @@ const LandingPage = () => {
 				</section>
 
 				{/* For talent */}
-				<section className='overflow-hidden flex gap-4 flex-col md:flex-row text-stone-100 rounded-lg mb-24 bg-gradient-to-r from-blue-800 to-indigo-900'>
+				<section className='overflow-hidden flex gap-4 flex-col md:flex-row text-stone-100 md:rounded-md mb-24 bg-gradient-to-r from-blue-800 to-indigo-900'>
 					<aside className=''>
 						<Image
 							className=' object-cover h-full'
