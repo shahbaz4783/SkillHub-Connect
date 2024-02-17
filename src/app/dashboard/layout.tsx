@@ -1,4 +1,4 @@
-import AdminNavbar from '@/components/layouts/AdminNavbar';
+import AdminNavbar from '@/components/shared/AdminNavbar';
 import React from 'react';
 
 const layout = ({ children }: { children: React.ReactNode }) => {

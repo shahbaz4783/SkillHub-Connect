@@ -1,4 +1,4 @@
-import Banner from '@/components/layouts/Banner';
+import Banner from '@/components/shared/Banner';
 import ListItem from '@/components/ui/ListItem';
 import SectionTop from '@/components/ui/SectionTop';
 import { supportOptions } from '@/data/static-lists_data';

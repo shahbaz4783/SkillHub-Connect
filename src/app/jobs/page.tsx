@@ -1,4 +1,4 @@
-import Banner from '@/components/layouts/Banner';
+import Banner from '@/components/shared/Banner';
 import ListItem from '@/components/ui/ListItem';
 import SectionTop from '@/components/ui/SectionTop';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -64,8 +64,10 @@ const Services = () => {
 				<article className='grid md:grid-cols-2 gap-8'>
 					{work_categories.map((data, index) => (
 						<Link
-						key={index}
-							href={`/jobs/${encodeURIComponent(data.title.toLowerCase()).replace(/%20/g, '-').replace(/%26/g, '&')}`}
+							key={index}
+							href={`/jobs/${encodeURIComponent(data.title.toLowerCase())
+								.replace(/%20/g, '-')
+								.replace(/%26/g, '&')}`}
 						>
 							<ListItem
 								title={data.title}

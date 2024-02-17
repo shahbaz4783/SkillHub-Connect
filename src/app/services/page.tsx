@@ -1,12 +1,12 @@
-import Banner from '@/components/layouts/Banner';
-import CarouselLayout from '@/components/layouts/CarouselLayout';
+import Banner from '@/components/shared/Banner';
+import CarouselLayout from '@/components/shared/CarouselLayout';
 import ListItem from '@/components/ui/ListItem';
 import SectionTop from '@/components/ui/SectionTop';
 import { shopByCategory } from '@/data/carousel-data';
 import { howServicesWorks } from '@/data/static-lists_data';
 import Image from 'next/image';
 import { serviceData } from '@/data/temp-data';
-import ServiceCard from '@/components/layouts/ServiceCard';
+import ServiceCard from '@/components/shared/ServiceCard';
 
 const Services = () => {
 	return (

@@ -1,4 +1,4 @@
-import Hero from '@/components/layouts/Hero';
+import Hero from '@/components/shared/Hero';
 import {
 	work_categories,
 	getStartedList,
