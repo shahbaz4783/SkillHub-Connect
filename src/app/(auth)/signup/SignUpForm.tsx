@@ -13,10 +13,12 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../../../components/ui/button';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z
 	.object({
 		name: z.string(),
+		username: z.string(),
 		email: z.string().email({ message: 'Must be a valid email' }),
 		password: z.string().min(6),
 		passwordConfirm: z.string(),
@@ -32,6 +34,7 @@ const formSchema = z
 	);
 
 const SignupForm = () => {
+	const router = useRouter();
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -39,7 +42,25 @@ const SignupForm = () => {
 		},
 	});
 
-	const onSubmit = () => {};
+	const onSubmit = async (values: z.infer<typeof formSchema>) => {
+		const response = await fetch('/api/user', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name: values.name,
+				username: values.username,
+				email: values.email,
+				password: values.password,
+			}),
+		});
+
+		if (response.ok) {
+			router.push('/login');
+			alert('user created successfully');
+		}
+	};
 
 	return (
 		<>
@@ -56,6 +77,23 @@ const SignupForm = () => {
 								<FormLabel>Name</FormLabel>
 								<FormControl>
 									<Input type='text' placeholder='Enter Your Name' {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name='username'
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Username</FormLabel>
+								<FormControl>
+									<Input
+										type='text'
+										placeholder='Enter Your Username'
+										{...field}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
