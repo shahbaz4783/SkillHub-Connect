@@ -14,6 +14,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '../../../components/ui/button';
 import { useRouter } from 'next/navigation';
+import { signUpFormInput } from '@/constants/form';
 
 const formSchema = z
 	.object({
@@ -69,79 +70,26 @@ const SignupForm = () => {
 					onSubmit={form.handleSubmit(onSubmit)}
 					className='flex flex-col gap-4'
 				>
-					<FormField
-						control={form.control}
-						name='name'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Name</FormLabel>
-								<FormControl>
-									<Input type='text' placeholder='Enter Your Name' {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name='username'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Username</FormLabel>
-								<FormControl>
-									<Input
-										type='text'
-										placeholder='Enter Your Username'
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name='email'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Email</FormLabel>
-								<FormControl>
-									<Input type='email' placeholder='Email Address' {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name='password'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Password</FormLabel>
-								<FormControl>
-									<Input type='password' placeholder='Password' {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name='passwordConfirm'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Confirm Password</FormLabel>
-								<FormControl>
-									<Input
-										type='password'
-										placeholder='Confirm Password'
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
+					{signUpFormInput.map((data) => (
+						<FormField
+							key={data.id}
+							control={form.control}
+							name={data.name}
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{data.label}</FormLabel>
+									<FormControl>
+										<Input
+											type={data.type}
+											placeholder={data.placeholder}
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					))}
 					<Button type='submit'>Submit</Button>
 				</form>
 			</Form>

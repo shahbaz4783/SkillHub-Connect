@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../../../components/ui/button';
+import { loginFormInput } from '@/constants/form';
 
 const formSchema = z.object({
 	email: z.string().email({ message: 'Must be a valid email' }),
@@ -32,33 +33,30 @@ const LoginForm = () => {
 	return (
 		<>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-					<FormField
-						control={form.control}
-						name='email'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Email</FormLabel>
-								<FormControl>
-									<Input type='email' placeholder='Email Address' {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name='password'
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Password</FormLabel>
-								<FormControl>
-									<Input type='password' placeholder='Password' {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className='flex flex-col gap-4'
+				>
+					{loginFormInput.map((data) => (
+						<FormField
+							key={data.id}
+							control={form.control}
+							name={data.name}
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{data.label}</FormLabel>
+									<FormControl>
+										<Input
+											type={data.type}
+											placeholder={data.placeholder}
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					))}
 					<Button type='submit'>Submit</Button>
 				</form>
 			</Form>

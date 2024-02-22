@@ -3,7 +3,7 @@ import SignupForm from './SignUpForm';
 
 const SignUp = () => {
 	return (
-		<main className='border w-10/12 md:w-1/2 m-auto my-32 p-16'>
+		<main className='md:border rounded-lg md:w-1/2 m-auto my-32 p-8 md:p-16'>
 			<div className='mb-8'>
 				<h2 className='text-3xl font-semibold'>Create a new account</h2>
 				<p>
