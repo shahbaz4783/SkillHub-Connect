@@ -5,31 +5,40 @@ import * as z from 'zod';
 const userSchema = z.object({
 	title: z.string(),
 	description: z.string(),
-	tags: z.string(),
+	skills: z.string(),
 	price: z.number(),
-	time: z.number(),
+	location: z.string(),
 	category: z.string(),
+	experience: z.string(),
 });
 
 export async function POST(req: Request) {
 	try {
 		const body = await req.json();
-		const { title, description, tags, price, time, category } =
-			userSchema.parse(body);
+		const {
+			title,
+			description,
+			skills,
+			price,
+			location,
+			category,
+			experience,
+		} = userSchema.parse(body);
 
-		// Create a new Service
-		const newService = await prisma.servicePost.create({
+		// Create a new Job
+		const newJob = await prisma.jobPost.create({
 			data: {
 				title,
 				description,
-				tags,
+				skills,
 				price,
-				time,
+				location,
 				category,
+				experience,
 			},
 		});
 		return NextResponse.json(
-			{ service: newService, message: 'Service created successfully' },
+			{ service: newJob, message: 'Job created successfully' },
 			{ status: 201 }
 		);
 	} catch (error) {

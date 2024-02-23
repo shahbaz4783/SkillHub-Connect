@@ -16,7 +16,7 @@ interface LoginFormProps {
 
 interface ServicePostProps {
 	id: number;
-	name: 'title' | 'description' | 'tags' | 'price' | 'time';
+	name: 'title' | 'description' | 'tags' | 'price' | 'time' | 'category';
 	type: 'text' | 'number' | 'file';
 	label: string;
 	placeholder: string;
@@ -89,7 +89,7 @@ export const servicePostFormFields: ServicePostProps[] = [
 		id: 2,
 		name: 'tags',
 		type: 'text',
-		label: 'Enter the title of your service',
+		label: 'Enter the tags of your service',
 		placeholder: '',
 	},
 	{
@@ -111,6 +111,13 @@ export const servicePostFormFields: ServicePostProps[] = [
 		name: 'description',
 		type: 'text',
 		label: 'Write brief description of your service',
+		placeholder: '',
+	},
+	{
+		id: 6,
+		name: 'category',
+		type: 'text',
+		label: 'Enter the Category',
 		placeholder: '',
 	},
 ];

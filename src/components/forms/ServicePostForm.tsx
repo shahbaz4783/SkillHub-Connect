@@ -19,9 +19,10 @@ import { servicePostFormFields } from '@/constants/form';
 const formSchema = z.object({
 	title: z.string(),
 	description: z.string(),
-	tags: z.string().email({ message: 'Must be a valid email' }),
-	price: z.number(),
-	time: z.number(),
+	tags: z.string(),
+	price: z.string(),
+	time: z.string(),
+	category: z.string(),
 });
 
 const ServicePostForm = () => {
@@ -31,7 +32,7 @@ const ServicePostForm = () => {
 	});
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		const response = await fetch('/api/service', {
+		const response = await fetch('/api/services', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -40,8 +41,9 @@ const ServicePostForm = () => {
 				title: values.title,
 				description: values.description,
 				tags: values.tags,
-				price: values.price,
-				time: values.time,
+				price: Number(values.price),
+				time: Number(values.time),
+				category: values.category,
 			}),
 		});
 
