@@ -1,7 +1,7 @@
 interface SignupFormProps {
 	id: number;
 	name: 'name' | 'username' | 'email' | 'password' | 'passwordConfirm';
-	type: string;
+	type: 'text' | 'number' | 'email' | 'password';
 	label: string;
 	placeholder: string;
 }
@@ -9,7 +9,15 @@ interface SignupFormProps {
 interface LoginFormProps {
 	id: number;
 	name: 'email' | 'password';
-	type: string;
+	type: 'text' | 'number' | 'email' | 'password';
+	label: string;
+	placeholder: string;
+}
+
+interface ServicePostProps {
+	id: number;
+	name: 'title' | 'description' | 'tags' | 'price' | 'time';
+	type: 'text' | 'number' | 'file';
 	label: string;
 	placeholder: string;
 }
@@ -66,5 +74,43 @@ export const signUpFormInput: SignupFormProps[] = [
 		type: 'password',
 		label: 'Confirm Password',
 		placeholder: 'Confirm your password',
+	},
+];
+
+export const servicePostFormFields: ServicePostProps[] = [
+	{
+		id: 1,
+		name: 'title',
+		type: 'text',
+		label: 'Enter the title of your service',
+		placeholder: '',
+	},
+	{
+		id: 2,
+		name: 'tags',
+		type: 'text',
+		label: 'Enter the title of your service',
+		placeholder: '',
+	},
+	{
+		id: 3,
+		name: 'time',
+		type: 'number',
+		label: 'In how many days you can deliver?',
+		placeholder: '',
+	},
+	{
+		id: 4,
+		name: 'price',
+		type: 'number',
+		label: 'Enter the price of your service',
+		placeholder: '',
+	},
+	{
+		id: 5,
+		name: 'description',
+		type: 'text',
+		label: 'Write brief description of your service',
+		placeholder: '',
 	},
 ];

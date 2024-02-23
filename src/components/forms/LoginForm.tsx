@@ -12,30 +12,19 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '../../../components/ui/button';
+import { Button } from '../ui/button';
+import { loginFormInput } from '@/constants/form';
 import { useRouter } from 'next/navigation';
-import { signUpFormInput } from '@/constants/form';
+import { signIn } from 'next-auth/react';
 
-const formSchema = z
-	.object({
-		name: z.string(),
-		username: z.string(),
-		email: z.string().email({ message: 'Must be a valid email' }),
-		password: z.string().min(6),
-		passwordConfirm: z.string(),
-	})
-	.refine(
-		(data) => {
-			return data.password === data.passwordConfirm;
-		},
-		{
-			message: 'Password do not match',
-			path: ['passwordConfirm'],
-		}
-	);
+const formSchema = z.object({
+	email: z.string().email({ message: 'Must be a valid email' }),
+	password: z.string().min(6),
+});
 
-const SignupForm = () => {
+const LoginForm = () => {
 	const router = useRouter();
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -44,22 +33,16 @@ const SignupForm = () => {
 	});
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		const response = await fetch('/api/user', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				name: values.name,
-				username: values.username,
-				email: values.email,
-				password: values.password,
-			}),
+		const signInData = await signIn('credentials', {
+			email: values.email,
+			password: values.password,
+			redirect: false,
 		});
-
-		if (response.ok) {
-			router.push('/login');
-			alert('user created successfully');
+		if (signInData?.error) {
+			console.log(signInData.error);
+		} else {
+			console.log('Worked');
+			router.push('/dashboard');
 		}
 	};
 
@@ -70,7 +53,7 @@ const SignupForm = () => {
 					onSubmit={form.handleSubmit(onSubmit)}
 					className='flex flex-col gap-4'
 				>
-					{signUpFormInput.map((data) => (
+					{loginFormInput.map((data) => (
 						<FormField
 							key={data.id}
 							control={form.control}
@@ -97,4 +80,4 @@ const SignupForm = () => {
 	);
 };
 
-export default SignupForm;
+export default LoginForm;

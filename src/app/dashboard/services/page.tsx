@@ -1,7 +1,10 @@
+import ServicePostForm from '@/components/forms/ServicePostForm';
 import React from 'react'
 
 const AdminServicePage = () => {
-  return <div>Admin Service Page</div>;
+  return <div>
+    <ServicePostForm />
+  </div>;
 }
 
 export default AdminServicePage;

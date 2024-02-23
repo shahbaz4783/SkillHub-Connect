@@ -12,23 +12,44 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '../../../components/ui/button';
-import { loginFormInput } from '@/constants/form';
+import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
+import { servicePostFormFields } from '@/constants/form';
 
 const formSchema = z.object({
-	email: z.string().email({ message: 'Must be a valid email' }),
-	password: z.string().min(6),
+	title: z.string(),
+	description: z.string(),
+	tags: z.string().email({ message: 'Must be a valid email' }),
+	price: z.number(),
+	time: z.number(),
 });
 
-const LoginForm = () => {
+const ServicePostForm = () => {
+	const router = useRouter();
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			email: '',
-		},
 	});
 
-	const onSubmit = () => {};
+	const onSubmit = async (values: z.infer<typeof formSchema>) => {
+		const response = await fetch('/api/service', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				title: values.title,
+				description: values.description,
+				tags: values.tags,
+				price: values.price,
+				time: values.time,
+			}),
+		});
+
+		if (response.ok) {
+			router.push('/');
+			alert('Service created successfully');
+		}
+	};
 
 	return (
 		<>
@@ -37,7 +58,7 @@ const LoginForm = () => {
 					onSubmit={form.handleSubmit(onSubmit)}
 					className='flex flex-col gap-4'
 				>
-					{loginFormInput.map((data) => (
+					{servicePostFormFields.map((data) => (
 						<FormField
 							key={data.id}
 							control={form.control}
@@ -64,4 +85,4 @@ const LoginForm = () => {
 	);
 };
 
-export default LoginForm;
+export default ServicePostForm;
