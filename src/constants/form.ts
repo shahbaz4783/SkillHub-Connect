@@ -22,6 +22,21 @@ interface ServicePostProps {
 	placeholder: string;
 }
 
+interface JobPostProps {
+	id: number;
+	name:
+		| 'title'
+		| 'description'
+		| 'skills'
+		| 'price'
+		| 'location'
+		| 'category'
+		| 'experience';
+	type: 'text' | 'number' | 'file';
+	label: string;
+	placeholder: string;
+}
+
 export const loginFormInput: LoginFormProps[] = [
 	{
 		id: 1,
@@ -118,6 +133,58 @@ export const servicePostFormFields: ServicePostProps[] = [
 		name: 'category',
 		type: 'text',
 		label: 'Enter the Category',
+		placeholder: '',
+	},
+];
+
+export const jobPostFormFields: JobPostProps[] = [
+	{
+		id: 1,
+		name: 'title',
+		type: 'text',
+		label: 'Enter the title of your service',
+		placeholder: '',
+	},
+	{
+		id: 2,
+		name: 'location',
+		type: 'text',
+		label: 'Enter the location of your service',
+		placeholder: '',
+	},
+	{
+		id: 3,
+		name: 'skills',
+		type: 'text',
+		label: 'Which skills are required?',
+		placeholder: '',
+	},
+	{
+		id: 4,
+		name: 'price',
+		type: 'number',
+		label: 'Enter the price of your service',
+		placeholder: '',
+	},
+	{
+		id: 5,
+		name: 'description',
+		type: 'text',
+		label: 'Write brief description of your service',
+		placeholder: '',
+	},
+	{
+		id: 6,
+		name: 'category',
+		type: 'text',
+		label: 'Enter the Category',
+		placeholder: '',
+	},
+	{
+		id: 7,
+		name: 'experience',
+		type: 'text',
+		label: 'Enter the experience level',
 		placeholder: '',
 	},
 ];
