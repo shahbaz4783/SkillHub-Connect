@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import JobCard from '../components/JobCard';
+import SectionTop from '@/components/ui/SectionTop';
+import DescHeading from '@/components/ui/DescHeading';
 
 interface Params {
 	params: {
@@ -9,8 +11,11 @@ interface Params {
 
 const JobDetails: FC<Params> = ({ params }) => {
 	return (
-		<main className='w-10/12 m-auto'>
-			<h2>{params.title}</h2>
+		<main className='w-10/12 m-auto my-12'>
+			<DescHeading
+				heading='Find the best jobs'
+				subhead='It takes just one job to develop a successful relationship that can propel your career forward.'
+			/>
 			<section className='grid md:grid-cols-2 gap-8'>
 				<JobCard />
 			</section>

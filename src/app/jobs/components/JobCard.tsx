@@ -1,5 +1,6 @@
 import React from 'react';
 import prisma from '@/lib/prisma';
+import { Button } from '@/components/ui/button';
 
 async function getPosts() {
 	const jobData = await prisma?.jobPost.findMany();
@@ -11,9 +12,11 @@ const JobCard = async () => {
 	return (
 		<>
 			{jobData.map((data) => (
-				<article className='flex flex-col gap-4 border rounded-lg p-6'>
+				<article key={data.id} className='flex cursor-pointer flex-col items-start gap-8 border rounded-lg p-6'>
 					<div>
-						<h2 className='capitalize text-lg font-semibold'>{data.title}</h2>
+						<h2 className='capitalize text-lg font-semibold line-clamp-2'>
+							{data.title}
+						</h2>
 						<p className='text-sm text-slate-500'>
 							{data.createdAt.toDateString()}
 						</p>
@@ -29,15 +32,16 @@ const JobCard = async () => {
 						</div>
 					</menu>
 					<div>
-						<p className='line-clamp-2'>{data.description}</p>
+						<p className='line-clamp-2 text-stone-500'>{data.description}</p>
 					</div>
 					<div className='flex gap-2'>
 						{data.skills.split(',').map((item, index) => (
-							<span key={index} className='border p-2 rounded-3xl'>
+							<span key={index} className='bg-stone-100 p-2 rounded-3xl'>
 								{item.trim()}
 							</span>
 						))}
 					</div>
+					<Button>See More</Button>
 				</article>
 			))}
 		</>

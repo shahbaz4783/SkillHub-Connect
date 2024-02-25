@@ -74,7 +74,7 @@ const LandingPage = () => {
 
 				{/* For Client Section */}
 				<section
-					className='md:rounded-md p-6 mb-24 bg-[url] bg-cover bg-center'
+					className='md:rounded-md p-6 mb-24 bg-[url] bg-cover bg-center text-stone-200'
 					style={{ backgroundImage: 'url(/images/cube.jpg)' }}
 				>
 					<h3 className='mb-24 text-xl text-stone-100'>For clients</h3>
