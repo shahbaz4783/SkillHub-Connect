@@ -12,9 +12,12 @@ const JobCard = async () => {
 	return (
 		<>
 			{jobData.map((data) => (
-				<article key={data.id} className='flex cursor-pointer flex-col items-start gap-8 border rounded-lg p-6'>
+				<article
+					key={data.id}
+					className='flex cursor-pointer flex-col items-start gap-8 border rounded-lg p-6'
+				>
 					<div>
-						<h2 className='capitalize text-lg font-semibold line-clamp-2'>
+						<h2 className='capitalize font-semibold text-lg line-clamp-2 md:line-clamp-1'>
 							{data.title}
 						</h2>
 						<p className='text-sm text-slate-500'>
