@@ -1,7 +1,7 @@
 import Banner from '@/components/shared/Banner';
 import ListItem from '@/components/ui/ListItem';
 import SectionTop from '@/components/ui/SectionTop';
-import { supportOptions } from '@/data/static-lists_data';
+import { supportOptions } from '@/constants/static-lists_data';
 import { FaServicestack } from 'react-icons/fa';
 
 const Support = () => {

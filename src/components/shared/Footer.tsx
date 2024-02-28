@@ -7,7 +7,7 @@ import {
 	FaInstagram,
 } from 'react-icons/fa';
 
-import { footerData } from '@/data/footer_data';
+import { footerData } from '@/constants/footer_data';
 
 const Footer = () => {
 	return (

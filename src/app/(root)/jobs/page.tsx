@@ -6,7 +6,7 @@ import {
 	howToPostService,
 	howToGetWork,
 	work_categories,
-} from '@/data/static-lists_data';
+} from '@/constants/static-lists_data';
 import Link from 'next/link';
 
 const Services = () => {

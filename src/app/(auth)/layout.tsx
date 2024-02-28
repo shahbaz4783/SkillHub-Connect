@@ -1,4 +1,4 @@
-import AuthHeader from '@/components/shared/AuthHeader';
+import AuthHeader from '@/components/ui/AuthHeader';
 import Link from 'next/link';
 import { FC } from 'react';
 import { FaCheck } from 'react-icons/fa6';

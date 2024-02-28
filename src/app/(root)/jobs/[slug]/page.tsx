@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import JobCard from '../components/JobCard';
+import JobCard from '../../../../components/cards/JobCard';
 import SectionTop from '@/components/ui/SectionTop';
 import DescHeading from '@/components/ui/DescHeading';
 

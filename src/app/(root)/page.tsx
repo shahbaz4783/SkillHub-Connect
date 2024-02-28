@@ -1,4 +1,4 @@
-import LandingPage from '../../components/shared/LandingPage';
+import LandingPage from '../../components/static/LandingPage';
 
 const Home = () => {
 	return (

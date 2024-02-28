@@ -1,4 +1,4 @@
-import Hero from '@/components/shared/Hero';
+import Hero from '@/components/static/Hero';
 import {
 	work_categories,
 	getStartedList,
@@ -7,7 +7,7 @@ import {
 	whyWe,
 	ourFeatures,
 	ourAchievement,
-} from '@/data/static-lists_data';
+} from '@/constants/static-lists_data';
 import SectionTop from '@/components/ui/SectionTop';
 import ListItem from '@/components/ui/ListItem';
 import Link from 'next/link';
