@@ -37,9 +37,9 @@ const JobCard = async () => {
 					<div>
 						<p className='line-clamp-2 text-stone-500'>{data.description}</p>
 					</div>
-					<div className='flex gap-2'>
+					<div className='flex gap-2 flex-wrap'>
 						{data.skills.split(',').map((item, index) => (
-							<span key={index} className='bg-stone-100 p-2 rounded-3xl'>
+							<span key={index} className='bg-stone-100 py-1 px-2 md:px-4 rounded-3xl'>
 								{item.trim()}
 							</span>
 						))}

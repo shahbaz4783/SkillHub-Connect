@@ -29,8 +29,10 @@ const LoginForm = () => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: '',
+			password: '',
 		},
 	});
+
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		const signInData = await signIn('credentials', {

@@ -6,6 +6,7 @@ import { compare } from 'bcrypt';
 
 export const authOptions: NextAuthOptions = {
 	adapter: PrismaAdapter(prisma),
+	secret: process.env.NEXTAUTH_SECRET,
 	session: {
 		strategy: 'jwt',
 	},
@@ -23,8 +24,8 @@ export const authOptions: NextAuthOptions = {
 				},
 				password: { label: 'Password', type: 'password' },
 			},
-			async authorize(credentials, req) {
-				if (!credentials?.email || credentials?.password) {
+			async authorize(credentials) {
+				if (!credentials?.email || !credentials?.password) {
 					return null;
 				}
 
@@ -52,4 +53,24 @@ export const authOptions: NextAuthOptions = {
 			},
 		}),
 	],
+	callbacks: {
+		async jwt({ token, user }) {
+			if (user) {
+				return {
+					...token,
+					username: user.name,
+				};
+			}
+			return token;
+		},
+		async session({ session, user, token }) {
+			return {
+				...session,
+				user: {
+					...session.user,
+					username: token.name,
+				},
+			};
+		},
+	},
 };
