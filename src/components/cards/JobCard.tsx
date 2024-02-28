@@ -1,5 +1,5 @@
 import React from 'react';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { Button } from '@/components/ui/button';
 
 async function getPosts() {

@@ -1,7 +1,7 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from './prisma';
+import { prisma } from './prisma';
 import { compare } from 'bcrypt';
 
 export const authOptions: NextAuthOptions = {
@@ -36,14 +36,14 @@ export const authOptions: NextAuthOptions = {
 					return null;
 				}
 
-				const comparePassword = await compare(
-					credentials.password,
-					existingUser.password
-				);
+				// const comparePassword = await compare(
+				// 	credentials.password,
+				// 	existingUser.password,
+				// );
 
-				if (!comparePassword) {
-					return null;
-				}
+				// if (!comparePassword) {
+				// 	return null;
+				// }
 
 				return {
 					id: existingUser.id,

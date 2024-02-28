@@ -17,24 +17,22 @@ import { loginFormInput } from '@/constants/form';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-
-const formSchema = z.object({
-	email: z.string().email({ message: 'Must be a valid email' }),
-	password: z.string().min(6),
-});
+import { loginSchema } from '@/schema/auth';
+import FormError from './FormError';
+import FormSuccess from './FormSuccess';
 
 const LoginForm = () => {
 	const router = useRouter();
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<z.infer<typeof loginSchema>>({
+		resolver: zodResolver(loginSchema),
 		defaultValues: {
 			email: '',
 			password: '',
 		},
 	});
 
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
+	const onSubmit = async (values: z.infer<typeof loginSchema>) => {
 		const signInData = await signIn('credentials', {
 			email: values.email,
 			password: values.password,
@@ -82,6 +80,8 @@ const LoginForm = () => {
 					>
 						Forgot Password?
 					</Link>
+					<FormError message='' />
+					<FormSuccess message='' />
 					<Button type='submit'>Submit</Button>
 				</form>
 			</Form>

@@ -15,35 +15,25 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 import { signUpFormInput } from '@/constants/form';
-
-const formSchema = z
-	.object({
-		name: z.string(),
-		username: z.string(),
-		email: z.string().email({ message: 'Must be a valid email' }),
-		password: z.string().min(6),
-		passwordConfirm: z.string(),
-	})
-	.refine(
-		(data) => {
-			return data.password === data.passwordConfirm;
-		},
-		{
-			message: 'Password do not match',
-			path: ['passwordConfirm'],
-		}
-	);
+import FormError from './FormError';
+import FormSuccess from './FormSuccess';
+import { signUpSchema } from '@/schema/auth';
 
 const SignupForm = () => {
 	const router = useRouter();
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+
+	const form = useForm<z.infer<typeof signUpSchema>>({
+		resolver: zodResolver(signUpSchema),
 		defaultValues: {
+			name: '',
+			username: '',
 			email: '',
+			password: '',
+			passwordConfirm: '',
 		},
 	});
 
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
+	const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
 		const response = await fetch('/api/user', {
 			method: 'POST',
 			headers: {
@@ -91,6 +81,8 @@ const SignupForm = () => {
 							)}
 						/>
 					))}
+					<FormError message='' />
+					<FormSuccess message='' />
 					<Button type='submit'>Submit</Button>
 				</form>
 			</Form>
