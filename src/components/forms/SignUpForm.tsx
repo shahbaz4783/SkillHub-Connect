@@ -80,6 +80,7 @@ const SignupForm = () => {
 									<FormLabel>{data.label}</FormLabel>
 									<FormControl>
 										<Input
+											className='bg-slate-100 border-none shadow-none'
 											type={data.type}
 											placeholder={data.placeholder}
 											{...field}

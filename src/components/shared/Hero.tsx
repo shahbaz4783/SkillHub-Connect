@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Hero = () => {
 	return (
-		<section className='flex min-h-[80dvh] px-4 md:px-0'>
+		<section className='flex min-h-[80svh] px-4 md:px-0'>
 			<aside className='flex-1 flex gap-12 flex-col justify-center'>
 				<article className='flex flex-col gap-6'>
 					<div>

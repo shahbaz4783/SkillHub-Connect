@@ -16,6 +16,7 @@ import { Button } from '../ui/button';
 import { loginFormInput } from '@/constants/form';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 
 const formSchema = z.object({
 	email: z.string().email({ message: 'Must be a valid email' }),
@@ -32,7 +33,6 @@ const LoginForm = () => {
 			password: '',
 		},
 	});
-
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		const signInData = await signIn('credentials', {
@@ -65,6 +65,7 @@ const LoginForm = () => {
 									<FormLabel>{data.label}</FormLabel>
 									<FormControl>
 										<Input
+											className='bg-slate-100 border-none shadow-none'
 											type={data.type}
 											placeholder={data.placeholder}
 											{...field}
@@ -75,6 +76,12 @@ const LoginForm = () => {
 							)}
 						/>
 					))}
+					<Link
+						className='text-sm text-right text-green-700 font-semibold hover:underline'
+						href={'/forgot-password'}
+					>
+						Forgot Password?
+					</Link>
 					<Button type='submit'>Submit</Button>
 				</form>
 			</Form>
