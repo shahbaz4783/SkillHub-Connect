@@ -1,6 +1,6 @@
 'use server';
 import { signUpSchema } from '@/schema/auth';
-import { hash } from 'bcrypt';
+import { hash } from 'bcryptjs';
 import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';

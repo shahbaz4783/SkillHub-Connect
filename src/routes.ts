@@ -1,6 +1,6 @@
 export const rootRoute = '/';
 
-export const publicRoutes = ['/services', '/jobs'];
+export const publicRoutes = ['/services', '/jobs', '/support'];
 
 export const authRoutes = ['/login', '/signup'];
 
