@@ -14,15 +14,24 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { loginFormInput } from '@/constants/form';
-import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { loginSchema } from '@/schema/auth';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
+import { loginAction } from '@/actions/login';
+import { useState, useTransition } from 'react';
 
 const LoginForm = () => {
-	const router = useRouter();
+	const [isPending, startTransition] = useTransition();
+
+	const [formMessage, setFormMessage] = useState<{
+		error: string | undefined;
+		success: string | undefined;
+	}>({
+		error: '',
+		success: '',
+	});
 
 	const form = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
@@ -32,18 +41,14 @@ const LoginForm = () => {
 		},
 	});
 
-	const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-		const signInData = await signIn('credentials', {
-			email: values.email,
-			password: values.password,
-			redirect: false,
+	const onSubmit = (values: z.infer<typeof loginSchema>) => {
+		setFormMessage({ error: '', success: '' });
+
+		startTransition(async () => {
+			loginAction(values).then((data) => {
+				setFormMessage({ error: data.error, success: data.success });
+			});
 		});
-		if (signInData?.error) {
-			console.log(signInData.error);
-		} else {
-			console.log('Worked');
-			router.push('/dashboard');
-		}
 	};
 
 	return (
@@ -63,6 +68,7 @@ const LoginForm = () => {
 									<FormLabel>{data.label}</FormLabel>
 									<FormControl>
 										<Input
+											disabled={isPending}
 											className='bg-slate-100 border-none shadow-none'
 											type={data.type}
 											placeholder={data.placeholder}
@@ -80,9 +86,11 @@ const LoginForm = () => {
 					>
 						Forgot Password?
 					</Link>
-					<FormError message='' />
-					<FormSuccess message='' />
-					<Button type='submit'>Submit</Button>
+					<FormError message={formMessage.error} />
+					<FormSuccess message={formMessage.success} />
+					<Button disabled={isPending} type='submit'>
+						{isPending ? 'Submitting...' : 'Submit'}
+					</Button>
 				</form>
 			</Form>
 		</>

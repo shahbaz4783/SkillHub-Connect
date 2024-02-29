@@ -1,6 +1,6 @@
 interface SignupFormProps {
 	id: number;
-	name: 'name' | 'username' | 'email' | 'password' | 'passwordConfirm';
+	name: 'name' | 'email' | 'password' | 'passwordConfirm';
 	type: 'text' | 'number' | 'email' | 'password';
 	label: string;
 	placeholder: string;
@@ -64,27 +64,20 @@ export const signUpFormInput: SignupFormProps[] = [
 	},
 	{
 		id: 2,
-		name: 'username',
-		type: 'text',
-		label: 'Username',
-		placeholder: 'johndo331',
-	},
-	{
-		id: 3,
 		name: 'email',
 		type: 'email',
 		label: 'Email',
 		placeholder: 'johndoe@mail.com',
 	},
 	{
-		id: 4,
+		id: 3,
 		name: 'password',
 		type: 'password',
 		label: 'Password',
 		placeholder: 'Enter your password',
 	},
 	{
-		id: 5,
+		id: 4,
 		name: 'passwordConfirm',
 		type: 'password',
 		label: 'Confirm Password',
