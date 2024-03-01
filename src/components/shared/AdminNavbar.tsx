@@ -1,12 +1,25 @@
+import { auth } from '@/auth';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const AdminNavbar = () => {
+const AdminNavbar = async () => {
+	const session = await auth();
 	return (
 		<aside className='flex fixed flex-col gap-8 border p-6 h-svh max-w-48'>
 			<section>
-				<p>Adam</p>
-				<p>adam@mail.com</p>
+				{session?.user?.image && (
+					<Image
+						className='rounded-full'
+						src={session?.user?.image}
+						alt='User Profile Image'
+						width={80}
+						height={80}
+					/>
+				)}
+
+				<p>{session?.user?.name}</p>
+				<p>{session?.user?.email}</p>
 			</section>
 			<nav className='flex flex-col'>
 				<Link href='/dashboard'>Dashboard</Link>

@@ -1,3 +1,4 @@
+import OAuthProviders from '@/components/shared/OAuthProviders';
 import AuthHeader from '@/components/ui/AuthHeader';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -31,6 +32,7 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
 					<aside className='md:bg-slate-200 flex-1 p-8 md:p-16'>
 						<AuthHeader />
 						{children}
+						<OAuthProviders />
 					</aside>
 				</section>
 			</main>

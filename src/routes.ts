@@ -2,7 +2,7 @@ export const rootRoute = '/';
 
 export const publicRoutes = ['/services', '/jobs', '/support'];
 
-export const authRoutes = ['/login', '/signup'];
+export const authRoutes = ['/login', '/signup', '/error'];
 
 export const apiAuthPrefix = '/api/auth';
 

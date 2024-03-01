@@ -14,15 +14,20 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { loginFormInput } from '@/constants/form';
-import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { loginSchema } from '@/schema/auth';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { loginAction } from '@/actions/login';
 import { useState, useTransition } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 const LoginForm = () => {
+	const searchParams = useSearchParams();
+	const urlError =
+		searchParams.get('error') === 'OAuthAccountNotLinked' &&
+		'Please sign in with the same account you used originally.';
+
 	const [isPending, startTransition] = useTransition();
 
 	const [formMessage, setFormMessage] = useState<{
@@ -86,7 +91,7 @@ const LoginForm = () => {
 					>
 						Forgot Password?
 					</Link>
-					<FormError message={formMessage.error} />
+					<FormError message={formMessage.error || urlError} />
 					<FormSuccess message={formMessage.success} />
 					<Button disabled={isPending} type='submit'>
 						{isPending ? 'Submitting...' : 'Submit'}
