@@ -6,7 +6,7 @@ import React from 'react';
 const AdminNavbar = async () => {
 	const session = await auth();
 	return (
-		<aside className='flex fixed flex-col gap-8 border p-6 h-svh max-w-48'>
+		<aside className='hidden md:flex fixed flex-col gap-8 border p-6 h-svh max-w-48'>
 			<section>
 				{session?.user?.image && (
 					<Image
