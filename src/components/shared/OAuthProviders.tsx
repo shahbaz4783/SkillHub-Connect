@@ -13,25 +13,32 @@ const OAuthProviders = () => {
 			callbackUrl: DEFAULT_LOGIN_REDIRECT,
 		});
 	};
+
 	return (
-		<div>
+		<div className='space-y-4'>
 			<h3>or continue with</h3>
-			<Button
-				variant={'ghost'}
-				onClick={() => {
-					oauthHandler('google');
-				}}
-			>
-				<FcGoogle />
-			</Button>
-			<Button
-				variant={'ghost'}
-				onClick={() => {
-					oauthHandler('github');
-				}}
-			>
-				<FaGithub />
-			</Button>
+			<div className='flex gap-4'>
+				<Button
+					className='border flex-1 bg-slate-50 gap-2'
+					variant={'ghost'}
+					onClick={() => {
+						oauthHandler('google');
+					}}
+				>
+					<FcGoogle />
+					<span>Google</span>
+				</Button>
+				<Button
+					className='border flex-1 bg-slate-50 gap-2'
+					variant={'ghost'}
+					onClick={() => {
+						oauthHandler('github');
+					}}
+				>
+					<FaGithub />
+					<span>Github</span>
+				</Button>
+			</div>
 		</div>
 	);
 };

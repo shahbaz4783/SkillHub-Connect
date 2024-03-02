@@ -23,11 +23,6 @@ import { useState, useTransition } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 const LoginForm = () => {
-	const searchParams = useSearchParams();
-	const urlError =
-		searchParams.get('error') === 'OAuthAccountNotLinked' &&
-		'Please sign in with the same account you used originally.';
-
 	const [isPending, startTransition] = useTransition();
 
 	const [formMessage, setFormMessage] = useState<{
@@ -37,6 +32,11 @@ const LoginForm = () => {
 		error: '',
 		success: '',
 	});
+
+	const searchParams = useSearchParams();
+	const urlError =
+		searchParams.get('error') === 'OAuthAccountNotLinked' &&
+		'Please sign in with the same account you used originally.';
 
 	const form = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
@@ -94,7 +94,7 @@ const LoginForm = () => {
 					<FormError message={formMessage.error || urlError} />
 					<FormSuccess message={formMessage.success} />
 					<Button disabled={isPending} type='submit'>
-						{isPending ? 'Submitting...' : 'Submit'}
+						{isPending ? 'Logging In...' : 'Login'}
 					</Button>
 				</form>
 			</Form>

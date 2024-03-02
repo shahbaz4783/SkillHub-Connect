@@ -29,7 +29,7 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
 							<li>Access to talent and businesses across the globe</li>
 						</ul>
 					</aside>
-					<aside className='md:bg-slate-200 flex-1 p-8 md:p-16'>
+					<aside className='md:bg-slate-200 space-y-10 flex-1 p-8 md:p-16'>
 						<AuthHeader />
 						{children}
 						<OAuthProviders />

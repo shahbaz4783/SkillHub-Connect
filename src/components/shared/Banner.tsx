@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Input } from '../ui/input';
 import { FC } from 'react';
+import { Card } from '../ui/card';
 
 interface BannerProps {
 	title: string;
@@ -10,7 +11,7 @@ interface BannerProps {
 
 const Banner: FC<BannerProps> = ({ title, slogan, description }) => {
 	return (
-		<section className='p-6 mt-8 mb-16 rounded-lg bg-gradient-to-r from-teal-800 to-teal-700 text-stone-100'>
+		<Card className='p-6 mt-8 mb-16 bg-gradient-to-r from-slate-600 to-zinc-400 text-stone-50'>
 			<aside className='md:w-2/5 flex flex-col gap-12'>
 				<div>
 					<h3 className='text-xl'>{title}</h3>
@@ -46,7 +47,7 @@ const Banner: FC<BannerProps> = ({ title, slogan, description }) => {
 					</div>
 				</div>
 			</aside>
-		</section>
+		</Card>
 	);
 };
 

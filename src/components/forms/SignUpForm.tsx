@@ -82,7 +82,7 @@ const SignupForm = () => {
 					<FormError message={formMessage.error} />
 					<FormSuccess message={formMessage.success} />
 					<Button disabled={isPending} type='submit'>
-						{isPending ? 'Submitting' : 'Submit'}
+						{isPending ? 'Creating Your Account...' : 'Sign Up'}
 					</Button>
 				</form>
 			</Form>
