@@ -74,7 +74,7 @@ const LoginForm = () => {
 									<FormControl>
 										<Input
 											disabled={isPending}
-											className='bg-slate-100 border-none shadow-none'
+											className='bg-slate-100 py-6 border-none shadow-none'
 											type={data.type}
 											placeholder={data.placeholder}
 											{...field}
