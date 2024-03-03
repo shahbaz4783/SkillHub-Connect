@@ -20,6 +20,8 @@ import FormSuccess from './FormSuccess';
 import { signUpSchema } from '@/schema/auth';
 import { useState, useTransition } from 'react';
 import { signUpAction } from '@/actions/signup';
+import { FaArrowLeft } from 'react-icons/fa';
+import Link from 'next/link';
 
 const SignupForm = () => {
 	const [isPending, startTransition] = useTransition();
@@ -53,6 +55,9 @@ const SignupForm = () => {
 	return (
 		<>
 			<Form {...form}>
+				<Link href={'/signup'}>
+					<FaArrowLeft size={20} />
+				</Link>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className='flex flex-col gap-4'

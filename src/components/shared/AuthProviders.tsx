@@ -18,28 +18,29 @@ const AuthProviders = () => {
 	};
 
 	return (
-		<section className='space-y-8 flex flex-col'>
-			<Button
-				className='border flex-1 gap-2 p-3'
-				variant={'ghost'}
-				onClick={() => {
-					oauthHandler('google');
-				}}
-			>
-				<FcGoogle size={20} />
-				<span>Continue with Google</span>
-			</Button>
+		<section className='flex flex-col gap-12'>
+			<menu className='space-y-6 flex flex-col'>
+				<Button
+					className='border flex-1 gap-2 p-4'
+					variant={'ghost'}
+					onClick={() => {
+						oauthHandler('google');
+					}}
+				>
+					<FcGoogle size={20} />
+					<span>Continue with Google</span>
+				</Button>
 
-			<Button variant={'ghost'} className='border flex-1 p-3'>
-				<Link href={'?auth=credential'} className='flex gap-2'>
-					<MdOutlineMailOutline size={20} />
-					<span>Continue with Email</span>
+				<Link href={{ query: { auth: 'credential' } }} className='flex gap-2'>
+					<Button variant={'ghost'} className='border p-6 flex gap-2 flex-1 '>
+						<MdOutlineMailOutline size={20} />
+						<span>Continue with Email</span>
+					</Button>
 				</Link>
-			</Button>
-
+			</menu>
 			<h3 className='text-center text-slate-400 text-sm'>OR</h3>
 
-			<div className='flex gap-4 flex-1'>
+			<menu className='flex gap-4 flex-1'>
 				<Button
 					className='border flex-1 gap-2 p-5'
 					variant={'ghost'}
@@ -60,7 +61,7 @@ const AuthProviders = () => {
 					<FaGithub size={20} />
 					<span>Github</span>
 				</Button>
-			</div>
+			</menu>
 		</section>
 	);
 };

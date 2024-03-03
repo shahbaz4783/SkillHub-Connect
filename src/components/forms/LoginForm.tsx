@@ -21,6 +21,7 @@ import FormSuccess from './FormSuccess';
 import { loginAction } from '@/actions/login';
 import { useState, useTransition } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const LoginForm = () => {
 	const [isPending, startTransition] = useTransition();
@@ -59,6 +60,10 @@ const LoginForm = () => {
 	return (
 		<>
 			<Form {...form}>
+				<Link href={'/login'}>
+					<FaArrowLeft size={20} />
+				</Link>
+
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className='flex flex-col gap-4'
@@ -86,7 +91,7 @@ const LoginForm = () => {
 						/>
 					))}
 					<Link
-						className='text-sm text-right text-green-700 font-semibold hover:underline'
+						className='text-sm text-right text-slate-500 font-semibold hover:underline'
 						href={'/forgot-password'}
 					>
 						Forgot Password?
