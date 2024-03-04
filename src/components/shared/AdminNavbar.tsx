@@ -1,4 +1,4 @@
-import { auth } from '@/auth';
+import { ADMIN_NAV_ITEMS } from '@/constants/nav_items';
 import { currentUser } from '@/lib/auth';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,10 +13,10 @@ const AdminNavbar = async () => {
 					SkillHub Connect
 				</Link>
 			</header>
-			<section className='flex flex-col gap-1 items-center'>
+			<section className='border-b-[1px] pb-5'>
 				{user?.image && (
 					<Image
-						className='rounded-full'
+						className='rounded-xl'
 						src={user?.image}
 						alt='User Profile Image'
 						width={80}
@@ -24,11 +24,17 @@ const AdminNavbar = async () => {
 					/>
 				)}
 			</section>
-			<nav className='flex flex-col'>
-				<Link href='/dashboard'>Dashboard</Link>
-				<Link href='/dashboard/services'>Services</Link>
-				<Link href='/dashboard/jobs'>Jobs</Link>
-				<Link href='/dashboard/settings'>Settings</Link>
+			<nav className='flex flex-col gap-4 '>
+				{ADMIN_NAV_ITEMS.map((data, index) => (
+					<Link
+						key={index}
+						href={data.path}
+						className='flex gap-2 items-center hover:bg-slate-200 p-2 rounded-md'
+					>
+						<span>{data.icon && <data.icon size={20} />}</span>
+						<span>{data.title}</span>
+					</Link>
+				))}
 			</nav>
 		</aside>
 	);
