@@ -3,9 +3,9 @@ import React from 'react';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<main className='md:flex min-h-svh gap-8'>
+		<main className='md:flex items-start'>
 			<AdminNavbar />
-			<section className='ml-48 border flex-1 mx-6'>{children}</section>
+			<aside className='border flex-1 p-6'>{children}</aside>
 		</main>
 	);
 };
