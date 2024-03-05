@@ -2,7 +2,6 @@ import AdminNavbar from '@/components/shared/AdminNavbar';
 import React from 'react';
 
 const layout = ({
-	pageTitle,
 	children,
 }: {
 	pageTitle: string;

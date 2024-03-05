@@ -33,3 +33,16 @@ export const SETTINGS_ROUTES: QuickActionProps[] = [
 		icon: IoNotificationsOutline,
 	},
 ];
+
+export const LISTING_ROUTES: QuickActionProps[] = [
+	{
+		title: 'Post a Service',
+		path: '/dashboard/settings/profile-settings',
+		icon: FaUserGear,
+	},
+	{
+		title: 'Post a new Job',
+		path: '/dashboard/settings/password-and-security',
+		icon: IoFingerPrint,
+	},
+];
