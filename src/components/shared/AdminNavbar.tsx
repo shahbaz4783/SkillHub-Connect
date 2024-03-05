@@ -3,6 +3,7 @@ import { currentUser } from '@/lib/auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { FaRegCircleUser } from 'react-icons/fa6';
 
 const AdminNavbar = async () => {
 	const user = await currentUser();
@@ -14,7 +15,7 @@ const AdminNavbar = async () => {
 				</Link>
 			</header>
 			<section className='border-b-[1px] pb-5'>
-				{user?.image && (
+				{user?.image ? (
 					<Image
 						className='rounded-xl'
 						src={user?.image}
@@ -22,6 +23,8 @@ const AdminNavbar = async () => {
 						width={80}
 						height={80}
 					/>
+				) : (
+					<FaRegCircleUser size={50} />
 				)}
 			</section>
 			<nav className='flex flex-col gap-4 '>

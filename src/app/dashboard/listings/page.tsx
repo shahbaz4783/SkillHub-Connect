@@ -1,10 +1,13 @@
 import ServicePostForm from '@/components/forms/ServicePostForm';
-import React from 'react'
+import DashboardHeader from '@/components/shared/DashboardHeader';
+import React from 'react';
 
 const AdminServicePage = () => {
-  return <div>
-    <ServicePostForm />
-  </div>;
-}
+	return (
+		<>
+			<DashboardHeader title='Your Listings' />
+		</>
+	);
+};
 
 export default AdminServicePage;

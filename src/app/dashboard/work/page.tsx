@@ -1,10 +1,10 @@
-import JobPostForm from '@/components/forms/JobPostForm';
+import DashboardHeader from '@/components/shared/DashboardHeader';
 
 const AdminJobsPage = () => {
 	return (
-		<div>
-			<JobPostForm />
-		</div>
+		<>
+			<DashboardHeader title='Work History' />
+		</>
 	);
 };
 

@@ -1,11 +1,17 @@
 import AdminNavbar from '@/components/shared/AdminNavbar';
 import React from 'react';
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const layout = ({
+	pageTitle,
+	children,
+}: {
+	pageTitle: string;
+	children: React.ReactNode;
+}) => {
 	return (
-		<main className='md:flex items-start'>
+		<main className='md:flex items-start min-h-svh'>
 			<AdminNavbar />
-			<aside className='border flex-1 p-6'>{children}</aside>
+			<aside className='flex-1 p-6'>{children}</aside>
 		</main>
 	);
 };
