@@ -1,24 +1,15 @@
-import { signOut } from '@/auth';
 import DashboardHeader from '@/components/shared/DashboardHeader';
-import SettingsRoutes from '@/components/shared/SettingsRoutes';
-import { Button } from '@/components/ui/button';
-import React from 'react';
+import SettingsRoutes from '@/components/cards/SettingsRoutes';
+import AccountInfo from '@/components/cards/AccountInfo';
+import LocationInfo from '@/components/cards/LocationInfo';
 
 const SettingsPage = () => {
 	return (
 		<>
 			<DashboardHeader title='Settings' />
 			<SettingsRoutes />
-			<div>
-				<form
-					action={async () => {
-						'use server';
-						await signOut();
-					}}
-				>
-					<Button variant={'destructive'}>Sign Out</Button>
-				</form>
-			</div>
+			<AccountInfo />
+			<LocationInfo />
 		</>
 	);
 };

@@ -22,7 +22,6 @@ export default async function RootLayout({
 		<html lang='en'>
 			<body className={inter.className}>
 				{children}
-
 				{session && <BottomNavbar />}
 			</body>
 		</html>

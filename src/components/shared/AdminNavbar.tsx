@@ -8,7 +8,7 @@ import { FaRegCircleUser } from 'react-icons/fa6';
 const AdminNavbar = async () => {
 	const user = await currentUser();
 	return (
-		<aside className='hidden md:flex flex-col gap-8 border sticky top-0 p-6 h-svh'>
+		<aside className='hidden md:flex flex-col gap-8 sticky top-0 p-6 h-svh bg-slate-50'>
 			<header className='flex items-center'>
 				<Link href={'/'} className='font-serif text-xl font-semibold'>
 					SkillHub Connect

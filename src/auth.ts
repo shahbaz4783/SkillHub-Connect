@@ -27,7 +27,6 @@ export const {
 		},
 
 		async jwt({ token }) {
-			console.log({ token });
 			return token;
 		},
 	},

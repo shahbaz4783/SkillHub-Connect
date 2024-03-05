@@ -1,5 +1,8 @@
 import { FaUserGear } from 'react-icons/fa6';
-import { IoFingerPrint } from 'react-icons/io5';
+import {
+	IoFingerPrint,
+	IoNotificationsOutline,
+} from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
 
 interface QuickActionProps {
@@ -11,7 +14,7 @@ interface QuickActionProps {
 export const SETTINGS_ROUTES: QuickActionProps[] = [
 	{
 		title: 'Profile Settings',
-		path: '/dashboard/settings/profile',
+		path: '/dashboard/settings/profile-settings',
 		icon: FaUserGear,
 	},
 	{
@@ -19,14 +22,14 @@ export const SETTINGS_ROUTES: QuickActionProps[] = [
 		path: '/dashboard/settings/password-and-security',
 		icon: IoFingerPrint,
 	},
-	  {
+	{
 		title: 'Billing & Payments',
 		path: '/dashboard/settings/payment-methods',
 		icon: MdOutlinePayment,
 	},
-	  {
-		title: 'Billing & Payments',
-		path: '/dashboard/settings/payment-methods',
-		icon: MdOutlinePayment,
+	{
+		title: 'Notification settings',
+		path: '/dashboard/settings/notification-settings',
+		icon: IoNotificationsOutline,
 	},
 ];

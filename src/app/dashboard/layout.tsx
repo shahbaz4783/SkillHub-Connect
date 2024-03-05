@@ -11,7 +11,7 @@ const layout = ({
 	return (
 		<main className='md:flex items-start min-h-svh'>
 			<AdminNavbar />
-			<aside className='flex-1 p-6'>{children}</aside>
+			<aside className='flex-1 p-6 grid gap-8'>{children}</aside>
 		</main>
 	);
 };
