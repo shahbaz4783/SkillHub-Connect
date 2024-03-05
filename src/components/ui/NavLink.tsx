@@ -15,8 +15,8 @@ const NavLink: FC<NavLink> = ({ href, children }) => {
 	return (
 		<Link
 			href={href}
-			className={`hover:text-green-900 transition-all ${
-				isActive && 'text-green-700'
+			className={`hover:text-slate-900 transition-all ${
+				isActive && 'text-slate-700 font-bold'
 			}`}
 		>
 			{children}

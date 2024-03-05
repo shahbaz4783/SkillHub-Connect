@@ -135,14 +135,14 @@ export const jobPostFormFields: JobPostProps[] = [
 		id: 1,
 		name: 'title',
 		type: 'text',
-		label: 'Enter the title of your service',
+		label: 'Enter the title of the job',
 		placeholder: '',
 	},
 	{
 		id: 2,
 		name: 'location',
 		type: 'text',
-		label: 'Enter the location of your service',
+		label: 'Enter the location of the service',
 		placeholder: '',
 	},
 	{
@@ -156,14 +156,14 @@ export const jobPostFormFields: JobPostProps[] = [
 		id: 4,
 		name: 'price',
 		type: 'number',
-		label: 'Enter the price of your service',
+		label: 'Enter the salary of the job',
 		placeholder: '',
 	},
 	{
 		id: 5,
 		name: 'description',
 		type: 'text',
-		label: 'Write brief description of your service',
+		label: 'Write brief description of the job',
 		placeholder: '',
 	},
 	{
@@ -177,7 +177,7 @@ export const jobPostFormFields: JobPostProps[] = [
 		id: 7,
 		name: 'experience',
 		type: 'text',
-		label: 'Enter the experience level',
+		label: 'Enter the experience level required',
 		placeholder: '',
 	},
 ];

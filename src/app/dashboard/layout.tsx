@@ -4,7 +4,6 @@ import React from 'react';
 const layout = ({
 	children,
 }: {
-	pageTitle: string;
 	children: React.ReactNode;
 }) => {
 	return (

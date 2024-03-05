@@ -1,5 +1,6 @@
-import { FaUserGear } from 'react-icons/fa6';
+import { FaLaptopCode, FaUserGear } from 'react-icons/fa6';
 import {
+	IoBriefcaseOutline,
 	IoFingerPrint,
 	IoNotificationsOutline,
 } from 'react-icons/io5';
@@ -36,13 +37,13 @@ export const SETTINGS_ROUTES: QuickActionProps[] = [
 
 export const LISTING_ROUTES: QuickActionProps[] = [
 	{
-		title: 'Post a Service',
-		path: '/dashboard/settings/profile-settings',
-		icon: FaUserGear,
+		title: 'Post a new service',
+		path: '/dashboard/listings/post-service',
+		icon: FaLaptopCode,
 	},
 	{
-		title: 'Post a new Job',
-		path: '/dashboard/settings/password-and-security',
-		icon: IoFingerPrint,
+		title: 'Post a new job',
+		path: '/dashboard/listings/post-job',
+		icon: IoBriefcaseOutline,
 	},
 ];

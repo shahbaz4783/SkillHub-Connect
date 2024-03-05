@@ -21,7 +21,7 @@ const Header = () => {
 				<div className='flex items-center'>
 					<Link
 						href={'/'}
-						className='font-serif text-2xl text-green-700 font-semibold'
+						className='font-serif text-2xl text-slate-700 font-semibold'
 					>
 						SkillHub Connect
 					</Link>
