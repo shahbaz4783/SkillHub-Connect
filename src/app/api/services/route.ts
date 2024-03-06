@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import * as z from 'zod';
+import { currentUser } from '@/lib/auth';
 
 const userSchema = z.object({
 	title: z.string(),
@@ -13,6 +14,9 @@ const userSchema = z.object({
 
 export async function POST(req: Request) {
 	try {
+		const user = await currentUser();
+		const userId = 'cltepric200003xtdt9klwkn2';
+
 		const body = await req.json();
 		const { title, description, tags, price, time, category } =
 			userSchema.parse(body);
@@ -20,6 +24,7 @@ export async function POST(req: Request) {
 		// Create a new Service
 		const newService = await prisma.servicePost.create({
 			data: {
+				userId,
 				title,
 				description,
 				tags,

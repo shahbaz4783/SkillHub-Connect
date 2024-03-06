@@ -19,14 +19,17 @@ export const {
 				where: { id: user.id },
 				data: { emailVerified: new Date() },
 			});
+			await prisma.user.update({
+				where: { id: user.id },
+				data: { username: Math.random().toString() },
+			});
 		},
 	},
 	callbacks: {
-		async session({ token, session }) {
+		async session({ session, user, token }) {
 			return session;
 		},
-
-		async jwt({ token }) {
+		async jwt({ token, user, account, profile }) {
 			return token;
 		},
 	},

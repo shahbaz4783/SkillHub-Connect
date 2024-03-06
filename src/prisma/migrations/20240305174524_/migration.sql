@@ -1,0 +1,5 @@
+-- AddForeignKey
+ALTER TABLE "ServicePost" ADD CONSTRAINT "ServicePost_id_fkey" FOREIGN KEY ("id") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "JobPost" ADD CONSTRAINT "JobPost_id_fkey" FOREIGN KEY ("id") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
