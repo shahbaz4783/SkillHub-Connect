@@ -21,13 +21,13 @@ export const {
 			});
 			await prisma.user.update({
 				where: { id: user.id },
-				data: { username: Math.random().toString() },
+				data: { username: user.id },
 			});
 		},
 	},
 	callbacks: {
 		async session({ session, user, token }) {
-			return session;
+				return session; 
 		},
 		async jwt({ token, user, account, profile }) {
 			return token;

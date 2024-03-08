@@ -4,6 +4,7 @@ import { hash } from 'bcryptjs';
 import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
+import { generateVerificationToken } from '@/lib/tokens';
 
 export const signUpAction = async (values: z.infer<typeof signUpSchema>) => {
 	const validateFields = signUpSchema.safeParse(values);
@@ -34,5 +35,7 @@ export const signUpAction = async (values: z.infer<typeof signUpSchema>) => {
 		},
 	});
 
-	return { success: 'Account created successfully!' };
+	const verificationToken = await generateVerificationToken(email);
+
+	return { success: 'Confirmation email sent!' };
 };
