@@ -13,13 +13,12 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
-import { useRouter } from 'next/navigation';
 import { signUpFormInput } from '@/constants/form';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
-import { signUpSchema } from '@/schema/auth';
+import { signUpSchema } from '@/schema/auth.schema';
 import { useState, useTransition } from 'react';
-import { signUpAction } from '@/actions/signup';
+import { signUpAction } from '@/actions/signup.action';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 

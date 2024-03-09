@@ -28,21 +28,13 @@ export const {
 	},
 	callbacks: {
 		async session({ token, session }) {
-			if (token.sub && token.user) {
-				session.user.id = token.sub;
+			if (token.sub && session.user){
+				session.user.id = token.sub
 			}
 			return session;
 		},
-		async jwt({ token }) {
-			if (!token.sub) return token;
-
-			const existingUser = await getUserByID(token.sub);
-
-			if (!existingUser) return token;
-
-			token.name = existingUser.name;
-			token.email = existingUser.email;
-
+		async jwt({ token, user, profile }) {
+			console.log({ token });
 			return token;
 		},
 	},

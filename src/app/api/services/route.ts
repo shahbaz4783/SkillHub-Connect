@@ -15,7 +15,9 @@ const userSchema = z.object({
 export async function POST(req: Request) {
 	try {
 		const user = await currentUser();
-		const userId = 'cltepric200003xtdt9klwkn2';
+		if (user?.id === undefined) return null;
+		
+		const userId = user?.id;
 
 		const body = await req.json();
 		const { title, description, tags, price, time, category } =

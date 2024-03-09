@@ -13,44 +13,17 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
-import { useRouter } from 'next/navigation';
 import { servicePostFormFields } from '@/constants/form';
-
-const formSchema = z.object({
-	title: z.string(),
-	description: z.string(),
-	tags: z.string(),
-	price: z.string(),
-	time: z.string(),
-	category: z.string(),
-});
+import { servicePostAction } from '@/actions/servicePost.action';
+import { serviceSchema } from '@/schema/listing.schema';
 
 const ServicePostForm = () => {
-	const router = useRouter();
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<z.infer<typeof serviceSchema>>({
+		resolver: zodResolver(serviceSchema),
 	});
 
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		const response = await fetch('/api/services', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				title: values.title,
-				description: values.description,
-				tags: values.tags,
-				price: Number(values.price),
-				time: Number(values.time),
-				category: values.category,
-			}),
-		});
-
-		if (response.ok) {
-			router.push('/');
-			alert('Service created successfully');
-		}
+	const onSubmit = async (values: z.infer<typeof serviceSchema>) => {
+		servicePostAction(values);
 	};
 
 	return (

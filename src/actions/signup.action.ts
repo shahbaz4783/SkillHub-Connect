@@ -1,5 +1,5 @@
 'use server';
-import { signUpSchema } from '@/schema/auth';
+import { signUpSchema } from '@/schema/auth.schema';
 import { hash } from 'bcryptjs';
 import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
