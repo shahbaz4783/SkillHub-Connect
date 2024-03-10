@@ -5,10 +5,10 @@ import SectionTop from '@/components/ui/SectionTop';
 import { shopByCategory } from '@/constants/carousel-data';
 import { howServicesWorks } from '@/constants/static-lists_data';
 import Image from 'next/image';
-import { serviceData } from '@/constants/temp-data';
 import ServiceCard from '@/components/cards/ServiceCard';
 
-const Services = () => {
+const Services = async () => {
+	const serviceData = await prisma?.servicePost.findMany();
 	return (
 		<main className='w-10/12 m-auto'>
 			<Banner
@@ -56,18 +56,18 @@ const Services = () => {
 					subhead=''
 				/>
 				<article className='grid md:grid-cols-3 lg:grid-cols-4 gap-8'>
-					{serviceData.map((data) => (
-						<ServiceCard
-							key={data.id}
-							img={data.image}
-							title={data.title}
-							price={data.price}
-							profile='Adam'
-							days={10}
-							rating={data.rating.rate}
-							totalRating={data.rating.count}
-						/>
-					))}
+					{serviceData &&
+						serviceData.map((data) => (
+							<ServiceCard
+								key={data.id}
+								title={data.title}
+								price={data.price}
+								profile={data.userId}
+								days={10}
+								rating={3}
+								totalRating={4}
+							/>
+						))}
 				</article>
 			</section>
 		</main>

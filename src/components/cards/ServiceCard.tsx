@@ -11,7 +11,6 @@ import { FaStar, FaUser } from 'react-icons/fa6';
 
 interface ServiceCardProps {
 	title: string;
-	img: string;
 	price: number;
 	days: number;
 	profile: string;
@@ -21,7 +20,6 @@ interface ServiceCardProps {
 
 const ServiceCard: FC<ServiceCardProps> = ({
 	title,
-	img,
 	price,
 	profile,
 	rating,
@@ -30,7 +28,15 @@ const ServiceCard: FC<ServiceCardProps> = ({
 	return (
 		<Card className=''>
 			<CardHeader>
-				<Image src={img} width={500} height={500} alt='' className='object-contain aspect-square' />
+				<Image
+					src={
+						'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+					}
+					width={500}
+					height={500}
+					alt=''
+					className='object-contain aspect-square'
+				/>
 			</CardHeader>
 			<CardContent className='flex flex-col gap-2 justify-between'>
 				<div className='flex gap-2 items-center'>

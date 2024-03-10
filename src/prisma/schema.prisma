@@ -46,8 +46,8 @@ model ServicePost {
   title           String
   description     String 
   tags            String
-  price           Decimal
-  time            Decimal
+  price           Int
+  time            Int
   category        String    @default("development-and-it") 
   createdAt       DateTime  @default(now()) @map(name: "created_at")
   updatedAt       DateTime  @updatedAt @map(name: "updated_at")
@@ -61,7 +61,7 @@ model JobPost {
   description     String 
   skills          String
   experience      String
-  price           Decimal
+  price           Int
   location        String
   category        String    @default("development-and-it") 
   createdAt       DateTime  @default(now()) @map(name: "created_at")

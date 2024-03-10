@@ -33,6 +33,11 @@ export const servicePostAction = async (
 			price,
 			time,
 			category,
+			user: {
+				connect: {
+					id: userId,
+				},
+			},
 		},
 	});
 
