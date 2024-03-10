@@ -13,17 +13,43 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
+import FormError from './FormError';
+import FormSuccess from './FormSuccess';
 import { servicePostFormFields } from '@/constants/form';
 import { servicePostAction } from '@/actions/servicePost.action';
 import { serviceSchema } from '@/schema/listing.schema';
+import { useState, useTransition } from 'react';
 
 const ServicePostForm = () => {
-	const form = useForm<z.infer<typeof serviceSchema>>({
-		resolver: zodResolver(serviceSchema),
+	const [isPending, startTransition] = useTransition();
+	const [formMessage, setFormMessage] = useState<{
+		error: string | undefined;
+		success: string | undefined;
+	}>({
+		error: '',
+		success: '',
 	});
 
-	const onSubmit = async (values: z.infer<typeof serviceSchema>) => {
-		servicePostAction(values);
+	const form = useForm<z.infer<typeof serviceSchema>>({
+		resolver: zodResolver(serviceSchema),
+		defaultValues: {
+			title: '',
+			description: '',
+			tags: '',
+			price: '',
+			time: '',
+			category: '',
+		},
+	});
+
+	const onSubmit = (values: z.infer<typeof serviceSchema>) => {
+		setFormMessage({ error: '', success: '' });
+
+		startTransition(async () => {
+			servicePostAction(values).then((data) => {
+				setFormMessage({ error: data?.error, success: data?.success });
+			});
+		});
 	};
 
 	return (
@@ -53,7 +79,9 @@ const ServicePostForm = () => {
 							)}
 						/>
 					))}
-					<Button type='submit'>Submit</Button>
+					<FormError message={formMessage.error} />
+					<FormSuccess message={formMessage.success} />
+					<Button type='submit'>{isPending ? 'Submitting' : 'Submit'}</Button>
 				</form>
 			</Form>
 		</>

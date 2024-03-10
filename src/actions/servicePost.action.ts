@@ -1,3 +1,5 @@
+'use server';
+
 import { PrismaClient } from '@prisma/client';
 import * as z from 'zod';
 import { currentUser } from '@/lib/auth';
@@ -17,23 +19,22 @@ export const servicePostAction = async (
 	if (!user?.id) {
 		return { error: 'User not found or missing user ID!' };
 	}
+	const userId = user.id;
 
 	const { title, description, tags, price, time, category } =
 		validateFields.data;
 
-	try {
-		await prisma.servicePost.create({
-			data: {
-				userId: user.id,
-				title,
-				description,
-				tags,
-				price,
-				time,
-				category,
-			},
-		});
+	await prisma.servicePost.create({
+		data: {
+			userId,
+			title,
+			description,
+			tags,
+			price,
+			time,
+			category,
+		},
+	});
 
-		return { success: true };
-	} catch (error) {}
+	return { success: 'Service created successfully' };
 };
