@@ -5,8 +5,9 @@ import React from 'react';
 const AdminAllServices = async () => {
 	const user = await currentUser();
 	const servicePosts = await prisma.servicePost.findMany({
-		where: { id: user?.id },
+		where: { userId: user?.id },
 	});
+	console.log({ servicePosts });
 
 	return (
 		<div className=' grid grid-cols-3 gap-4'>

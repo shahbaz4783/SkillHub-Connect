@@ -26,7 +26,6 @@ export const servicePostAction = async (
 
 	await prisma.servicePost.create({
 		data: {
-			userId,
 			title,
 			description,
 			tags,

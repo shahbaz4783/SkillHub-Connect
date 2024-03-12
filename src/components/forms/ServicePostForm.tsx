@@ -36,8 +36,8 @@ const ServicePostForm = () => {
 			title: '',
 			description: '',
 			tags: '',
-			price: '',
-			time: '',
+			price: 10,
+			time: 2,
 			category: '',
 		},
 	});
@@ -69,7 +69,7 @@ const ServicePostForm = () => {
 									<FormLabel>{data.label}</FormLabel>
 									<FormControl>
 										<Input
-											type={data.type}
+											disabled={isPending}
 											placeholder={data.placeholder}
 											{...field}
 										/>
@@ -81,7 +81,9 @@ const ServicePostForm = () => {
 					))}
 					<FormError message={formMessage.error} />
 					<FormSuccess message={formMessage.success} />
-					<Button type='submit'>{isPending ? 'Submitting' : 'Submit'}</Button>
+					<Button disabled={isPending} type='submit'>
+						{isPending ? 'Submitting...' : 'Submit'}
+					</Button>
 				</form>
 			</Form>
 		</>

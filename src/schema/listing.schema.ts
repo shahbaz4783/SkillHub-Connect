@@ -8,8 +8,8 @@ export const serviceSchema = z.object({
 		.string()
 		.min(30, { message: 'Description must be atleast 30 characters long' }),
 	tags: z.string(),
-	price: z.string(),
-	time: z.string(),
+	price: z.number(),
+	time: z.number(),
 	category: z.string(),
 });
 
