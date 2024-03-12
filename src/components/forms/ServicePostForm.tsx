@@ -33,12 +33,8 @@ const ServicePostForm = () => {
 	const form = useForm<z.infer<typeof serviceSchema>>({
 		resolver: zodResolver(serviceSchema),
 		defaultValues: {
-			title: '',
-			description: '',
-			tags: '',
 			price: 10,
 			time: 2,
-			category: '',
 		},
 	});
 

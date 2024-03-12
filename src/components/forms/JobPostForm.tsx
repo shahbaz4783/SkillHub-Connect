@@ -13,46 +13,38 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
-import { useRouter } from 'next/navigation';
 import { jobPostFormFields } from '@/constants/form';
-
-const formSchema = z.object({
-	title: z.string(),
-	description: z.string(),
-	skills: z.string(),
-	price: z.string(),
-	location: z.string(),
-	category: z.string(),
-	experience: z.string(),
-});
+import { jobSchema } from '@/schema/listing.schema';
+import { useState, useTransition } from 'react';
+import { jobPostAction } from '@/actions/jobPost.action';
+import FormError from './FormError';
+import FormSuccess from './FormSuccess';
 
 const JobPostForm = () => {
-	const router = useRouter();
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const [isPending, startTransition] = useTransition();
+	const [formMessage, setFormMessage] = useState<{
+		error: string | undefined;
+		success: string | undefined;
+	}>({
+		error: '',
+		success: '',
 	});
 
-	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		const response = await fetch('/api/jobs', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				title: values.title,
-				description: values.description,
-				skills: values.skills,
-				price: Number(values.price),
-				location: values.location,
-				category: values.category,
-				experience: values.experience,
-			}),
-		});
+	const form = useForm<z.infer<typeof jobSchema>>({
+		resolver: zodResolver(jobSchema),
+		defaultValues: {
+			price: 10,
+		},
+	});
 
-		if (response.ok) {
-			router.push('/');
-			alert('Job created successfully');
-		}
+	const onSubmit = (values: z.infer<typeof jobSchema>) => {
+		setFormMessage({ error: '', success: '' });
+
+		startTransition(async () => {
+			jobPostAction(values).then((data) => {
+				setFormMessage({ error: data?.error, success: data?.success });
+			});
+		});
 	};
 
 	return (
@@ -72,7 +64,7 @@ const JobPostForm = () => {
 									<FormLabel>{data.label}</FormLabel>
 									<FormControl>
 										<Input
-											type={data.type}
+											disabled={isPending}
 											placeholder={data.placeholder}
 											{...field}
 										/>
@@ -82,7 +74,11 @@ const JobPostForm = () => {
 							)}
 						/>
 					))}
-					<Button type='submit'>Submit</Button>
+					<FormError message={formMessage.error} />
+					<FormSuccess message={formMessage.success} />
+					<Button disabled={isPending} type='submit'>
+						{isPending ? 'Submitting...' : 'Submit'}
+					</Button>
 				</form>
 			</Form>
 		</>

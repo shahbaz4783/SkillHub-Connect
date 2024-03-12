@@ -31,14 +31,9 @@ const SignupForm = () => {
 		error: '',
 		success: '',
 	});
+
 	const form = useForm<z.infer<typeof signUpSchema>>({
 		resolver: zodResolver(signUpSchema),
-		defaultValues: {
-			name: '',
-			email: '',
-			password: '',
-			passwordConfirm: '',
-		},
 	});
 
 	const onSubmit = (values: z.infer<typeof signUpSchema>) => {
