@@ -6,6 +6,7 @@ import { shopByCategory } from '@/constants/carousel-data';
 import { howServicesWorks } from '@/constants/static-lists_data';
 import Image from 'next/image';
 import ServiceCard from '@/components/cards/ServiceCard';
+import { prisma } from '@/lib/prisma';
 
 const Services = async () => {
 	const serviceData = await prisma?.servicePost.findMany();

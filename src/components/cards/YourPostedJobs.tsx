@@ -7,8 +7,10 @@ import { currentUser } from '@/lib/auth';
 const YourPostedJobs = async () => {
 	const user = await currentUser();
 	const serviceCount = await prisma.servicePost.count({
-		where: { id: user?.id },
+		where: { userId: user?.id },
 	});
+	console.log({ serviceCount });
+
 	return (
 		<Card>
 			<CardContent>

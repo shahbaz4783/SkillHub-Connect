@@ -7,6 +7,7 @@ const AdminAllJobs = async () => {
 	const jobPosts = await prisma.jobPost.findMany({
 		where: { userId: user?.id },
 	});
+  console.log(jobPosts);
 
 	return (
 		<div className=' grid grid-cols-3 gap-4'>

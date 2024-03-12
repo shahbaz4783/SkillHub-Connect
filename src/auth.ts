@@ -28,13 +28,12 @@ export const {
 	},
 	callbacks: {
 		async session({ token, session }) {
-			if (token.sub && session.user){
-				session.user.id = token.sub
+			if (token.sub && session.user) {
+				session.user.id = token.sub;
 			}
 			return session;
 		},
 		async jwt({ token, user, profile }) {
-			console.log({ token });
 			return token;
 		},
 	},

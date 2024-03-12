@@ -7,7 +7,7 @@ import { currentUser } from '@/lib/auth';
 const YourPostedServices = async () => {
 	const user = await currentUser();
 	const serviceCount = await prisma.servicePost.count({
-		where: { id: user?.id },
+		where: { userId: user?.id },
 	});
 
 	return (
