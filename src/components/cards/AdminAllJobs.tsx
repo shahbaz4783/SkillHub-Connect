@@ -10,14 +10,14 @@ const AdminAllJobs = async () => {
   console.log(jobPosts);
 
 	return (
-		<div className=' grid grid-cols-3 gap-4'>
+		<>
 			{jobPosts.map((data) => (
 				<div key={data.id} className='border p-2'>
 					<h1>{data.title}</h1>
 					<h1>{data.description}</h1>
 				</div>
 			))}
-		</div>
+		</>
 	);
 };
 

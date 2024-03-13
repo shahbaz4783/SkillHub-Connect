@@ -1,6 +1,5 @@
 import ListingRoutes from '@/components/cards/ListingRoutes';
-import YourPostedJobs from '@/components/cards/YourPostedJobs';
-import YourPostedServices from '@/components/cards/YourPostedServices';
+import AllListings from '@/components/cards/admin/AllListings';
 import DashboardHeader from '@/components/shared/DashboardHeader';
 import React from 'react';
 
@@ -9,8 +8,7 @@ const AdminServicePage = () => {
 		<>
 			<DashboardHeader title='Your Listings' />
 			<ListingRoutes />
-			<YourPostedServices />
-			<YourPostedJobs />
+			<AllListings />
 		</>
 	);
 };
