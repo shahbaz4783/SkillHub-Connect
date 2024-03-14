@@ -11,7 +11,7 @@ interface Params {
 
 const JobDetails: FC<Params> = ({ params }) => {
 	return (
-		<main className='w-10/12 m-auto my-12'>
+		<main className='my-12'>
 			<DescHeading
 				heading='Find the best jobs'
 				subhead='It takes just one job to develop a successful relationship that can propel your career forward.'

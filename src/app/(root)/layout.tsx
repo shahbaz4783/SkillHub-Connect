@@ -4,11 +4,11 @@ import React from 'react';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<>
+		<div className='h-svh flex flex-col justify-between'>
 			<Header />
-			<div>{children}</div>
+			<div className='w-11/12 m-auto'>{children}</div>
 			<Footer />
-		</>
+		</div>
 	);
 };
 

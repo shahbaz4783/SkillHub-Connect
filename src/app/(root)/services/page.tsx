@@ -11,7 +11,7 @@ import { prisma } from '@/lib/prisma';
 const Services = async () => {
 	const serviceData = await prisma?.servicePost.findMany();
 	return (
-		<main className='w-10/12 m-auto'>
+		<main>
 			<Banner
 				title='Project Catalog'
 				slogan='Clear scope. Upfront price. No surprises.'

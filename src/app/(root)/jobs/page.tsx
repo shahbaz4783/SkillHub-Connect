@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 const Services = () => {
 	return (
-		<main className='w-10/12 m-auto'>
+		<main>
 			<Banner
 				title='Ways to earn'
 				slogan='Do the work you love, your way'

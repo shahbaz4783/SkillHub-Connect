@@ -6,7 +6,7 @@ import { FaServicestack } from 'react-icons/fa';
 
 const Support = () => {
 	return (
-		<main className='w-10/12 m-auto'>
+		<main>
 			<Banner
 				title='Help Center'
 				slogan='Find solutions fast.'
