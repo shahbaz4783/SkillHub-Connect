@@ -1,7 +1,10 @@
-import { FaList } from 'react-icons/fa';
-import { HiOutlineHome } from 'react-icons/hi2';
-import { IoBriefcaseOutline, IoSettingsOutline } from 'react-icons/io5';
-import { MdOutlineSpaceDashboard } from 'react-icons/md';
+import {
+	BriefcaseBusiness,
+	CirclePlus,
+	Home,
+	LayoutDashboard,
+	Settings,
+} from 'lucide-react';
 
 interface NavInterface {
 	title: string;
@@ -62,57 +65,58 @@ export const ADMIN_NAV_ITEMS: NavInterface[] = [
 		title: 'Dashboard',
 		path: '/dashboard',
 		submenu: false,
-		icon: MdOutlineSpaceDashboard,
+		icon: LayoutDashboard,
 	},
 	{
 		title: 'Work',
 		path: '/dashboard/work',
 		submenu: false,
-		icon: IoBriefcaseOutline,
+		icon: BriefcaseBusiness,
 	},
 	{
 		title: 'Listings',
 		path: '/dashboard/listings',
 		submenu: false,
-		icon: FaList,
+		icon: CirclePlus,
 	},
 	{
 		title: 'Settings',
 		path: '/dashboard/settings',
 		submenu: false,
-		icon: IoSettingsOutline,
+		icon: Settings,
 	},
 ];
 
 export const BOTTOM_NAV_ITEMS: NavInterface[] = [
 	{
-		title: 'Dashboard',
+		title: 'Home',
 		path: '/',
 		submenu: false,
-		icon: HiOutlineHome,
-	},
-	{
-		title: 'Dashboard',
-		path: '/dashboard',
-		submenu: false,
-		icon: MdOutlineSpaceDashboard,
+		icon: Home,
 	},
 	{
 		title: 'Work',
 		path: '/dashboard/work',
 		submenu: false,
-		icon: IoBriefcaseOutline,
+		icon: BriefcaseBusiness,
 	},
 	{
 		title: 'Listings',
 		path: '/dashboard/listings',
 		submenu: false,
-		icon: FaList,
+		icon: CirclePlus,
 	},
+	{
+		title: 'Dashboard',
+		path: '/dashboard',
+		submenu: false,
+		icon: LayoutDashboard,
+	},
+
 	{
 		title: 'Settings',
 		path: '/dashboard/settings',
 		submenu: false,
-		icon: IoSettingsOutline,
+		icon: Settings,
 	},
 ];

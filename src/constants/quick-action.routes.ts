@@ -1,10 +1,13 @@
-import { FaLaptopCode, FaUserGear } from 'react-icons/fa6';
 import {
-	IoBriefcaseOutline,
-	IoFingerPrint,
-	IoNotificationsOutline,
-} from 'react-icons/io5';
-import { MdOutlinePayment } from 'react-icons/md';
+	Bell,
+	BriefcaseBusiness,
+	CreditCard,
+	Fingerprint,
+	NotebookPen,
+	Pause,
+	SquarePen,
+	UserCog,
+} from 'lucide-react';
 
 interface QuickActionProps {
 	title: string;
@@ -16,22 +19,22 @@ export const SETTINGS_ROUTES: QuickActionProps[] = [
 	{
 		title: 'Profile Settings',
 		path: '/dashboard/settings/profile-settings',
-		icon: FaUserGear,
+		icon: UserCog,
 	},
 	{
 		title: 'Password & Security',
 		path: '/dashboard/settings/password-and-security',
-		icon: IoFingerPrint,
+		icon: Fingerprint,
 	},
 	{
 		title: 'Billing & Payments',
 		path: '/dashboard/settings/payment-methods',
-		icon: MdOutlinePayment,
+		icon: CreditCard,
 	},
 	{
 		title: 'Notification settings',
 		path: '/dashboard/settings/notification-settings',
-		icon: IoNotificationsOutline,
+		icon: Bell,
 	},
 ];
 
@@ -39,11 +42,21 @@ export const LISTING_ROUTES: QuickActionProps[] = [
 	{
 		title: 'Post a new service',
 		path: '/dashboard/listings/post-service',
-		icon: FaLaptopCode,
+		icon: NotebookPen,
 	},
 	{
 		title: 'Post a new job',
 		path: '/dashboard/listings/post-job',
-		icon: IoBriefcaseOutline,
+		icon: BriefcaseBusiness,
+	},
+	{
+		title: 'Draft',
+		path: '/dashboard/listings/drafts',
+		icon: SquarePen,
+	},
+	{
+		title: 'Paused',
+		path: '/dashboard/listings/paused',
+		icon: Pause,
 	},
 ];
