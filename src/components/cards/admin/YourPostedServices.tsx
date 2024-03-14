@@ -1,24 +1,16 @@
 import React from 'react';
-import { prisma } from '@/lib/prisma';
-import { currentUser } from '@/lib/auth';
 import NoDataFound from '../../ui/NoDataFound';
-import PostActions from './PostActions';
 import PostCard from './PostCard';
+import { getUserListingsData } from '@/data/user-listings';
 
 const YourPostedServices = async () => {
-	const user = await currentUser();
-	const serviceCount = await prisma.servicePost.count({
-		where: { userId: user?.id },
-	});
-	const servicePosts = await prisma.servicePost.findMany({
-		where: { userId: user?.id },
-	});
+	const listingsData = await getUserListingsData('service');
 
 	return (
 		<>
-			{serviceCount >= 1 ? (
+			{listingsData?.listings && listingsData.count >= 1 ? (
 				<section className='grid md:grid-cols-3 gap-4'>
-					{servicePosts.map((data) => (
+					{listingsData.listings.map((data) => (
 						<PostCard
 							key={data.id}
 							title={data.title}

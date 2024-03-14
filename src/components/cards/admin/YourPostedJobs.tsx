@@ -1,23 +1,15 @@
-import React from 'react';
-import { prisma } from '@/lib/prisma';
-import { currentUser } from '@/lib/auth';
 import NoDataFound from '../../ui/NoDataFound';
 import PostCard from './PostCard';
+import { getUserListingsData } from '@/data/user-listings';
 
 const YourPostedJobs = async () => {
-	const user = await currentUser();
-	const jobCount = await prisma.jobPost.count({
-		where: { userId: user?.id },
-	});
-	const jobPosts = await prisma.jobPost.findMany({
-		where: { userId: user?.id },
-	});
+	const listingData = await getUserListingsData('job');
 
 	return (
 		<>
-			{jobCount >= 1 ? (
+			{listingData?.listings && listingData?.count >= 1 ? (
 				<section className='grid md:grid-cols-3 gap-4'>
-					{jobPosts.map((data) => (
+					{listingData.listings?.map((data) => (
 						<PostCard
 							key={data.id}
 							title={data.title}
