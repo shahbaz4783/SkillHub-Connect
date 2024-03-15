@@ -7,7 +7,7 @@ const skills = 'ui/ux, writing, content writing';
 const FeedJobs = async () => {
 	const listings = await getAllListingsDataExceptOwn('job');
 	return (
-		<section className='mb-16'>
+		<section>
 			<SectionTop
 				heading='Jobs you might like'
 				subhead='Check out the latest opportunities matching your profile.'
