@@ -51,10 +51,9 @@ export const getAllListingsDataExceptOwn = async (listingType: string) => {
 	const user = await currentUser();
 	if (!user?.id) return null;
 
-	let listings = null;
 
 	if (listingType === 'service') {
-		listings = await prisma.servicePost.findMany({
+		return await prisma.servicePost.findMany({
 			where: {
 				NOT: {
 					userId: user.id,
@@ -62,7 +61,7 @@ export const getAllListingsDataExceptOwn = async (listingType: string) => {
 			},
 		});
 	} else if (listingType === 'job') {
-		listings = await prisma.jobPost.findMany({
+		return await prisma.jobPost.findMany({
 			where: {
 				NOT: {
 					userId: user.id,
@@ -71,6 +70,4 @@ export const getAllListingsDataExceptOwn = async (listingType: string) => {
 		});
 	} else
 		throw new Error('Invalid listing type. Must be either "service" or "job"');
-
-	return listings;
 };
