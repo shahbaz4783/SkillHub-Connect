@@ -16,10 +16,23 @@ model User {
   password      String?
   emailVerified DateTime?
   image         String?
+  profile       Profile?
   accounts      Account[]
   services      ServicePost[]
   jobs          JobPost[]
   createdAt     DateTime?  @default(now()) @map(name: "created_at")
+}
+
+model Profile {
+  id            String    @default(cuid()) @id
+  userId        String    @unique
+  name          String
+  bio           String
+  image         String
+  skills        String
+  country       String
+  address       String
+  user          User @relation(fields: [userId], references: [id])
 }
 
 model Account {
