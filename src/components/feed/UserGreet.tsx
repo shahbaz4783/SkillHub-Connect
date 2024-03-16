@@ -3,13 +3,11 @@
 import * as React from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 
-import { Card, CardContent } from '@/components/ui/card';
 import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
 } from '@/components/ui/carousel';
-import { Code } from 'lucide-react';
 import { Button } from '../ui/button';
 import { feedCaroselItem } from '@/constants/carousel-data';
 

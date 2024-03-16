@@ -1,11 +1,9 @@
 import { MapPin, Star, UserRound } from 'lucide-react';
 import SectionTop from '../ui/SectionTop';
-import { getAllListingsDataExceptOwn } from '@/data/user-listings';
-
-const skills = 'ui/ux, writing, content writing';
+import { getAllJobListingsExceptOwn } from '@/data/user-listings';
 
 const FeedJobs = async () => {
-	const listings = await getAllListingsDataExceptOwn('job');
+	const listings = await getAllJobListingsExceptOwn();
 	return (
 		<section>
 			<SectionTop
@@ -34,7 +32,7 @@ const FeedJobs = async () => {
 							<p className='line-clamp-2 text-slate-500'>{data.description}</p>
 						</div>
 						<div className='space-x-2'>
-							{skills.split(',').map((item, index) => (
+							{data.skills.split(',').map((item, index) => (
 								<span
 									key={index}
 									className='bg-slate-200 py-1 px-2 md:px-4 rounded-3xl'

@@ -1,9 +1,9 @@
 import ServiceCard from '../cards/ServiceCard';
 import SectionTop from '../ui/SectionTop';
-import { getAllListingsDataExceptOwn } from '@/data/user-listings';
+import { getAllServiceListingsExceptOwn } from '@/data/user-listings';
 
 const FeedServices = async () => {
-	const listings = await getAllListingsDataExceptOwn('service');
+	const listings = await getAllServiceListingsExceptOwn();
 	return (
 		<section>
 			<SectionTop

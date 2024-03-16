@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Input } from '../ui/input';
 import { FC } from 'react';
 import { Card } from '../ui/card';
@@ -7,9 +6,15 @@ interface BannerProps {
 	title: string;
 	slogan: string;
 	description: string;
+	placeholder: string;
 }
 
-const Banner: FC<BannerProps> = ({ title, slogan, description }) => {
+const Banner: FC<BannerProps> = ({
+	title,
+	slogan,
+	description,
+	placeholder,
+}) => {
 	return (
 		<Card className='p-6 mt-8 mb-16 bg-gradient-to-r from-slate-600 to-slate-700 text-stone-50'>
 			<aside className='md:w-2/5 flex flex-col gap-12'>
@@ -22,29 +27,8 @@ const Banner: FC<BannerProps> = ({ title, slogan, description }) => {
 					<Input
 						className='bg-stone-100 text-stone-900'
 						type='search'
-						placeholder='Try "video editing" or "data entry" '
+						placeholder={placeholder}
 					/>
-					<div className='hidden lg:flex gap-3 items-center'>
-						<span>Popular:</span>
-						<Link
-							href={'/'}
-							className='bg-zinc-300 text-sm rounded-full py-1 px-2 text-zinc-900'
-						>
-							Logo Design
-						</Link>
-						<Link
-							href={'/'}
-							className='bg-zinc-300 text-sm rounded-full py-1 px-2 text-zinc-900'
-						>
-							Articles and Blog Posts
-						</Link>
-						<Link
-							href={'/'}
-							className='bg-zinc-300 text-sm rounded-full py-1 px-2 text-zinc-900'
-						>
-							Frontend
-						</Link>
-					</div>
 				</div>
 			</aside>
 		</Card>
