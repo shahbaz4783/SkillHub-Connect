@@ -26,9 +26,7 @@ model User {
 model Profile {
   id            String    @default(cuid()) @id
   userId        String    @unique
-  name          String
   bio           String
-  image         String
   skills        String
   country       String
   address       String

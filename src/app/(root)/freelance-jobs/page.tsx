@@ -1,15 +1,7 @@
-import { FC } from 'react';
-import JobCard from '../../../../components/cards/JobCard';
-import SectionTop from '@/components/ui/SectionTop';
+import JobCard from '@/components/cards/JobCard';
 import DescHeading from '@/components/ui/DescHeading';
 
-interface Params {
-	params: {
-		title: string;
-	};
-}
-
-const JobDetails: FC<Params> = ({ params }) => {
+const JobDetails = () => {
 	return (
 		<main className='my-12'>
 			<DescHeading

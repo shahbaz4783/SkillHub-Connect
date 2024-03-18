@@ -1,4 +1,4 @@
-import { ADMIN_NAV_ITEMS } from '@/constants/nav_items';
+import { ADMIN_NAV_ITEMS } from '@/constants/navigation.routes';
 import { currentUser } from '@/lib/auth';
 import Image from 'next/image';
 import Link from 'next/link';

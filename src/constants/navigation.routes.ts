@@ -35,7 +35,7 @@ export const PAGES_NAV_ITEMS: NavInterface[] = [
 	},
 	{
 		title: 'Find Work',
-		path: '/jobs',
+		path: '/freelance-jobs',
 		submenu: false,
 	},
 	{

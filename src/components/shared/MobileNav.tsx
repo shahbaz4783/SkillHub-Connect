@@ -1,4 +1,4 @@
-import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/nav_items';
+import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation.routes';
 import React from 'react';
 import NavLink from '../ui/NavLink';
 import { Button } from '../ui/button';
@@ -10,7 +10,6 @@ const MobileNav = ({
 	menuOpen: boolean;
 	onHandleNavMenu: () => void;
 }) => {
-
 	return (
 		<>
 			{menuOpen && (

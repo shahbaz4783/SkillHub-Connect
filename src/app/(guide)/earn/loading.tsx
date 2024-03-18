@@ -1,6 +1,5 @@
 import Banner from '@/components/loaders/Banner';
 import Heading from '@/components/loaders/Heading';
-import React from 'react';
 
 const loading = () => {
 	return (

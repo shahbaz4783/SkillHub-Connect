@@ -7,7 +7,7 @@ import NavLink from '../ui/NavLink';
 import { IoIosMenu } from 'react-icons/io';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useState } from 'react';
-import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/nav_items';
+import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation.routes';
 import MobileNav from './MobileNav';
 
 const Header = () => {

@@ -1,4 +1,4 @@
-import { BOTTOM_NAV_ITEMS } from '@/constants/nav_items';
+import { BOTTOM_NAV_ITEMS } from '@/constants/navigation.routes';
 import Link from 'next/link';
 import React from 'react';
 
