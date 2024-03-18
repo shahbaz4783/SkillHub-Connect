@@ -1,3 +1,4 @@
+import { currentUser } from '@/lib/auth';
 import {
 	BriefcaseBusiness,
 	CirclePlus,
@@ -27,6 +28,7 @@ interface NavInterface {
 	};
 }
 
+// Main Header
 export const PAGES_NAV_ITEMS: NavInterface[] = [
 	{
 		title: 'Find Talent',
@@ -45,6 +47,7 @@ export const PAGES_NAV_ITEMS: NavInterface[] = [
 	},
 ];
 
+// Auth routes
 export const AUTH_NAV_ITEMS: NavInterface[] = [
 	{
 		title: 'Login',
@@ -60,6 +63,7 @@ export const AUTH_NAV_ITEMS: NavInterface[] = [
 	},
 ];
 
+// User Dashboard Routes
 export const ADMIN_NAV_ITEMS: NavInterface[] = [
 	{
 		title: 'Dashboard',
@@ -87,6 +91,7 @@ export const ADMIN_NAV_ITEMS: NavInterface[] = [
 	},
 ];
 
+// User Dashboard routes (mobile)
 export const BOTTOM_NAV_ITEMS: NavInterface[] = [
 	{
 		title: 'Home',

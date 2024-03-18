@@ -1,16 +1,12 @@
 import Footer from '@/components/shared/Footer';
 import Header from '@/components/shared/Header';
-import { currentUser } from '@/lib/auth';
-import React from 'react';
 
-const layout = async ({ children }: { children: React.ReactNode }) => {
-	const user = await currentUser();
-
+const layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<>
 			<Header />
 			<div className='w-11/12 m-auto'>{children}</div>
-			{!user && <Footer />}
+			<Footer />
 		</>
 	);
 };

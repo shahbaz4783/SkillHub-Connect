@@ -5,9 +5,9 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
+import { CircleUserRound, Star } from 'lucide-react';
 import Image from 'next/image';
 import { FC } from 'react';
-import { FaStar, FaUser } from 'react-icons/fa6';
 
 interface ServiceCardProps {
 	title: string;
@@ -26,7 +26,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
 	totalRating,
 }) => {
 	return (
-		<Card className=''>
+		<Card className='hover:bg-slate-50 cursor-pointer'>
 			<CardHeader>
 				<Image
 					src={
@@ -35,19 +35,19 @@ const ServiceCard: FC<ServiceCardProps> = ({
 					width={500}
 					height={500}
 					alt=''
-					className='object-contain aspect-square'
+					className='object-cover aspect-video'
 				/>
 			</CardHeader>
-			<CardContent className='flex flex-col gap-2 justify-between'>
+			<CardContent className='space-y-3'>
 				<div className='flex gap-2 items-center'>
-					<FaUser />
+					<CircleUserRound />
 					<CardTitle>{profile}</CardTitle>
 				</div>
 				<p className='line-clamp-2'>{title}</p>
 			</CardContent>
-			<CardFooter className='flex-col items-start'>
+			<CardFooter className='flex-col items-start gap-3'>
 				<div className='flex items-center gap-1'>
-					<FaStar />
+					<Star />
 					<p className='font-semibold'>{rating}</p>
 					<p className='font-light'>({totalRating})</p>
 				</div>

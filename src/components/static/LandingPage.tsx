@@ -15,11 +15,12 @@ import Image from 'next/image';
 import DescHeading from '@/components/ui/DescHeading';
 import { FaArrowRight } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
+import Footer from '../shared/Footer';
 
 const LandingPage = () => {
 	return (
 		<>
-			<main className='md:w-10/12 m-auto'>
+			<main>
 				<Hero />
 				{/* Popular Categories */}
 				<section className='mb-24 px-4 md:px-0'>
