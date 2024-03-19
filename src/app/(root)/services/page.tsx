@@ -2,6 +2,7 @@ import JobCard from '@/components/cards/JobCard';
 import ServiceCard from '@/components/cards/ServiceCard';
 import DescHeading from '@/components/ui/DescHeading';
 import { getAllServiceListings } from '@/data/user-listings';
+import Link from 'next/link';
 
 const JobDetails = async () => {
 	const listings = await getAllServiceListings();
@@ -14,15 +15,17 @@ const JobDetails = async () => {
 			/>
 			<section className='grid md:grid-cols-4 gap-8'>
 				{listings?.listings.map((data) => (
-					<ServiceCard
-						key={data.id}
-						title={data.title}
-						price={data.price}
-						profile={data.userId}
-						rating={3}
-						totalRating={5}
-						days={8}
-					/>
+					<Link href={`/services/${data.id}`}>
+						<ServiceCard
+							key={data.id}
+							title={data.title}
+							price={data.price}
+							profile={data.userId}
+							rating={3}
+							totalRating={5}
+							days={8}
+						/>
+					</Link>
 				))}
 			</section>
 		</main>

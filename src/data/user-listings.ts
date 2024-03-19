@@ -1,6 +1,5 @@
 import { currentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { getUserByID } from './user';
 
 export const getUserListingsData = async (listingType: string) => {
 	const user = await currentUser();
