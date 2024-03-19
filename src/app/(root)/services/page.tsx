@@ -15,9 +15,8 @@ const JobDetails = async () => {
 			/>
 			<section className='grid md:grid-cols-4 gap-8'>
 				{listings?.listings.map((data) => (
-					<Link href={`/services/${data.id}`}>
+					<Link key={data.id} href={`/services/${data.id}`}>
 						<ServiceCard
-							key={data.id}
 							title={data.title}
 							price={data.price}
 							profile={data.userId}

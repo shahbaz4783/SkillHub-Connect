@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ServiceCard from '../cards/ServiceCard';
 import SectionTop from '../ui/SectionTop';
 import { getAllServiceListingsExceptOwn } from '@/data/user-listings';
@@ -12,15 +13,16 @@ const FeedServices = async () => {
 			/>
 			<div className='grid gap-4 md:grid-cols-4'>
 				{listings?.slice(0, 12).map((data) => (
-					<ServiceCard
-						key={data.id}
-						title={data.title}
-						price={data.price}
-						profile={data.userId}
-						rating={3}
-						totalRating={5}
-						days={8}
-					/>
+					<Link key={data.id} href={`/services/${data.id}`}>
+						<ServiceCard
+							title={data.title}
+							price={data.price}
+							profile={data.userId}
+							rating={3}
+							totalRating={5}
+							days={8}
+						/>
+					</Link>
 				))}
 			</div>
 		</section>

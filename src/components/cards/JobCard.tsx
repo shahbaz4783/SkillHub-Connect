@@ -21,8 +21,8 @@ const JobCard = async () => {
 	return (
 		<>
 			{jobData.map((data) => (
-				<Link href={`/freelance-jobs/${data.id}`}>
-					<Card key={data.id} className='space-y-8 cursor-pointer  p-6'>
+				<Link key={data.id} href={`/freelance-jobs/${data.id}`}>
+					<Card className='space-y-8 cursor-pointer  p-6'>
 						<CardHeader>
 							<CardTitle className='capitalize font-semibold text-lg line-clamp-2 md:line-clamp-1'>
 								{data.title}
