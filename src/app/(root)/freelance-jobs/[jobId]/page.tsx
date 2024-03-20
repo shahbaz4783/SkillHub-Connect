@@ -1,55 +1,58 @@
-import ListItem from '@/components/ui/ListItem';
 import { Button } from '@/components/ui/button';
+import DetailsSection from '@/components/wrapper/DetailsSection';
 import { getJobDetailsData } from '@/data/all-listings';
-import { Banknote, BrainCircuit, CircleDollarSign, Heart } from 'lucide-react';
+import { BrainCircuit, CircleDollarSign, Heart } from 'lucide-react';
 
 interface ParamsProps {
 	params: {
 		jobId: string;
 	};
 }
+
 const JobDetailPage = async ({ params }: ParamsProps) => {
 	const jobDetails = await getJobDetailsData(params.jobId);
 	return (
 		<div className='flex flex-col md:flex-row min-h-svh'>
 			<main className='md:w-3/4'>
-				<section className='border-b-[1px] py-8 space-y-3'>
+				<DetailsSection>
 					<p className='font-semibold text-xl'>{jobDetails?.title}</p>
 					<p className='text-sm'>{jobDetails?.createdAt.toDateString()}</p>
-				</section>
+				</DetailsSection>
 
-				<section className='border-b-[1px] py-8 space-y-3'>
+				<DetailsSection>
 					<p className='text-sm'>{jobDetails?.description}</p>
-				</section>
+				</DetailsSection>
 
-				<section className='border-b-[1px] flex gap-16 py-12'>
-					<menu className='flex gap-4 p-2'>
-						<div className='pt-1'>
-							<CircleDollarSign />
-						</div>
-						<ul>
-							<li className='font-semibold text-stone-600'>
-								${jobDetails?.price}
-							</li>
-							<li className='text-sm text-slate-500'>Budget</li>
-						</ul>
-					</menu>
-					<menu className='flex gap-4 p-2'>
-						<div className='pt-1'>
-							<BrainCircuit />
-						</div>
-						<ul>
-							<li className='font-semibold text-stone-600'>
-								{jobDetails?.experience}
-							</li>
-							<li className='text-sm text-slate-500'>
-								I am looking for a mix of experience and value
-							</li>
-						</ul>
-					</menu>
-				</section>
+				<DetailsSection>
+					<div className='flex gap-12'>
+						<menu className='flex gap-4 p-2'>
+							<div className='pt-1'>
+								<CircleDollarSign />
+							</div>
+							<ul>
+								<li className='font-semibold text-stone-600'>
+									${jobDetails?.price}
+								</li>
+								<li className='text-sm text-slate-500'>Budget</li>
+							</ul>
+						</menu>
+						<menu className='flex gap-4 p-2'>
+							<div className='pt-1'>
+								<BrainCircuit />
+							</div>
+							<ul>
+								<li className='font-semibold text-stone-600'>
+									{jobDetails?.experience}
+								</li>
+								<li className='text-sm text-slate-500'>
+									I am looking for a mix of experience and value
+								</li>
+							</ul>
+						</menu>
+					</div>
+				</DetailsSection>
 
-				<section className='border-b-[1px] py-8 space-y-6'>
+				<DetailsSection>
 					<h2 className='text-lg font-semibold'>Skills and Expertise</h2>
 					<div className='space-x-3 md:w-1/2'>
 						{jobDetails?.skills.split(',').map((item, index) => (
@@ -61,9 +64,9 @@ const JobDetailPage = async ({ params }: ParamsProps) => {
 							</span>
 						))}
 					</div>
-				</section>
+				</DetailsSection>
 
-				<section className='border-b-[1px] py-8 space-y-3'>
+				<DetailsSection>
 					<h2 className='text-lg font-semibold'>Activity on this job </h2>
 					<menu>
 						<div className='space-x-3 text-sm'>
@@ -75,8 +78,9 @@ const JobDetailPage = async ({ params }: ParamsProps) => {
 							<span>Less than 5</span>
 						</div>
 					</menu>
-				</section>
+				</DetailsSection>
 			</main>
+
 			<aside className='md:w-1/4 border-l-[1px] px-6 py-8'>
 				<section className='flex flex-col justify-between gap-3'>
 					<Button>Apply Now</Button>
