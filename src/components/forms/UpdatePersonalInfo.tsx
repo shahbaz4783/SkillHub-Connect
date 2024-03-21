@@ -17,18 +17,9 @@ import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { useState, useTransition } from 'react';
 import { userSchema } from '@/schema/user.schema';
-import { currentUser } from '@/lib/auth';
 import { updatePersonalInfoAction } from '@/actions/user.action';
 
-const UpdatePersonalInfo = async () => {
-	const user = await currentUser();
-
-	const personalInfo = {
-		name: user?.name,
-		email: user?.email,
-		username: user?.id,
-	};
-
+const UpdatePersonalInfo = () => {
 	const [isPending, startTransition] = useTransition();
 	const [formMessage, setFormMessage] = useState<{
 		error: string | undefined;
@@ -40,16 +31,15 @@ const UpdatePersonalInfo = async () => {
 
 	const form = useForm<z.infer<typeof userSchema>>({
 		resolver: zodResolver(userSchema),
-		// defaultValues: {
-		// 	name: user?.name,
-		// 	email: user?.email,
-		// 	username: user?.id,
-		// },
+		defaultValues: {
+			name: '',
+			email: '',
+			username: '',
+		},
 	});
 
 	const onSubmit = (values: z.infer<typeof userSchema>) => {
 		setFormMessage({ error: '', success: '' });
-
 		startTransition(async () => {
 			updatePersonalInfoAction(values).then((data) => {
 				setFormMessage({ error: data.error, success: data.success });

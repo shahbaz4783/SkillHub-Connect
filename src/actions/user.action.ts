@@ -13,20 +13,22 @@ export const updatePersonalInfoAction = async (
 	}
 
 	const { name, email, username } = validateFields.data;
+  
+  const user = await getUserByEmail(email);
 
-	const existingUser = await getUserByEmail(email);
+	if (!user) return { error: 'Someting went wrong' };
 
-	if (existingUser) {
-		return { error: 'Email is already in use' };
-	}
-
-	await prisma.user.create({
+	await prisma.user.update({
+		where: {
+			email: user?.email as string | undefined,
+		},
 		data: {
 			name,
-			username,
 			email,
+			username,
 		},
 	});
+  
 
 	return { success: 'Profile Updated Successfully' };
 };
