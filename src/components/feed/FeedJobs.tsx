@@ -14,7 +14,7 @@ const FeedJobs = async () => {
 			<article className='space-y-8'>
 				{listings?.slice(0, 10).map((data) => (
 					<Link key={data.id} href={`/freelance-jobs/${data.id}`}>
-						<div className='border hover:bg-slate-100 p-4 cursor-pointer rounded-md space-y-6'>
+						<div className='border-b-[1px] hover:bg-slate-100 p-4 cursor-pointer space-y-6'>
 							<div>
 								<p className='text-sm text-slate-500'>
 									Posted on {data.createdAt.toDateString()}

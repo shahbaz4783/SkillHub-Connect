@@ -1,9 +1,12 @@
-import React from 'react'
+import PersonalInfo from '@/components/settings/Personallnfo';
+import React from 'react';
 
 const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+	return (
+		<>
+			<PersonalInfo />
+		</>
+	);
+};
 
-export default page
+export default page;
