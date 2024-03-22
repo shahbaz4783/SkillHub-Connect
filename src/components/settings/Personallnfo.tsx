@@ -1,11 +1,11 @@
 import UpdatePersonalInfo from '../forms/UpdatePersonalInfo';
+import ProfileUpdateCard from '../wrapper/ProfileUpdateCard';
 
 const PersonalInfo = () => {
 	return (
-		<div className='bg-slate-100 p-8 rounded-md'>
-			<h2 className='text-xl'>Personal infomation</h2>
+		<ProfileUpdateCard title='Personal infomation'>
 			<UpdatePersonalInfo />
-		</div>
+		</ProfileUpdateCard>
 	);
 };
 
