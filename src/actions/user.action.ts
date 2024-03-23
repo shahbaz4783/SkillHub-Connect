@@ -2,7 +2,7 @@
 import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
-import { userSchema } from '@/schema/user.schema';
+import { bioSchema, userSchema } from '@/schema/user.schema';
 
 export const updatePersonalInfoAction = async (
 	values: z.infer<typeof userSchema>
@@ -13,8 +13,8 @@ export const updatePersonalInfoAction = async (
 	}
 
 	const { name, email, username } = validateFields.data;
-  
-  const user = await getUserByEmail(email);
+
+	const user = await getUserByEmail(email);
 
 	if (!user) return { error: 'Someting went wrong' };
 
@@ -28,7 +28,15 @@ export const updatePersonalInfoAction = async (
 			username,
 		},
 	});
-  
+
+	return { success: 'Profile Updated Successfully' };
+};
+
+export const updateBioAction = async (values: z.infer<typeof bioSchema>) => {
+	const validateFields = bioSchema.safeParse(values);
+	if (!validateFields.success) {
+		return { error: 'Invalid Fields!' };
+	}
 
 	return { success: 'Profile Updated Successfully' };
 };

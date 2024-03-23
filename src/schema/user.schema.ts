@@ -19,3 +19,10 @@ export const bioSchema = z.object({
 			message: 'Bio must not be longer than 160 characters.',
 		}),
 });
+
+export const addressSchema = z.object({
+	country: z.string(),
+	city: z.string(),
+	state: z.string(),
+	code: z.number(),
+});
