@@ -25,4 +25,5 @@ export const addressSchema = z.object({
 	city: z.string(),
 	state: z.string(),
 	code: z.number(),
+	address: z.string(),
 });

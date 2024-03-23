@@ -1,10 +1,11 @@
 import React from 'react';
 import ProfileUpdateCard from '../wrapper/ProfileUpdateCard';
+import UpdateAddress from '../forms/UpdateAddress';
 
 const UserAddress = () => {
 	return (
 		<ProfileUpdateCard title='Address'>
-			<h1>hi</h1>
+			<UpdateAddress />
 		</ProfileUpdateCard>
 	);
 };
