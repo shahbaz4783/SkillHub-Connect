@@ -17,7 +17,7 @@ import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { servicePostFormFields } from '@/constants/form';
 import { servicePostAction } from '@/actions/servicePost.action';
-import { serviceSchema } from '@/schema/listing.schema';
+import { serviceSchema } from '@/validators/listing.schema';
 import { useState, useTransition } from 'react';
 
 const ServicePostForm = () => {
@@ -32,10 +32,6 @@ const ServicePostForm = () => {
 
 	const form = useForm<z.infer<typeof serviceSchema>>({
 		resolver: zodResolver(serviceSchema),
-		defaultValues: {
-			price: 10,
-			time: 2,
-		},
 	});
 
 	const onSubmit = (values: z.infer<typeof serviceSchema>) => {

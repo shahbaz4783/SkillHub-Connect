@@ -16,7 +16,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useState, useTransition } from 'react';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
-import { bioSchema } from '@/schema/user.schema';
+import { bioSchema } from '@/validators/user.schema';
 
 const UpdateBio = () => {
 	const [isPending, startTransition] = useTransition();

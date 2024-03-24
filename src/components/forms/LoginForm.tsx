@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { loginFormInput } from '@/constants/form';
 import Link from 'next/link';
-import { loginSchema } from '@/schema/auth.schema';
+import { loginSchema } from '@/validators/auth.schema';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { loginAction } from '@/actions/login.action';

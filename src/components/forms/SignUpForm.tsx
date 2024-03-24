@@ -16,7 +16,7 @@ import { Button } from '../ui/button';
 import { signUpFormInput } from '@/constants/form';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
-import { signUpSchema } from '@/schema/auth.schema';
+import { signUpSchema } from '@/validators/auth.schema';
 import { useState, useTransition } from 'react';
 import { signUpAction } from '@/actions/signup.action';
 import { FaArrowLeft } from 'react-icons/fa';

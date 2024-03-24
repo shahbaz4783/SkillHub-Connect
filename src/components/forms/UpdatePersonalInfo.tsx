@@ -16,7 +16,7 @@ import { Button } from '../ui/button';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { useState, useTransition } from 'react';
-import { userSchema } from '@/schema/user.schema';
+import { userSchema } from '@/validators/user.schema';
 import { updatePersonalInfoAction } from '@/actions/user.action';
 
 const UpdatePersonalInfo = () => {

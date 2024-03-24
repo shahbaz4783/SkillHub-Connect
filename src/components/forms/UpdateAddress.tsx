@@ -15,7 +15,6 @@ import { Button } from '@/components/ui/button';
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -25,7 +24,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useState, useTransition } from 'react';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
-import { addressSchema } from '@/schema/user.schema';
+import { addressSchema } from '@/validators/user.schema';
 import { Input } from '../ui/input';
 import Link from 'next/link';
 

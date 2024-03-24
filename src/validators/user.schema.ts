@@ -24,6 +24,6 @@ export const addressSchema = z.object({
 	country: z.string(),
 	city: z.string(),
 	state: z.string(),
-	code: z.number(),
+	code: z.coerce.number(),
 	address: z.string(),
 });

@@ -2,7 +2,7 @@
 import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
-import { bioSchema, userSchema } from '@/schema/user.schema';
+import { bioSchema, userSchema } from '@/validators/user.schema';
 
 export const updatePersonalInfoAction = async (
 	values: z.infer<typeof userSchema>

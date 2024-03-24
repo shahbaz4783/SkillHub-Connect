@@ -3,7 +3,7 @@
 import { PrismaClient } from '@prisma/client';
 import * as z from 'zod';
 import { currentUser } from '@/lib/auth';
-import { jobSchema } from '@/schema/listing.schema';
+import { jobSchema } from '@/validators/listing.schema';
 
 const prisma = new PrismaClient();
 
