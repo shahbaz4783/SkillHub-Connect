@@ -45,7 +45,6 @@ const JobPostForm = () => {
 
   const onSubmit = (values: z.infer<typeof jobSchema>) => {
     setFormMessage({ error: '', success: '' });
-
     startTransition(async () => {
       jobPostAction(values).then((data) => {
         setFormMessage({ error: data?.error, success: data?.success });
@@ -119,14 +118,17 @@ const JobPostForm = () => {
               <FormItem>
                 <FormLabel>Job Type</FormLabel>
                 <FormControl>
-                  <Select onValueChange={field.onChange}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <SelectTrigger className="border-none bg-slate-50">
                       <SelectValue placeholder="Select the type of job" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="light">Ongoing project</SelectItem>
-                      <SelectItem value="system">New</SelectItem>
-                      <SelectItem value="fefe">Other</SelectItem>
+                      <SelectItem value="system">One time project</SelectItem>
+                      <SelectItem value="fefe">Complex Project</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -141,13 +143,16 @@ const JobPostForm = () => {
               <FormItem>
                 <FormLabel>Job Category</FormLabel>
                 <FormControl>
-                  <Select onValueChange={field.onChange}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <SelectTrigger className="border-none bg-slate-50">
                       <SelectValue placeholder="Select the category of job" />
                     </SelectTrigger>
                     <SelectContent>
                       {categories.map((category) => (
-                        <SelectItem value={category.value}>
+                        <SelectItem key={category.value} value={category.value}>
                           {category.title}
                         </SelectItem>
                       ))}
@@ -160,19 +165,22 @@ const JobPostForm = () => {
           />
           <FormField
             control={form.control}
-            name="category"
+            name="experience"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Experience Level</FormLabel>
                 <FormControl>
-                  <Select onValueChange={field.onChange}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <SelectTrigger className="border-none bg-slate-50">
                       <SelectValue placeholder="Select the category of job" />
                     </SelectTrigger>
                     <SelectContent>
-                      {experienceLvl.map((category) => (
-                        <SelectItem value={category.value}>
-                          {category.title}
+                      {experienceLvl.map((exp) => (
+                        <SelectItem key={exp.value} value={exp.value}>
+                          {exp.title}
                         </SelectItem>
                       ))}
                     </SelectContent>
