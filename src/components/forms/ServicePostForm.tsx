@@ -4,12 +4,13 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
@@ -39,6 +40,8 @@ const ServicePostForm = () => {
     success: '',
   });
 
+  const [charCount, setCharCount] = useState<number>(0);
+
   const form = useForm<z.infer<typeof serviceSchema>>({
     resolver: zodResolver(serviceSchema),
   });
@@ -56,23 +59,31 @@ const ServicePostForm = () => {
   return (
     <>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-4"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
           <FormField
             control={form.control}
             name="title"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Service Title</FormLabel>
+                <FormDescription>
+                  Tell the client what you will deliver and how it benefits
+                  them.
+                </FormDescription>
                 <FormControl>
                   <Input
                     disabled={isPending}
-                    placeholder="Eye-Catching Graphic Design for Your Brand"
+                    placeholder="Eye-catching graphic design for your brand"
                     {...field}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setCharCount(e.target.value.length);
+                    }}
                   />
                 </FormControl>
+                <FormDescription className="text-right">
+                  {charCount}/75 characters (min. 7 words)
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -136,13 +147,17 @@ const ServicePostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Service Category</FormLabel>
+                <FormDescription>
+                  Select a category so it's easy for clients to find your
+                  project.
+                </FormDescription>
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="border-none bg-slate-50">
-                      <SelectValue placeholder="Select the category of service" />
+                    <SelectTrigger>
+                      <SelectValue placeholder="Logo Design" />
                     </SelectTrigger>
                     <SelectContent>
                       {categories.map((category) => (
@@ -163,14 +178,24 @@ const ServicePostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Service Description</FormLabel>
+                <FormDescription>
+                  Briefly explain what sets you and your project apart.
+                </FormDescription>
                 <FormControl>
                   <Textarea
                     placeholder="Eye-Catching Graphic Design for Your Brand..."
                     className="resize-none border-none bg-slate-50"
                     rows={6}
                     {...field}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setCharCount(e.target.value.length);
+                    }}
                   />
                 </FormControl>
+                <FormDescription className="text-right">
+                  {charCount}/1200 characters (min. 120)
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
