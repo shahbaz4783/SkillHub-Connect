@@ -4,12 +4,13 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
@@ -39,6 +40,8 @@ const JobPostForm = () => {
     success: '',
   });
 
+  const [charCount, setCharCount] = useState<number>(0);
+
   const form = useForm<z.infer<typeof jobSchema>>({
     resolver: zodResolver(jobSchema),
   });
@@ -55,23 +58,31 @@ const JobPostForm = () => {
   return (
     <>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-4"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
           <FormField
             control={form.control}
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Project Title</FormLabel>
+                <FormLabel>Job Title</FormLabel>
+                <FormDescription>
+                  Describe the specific problem you need solved or the task you
+                  need to be completed.
+                </FormDescription>
                 <FormControl>
                   <Input
                     disabled={isPending}
                     placeholder="I need a React Developer for Dynamic Web Applications"
                     {...field}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setCharCount(e.target.value.length);
+                    }}
                   />
                 </FormControl>
+                <FormDescription className="text-right">
+                  {charCount}/75 characters (min. 7 words)
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -82,6 +93,10 @@ const JobPostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Skills Required</FormLabel>
+                <FormDescription>
+                  Mention the skills required for the task. (separate them by a
+                  comma)
+                </FormDescription>
                 <FormControl>
                   <Input
                     disabled={isPending}
@@ -99,6 +114,9 @@ const JobPostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Job Budget</FormLabel>
+                <FormDescription>
+                  Enter your budget for this project
+                </FormDescription>
                 <FormControl>
                   <Input
                     type="number"
@@ -117,6 +135,9 @@ const JobPostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Job Type</FormLabel>
+                <FormDescription>
+                  What best describes the nature of this project?
+                </FormDescription>
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
@@ -126,9 +147,11 @@ const JobPostForm = () => {
                       <SelectValue placeholder="Select the type of job" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="light">Ongoing project</SelectItem>
-                      <SelectItem value="system">One time project</SelectItem>
-                      <SelectItem value="fefe">Complex Project</SelectItem>
+                      <SelectItem value="single">One-time Project</SelectItem>
+                      <SelectItem value="short">Short-term Contract</SelectItem>
+                      <SelectItem value="ongoing">
+                        Ongoing Collaboration
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -142,6 +165,9 @@ const JobPostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Job Category</FormLabel>
+                <FormDescription>
+                  Select the category that best describes your project.
+                </FormDescription>
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
@@ -169,6 +195,9 @@ const JobPostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Experience Level</FormLabel>
+                <FormDescription>
+                  What level of experience are you seeking?
+                </FormDescription>
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
@@ -196,14 +225,20 @@ const JobPostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Job Description</FormLabel>
+                <FormDescription>
+                  Clearly outline your project goals and the results you want to
+                  achieve.
+                </FormDescription>
                 <FormControl>
                   <Textarea
                     placeholder="Help build the next generation of our e-commerce platform..."
-                    className="resize-none border-none bg-slate-50"
                     rows={6}
                     {...field}
                   />
                 </FormControl>
+                <FormDescription className="text-right">
+                  {charCount}/1200 characters (min. 120)
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -212,7 +247,7 @@ const JobPostForm = () => {
           <FormError message={formMessage.error} />
           <FormSuccess message={formMessage.success} />
           <Button disabled={isPending} type="submit">
-            {isPending ? 'Submitting...' : 'Submit'}
+            {isPending ? 'Publishing...' : 'Publish Job'}
           </Button>
         </form>
       </Form>

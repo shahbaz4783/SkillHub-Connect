@@ -94,6 +94,9 @@ const ServicePostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Specialization</FormLabel>
+                <FormDescription>
+                  Mention your expertise of the task. (separate them by a comma)
+                </FormDescription>
                 <FormControl>
                   <Input
                     disabled={isPending}
@@ -111,6 +114,9 @@ const ServicePostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Pricing</FormLabel>
+                <FormDescription>
+                  Enter the price for this service
+                </FormDescription>
                 <FormControl>
                   <Input
                     type="number"
@@ -129,6 +135,9 @@ const ServicePostForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Delivery Time</FormLabel>
+                <FormDescription>
+                  In how many days you will deliver it?
+                </FormDescription>
                 <FormControl>
                   <Input
                     disabled={isPending}
@@ -184,7 +193,6 @@ const ServicePostForm = () => {
                 <FormControl>
                   <Textarea
                     placeholder="Eye-Catching Graphic Design for Your Brand..."
-                    className="resize-none border-none bg-slate-50"
                     rows={6}
                     {...field}
                     onChange={(e) => {
@@ -204,7 +212,7 @@ const ServicePostForm = () => {
           <FormError message={formMessage.error} />
           <FormSuccess message={formMessage.success} />
           <Button disabled={isPending} type="submit">
-            {isPending ? 'Submitting...' : 'Submit'}
+            {isPending ? 'Publishing...' : 'Publish Service '}
           </Button>
         </form>
       </Form>
