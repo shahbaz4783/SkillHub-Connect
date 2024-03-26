@@ -78,6 +78,7 @@ const JobPostForm = () => {
                       field.onChange(e);
                       setCharCount(e.target.value.length);
                     }}
+                    onBlur={() => form.trigger('title')}
                   />
                 </FormControl>
                 <FormDescription className="text-right">
@@ -143,7 +144,7 @@ const JobPostForm = () => {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="border-none bg-slate-50">
+                    <SelectTrigger>
                       <SelectValue placeholder="Select the type of job" />
                     </SelectTrigger>
                     <SelectContent>
@@ -173,7 +174,7 @@ const JobPostForm = () => {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="border-none bg-slate-50">
+                    <SelectTrigger>
                       <SelectValue placeholder="Select the category of job" />
                     </SelectTrigger>
                     <SelectContent>
@@ -203,7 +204,7 @@ const JobPostForm = () => {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="border-none bg-slate-50">
+                    <SelectTrigger>
                       <SelectValue placeholder="Select the category of job" />
                     </SelectTrigger>
                     <SelectContent>
@@ -234,6 +235,11 @@ const JobPostForm = () => {
                     placeholder="Help build the next generation of our e-commerce platform..."
                     rows={6}
                     {...field}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setCharCount(e.target.value.length);
+                    }}
+                    onBlur={() => form.trigger('description')}
                   />
                 </FormControl>
                 <FormDescription className="text-right">

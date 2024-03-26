@@ -79,6 +79,7 @@ const ServicePostForm = () => {
                       field.onChange(e);
                       setCharCount(e.target.value.length);
                     }}
+                    onBlur={() => form.trigger('title')}
                   />
                 </FormControl>
                 <FormDescription className="text-right">
@@ -199,6 +200,7 @@ const ServicePostForm = () => {
                       field.onChange(e);
                       setCharCount(e.target.value.length);
                     }}
+                    onBlur={() => form.trigger('title')}
                   />
                 </FormControl>
                 <FormDescription className="text-right">
