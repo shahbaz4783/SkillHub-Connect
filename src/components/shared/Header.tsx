@@ -11,6 +11,7 @@ import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation.routes';
 import MobileNav from './MobileNav';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import UserAvatar from './UserAvatar';
+import { UserProfileMenu } from './UserProfileMenu';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -38,7 +39,7 @@ const Header = () => {
             </NavLink>
           ))}
         </nav>
-        {!user && (
+        {!user ? (
           <div className="hidden gap-4 lg:flex">
             <Input type="search" placeholder="Search" />
             {AUTH_NAV_ITEMS.map((data, index) => (
@@ -47,11 +48,11 @@ const Header = () => {
               </NavLink>
             ))}
           </div>
-        )}
-				
-        {user && (
+        ) : (
           <div className="hidden gap-4 lg:flex">
-            <UserAvatar />
+            <Input type="search" placeholder="Search" />
+
+            <UserProfileMenu />
           </div>
         )}
 
