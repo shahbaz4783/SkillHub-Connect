@@ -42,3 +42,9 @@ export const servicePostAction = async (
 
 	return { success: 'Service created successfully' };
 };
+
+export const deleteServiceAction = async (id: string) => {
+  await prisma.servicePost.delete({
+    where: { id },
+  });
+};

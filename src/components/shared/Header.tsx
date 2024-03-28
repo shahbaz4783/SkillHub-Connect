@@ -51,7 +51,6 @@ const Header = () => {
         ) : (
           <div className="hidden gap-4 lg:flex">
             <Input type="search" placeholder="Search" />
-
             <UserProfileMenu />
           </div>
         )}
