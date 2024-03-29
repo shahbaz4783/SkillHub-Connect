@@ -1,16 +1,20 @@
 'use client';
 
+import { getJobPostsResult } from '@/data/search';
 import { useSearchParams } from 'next/navigation';
 
-const SearchPage = () => {
+const SearchPage = async () => {
   const search = useSearchParams();
-  const searchQuery = search.get('q');
-  console.log({ searchQuery });
+  const searchQuery = search.get('q') as string;
 
-  console.log({ search });
+  const result = await getJobPostsResult(searchQuery);
+  console.log({ result });
+
   return (
     <div>
-      <h1>Showing results for "{searchQuery}"</h1>
+      <h1 className="text-2xl font-semibold">
+        Showing results for "{searchQuery}"
+      </h1>
     </div>
   );
 };
