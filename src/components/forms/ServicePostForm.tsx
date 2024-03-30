@@ -14,8 +14,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
-import FormError from './FormError';
-import FormSuccess from './FormSuccess';
+import FormError from '../feedback/FormError';
+import FormSuccess from '../feedback/FormSuccess';
 import {
   Select,
   SelectContent,

@@ -14,29 +14,6 @@ interface LoginFormProps {
 	placeholder: string;
 }
 
-interface ServicePostProps {
-	id: number;
-	name: 'title' | 'description' | 'tags' | 'price' | 'time' | 'category';
-	type: 'text' | 'number' | 'file';
-	label: string;
-	placeholder: string;
-}
-
-interface JobPostProps {
-	id: number;
-	name:
-		| 'title'
-		| 'description'
-		| 'skills'
-		| 'price'
-		| 'location'
-		| 'category'
-		| 'experience';
-	type: 'text' | 'number' | 'file';
-	label: string;
-	placeholder: string;
-}
-
 export const loginFormInput: LoginFormProps[] = [
 	{
 		id: 1,

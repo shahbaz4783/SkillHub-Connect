@@ -14,8 +14,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { signUpFormInput } from '@/constants/form';
-import FormError from './FormError';
-import FormSuccess from './FormSuccess';
+import FormError from '../feedback/FormError';
+import FormSuccess from '../feedback/FormSuccess';
 import { signUpSchema } from '@/validators/auth.schema';
 import { useState, useTransition } from 'react';
 import { signUpAction } from '@/actions/auth/signup.action';

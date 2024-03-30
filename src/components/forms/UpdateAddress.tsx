@@ -22,8 +22,8 @@ import {
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { useState, useTransition } from 'react';
-import FormError from './FormError';
-import FormSuccess from './FormSuccess';
+import FormError from '../feedback/FormError';
+import FormSuccess from '../feedback/FormSuccess';
 import { addressSchema } from '@/validators/user.schema';
 import { Input } from '../ui/input';
 import Link from 'next/link';

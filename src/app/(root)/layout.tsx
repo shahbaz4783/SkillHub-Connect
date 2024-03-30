@@ -1,5 +1,5 @@
 import Footer from '@/components/shared/Footer';
-import Header from '@/components/shared/Header';
+import Header from '@/components/navigation/Header';
 import { currentUser } from '@/lib/auth';
 import React from 'react';
 

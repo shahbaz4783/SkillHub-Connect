@@ -1,5 +1,5 @@
 import Banner from '@/components/shared/Banner';
-import SupportOptions from '@/components/static/SupportOptions';
+import SupportOptions from '@/components/layouts/static/SupportOptions';
 
 const Support = () => {
 	return (

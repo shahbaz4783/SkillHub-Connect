@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import NavLink from '../ui/NavLink';
 import { IoIosMenu } from 'react-icons/io';
 import { IoCloseOutline } from 'react-icons/io5';
@@ -10,7 +9,7 @@ import { useState } from 'react';
 import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation';
 import MobileNav from './MobileNav';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
-import { UserProfileMenu } from './UserProfileMenu';
+import { UserProfileMenu } from '../shared/UserProfileMenu';
 import SearchInput from '@/components/shared/SearchInput';
 
 const Header = () => {

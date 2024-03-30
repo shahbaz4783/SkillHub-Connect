@@ -17,8 +17,8 @@ import { Button } from '../ui/button';
 import { jobSchema } from '@/validators/listing.schema';
 import { useState, useTransition } from 'react';
 import { jobPostAction } from '@/actions/posts/jobPost.action';
-import FormError from './FormError';
-import FormSuccess from './FormSuccess';
+import FormError from '../feedback/FormError';
+import FormSuccess from '../feedback/FormSuccess';
 import {
   Select,
   SelectContent,

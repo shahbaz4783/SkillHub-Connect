@@ -1,21 +1,21 @@
-import AuthGreet from '@/components/static/AuthGreet';
+import AuthGreet from '@/components/layouts/static/AuthGreet';
 import { FC } from 'react';
 
 interface AuthLayoutProps {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
-	return (
-		<>
-			<main className='min-h-svh md:w-9/12 m-auto flex flex-col justify-center'>
-				<section className='flex justify-between min-h-[90svh]'>
-					<AuthGreet />
-					<aside className='space-y-10 flex-1 p-8 md:p-16'>{children}</aside>
-				</section>
-			</main>
-		</>
-	);
+  return (
+    <>
+      <main className="m-auto flex min-h-svh flex-col justify-center md:w-9/12">
+        <section className="flex min-h-[90svh] justify-between">
+          <AuthGreet />
+          <aside className="flex-1 space-y-10 p-8 md:p-16">{children}</aside>
+        </section>
+      </main>
+    </>
+  );
 };
 
 export default AuthLayout;

@@ -4,7 +4,7 @@ import SectionTop from '@/components/ui/SectionTop';
 import { categories } from '@/constants/options';
 import ServiceCard from '@/components/cards/ServiceCard';
 import { prisma } from '@/lib/prisma';
-import HowServiceWorks from '@/components/static/HowServiceWorks';
+import HowServiceWorks from '@/components/layouts/static/HowServiceWorks';
 
 const Services = async () => {
   const serviceData = await prisma?.servicePost.findMany();

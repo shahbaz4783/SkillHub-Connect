@@ -1,54 +1,71 @@
 import {
   BookText,
+  Brush,
+  Code,
+  CodeXml,
   CreditCard,
+  Database,
+  DraftingCompass,
   FileCode,
   FileSearch,
+  FileVideo,
   Laptop,
+  Newspaper,
   NotebookPen,
   Rocket,
   Shield,
+  TextSearch,
+  WholeWord,
 } from 'lucide-react';
 
 export const categories = [
   {
-    title: 'Web Development',
+    title: 'Development and IT',
     value: 'webdev',
     img: '/images/cube.jpg',
+    icon: CodeXml,
   },
   {
     title: 'Logo Design',
     value: 'logo',
     img: '/images/cube.jpg',
+    icon: Brush,
   },
   {
     title: 'Video Editing',
     value: 'video',
     img: '/images/cube.jpg',
+    icon: FileVideo,
   },
   {
     title: 'Illustration',
     value: 'illustration',
     img: '/images/cube.jpg',
+    icon: DraftingCompass,
   },
   {
     title: 'SEO',
     value: 'seo',
     img: '/images/cube.jpg',
+    icon: TextSearch,
   },
   {
     title: 'WordPress',
     value: 'wordpress',
     img: '/images/cube.jpg',
+    icon: WholeWord,
   },
   {
     title: 'Articles and Blogs',
     value: 'blog',
     img: '/images/cube.jpg',
+    icon: Newspaper,
   },
   {
     title: 'Data Entry',
     value: 'entry',
     img: '/images/cube.jpg',
+    icon: Database,
   },
 ];
 

@@ -14,8 +14,8 @@ import {
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { useState, useTransition } from 'react';
-import FormError from './FormError';
-import FormSuccess from './FormSuccess';
+import FormError from '../feedback/FormError';
+import FormSuccess from '../feedback/FormSuccess';
 import { bioSchema } from '@/validators/user.schema';
 
 const UpdateBio = () => {

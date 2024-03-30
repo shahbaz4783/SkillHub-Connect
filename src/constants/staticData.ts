@@ -21,7 +21,6 @@ import {
 import {
   MdOutlineAccountBalanceWallet,
   MdOutlineEngineering,
-  MdOutlinePayment,
   MdOutlineStars,
 } from 'react-icons/md';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
@@ -35,80 +34,7 @@ import { CgDesignmodo } from 'react-icons/cg';
 
 import { Award, FileBadge, LineChart, Rocket, TextSearch } from 'lucide-react';
 
-interface ListItem {
-  heading: string;
-  subheading: string;
-  icon?: React.ElementType;
-}
-
-export const work_categories = [
-  {
-    title: 'Development and IT',
-    img: '/ibm.svg',
-    icon: FaLaptopCode,
-    rating: '4.86/5',
-    skills: 134,
-    jobs: 289,
-  },
-  {
-    title: 'AI Services',
-    img: '/ibm.svg',
-    icon: RiRobot2Line,
-    rating: '4.72/5',
-    skills: 89,
-    jobs: 113,
-  },
-  {
-    title: 'Sales and Marketing',
-    img: '/ibm.svg',
-    icon: FaChartPie,
-    rating: '4.89/5',
-    skills: 424,
-    jobs: 514,
-  },
-  {
-    title: 'Writing and Translation',
-    img: '/ibm.svg',
-    icon: TfiWrite,
-    rating: '4.93/5',
-    skills: 434,
-    jobs: 531,
-  },
-  {
-    title: 'Finance and Accounting',
-    img: '/ibm.svg',
-    icon: MdOutlineAccountBalanceWallet,
-    rating: '4.69/5',
-    skills: 128,
-    jobs: 159,
-  },
-  {
-    title: 'Design and Creative',
-    img: '/ibm.svg',
-    icon: CgDesignmodo,
-    rating: '4.88/5',
-    skills: 194,
-    jobs: 356,
-  },
-  {
-    title: 'Engineering & Architecture',
-    img: '/ibm.svg',
-    icon: MdOutlineEngineering,
-    rating: '4.81/5',
-    skills: 84,
-    jobs: 119,
-  },
-  {
-    title: 'Video Editing',
-    img: '/ibm.svg',
-    icon: FaRegFileVideo,
-    rating: '4.75/5',
-    skills: 304,
-    jobs: 424,
-  },
-];
-
-export const getStartedList: ListItem[] = [
+export const getStartedList = [
   {
     heading: 'No cost to join',
     subheading:
@@ -153,7 +79,7 @@ export const forTalent = [
   'Explore different ways to earn',
 ];
 
-export const whyWe: ListItem[] = [
+export const whyWe = [
   {
     heading: 'Find the Perfect Experts for Your Needs',
     subheading: 'Access a vast pool of talent to bridge your skill gaps.',
@@ -172,7 +98,7 @@ export const whyWe: ListItem[] = [
   },
 ];
 
-export const ourFeatures: ListItem[] = [
+export const ourFeatures = [
   {
     heading: 'Proof of quality',
     subheading:
@@ -193,7 +119,7 @@ export const ourFeatures: ListItem[] = [
   },
 ];
 
-export const ourAchievement: ListItem[] = [
+export const ourAchievement = [
   {
     heading: '4.8/5',
     subheading: 'Clients rate professionals on SkillHub',
@@ -206,7 +132,7 @@ export const ourAchievement: ListItem[] = [
   },
 ];
 
-export const howServicesWorks: ListItem[] = [
+export const howServicesWorks = [
   {
     heading: 'Browse',
     subheading:
@@ -226,7 +152,7 @@ export const howServicesWorks: ListItem[] = [
   },
 ];
 
-export const howToGetWork: ListItem[] = [
+export const howToGetWork = [
   {
     heading: '1. Create a profile',
     subheading:
@@ -265,7 +191,7 @@ export const howToGetWork: ListItem[] = [
   },
 ];
 
-export const howToPostService: ListItem[] = [
+export const howToPostService = [
   {
     heading: '1. Create a project',
     subheading: 'Create a unique project that showcases your expertise.',

@@ -1,7 +1,7 @@
 'use client';
 
 import { DeleteConfirmationDialog } from '@/components/shared/DeleteConfirmationDialog';
-import { FilePenLine, Pause, Trash2 } from 'lucide-react';
+import { FilePenLine, Pause } from 'lucide-react';
 
 const PostActions = () => {
   return (

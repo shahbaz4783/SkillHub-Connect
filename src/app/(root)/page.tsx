@@ -1,6 +1,6 @@
 import { auth } from '@/auth';
-import LandingPage from '../../components/static/LandingPage';
-import LoginHomePage from '@/components/feed/LoginHomePage';
+import LandingPage from '../../components/layouts/static/LandingPage';
+import LoginHomePage from '@/components/layouts/feed/LoginHomePage';
 
 const Home = async () => {
 	const session = await auth();
