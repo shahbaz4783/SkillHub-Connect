@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { loginSchema } from '@/validators/auth.schema';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
-import { loginAction } from '@/actions/login.action';
+import { loginAction } from '@/actions/auth/login.action';
 import { useState, useTransition } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FaArrowLeft } from 'react-icons/fa';

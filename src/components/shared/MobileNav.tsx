@@ -1,4 +1,4 @@
-import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation.routes';
+import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation';
 import React from 'react';
 import NavLink from '../ui/NavLink';
 import { Button } from '../ui/button';

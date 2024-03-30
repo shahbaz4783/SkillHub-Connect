@@ -1,13 +1,13 @@
 import Hero from '@/components/static/Hero';
 import {
-	work_categories,
-	getStartedList,
-	forClient,
-	forTalent,
-	whyWe,
-	ourFeatures,
-	ourAchievement,
-} from '@/constants/static-lists_data';
+  work_categories,
+  getStartedList,
+  forClient,
+  forTalent,
+  whyWe,
+  ourFeatures,
+  ourAchievement,
+} from '@/constants/staticData';
 import SectionTop from '@/components/ui/SectionTop';
 import ListItem from '@/components/ui/ListItem';
 import Link from 'next/link';

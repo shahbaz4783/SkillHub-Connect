@@ -18,7 +18,7 @@ import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { signUpSchema } from '@/validators/auth.schema';
 import { useState, useTransition } from 'react';
-import { signUpAction } from '@/actions/signup.action';
+import { signUpAction } from '@/actions/auth/signup.action';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 

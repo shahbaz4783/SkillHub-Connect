@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { howToPostService, howToGetWork } from '@/constants/static-lists_data';
+import { howToPostService, howToGetWork } from '@/constants/staticData';
 import SectionTop from '../ui/SectionTop';
 import ListItem from '../ui/ListItem';
 

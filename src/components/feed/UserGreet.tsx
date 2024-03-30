@@ -9,7 +9,7 @@ import {
 	CarouselItem,
 } from '@/components/ui/carousel';
 import { Button } from '../ui/button';
-import { feedCaroselItem } from '@/constants/carousel-data';
+import { feedCaroselItem } from '@/constants/staticData';
 
 const CarouselPlugin = () => {
 	const plugin = React.useRef(

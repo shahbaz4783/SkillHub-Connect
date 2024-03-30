@@ -17,7 +17,7 @@ import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { useState, useTransition } from 'react';
 import { userSchema } from '@/validators/user.schema';
-import { updatePersonalInfoAction } from '@/actions/user.action';
+import { updatePersonalInfoAction } from '@/actions/admin/user.action';
 
 const UpdatePersonalInfo = () => {
 	const [isPending, startTransition] = useTransition();

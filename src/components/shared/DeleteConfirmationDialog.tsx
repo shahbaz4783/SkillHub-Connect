@@ -1,4 +1,4 @@
-import { deleteServiceAction } from '@/actions/servicePost.action';
+import { deleteServiceAction } from '@/actions/posts/servicePost.action';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

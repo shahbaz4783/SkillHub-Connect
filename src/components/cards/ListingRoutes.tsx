@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader } from '../ui/card';
-import { LISTING_ROUTES } from '@/constants/quick-action.routes';
+import { LISTING_ROUTES } from '@/constants/navigation';
+
 
 const ListingRoutes = () => {
 	return (

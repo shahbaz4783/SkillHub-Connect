@@ -2,7 +2,7 @@ import Banner from '@/components/shared/Banner';
 import HowToEarn from '@/components/static/HowToEarn';
 import ListItem from '@/components/ui/ListItem';
 import SectionTop from '@/components/ui/SectionTop';
-import { work_categories } from '@/constants/static-lists_data';
+import { work_categories } from '@/constants/staticData';
 import Link from 'next/link';
 
 const Services = () => {

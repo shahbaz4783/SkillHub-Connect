@@ -20,7 +20,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import UserAvatar from './UserAvatar';
-import { logout } from '@/actions/logout.action';
+import { logout } from '@/actions/auth/logout.action';
 import Link from 'next/link';
 
 export function UserProfileMenu() {

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import SectionTop from '../ui/SectionTop';
 import ListItem from '../ui/ListItem';
-import { howServicesWorks } from '@/constants/static-lists_data';
+import { howServicesWorks } from '@/constants/staticData';
 
 const HowServiceWorks = () => {
 	return (

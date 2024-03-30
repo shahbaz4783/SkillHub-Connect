@@ -14,10 +14,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
-import { jobPostFormFields } from '@/constants/form';
 import { jobSchema } from '@/validators/listing.schema';
 import { useState, useTransition } from 'react';
-import { jobPostAction } from '@/actions/jobPost.action';
+import { jobPostAction } from '@/actions/posts/jobPost.action';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import {

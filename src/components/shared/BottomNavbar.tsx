@@ -1,21 +1,21 @@
-import { BOTTOM_NAV_ITEMS } from '@/constants/navigation.routes';
+import { BOTTOM_NAV_ITEMS } from '@/constants/navigation';
 import Link from 'next/link';
 import React from 'react';
 
 const BottomNavbar = () => {
-	return (
-		<nav className='bg-slate-300 p-2 backdrop-blur flex justify-center md:hidden sticky bottom-2 w-11/12 m-auto rounded-full border gap-6 '>
-			{BOTTOM_NAV_ITEMS.map((data, index) => (
-				<Link
-					key={index}
-					href={data.path}
-					className='flex flex-col gap-2 items-center p-2 rounded-md'
-				>
-					{data.icon && <data.icon size={28} />}
-				</Link>
-			))}
-		</nav>
-	);
+  return (
+    <nav className="sticky bottom-2 m-auto flex w-11/12 justify-center gap-6 rounded-full border bg-slate-300 p-2 backdrop-blur md:hidden ">
+      {BOTTOM_NAV_ITEMS.map((data, index) => (
+        <Link
+          key={index}
+          href={data.path}
+          className="flex flex-col items-center gap-2 rounded-md p-2"
+        >
+          {data.icon && <data.icon size={28} />}
+        </Link>
+      ))}
+    </nav>
+  );
 };
 
 export default BottomNavbar;

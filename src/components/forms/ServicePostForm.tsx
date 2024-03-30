@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { servicePostAction } from '@/actions/servicePost.action';
+import { servicePostAction } from '@/actions/posts/servicePost.action';
 import { serviceSchema } from '@/validators/listing.schema';
 import { useState, useTransition } from 'react';
 import { Textarea } from '../ui/textarea';

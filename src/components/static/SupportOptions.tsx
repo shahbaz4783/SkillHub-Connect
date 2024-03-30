@@ -1,26 +1,25 @@
 import ListItem from '@/components/ui/ListItem';
 import SectionTop from '@/components/ui/SectionTop';
-import { supportOptions } from '@/constants/static-lists_data';
+import { supportOptions } from '@/constants/options';
 
 const SupportOptions = () => {
 	return (
-		<section className='mb-16'>
-			<SectionTop heading='Search by category' subhead='' />
-			<article className='grid md:grid-cols-4 gap-8'>
-				{supportOptions.map((data, index) => (
-					<ListItem
-						key={index}
-						title={data.heading}
-						subheading={data.subheading}
-						iconSize='2em'
-						className='bg-slate-100 hover:bg-slate-200 cursor-pointer rounded-lg p-4 flex-col py-8'
-					>
-						{data.icon && <data.icon />}
-					</ListItem>
-				))}
-			</article>
-		</section>
-	);
+    <section className="mb-16">
+      <SectionTop heading="Search by category" subhead="" />
+      <article className="grid gap-8 md:grid-cols-4">
+        {supportOptions.map((data, index) => (
+          <ListItem
+            key={index}
+            title={data.heading}
+            subheading={data.subheading}
+            className="cursor-pointer flex-col rounded-lg bg-slate-100 p-4 py-8 hover:bg-slate-200"
+          >
+            {data.icon && <data.icon size={40} />}
+          </ListItem>
+        ))}
+      </article>
+    </section>
+  );
 };
 
 export default SupportOptions;
