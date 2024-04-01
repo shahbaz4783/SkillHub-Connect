@@ -2,8 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import NavLink from '../ui/NavLink';
-import { IoIosMenu } from 'react-icons/io';
-import { IoCloseOutline } from 'react-icons/io5';
 import { useState } from 'react';
 import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation';
 import MobileNav from './MobileNav';
@@ -11,7 +9,8 @@ import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { UserProfileMenu } from '../shared/UserProfileMenu';
 import SearchInput from '@/components/shared/SearchInput';
 import Logo from '../shared/Logo';
-import { Bell, CircleHelp, LayoutDashboard, Send } from 'lucide-react';
+import { Bell, CircleHelp, LayoutDashboard, Menu, Send, X } from 'lucide-react';
+import SearchMobileSheet from './SearchMobileSheet';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -24,9 +23,9 @@ const Navbar = () => {
   return (
     <>
       <header className="sticky top-0 z-10 flex  justify-between bg-slate-50 px-4 py-3 shadow-sm">
-        <div className="flex items-center gap-8">
+        <div className="hidden items-center gap-8 lg:flex">
           <Logo />
-          <nav className="hidden items-center gap-5 text-lg lg:flex">
+          <nav className="flex items-center gap-5 text-lg">
             {PAGES_NAV_ITEMS.map((data, index) => (
               <NavLink key={index} href={data.path}>
                 {data.title}
@@ -35,7 +34,7 @@ const Navbar = () => {
           </nav>
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="hidden items-center gap-8 md:flex">
           <SearchInput />
           {!user ? (
             <div className="hidden gap-4 lg:flex">
@@ -66,11 +65,13 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className="lg:hidden" onClick={handleNavMenu}>
-          {menuOpen ? <IoCloseOutline size={32} /> : <IoIosMenu size={32} />}
-        </div>
+        <menu className="flex w-full justify-between lg:hidden">
+          <MobileNav menuOpen={menuOpen} onHandleNavMenu={handleNavMenu} />
+          <Logo />
+          <SearchMobileSheet />
+        </menu>
       </header>
-      <MobileNav menuOpen={menuOpen} onHandleNavMenu={handleNavMenu} />
+      {/* <MobileNav menuOpen={menuOpen} onHandleNavMenu={handleNavMenu} /> */}
     </>
   );
 };
