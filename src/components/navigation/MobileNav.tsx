@@ -9,12 +9,22 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Bell, CircleHelp, LayoutDashboard, Menu, Send } from 'lucide-react';
+import {
+  Bell,
+  CircleHelp,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Send,
+  Settings,
+} from 'lucide-react';
 import { UserProfileMenu } from '../shared/UserProfileMenu';
+import { logout } from '@/actions/auth/logout.action';
 
 const MobileNav = ({
   menuOpen,
@@ -29,59 +39,73 @@ const MobileNav = ({
       <SheetTrigger>
         <Menu size={30} />
       </SheetTrigger>
-      <SheetContent side={'left'} className="w-[400px] sm:w-[540px]">
-        <SheetHeader>
-          <SheetDescription>
-            <nav
-              onClick={onHandleNavMenu}
-              className="flex flex-col items-start space-y-4"
-            >
-              {PAGES_NAV_ITEMS.map((data, index) => (
+      <SheetContent
+        side={'left'}
+        className="flex w-[400px] flex-col justify-between bg-slate-50 text-lg sm:w-[540px]"
+      >
+        <nav
+          onClick={onHandleNavMenu}
+          className="mt-12 flex flex-col items-start space-y-4"
+        >
+          {PAGES_NAV_ITEMS.map((data, index) => (
+            <NavLink key={index} href={data.path}>
+              {data.title}
+            </NavLink>
+          ))}
+        </nav>
+        <menu>
+          {!user ? (
+            <div className="flex justify-between">
+              {AUTH_NAV_ITEMS.map((data, index) => (
                 <NavLink key={index} href={data.path}>
-                  {data.title}
+                  <Button variant={data.variant}>{data.title}</Button>
                 </NavLink>
               ))}
-            </nav>
-            <div className="mt-4">
-              {!user ? (
-                <div className="gap-4 lg:flex">
-                  {AUTH_NAV_ITEMS.map((data, index) => (
-                    <NavLink key={index} href={data.path}>
-                      <Button variant={data.variant}>{data.title}</Button>
-                    </NavLink>
-                  ))}
-                </div>
-              ) : (
-                <ul className="w-full space-y-4">
-                  <li className="flex cursor-pointer list-none items-center justify-between">
-                    <span>Help</span>
-                    <span>
-                      <CircleHelp />
-                    </span>
-                  </li>
-                  <li className="flex cursor-pointer list-none items-center justify-between">
-                    <span>Direct Contracts</span>
-                    <span>
-                      <Send />
-                    </span>
-                  </li>
-                  <li className="flex cursor-pointer list-none items-center justify-between">
-                    <span>Apps and Offers</span>
-                    <span>
-                      <LayoutDashboard />
-                    </span>
-                  </li>
-                  <li className="flex cursor-pointer list-none items-center justify-between">
-                    <span>Notifications</span>
-                    <span>
-                      <Bell />
-                    </span>
-                  </li>
-                </ul>
-              )}
             </div>
-          </SheetDescription>
-        </SheetHeader>
+          ) : (
+            <ul className="w-full space-y-4">
+              <li className="flex cursor-pointer list-none items-center justify-between">
+                <span>Help</span>
+                <span>
+                  <CircleHelp />
+                </span>
+              </li>
+              <li className="flex cursor-pointer list-none items-center justify-between">
+                <span>Direct Contracts</span>
+                <span>
+                  <Send />
+                </span>
+              </li>
+              <li className="flex cursor-pointer list-none items-center justify-between">
+                <span>Apps and Offers</span>
+                <span>
+                  <LayoutDashboard />
+                </span>
+              </li>
+              <li className="flex cursor-pointer list-none items-center justify-between">
+                <span>Notifications</span>
+                <span>
+                  <Bell />
+                </span>
+              </li>
+              <li className="flex cursor-pointer list-none items-center justify-between">
+                <span>Settings</span>
+                <span>
+                  <Settings />
+                </span>
+              </li>
+              <li
+                onClick={async () => await logout()}
+                className="flex cursor-pointer list-none items-center justify-between"
+              >
+                <span>Log out</span>
+                <span>
+                  <LogOut />
+                </span>
+              </li>
+            </ul>
+          )}
+        </menu>
       </SheetContent>
     </Sheet>
   );

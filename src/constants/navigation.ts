@@ -11,6 +11,7 @@ import {
   Pause,
   SquarePen,
   UserCog,
+  CircleHelp,
 } from 'lucide-react';
 
 interface NavInterface {
@@ -177,5 +178,28 @@ export const LISTING_ROUTES = [
     title: 'Paused',
     path: '/dashboard/listings/paused',
     icon: Pause,
+  },
+];
+
+export const LoggedInExtraNav = [
+  {
+    title: 'Help',
+    path: '/help',
+    icon: CircleHelp,
+  },
+  {
+    title: 'Direct Contracts',
+    path: '/help',
+    icon: CircleHelp,
+  },
+  {
+    title: 'Apps and Offers',
+    path: '/help',
+    icon: CircleHelp,
+  },
+  {
+    title: 'Notifications',
+    path: '/help',
+    icon: CircleHelp,
   },
 ];
