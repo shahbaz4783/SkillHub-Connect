@@ -12,6 +12,7 @@ import {
   SquarePen,
   UserCog,
   CircleHelp,
+  Send,
 } from 'lucide-react';
 
 interface NavInterface {
@@ -181,7 +182,7 @@ export const LISTING_ROUTES = [
   },
 ];
 
-export const LoggedInExtraNav = [
+export const loggedInExtraNav = [
   {
     title: 'Help',
     path: '/help',
@@ -190,16 +191,16 @@ export const LoggedInExtraNav = [
   {
     title: 'Direct Contracts',
     path: '/help',
-    icon: CircleHelp,
+    icon: Send,
   },
   {
     title: 'Apps and Offers',
     path: '/help',
-    icon: CircleHelp,
+    icon: LayoutDashboard,
   },
   {
     title: 'Notifications',
     path: '/help',
-    icon: CircleHelp,
+    icon: Bell,
   },
 ];

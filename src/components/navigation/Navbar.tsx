@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import NavLink from '../ui/NavLink';
 import { useState } from 'react';
-import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation';
+import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS, loggedInExtraNav } from '@/constants/navigation';
 import MobileNav from './MobileNav';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { UserProfileMenu } from '../shared/UserProfileMenu';
@@ -11,6 +11,7 @@ import SearchInput from '@/components/shared/SearchInput';
 import Logo from '../shared/Logo';
 import { Bell, CircleHelp, LayoutDashboard, Menu, Send, X } from 'lucide-react';
 import SearchMobileSheet from './SearchMobileSheet';
+import Link from 'next/link';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -46,18 +47,13 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="hidden items-center gap-8 md:flex">
-              <li className="cursor-pointer list-none">
-                <CircleHelp />
-              </li>
-              <li className="cursor-pointer list-none">
-                <Send />
-              </li>
-              <li className="cursor-pointer list-none">
-                <LayoutDashboard />
-              </li>
-              <li className="cursor-pointer list-none">
-                <Bell />
-              </li>
+              {loggedInExtraNav.map((data) => (
+                <Link href={data.path} key={data.path} className="w-full space-y-8">
+                  <li className="flex cursor-pointer list-none items-center justify-between">
+                    <span>{data.icon && <data.icon />}</span>
+                  </li>
+                </Link>
+              ))}
               <li className="cursor-pointer list-none">
                 <UserProfileMenu />
               </li>

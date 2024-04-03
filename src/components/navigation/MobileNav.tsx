@@ -1,30 +1,18 @@
 'use client';
 
-import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS } from '@/constants/navigation';
+import {
+  AUTH_NAV_ITEMS,
+  PAGES_NAV_ITEMS,
+  loggedInExtraNav,
+} from '@/constants/navigation';
 import React from 'react';
 import NavLink from '../ui/NavLink';
 import { Button } from '../ui/button';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-import {
-  Bell,
-  CircleHelp,
-  LayoutDashboard,
-  LogOut,
-  Menu,
-  Send,
-  Settings,
-} from 'lucide-react';
-import { UserProfileMenu } from '../shared/UserProfileMenu';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { LogOut, Menu, Settings } from 'lucide-react';
 import { logout } from '@/actions/auth/logout.action';
+import Link from 'next/link';
 
 const MobileNav = ({
   menuOpen,
@@ -41,19 +29,22 @@ const MobileNav = ({
       </SheetTrigger>
       <SheetContent
         side={'left'}
-        className="flex w-[400px] flex-col justify-between bg-slate-50 text-lg sm:w-[540px]"
+        className="flex w-[400px] flex-col justify-between bg-slate-50 sm:w-[540px]"
       >
         <nav
           onClick={onHandleNavMenu}
-          className="mt-12 flex flex-col items-start space-y-4"
+          className="mt-12 flex flex-col gap-4"
         >
           {PAGES_NAV_ITEMS.map((data, index) => (
-            <NavLink key={index} href={data.path}>
-              {data.title}
-            </NavLink>
+            <Link key={data.path} href={data.path}>
+              <li className="flex cursor-pointer list-none items-center justify-between border-b-[1px] pb-2">
+                <span>{data.title}</span>
+                <span>{data.icon && <data.icon />}</span>
+              </li>
+            </Link>
           ))}
         </nav>
-        <menu>
+        <menu className="mb-16">
           {!user ? (
             <div className="flex justify-between">
               {AUTH_NAV_ITEMS.map((data, index) => (
@@ -63,40 +54,27 @@ const MobileNav = ({
               ))}
             </div>
           ) : (
-            <ul className="w-full space-y-4">
-              <li className="flex cursor-pointer list-none items-center justify-between">
-                <span>Help</span>
-                <span>
-                  <CircleHelp />
-                </span>
-              </li>
-              <li className="flex cursor-pointer list-none items-center justify-between">
-                <span>Direct Contracts</span>
-                <span>
-                  <Send />
-                </span>
-              </li>
-              <li className="flex cursor-pointer list-none items-center justify-between">
-                <span>Apps and Offers</span>
-                <span>
-                  <LayoutDashboard />
-                </span>
-              </li>
-              <li className="flex cursor-pointer list-none items-center justify-between">
-                <span>Notifications</span>
-                <span>
-                  <Bell />
-                </span>
-              </li>
-              <li className="flex cursor-pointer list-none items-center justify-between">
-                <span>Settings</span>
-                <span>
-                  <Settings />
-                </span>
-              </li>
+            <ul className="flex flex-col gap-4">
+              {loggedInExtraNav.map((data) => (
+                <Link href={data.path} key={data.path}>
+                  <li className="flex cursor-pointer list-none items-center justify-between border-b-[1px] pb-2">
+                    <span>{data.title}</span>
+                    <span>{data.icon && <data.icon />}</span>
+                  </li>
+                </Link>
+              ))}
+
+              <Link href={'/dashboard/settings'}>
+                <li className="flex cursor-pointer list-none items-center justify-between border-b-[1px] pb-2">
+                  <span>Settings</span>
+                  <span>
+                    <Settings />
+                  </span>
+                </li>
+              </Link>
               <li
                 onClick={async () => await logout()}
-                className="flex cursor-pointer list-none items-center justify-between"
+                className="flex cursor-pointer list-none items-center justify-between border-b-[1px] pb-2"
               >
                 <span>Log out</span>
                 <span>
