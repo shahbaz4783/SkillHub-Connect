@@ -41,3 +41,10 @@ export const jobPostAction = async (values: z.infer<typeof jobSchema>) => {
 
 	return { success: 'Job created successfully' };
 };
+
+
+export const deleteJobAction = async (id: string) => {
+  await prisma.jobPost.delete({
+    where: { id },
+  });
+};

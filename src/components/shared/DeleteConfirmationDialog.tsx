@@ -1,3 +1,4 @@
+import { deleteJobAction } from '@/actions/posts/jobPost.action';
 import { deleteServiceAction } from '@/actions/posts/servicePost.action';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,7 +15,17 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Trash2 } from 'lucide-react';
 
-export function DeleteConfirmationDialog() {
+export function DeleteConfirmationDialog({
+  id,
+  postType,
+}: {
+  id: string;
+  postType: string;
+}) {
+  const deletePostHandler = () => {
+    if (postType === 'servicePost') return deleteServiceAction(id);
+    if (postType === 'jobPost') return deleteJobAction(id);
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -33,7 +44,11 @@ export function DeleteConfirmationDialog() {
               Close
             </Button>
           </DialogClose>
-          <Button variant={'destructive'} type="submit">
+          <Button
+            onClick={deletePostHandler}
+            variant={'destructive'}
+            type="submit"
+          >
             Delete
           </Button>
         </DialogFooter>
