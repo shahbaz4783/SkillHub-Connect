@@ -1,11 +1,10 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import * as z from 'zod';
 import { currentUser } from '@/lib/auth';
 import { serviceSchema } from '@/validators/listing.schema';
 
-const prisma = new PrismaClient();
 
 export const servicePostAction = async (values: z.infer<typeof serviceSchema>) => {
   const validateFields = serviceSchema.safeParse(values);

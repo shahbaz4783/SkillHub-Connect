@@ -1,11 +1,10 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
 import * as z from 'zod';
 import { currentUser } from '@/lib/auth';
 import { jobSchema } from '@/validators/listing.schema';
+import { prisma } from '@/lib/prisma';
 
-const prisma = new PrismaClient();
 
 export const jobPostAction = async (values: z.infer<typeof jobSchema>) => {
 	const validateFields = jobSchema.safeParse(values);

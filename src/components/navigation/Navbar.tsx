@@ -9,7 +9,6 @@ import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { UserProfileMenu } from '../shared/UserProfileMenu';
 import SearchInput from '@/components/shared/SearchInput';
 import Logo from '../shared/Logo';
-import { Bell, CircleHelp, LayoutDashboard, Menu, Send, X } from 'lucide-react';
 import SearchMobileSheet from './SearchMobileSheet';
 import Link from 'next/link';
 
