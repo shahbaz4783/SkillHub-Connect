@@ -9,16 +9,6 @@ import { getAllServiceListings } from '@/data/all-listings';
 import { CircleUserRound, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
-
-// interface ServiceCardProps {
-// 	title: string;
-// 	price: number;
-// 	days: number;
-// 	profile: string;
-// 	rating: number;
-// 	totalRating: number;
-// }
 
 const ServiceCard = async () => {
   const postData = await getAllServiceListings();
@@ -26,7 +16,7 @@ const ServiceCard = async () => {
   return (
     <>
       {postData?.listings.map((data) => (
-        <Link key={data.id} href={`/service/${data.id}`}>
+        <Link key={data.id} href={`/services/${data.id}`}>
           <Card className="cursor-pointer hover:bg-slate-50">
             <CardHeader>
               <Image
