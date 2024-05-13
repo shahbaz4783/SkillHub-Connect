@@ -13,3 +13,23 @@ export const getJobDetailsData = async (id: string) => {
 		where: { id },
 	});
 };
+
+export const getAllServiceListings = async () => {
+  let listings = null;
+  let count = 0;
+
+  listings = await prisma.servicePost.findMany();
+  count = await prisma.servicePost.count();
+
+  return { listings, count };
+};
+
+export const getAllJobListings = async () => {
+  let listings = null;
+  let count = 0;
+
+  listings = await prisma.jobPost.findMany();
+  count = await prisma.jobPost.count();
+
+  return { listings, count };
+};

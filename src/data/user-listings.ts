@@ -28,31 +28,6 @@ export const getUserListingsData = async (listingType: string) => {
 	return { listings, count };
 };
 
-export const getAllJobListings = async () => {
-	const user = await currentUser();
-	if (!user?.id) return null;
-
-	let listings = null;
-	let count = 0;
-
-	listings = await prisma.jobPost.findMany();
-	count = await prisma.jobPost.count();
-
-	return { listings, count };
-};
-
-export const getAllServiceListings = async () => {
-	const user = await currentUser();
-	if (!user?.id) return null;
-
-	let listings = null;
-	let count = 0;
-
-	listings = await prisma.servicePost.findMany();
-	count = await prisma.servicePost.count();
-
-	return { listings, count };
-};
 
 // Service listings excludes logged In user data
 export const getAllServiceListingsExceptOwn = async () => {
