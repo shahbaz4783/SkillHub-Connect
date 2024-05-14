@@ -8,12 +8,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Pen } from 'lucide-react';
 
-export async function DialogDemo() {
+export async function DialogUpdatePersonalInfo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Update Profile</Button>
+        <Button variant="outline"><Pen /></Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

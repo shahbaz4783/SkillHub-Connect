@@ -29,18 +29,7 @@ const Services = async () => {
           subhead=""
         />
         <article className="grid gap-8 md:grid-cols-3 lg:grid-cols-4">
-          {serviceData &&
-            serviceData.map((data) => (
-              <ServiceCard
-                key={data.id}
-                title={data.title}
-                price={data.price}
-                profile={data.userId}
-                days={10}
-                rating={3}
-                totalRating={4}
-              />
-            ))}
+          <ServiceCard />
         </article>
       </section>
     </main>

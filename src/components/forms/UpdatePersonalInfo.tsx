@@ -24,7 +24,7 @@ const UpdatePersonalInfo = () => {
   const user = useCurrentUser();
   const name = user?.name as string;
   const email = user?.email as string;
-  // const username = user?.username as string;
+  const username = user?.username as string;
 
   const [isPending, startTransition] = useTransition();
   const [formMessage, setFormMessage] = useState<{
@@ -40,7 +40,7 @@ const UpdatePersonalInfo = () => {
     defaultValues: {
       name,
       email,
-      // username,
+      username,
     },
   });
 
@@ -98,7 +98,7 @@ const UpdatePersonalInfo = () => {
           />
           <FormError message={formMessage.error} />
           <FormSuccess message={formMessage.success} />
-          <Button disabled={isPending} type="submit">
+          <Button className="float-right" disabled={isPending} type="submit">
             {isPending ? 'Updating Your Profile...' : 'Update'}
           </Button>
         </form>

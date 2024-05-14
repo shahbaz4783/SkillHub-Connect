@@ -5,12 +5,14 @@ import {
   CardDescription,
   CardTitle,
 } from '../../../ui/card';
+import { DialogUpdateLocation } from './DialogLocationUpdate';
 
 const LocationInfo = () => {
   return (
     <Card>
-      <CardContent>
+      <CardContent className="flex justify-between">
         <CardTitle className="text-2xl font-normal">Location</CardTitle>
+        <DialogUpdateLocation />
       </CardContent>
       <CardContent>
         <p>Time Zone</p>

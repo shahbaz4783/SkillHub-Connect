@@ -6,29 +6,31 @@ import {
   CardDescription,
   CardTitle,
 } from '../../../ui/card';
-import { DialogDemo } from './UpdateAccountInfo';
+import { DialogUpdatePersonalInfo } from './DialogUpdateAccountInfo';
 
 const AccountInfo = async () => {
   const user = await currentUser();
   return (
     <Card>
-      <CardContent>
-        <DialogDemo />
-      </CardContent>
-      <CardContent>
+      <CardContent className="flex justify-between">
         <CardTitle className="text-2xl font-normal">Account Info</CardTitle>
+        <DialogUpdatePersonalInfo />
       </CardContent>
       <CardContent>
-        <p>User ID</p>
-        <CardDescription>{user?.id}</CardDescription>
+        <CardDescription>User ID</CardDescription>
+        {user?.id}
       </CardContent>
       <CardContent>
-        <p>Name</p>
-        <CardDescription>{user?.name}</CardDescription>
+        <CardDescription>Name</CardDescription>
+        {user?.name}
       </CardContent>
       <CardContent>
-        <p>Email</p>
-        <CardDescription>{user?.email}</CardDescription>
+        <CardDescription>Username</CardDescription>
+        {user?.username}
+      </CardContent>
+      <CardContent>
+        <CardDescription>Email</CardDescription>
+        {user?.email}
       </CardContent>
     </Card>
   );
