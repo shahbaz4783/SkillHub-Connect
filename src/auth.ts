@@ -32,7 +32,7 @@ export const {
 			}
 			return session;
 		},
-		async jwt({ token, user, profile }) {
+		async jwt({ token }) {
 			return token;
 		},
 	},

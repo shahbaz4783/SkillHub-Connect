@@ -6,13 +6,17 @@ import {
   CardDescription,
   CardTitle,
 } from '../../../ui/card';
+import { DialogDemo } from './UpdateAccountInfo';
 
 const AccountInfo = async () => {
   const user = await currentUser();
   return (
     <Card>
       <CardContent>
-        <CardTitle className="text-2xl font-normal">Account</CardTitle>
+        <DialogDemo />
+      </CardContent>
+      <CardContent>
+        <CardTitle className="text-2xl font-normal">Account Info</CardTitle>
       </CardContent>
       <CardContent>
         <p>User ID</p>
