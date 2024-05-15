@@ -4,6 +4,8 @@ import { prisma } from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
 import { addressSchema, bioSchema, userSchema } from '@/validators/user.schema';
 import { currentUser } from '@/lib/auth';
+import { updateSession } from '@/auth';
+import { revalidatePath } from 'next/cache';
 
 export const updatePersonalInfoAction = async (
   values: z.infer<typeof userSchema>,
@@ -30,6 +32,9 @@ export const updatePersonalInfoAction = async (
     },
   });
 
+  await updateSession(user.id);
+
+  revalidatePath('/', 'layout');
   return { success: 'Profile Updated Successfully' };
 };
 
@@ -54,11 +59,15 @@ export const updateAddressAction = async (
 
   console.log(user);
 
-  const { country, address } = validateFields.data;
-  await prisma.profile.update({
-    where: { id },
-    data: { country, address },
-  });
+  const { country, code, address, city } = validateFields.data;
+  // await prisma.address.create({
+  //   data: { country, postal_code: code, address, city },
+  //   user: {
+  //     connect: {
+  //       id,
+  //     },
+  //   },
+  // });
 
-  return { success: 'Profile Updated Successfully' };
+  return { success: 'Address Updated Successfully' };
 };

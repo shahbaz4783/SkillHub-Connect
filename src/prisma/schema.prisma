@@ -20,7 +20,19 @@ model User {
   accounts      Account[]
   services      ServicePost[]
   jobs          JobPost[]
+  address       Address?
   createdAt     DateTime?  @default(now()) @map(name: "created_at")
+}
+
+model Address {
+  id            String    @default(cuid()) @id
+  userId        String    @unique
+  address       String
+  address2      String?
+  country       String
+  city          String
+  postal_code   Int
+  user          User @relation(fields: [userId], references: [id])
 }
 
 model Profile {
@@ -28,8 +40,6 @@ model Profile {
   userId        String    @unique
   bio           String
   skills        String
-  country       String
-  address       String
   user          User @relation(fields: [userId], references: [id])
 }
 

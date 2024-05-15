@@ -4,6 +4,24 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/lib/prisma';
 import { getUserByID } from './data/user';
 
+export const updateSession = async (userId: string) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { id: true, name: true, email: true, username: true },
+  });
+
+  if (!user) return;
+
+  return {
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+    },
+  };
+};
+
 export const {
   handlers: { GET, POST },
   auth,
@@ -34,6 +52,10 @@ export const {
       if (token.username && session.user) {
         session.user.username = token.username;
       }
+       if (token && token.sub) {
+         const updatedSession = await updateSession(token.sub);
+         return { ...session, ...updatedSession };
+       }
       return session;
     },
     async jwt({ token }) {
