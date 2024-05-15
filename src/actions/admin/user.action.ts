@@ -2,9 +2,12 @@
 import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
-import { bioSchema, userSchema } from '@/validators/user.schema';
+import { addressSchema, bioSchema, userSchema } from '@/validators/user.schema';
+import { currentUser } from '@/lib/auth';
 
-export const updatePersonalInfoAction = async (values: z.infer<typeof userSchema>) => {
+export const updatePersonalInfoAction = async (
+  values: z.infer<typeof userSchema>,
+) => {
   const validateFields = userSchema.safeParse(values);
   if (!validateFields.success) {
     return { error: 'Invalid Fields!' };
@@ -31,10 +34,31 @@ export const updatePersonalInfoAction = async (values: z.infer<typeof userSchema
 };
 
 export const updateBioAction = async (values: z.infer<typeof bioSchema>) => {
-	const validateFields = bioSchema.safeParse(values);
-	if (!validateFields.success) {
-		return { error: 'Invalid Fields!' };
-	}
+  const validateFields = bioSchema.safeParse(values);
+  if (!validateFields.success) {
+    return { error: 'Invalid Fields!' };
+  }
 
-	return { success: 'Profile Updated Successfully' };
+  return { success: 'Profile Updated Successfully' };
+};
+
+export const updateAddressAction = async (
+  values: z.infer<typeof addressSchema>,
+) => {
+  const validateFields = addressSchema.safeParse(values);
+  if (!validateFields.success) {
+    return { error: 'Invalid Fields!' };
+  }
+  const user = await currentUser();
+  const id = user?.id;
+
+  console.log(user);
+
+  const { country, address } = validateFields.data;
+  await prisma.profile.update({
+    where: { id },
+    data: { country, address },
+  });
+
+  return { success: 'Profile Updated Successfully' };
 };

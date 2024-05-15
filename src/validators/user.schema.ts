@@ -21,9 +21,8 @@ export const bioSchema = z.object({
 });
 
 export const addressSchema = z.object({
-	country: z.string(),
-	city: z.string(),
-	state: z.string(),
-	code: z.coerce.number(),
-	address: z.string(),
+  country: z.string(),
+  city: z.string(),
+  code: z.coerce.number(),
+  address: z.string(),
 });
