@@ -5,7 +5,7 @@ import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
 import { generateVerificationToken } from '@/lib/tokens';
-import { transporter } from '@/lib/mail';
+import { sendVerificationMail } from '@/lib/mail';
 
 export const signUpAction = async (values: z.infer<typeof signUpSchema>) => {
   const validateFields = signUpSchema.safeParse(values);
@@ -37,13 +37,11 @@ export const signUpAction = async (values: z.infer<typeof signUpSchema>) => {
   });
 
   const verificationToken = await generateVerificationToken(email);
-
-  await transporter.sendMail({
-    to: verificationToken.email,
-    from: process.env.EMAIL,
-    subject: 'Please confirm your email',
-    html: '<h1>Hi there</h1>',
-  });
+  await sendVerificationMail(
+    verificationToken.token,
+    verificationToken.email,
+		name,
+  );
 
   return {
     success: 'Confirmation email sent! Please check your email account.',

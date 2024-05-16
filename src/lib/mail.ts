@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 const email = process.env.EMAIL;
 const password = process.env.EMAIL_PASS;
 
-export const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: email,
@@ -11,7 +11,27 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
-// export const mailOptions = {
-//   from: '',
-//   to: '',
-// };
+
+export const sendVerificationMail = async (
+  token: string,
+  email: string,
+  name: string,
+) => {
+  const confirmLink = `http://localhost:3000/new-verification?token=${token}`;
+
+  await transporter.sendMail({
+    to: email,
+    from: process.env.EMAIL,
+    subject: 'Please confirm your email',
+    html: `
+		<h2>ACTIVATE YOUR ACCOUNT TODAY</h2>
+
+		<p>Dear ${name}</p>
+		<p>Please Click on the button to activate your acount</p>
+
+		<a href=${confirmLink}>
+		<button>Click Here</button>
+		</a>
+		`,
+  });
+};
