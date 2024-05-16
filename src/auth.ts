@@ -45,6 +45,14 @@ export const {
     },
   },
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider !== 'credentials') return true;
+
+      const existingUser = await getUserByID(user.id as string);
+      if (!existingUser?.emailVerified) return false;
+      return true;
+    },
+
     async session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
@@ -52,12 +60,13 @@ export const {
       if (token.username && session.user) {
         session.user.username = token.username;
       }
-       if (token && token.sub) {
-         const updatedSession = await updateSession(token.sub);
-         return { ...session, ...updatedSession };
-       }
+      if (token && token.sub) {
+        const updatedSession = await updateSession(token.sub);
+        return { ...session, ...updatedSession };
+      }
       return session;
     },
+
     async jwt({ token }) {
       if (!token.sub) return token;
 
