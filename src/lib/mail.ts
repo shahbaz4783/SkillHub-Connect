@@ -17,7 +17,13 @@ export const sendVerificationMail = async (
   email: string,
   name: string,
 ) => {
-  const confirmLink = `http://localhost:3000/new-verification?token=${token}`;
+  let confirmLink;
+
+  if (process.env.NODE_ENV === 'development') {
+    confirmLink = `http://localhost:3000/new-verification?token=${token}`;
+  } else {
+    confirmLink = `https://skillhub-connect.vercel.app/new-verification?token=${token}`;
+  }
 
   await transporter.sendMail({
     to: email,
