@@ -27,11 +27,10 @@ const VerificationForm = () => {
     }
     newVerification(token)
       .then((data) => {
-        console.log(data);
         setFormMessage({ error: data.error, success: data.success });
       })
       .catch((error) => {
-        setFormMessage({ error: 'An error occured' + error, success: '' });
+        setFormMessage({ error: error, success: '' });
       });
   }, [token]);
 
