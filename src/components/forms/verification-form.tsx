@@ -30,8 +30,8 @@ const VerificationForm = () => {
         console.log(data);
         setFormMessage({ error: data.error, success: data.success });
       })
-      .catch(() => {
-        setFormMessage({ error: 'Someting Went wrong', success: '' });
+      .catch((error) => {
+        setFormMessage({ error: 'An error occured' + error, success: '' });
       });
   }, [token]);
 
