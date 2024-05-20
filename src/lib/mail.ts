@@ -9,8 +9,8 @@ const password = process.env.EMAIL_PASS;
     tls: {
       ciphers: 'SSLv3',
     },
-    port: 587,
-    secure: false,
+    port: 465,
+    secure: true,
     auth: {
       user: email,
       pass: password,
@@ -46,13 +46,3 @@ const password = process.env.EMAIL_PASS;
 		`,
     });
   };
-
-  const sendMail = async (transporter: any, sendVerificationMail: any) => {
-    try {
-      transporter.sendMail(sendVerificationMail);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  sendMail(transporter, sendMail);
