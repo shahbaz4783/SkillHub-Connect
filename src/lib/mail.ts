@@ -46,3 +46,33 @@ const password = process.env.EMAIL_PASS;
 		`,
     });
   };
+
+  export const sendResetPasswordMail = async (
+    token: string,
+    email: string,
+    name: string,
+  ) => {
+    let confirmLink;
+
+    if (process.env.NODE_ENV === 'development') {
+      confirmLink = `http://localhost:3000/new-password?token=${token}`;
+    } else {
+      confirmLink = `https://skillhub-connect.vercel.app/new-password?token=${token}`;
+    }
+
+    await transporter.sendMail({
+      to: email,
+      from: process.env.EMAIL,
+      subject: 'Forgot your password',
+      html: `
+		<h2>Reset your password</h2>
+
+		<p>Dear ${name}</p>
+		<p>Please Click on the button to reset you password</p>
+
+		<a href=${confirmLink}>
+		<button>Click Here</button>
+		</a>
+		`,
+    });
+  };
