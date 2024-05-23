@@ -1,78 +1,62 @@
+import generateVerificationEmail from '@/mails/generate-verification-email';
+import resetPasswordEmail from '@/mails/reset-password-mail';
 import nodemailer from 'nodemailer';
 
 const email = process.env.EMAIL;
 const password = process.env.EMAIL_PASS;
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    tls: {
-      ciphers: 'SSLv3',
-    },
-    port: 465,
-    secure: true,
-    auth: {
-      user: email,
-      pass: password,
-    },
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  host: 'smtp.gmail.com',
+  tls: {
+    ciphers: 'SSLv3',
+  },
+  port: 465,
+  secure: true,
+  auth: {
+    user: email,
+    pass: password,
+  },
+});
+
+export const sendVerificationMail = async (
+  token: string,
+  email: string,
+  name: string,
+) => {
+  let confirmLink;
+
+  if (process.env.NODE_ENV === 'development') {
+    confirmLink = `http://localhost:3000/new-verification?token=${token}`;
+  } else {
+    confirmLink = `https://skillhub-connect.vercel.app/new-verification?token=${token}`;
+  }
+
+  await transporter.sendMail({
+    to: email,
+    from: process.env.EMAIL,
+    subject: 'Skillhub Connect Email Verification',
+    html: generateVerificationEmail(name, confirmLink),
   });
+};
 
-  export const sendVerificationMail = async (
-    token: string,
-    email: string,
-    name: string,
-  ) => {
-    let confirmLink;
+export const sendResetPasswordMail = async (
+  token: string,
+  email: string,
+  name: string,
+) => {
+  let confirmLink;
 
-    if (process.env.NODE_ENV === 'development') {
-      confirmLink = `http://localhost:3000/new-verification?token=${token}`;
-    } else {
-      confirmLink = `https://skillhub-connect.vercel.app/new-verification?token=${token}`;
-    }
+  if (process.env.NODE_ENV === 'development') {
+    confirmLink = `http://localhost:3000/new-password?token=${token}`;
+  } else {
+    confirmLink = `https://skillhub-connect.vercel.app/new-password?token=${token}`;
+  }
 
-    await transporter.sendMail({
-      to: email,
-      from: process.env.EMAIL,
-      subject: 'Please confirm your email',
-      html: `
-		<h2>ACTIVATE YOUR ACCOUNT TODAY</h2>
-
-		<p>Dear ${name}</p>
-		<p>Please Click on the button to activate your acount</p>
-
-		<a href=${confirmLink}>
-		<button>Click Here</button>
-		</a>
-		`,
-    });
-  };
-
-  export const sendResetPasswordMail = async (
-    token: string,
-    email: string,
-    name: string,
-  ) => {
-    let confirmLink;
-
-    if (process.env.NODE_ENV === 'development') {
-      confirmLink = `http://localhost:3000/new-password?token=${token}`;
-    } else {
-      confirmLink = `https://skillhub-connect.vercel.app/new-password?token=${token}`;
-    }
-
-    await transporter.sendMail({
-      to: email,
-      from: process.env.EMAIL,
-      subject: 'Forgot your password',
-      html: `
-		<h2>Reset your password</h2>
-
-		<p>Dear ${name}</p>
-		<p>Please Click on the button to reset you password</p>
-
-		<a href=${confirmLink}>
-		<button>Click Here</button>
-		</a>
-		`,
-    });
-  };
+  await transporter.sendMail({
+    to: email,
+    from: process.env.EMAIL,
+    subject: 'Reset your password',
+    html: resetPasswordEmail(name, confirmLink),
+  });
+};
