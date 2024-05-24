@@ -8,15 +8,23 @@ import { loginSchema } from '@/validators/auth.schema';
 import { AuthError } from 'next-auth';
 import * as z from 'zod';
 
-export const loginAction = async (values: z.infer<typeof loginSchema>) => {
-  const validateFields = loginSchema.safeParse(values);
-  if (!validateFields.success) {
-    return { error: 'Invalid Fields!' };
-  }
+interface LoginFormState {
+  error?: {};
+  success?: {};
+}
+
+export const loginAction = async (
+  formState: LoginFormState,
+  formData: FormData,
+): Promise<LoginFormState> => {
+
+  const validateFields = loginSchema.safeParse(formData);
+
+  if (!validateFields.success) return { error: 'Invalid Fields!' };
+
   const { email, password } = validateFields.data;
 
   const existingUser = await getUserByEmail(email);
-  const name = existingUser?.name as string;
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: 'Email doesnt exist!' };
@@ -29,7 +37,7 @@ export const loginAction = async (values: z.infer<typeof loginSchema>) => {
     await sendVerificationMail(
       verificationToken.token,
       verificationToken.email,
-      name,
+      existingUser?.name as string,
     );
     return { success: 'Confirmation email sent' };
   }

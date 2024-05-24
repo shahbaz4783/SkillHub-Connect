@@ -12,99 +12,78 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '../ui/button';
 import { loginFormInput } from '@/constants/form';
 import Link from 'next/link';
 import { loginSchema } from '@/validators/auth.schema';
 import FormError from '../feedback/FormError';
 import FormSuccess from '../feedback/FormSuccess';
 import { loginAction } from '@/actions/auth/login.action';
-import { useState, useTransition } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FaArrowLeft } from 'react-icons/fa';
+import Submit from '../buttons/submit';
+import { useFormState } from 'react-dom';
 
 const LoginForm = () => {
-	const [isPending, startTransition] = useTransition();
+  const [formState, formAction] = useFormState(loginAction, {
+    error: '',
+    success: '',
+  });
 
-	const [formMessage, setFormMessage] = useState<{
-		error: string | undefined;
-		success: string | undefined;
-	}>({
-		error: '',
-		success: '',
-	});
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get('error') === 'OAuthAccountNotLinked' &&
+    'Please sign in with the same account you used originally.';
 
-	const searchParams = useSearchParams();
-	const urlError =
-		searchParams.get('error') === 'OAuthAccountNotLinked' &&
-		'Please sign in with the same account you used originally.';
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
-	const form = useForm<z.infer<typeof loginSchema>>({
-		resolver: zodResolver(loginSchema),
-		defaultValues: {
-			email: '',
-			password: '',
-		},
-	});
+  return (
+    <>
+      <Form {...form}>
+        <Link href={'/login'}>
+          <FaArrowLeft size={20} />
+        </Link>
 
-	const onSubmit = (values: z.infer<typeof loginSchema>) => {
-		setFormMessage({ error: '', success: '' });
-
-		startTransition(async () => {
-			loginAction(values).then((data) => {
-				setFormMessage({ error: data.error, success: data.success });
-			});
-		});
-	};
-
-	return (
-		<>
-			<Form {...form}>
-				<Link href={'/login'}>
-					<FaArrowLeft size={20} />
-				</Link>
-
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className='flex flex-col gap-4'
-				>
-					{loginFormInput.map((data) => (
-						<FormField
-							key={data.id}
-							control={form.control}
-							name={data.name}
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>{data.label}</FormLabel>
-									<FormControl>
-										<Input
-											disabled={isPending}
-											className='bg-slate-100 py-6 border-none shadow-none'
-											type={data.type}
-											placeholder={data.placeholder}
-											{...field}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-					))}
-					<Link
-						className='text-sm text-right text-slate-500 font-semibold hover:underline'
-						href={'/forgot-password'}
-					>
-						Forgot Password?
-					</Link>
-					<FormError message={formMessage.error || urlError} />
-					<FormSuccess message={formMessage.success} />
-					<Button disabled={isPending} type='submit'>
-						{isPending ? 'Logging In...' : 'Login'}
-					</Button>
-				</form>
-			</Form>
-		</>
-	);
+        <form action={formAction} className="flex flex-col gap-4">
+          {loginFormInput.map((data) => (
+            <FormField
+              key={data.id}
+              control={form.control}
+              name={data.name}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{data.label}</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="border-none bg-slate-100 py-6 shadow-none"
+                      type={data.type}
+                      placeholder={data.placeholder}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ))}
+          <Link
+            className="text-right text-sm font-semibold text-slate-500 hover:underline"
+            href={'/forgot-password'}
+          >
+            Forgot Password?
+          </Link>
+          <FormError message={formState.error || urlError} />
+          <FormSuccess message={formState.success} />
+          <Submit title="Login" loadingTitle="Logging In..." />
+        </form>
+      </Form>
+    </>
+  );
 };
 
 export default LoginForm;
