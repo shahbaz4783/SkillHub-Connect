@@ -99,3 +99,12 @@ model VerificationToken {
 
   @@unique([email, token])
 }
+
+model VerificationOTP {
+  id              String @id @default(cuid())
+  email           String
+  otp             Int @unique
+  expires         DateTime
+
+  @@unique([email, otp])
+}

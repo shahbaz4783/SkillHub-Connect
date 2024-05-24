@@ -1,4 +1,5 @@
 import generateVerificationEmail from '@/mails/generate-verification-email';
+import loginOTPMail from '@/mails/login-otp-mail';
 import resetPasswordEmail from '@/mails/reset-password-mail';
 import nodemailer from 'nodemailer';
 
@@ -58,5 +59,18 @@ export const sendResetPasswordMail = async (
     from: process.env.EMAIL,
     subject: 'Reset your password',
     html: resetPasswordEmail(name, confirmLink),
+  });
+};
+
+export const sendOTPforLogin = async (
+  otp: number,
+  email: string,
+  name: string,
+) => {
+  await transporter.sendMail({
+    to: email,
+    from: process.env.EMAIL,
+    subject: 'OTP to Login Skillhub connect ',
+    html: loginOTPMail(name, otp),
   });
 };

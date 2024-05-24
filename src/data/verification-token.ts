@@ -21,3 +21,25 @@ export const getVerificationTokenByToken = async (token: string) => {
 		return null;
 	}
 };
+
+export const getVerificationOTPbyOTP = async (otp: number) => {
+  try {
+    const verificationOTP = await prisma.verificationOTP.findFirst({
+      where: { otp },
+    });
+    return verificationOTP;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const getVerificationOTPbyEmail = async (email: string) => {
+  try {
+    const verificationOTP = await prisma.verificationOTP.findFirst({
+      where: { email },
+    });
+    return verificationOTP;
+  } catch (error) {
+    return null;
+  }
+};

@@ -1,8 +1,11 @@
 'use server';
 import { signIn } from '@/auth';
 import { getUserByEmail } from '@/data/user';
-import { sendVerificationMail } from '@/lib/mail';
-import { generateVerificationToken } from '@/lib/tokens';
+import { sendOTPforLogin, sendVerificationMail } from '@/lib/mail';
+import {
+  generateVerificationOTP,
+  generateVerificationToken,
+} from '@/lib/tokens';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { loginSchema } from '@/validators/auth.schema';
 import { AuthError } from 'next-auth';
@@ -44,6 +47,16 @@ export const loginAction = async (
       existingUser?.name as string,
     );
     return { message: { success: 'Confirmation email sent' } };
+  }
+
+  if (existingUser.emailVerified) {
+    const verificationOTP = await generateVerificationOTP(email);
+    await sendOTPforLogin(
+      verificationOTP.otp,
+      verificationOTP.email,
+      existingUser?.name as string,
+    );
+    return {message: {success: 'OTP Sent!'}}
   }
 
   try {

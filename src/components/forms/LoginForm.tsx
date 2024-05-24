@@ -18,17 +18,11 @@ import { loginSchema } from '@/validators/auth.schema';
 import FormError from '../feedback/FormError';
 import FormSuccess from '../feedback/FormSuccess';
 import { loginAction } from '@/actions/auth/login.action';
-import { useSearchParams } from 'next/navigation';
 import { FaArrowLeft } from 'react-icons/fa';
 import Submit from '../buttons/submit';
 import { useFormState } from 'react-dom';
 
 const LoginForm = () => {
-  const searchParams = useSearchParams();
-  const urlError =
-    searchParams.get('error') === 'OAuthAccountNotLinked' &&
-    'Please sign in with the same account you used originally.';
-
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
   });
@@ -72,7 +66,7 @@ const LoginForm = () => {
           >
             Forgot Password?
           </Link>
-          <FormError message={formState.message.error || urlError} />
+          <FormError message={formState.message.error} />
           <FormSuccess message={formState.message.success} />
           <Submit title="Login" loadingTitle="Logging In..." />
         </form>
