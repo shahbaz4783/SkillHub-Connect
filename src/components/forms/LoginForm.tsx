@@ -24,11 +24,6 @@ import Submit from '../buttons/submit';
 import { useFormState } from 'react-dom';
 
 const LoginForm = () => {
-  const [formState, formAction] = useFormState(loginAction, {
-    error: '',
-    success: '',
-  });
-
   const searchParams = useSearchParams();
   const urlError =
     searchParams.get('error') === 'OAuthAccountNotLinked' &&
@@ -36,10 +31,10 @@ const LoginForm = () => {
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+  });
+
+  const [formState, formAction] = useFormState(loginAction, {
+    message: {},
   });
 
   return (
@@ -77,8 +72,8 @@ const LoginForm = () => {
           >
             Forgot Password?
           </Link>
-          <FormError message={formState.error || urlError} />
-          <FormSuccess message={formState.success} />
+          <FormError message={formState.message.error || urlError} />
+          <FormSuccess message={formState.message.success} />
           <Submit title="Login" loadingTitle="Logging In..." />
         </form>
       </Form>

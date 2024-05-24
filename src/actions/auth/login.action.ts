@@ -6,28 +6,32 @@ import { generateVerificationToken } from '@/lib/tokens';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { loginSchema } from '@/validators/auth.schema';
 import { AuthError } from 'next-auth';
-import * as z from 'zod';
 
 interface LoginFormState {
-  error?: {};
-  success?: {};
+  message: {
+    error?: string;
+    success?: string;
+  };
 }
 
 export const loginAction = async (
   formState: LoginFormState,
   formData: FormData,
 ): Promise<LoginFormState> => {
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
 
-  const validateFields = loginSchema.safeParse(formData);
+  const validateFields = loginSchema.safeParse({
+    email,
+    password,
+  });
 
-  if (!validateFields.success) return { error: 'Invalid Fields!' };
-
-  const { email, password } = validateFields.data;
+  if (!validateFields) return { message: { error: 'Invalid Fields' } };
 
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: 'Email doesnt exist!' };
+    return { message: { error: 'Email doesnt exist!' } };
   }
 
   if (!existingUser.emailVerified) {
@@ -39,7 +43,7 @@ export const loginAction = async (
       verificationToken.email,
       existingUser?.name as string,
     );
-    return { success: 'Confirmation email sent' };
+    return { message: { success: 'Confirmation email sent' } };
   }
 
   try {
@@ -52,13 +56,13 @@ export const loginAction = async (
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { error: 'Invalid credentials' };
+          return { message: { error: 'Invalid credentials' } };
 
         default:
-          return { error: 'Something went wrong' };
+          return { message: { error: 'Something went wrong' } };
       }
     }
     throw error;
   }
-  return { success: 'Email sent successfully!' };
+  return { message: { success: 'Email sent successfully!' } };
 };
