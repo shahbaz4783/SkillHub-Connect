@@ -1,10 +1,11 @@
 import * as z from 'zod';
 
 export const loginSchema = z.object({
-	email: z.string().email({ message: 'Must be a valid email' }),
-	password: z.string().min(3, {
-		message: 'Password is required',
-	}),
+  email: z.string().email({ message: 'Must be a valid email' }),
+  password: z.string().min(3, {
+    message: 'Password is required',
+  }),
+  otp: z.optional(z.string()),
 });
 
 export const resetSchema = z.object({

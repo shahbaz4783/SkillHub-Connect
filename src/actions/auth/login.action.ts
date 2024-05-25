@@ -1,6 +1,7 @@
 'use server';
 import { signIn } from '@/auth';
 import { getUserByEmail } from '@/data/user';
+import { getVerificationOTPbyEmail } from '@/data/verification-token';
 import { sendOTPforLogin, sendVerificationMail } from '@/lib/mail';
 import {
   generateVerificationOTP,
@@ -15,6 +16,7 @@ interface LoginFormState {
     error?: string;
     success?: string;
   };
+  otpReceive?: boolean;
 }
 
 export const loginAction = async (
@@ -23,6 +25,8 @@ export const loginAction = async (
 ): Promise<LoginFormState> => {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
+  const otp = formData.get('otp')?.toString() as string;
+  const loginOTP = parseInt(otp);
 
   const validateFields = loginSchema.safeParse({
     email,
@@ -32,6 +36,9 @@ export const loginAction = async (
   if (!validateFields) return { message: { error: 'Invalid Fields' } };
 
   const existingUser = await getUserByEmail(email);
+
+  console.log({ existingUser });
+  console.log({ email, password, otp });
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { message: { error: 'Email doesnt exist!' } };
@@ -50,13 +57,31 @@ export const loginAction = async (
   }
 
   if (existingUser.emailVerified) {
-    const verificationOTP = await generateVerificationOTP(email);
-    await sendOTPforLogin(
-      verificationOTP.otp,
-      verificationOTP.email,
-      existingUser?.name as string,
-    );
-    return {message: {success: 'OTP Sent!'}}
+    if (loginOTP) {
+      const verificationOTP = await getVerificationOTPbyEmail(
+        existingUser.email,
+      );
+
+      if (!verificationOTP) return { message: { error: 'Invalid OTP!' } };
+      if (verificationOTP.otp !== loginOTP) {
+        return { message: { error: 'Invalid OTP!' } };
+      }
+
+      const hasExpired = new Date(verificationOTP.expires) < new Date();
+      if (hasExpired) return { message: { error: 'OTP has expired!' } };
+    } else {
+      const verificationOTP = await generateVerificationOTP(email);
+      await sendOTPforLogin(
+        verificationOTP.otp,
+        verificationOTP.email,
+        existingUser?.name as string,
+      );
+
+      return {
+        message: { success: 'OTP Sent! Check your email and enter the otp' },
+        otpReceive: true,
+      };
+    }
   }
 
   try {
@@ -77,5 +102,5 @@ export const loginAction = async (
     }
     throw error;
   }
-  return { message: { success: 'Email sent successfully!' } };
+  return { message: { success: 'Logged in successfully!' } };
 };

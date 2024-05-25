@@ -11,6 +11,12 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form';
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from '@/components/ui/input-otp';
 import { Input } from '@/components/ui/input';
 import { loginFormInput } from '@/constants/form';
 import Link from 'next/link';
@@ -29,6 +35,7 @@ const LoginForm = () => {
 
   const [formState, formAction] = useFormState(loginAction, {
     message: {},
+    otpReceive: false,
   });
 
   return (
@@ -66,9 +73,42 @@ const LoginForm = () => {
           >
             Forgot Password?
           </Link>
+          {formState.otpReceive && (
+            <div className="m-auto">
+              <FormField
+                control={form.control}
+                name="otp"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <InputOTP maxLength={6} {...field} className="w-full">
+                        <InputOTPGroup>
+                          <InputOTPSlot index={0} />
+                          <InputOTPSlot index={1} />
+                          <InputOTPSlot index={2} />
+                        </InputOTPGroup>
+                        <InputOTPSeparator />
+                        <InputOTPGroup>
+                          <InputOTPSlot index={3} />
+                          <InputOTPSlot index={4} />
+                          <InputOTPSlot index={5} />
+                        </InputOTPGroup>
+                      </InputOTP>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
           <FormError message={formState.message.error} />
           <FormSuccess message={formState.message.success} />
-          <Submit title="Login" loadingTitle="Logging In..." />
+          <Submit
+            title={formState.otpReceive ? 'Login' : 'Send OTP'}
+            loadingTitle={
+              formState.otpReceive ? 'Logging In...' : 'Sending OTP...'
+            }
+          />
         </form>
       </Form>
     </>
