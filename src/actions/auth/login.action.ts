@@ -23,17 +23,24 @@ export const loginAction = async (
   formState: LoginFormState,
   formData: FormData,
 ): Promise<LoginFormState> => {
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-  const otp = formData.get('otp')?.toString() as string;
-  const loginOTP = parseInt(otp);
+  // const email = formData.get('email') as string;
+  // const password = formData.get('password') as string;
 
-  const validateFields = loginSchema.safeParse({
-    email,
-    password,
-  });
+  const formDataObj = Object.fromEntries(formData);
 
-  if (!validateFields) return { message: { error: 'Invalid Fields' } };
+  // const otp = formData.get('otp');
+
+  const validateFields = loginSchema.safeParse(formDataObj);
+
+  if (!validateFields.success)
+    return {
+      message: {
+        error:
+          'Please ensure all fields are filled out correctly and try again.',
+      },
+    };
+
+  const { email, password, otp } = validateFields.data;
 
   const existingUser = await getUserByEmail(email);
 
@@ -41,7 +48,11 @@ export const loginAction = async (
   console.log({ email, password, otp });
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { message: { error: 'Email doesnt exist!' } };
+    return {
+      message: {
+        error: 'The email address is not registered. Please sign up first.',
+      },
+    };
   }
 
   if (!existingUser.emailVerified) {
@@ -53,22 +64,35 @@ export const loginAction = async (
       verificationToken.email,
       existingUser?.name as string,
     );
-    return { message: { success: 'Confirmation email sent' } };
+    return {
+      message: {
+        success:
+          'A confirmation email has been sent. Please verify your email to proceed.',
+      },
+    };
   }
 
   if (existingUser.emailVerified) {
-    if (loginOTP) {
+    if (otp) {
+      const loginOTP = parseInt(otp.toString());
+
       const verificationOTP = await getVerificationOTPbyEmail(
         existingUser.email,
       );
 
-      if (!verificationOTP) return { message: { error: 'Invalid OTP!' } };
+      if (!verificationOTP)
+        return { message: { error: 'Invalid OTP. Please try again.' } };
       if (verificationOTP.otp !== loginOTP) {
-        return { message: { error: 'Invalid OTP!' } };
+        return { message: { error: 'Invalid OTP. Please try again.' } };
       }
 
       const hasExpired = new Date(verificationOTP.expires) < new Date();
-      if (hasExpired) return { message: { error: 'OTP has expired!' } };
+      if (hasExpired)
+        return {
+          message: {
+            error: 'The OTP has expired. Please request a new one.',
+          },
+        };
     } else {
       const verificationOTP = await generateVerificationOTP(email);
       await sendOTPforLogin(
@@ -78,7 +102,10 @@ export const loginAction = async (
       );
 
       return {
-        message: { success: 'OTP Sent! Check your email and enter the otp' },
+        message: {
+          success:
+            'An OTP has been sent to your email. Please check your email and enter the OTP.',
+        },
         otpReceive: true,
       };
     }
@@ -94,13 +121,21 @@ export const loginAction = async (
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { message: { error: 'Invalid credentials' } };
+          return {
+            message: {
+              error: 'The email or password is incorrect. Please try again.',
+            },
+          };
 
         default:
-          return { message: { error: 'Something went wrong' } };
+          return {
+            message: {
+              error: 'An unexpected error occurred. Please try again later.',
+            },
+          };
       }
     }
     throw error;
   }
-  return { message: { success: 'Logged in successfully!' } };
+  return { message: { success: 'You have successfully logged in!' } };
 };

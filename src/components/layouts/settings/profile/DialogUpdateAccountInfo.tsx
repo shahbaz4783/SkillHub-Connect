@@ -1,4 +1,4 @@
-import UpdatePersonalInfo from '@/components/forms/UpdatePersonalInfo';
+import UpdatePersonalInfo from '@/components/forms/update/UpdatePersonalInfo';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -14,7 +14,9 @@ export async function DialogUpdatePersonalInfo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline"><Pen /></Button>
+        <Button variant="outline">
+          <Pen />
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

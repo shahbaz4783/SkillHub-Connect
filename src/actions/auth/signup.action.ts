@@ -1,30 +1,56 @@
 'use server';
+
 import { signUpSchema } from '@/validators/auth.schema';
 import { hash } from 'bcryptjs';
-import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
 import { generateVerificationToken } from '@/lib/tokens';
 import { sendVerificationMail } from '@/lib/mail';
+import crypto from 'crypto';
 
-export const signUpAction = async (values: z.infer<typeof signUpSchema>) => {
-  const validateFields = signUpSchema.safeParse(values);
+interface SignUpFormState {
+  message: {
+    error?: string;
+    success?: string;
+  };
+  fields?: string;
+}
+
+export const signUpAction = async (
+  formState: SignUpFormState,
+  formData: FormData,
+): Promise<SignUpFormState> => {
+  const formDataObj = Object.fromEntries(formData);
+
+  const validateFields = signUpSchema.safeParse(formDataObj);
   if (!validateFields.success) {
-    return { error: 'Invalid Fields!' };
+    return {
+      message: {
+        error:
+          'Please ensure all fields are filled out correctly and try again.',
+      },
+    };
   }
 
   const { name, email, password } = validateFields.data;
+
   const hashedPassword = await hash(password, 10);
 
   // Generate random username
-  const randomDigit = Math.floor(Math.random() * 100000);
+  const randomDigit = crypto.randomInt(1000000, 10000000);
   const mailID = email.split('@')[0];
   const username = mailID + randomDigit;
+  // ----
 
   const existingUser = await getUserByEmail(email);
 
   if (existingUser) {
-    return { error: 'Email is already in use' };
+    return {
+      message: {
+        error:
+          'The email address is already associated with an account. Please use a different email.',
+      },
+    };
   }
 
   await prisma.user.create({
@@ -40,10 +66,13 @@ export const signUpAction = async (values: z.infer<typeof signUpSchema>) => {
   await sendVerificationMail(
     verificationToken.token,
     verificationToken.email,
-		name,
+    name,
   );
 
   return {
-    success: 'Confirmation email sent! Please check your email account.',
+    message: {
+      success:
+        'A confirmation email has been sent! Please check your inbox to verify your account.',
+    },
   };
 };

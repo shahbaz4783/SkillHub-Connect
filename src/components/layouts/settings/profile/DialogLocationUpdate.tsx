@@ -1,4 +1,4 @@
-import UpdateAddress from '@/components/forms/UpdateAddress';
+import UpdateAddress from '@/components/forms/update/UpdateAddress';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

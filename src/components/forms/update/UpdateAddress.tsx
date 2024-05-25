@@ -4,11 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from '@/components/ui/select';
 
 import { Button } from '@/components/ui/button';
@@ -21,10 +21,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useState, useTransition } from 'react';
-import FormError from '../feedback/FormError';
-import FormSuccess from '../feedback/FormSuccess';
+import FormError from '../../feedback/FormError';
+import FormSuccess from '../../feedback/FormSuccess';
 import { addressSchema } from '@/validators/user.schema';
-import { Input } from '../ui/input';
+import { Input } from '../../ui/input';
 import { updateAddressAction } from '@/actions/admin/user.action';
 
 const UpdateAddress = () => {

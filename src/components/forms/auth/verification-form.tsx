@@ -1,12 +1,12 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import AuthHeader from '../ui/AuthHeader';
+import AuthHeader from '../../ui/AuthHeader';
 import { BeatLoader } from 'react-spinners';
 import { useCallback, useEffect, useState } from 'react';
 import { newVerification } from '@/actions/auth/new-verification.action';
-import FormError from '../feedback/FormError';
-import FormSuccess from '../feedback/FormSuccess';
+import FormError from '../../feedback/FormError';
+import FormSuccess from '../../feedback/FormSuccess';
 
 const VerificationForm = () => {
   const [formMessage, setFormMessage] = useState<{

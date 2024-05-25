@@ -13,9 +13,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '../ui/button';
-import FormError from '../feedback/FormError';
-import FormSuccess from '../feedback/FormSuccess';
+import { Button } from '../../ui/button';
+import { jobSchema } from '@/validators/listing.schema';
+import { useState, useTransition } from 'react';
+import { jobPostAction } from '@/actions/posts/jobPost.action';
+import FormError from '../../feedback/FormError';
+import FormSuccess from '../../feedback/FormSuccess';
 import {
   Select,
   SelectContent,
@@ -23,14 +26,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { categories, experienceLvl } from '@/constants/options';
+import { Textarea } from '../../ui/textarea';
 
-import { servicePostAction } from '@/actions/posts/servicePost.action';
-import { serviceSchema } from '@/validators/listing.schema';
-import { useState, useTransition } from 'react';
-import { Textarea } from '../ui/textarea';
-import { categories } from '@/constants/options';
-
-const ServicePostForm = () => {
+const JobPostForm = () => {
   const [isPending, startTransition] = useTransition();
   const [formMessage, setFormMessage] = useState<{
     error: string | undefined;
@@ -42,15 +41,14 @@ const ServicePostForm = () => {
 
   const [charCount, setCharCount] = useState<number>(0);
 
-  const form = useForm<z.infer<typeof serviceSchema>>({
-    resolver: zodResolver(serviceSchema),
+  const form = useForm<z.infer<typeof jobSchema>>({
+    resolver: zodResolver(jobSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof serviceSchema>) => {
+  const onSubmit = (values: z.infer<typeof jobSchema>) => {
     setFormMessage({ error: '', success: '' });
-
     startTransition(async () => {
-      servicePostAction(values).then((data) => {
+      jobPostAction(values).then((data) => {
         setFormMessage({ error: data?.error, success: data?.success });
       });
     });
@@ -65,15 +63,15 @@ const ServicePostForm = () => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Service Title</FormLabel>
+                <FormLabel>Job Title</FormLabel>
                 <FormDescription>
-                  Tell the client what you will deliver and how it benefits
-                  them.
+                  Describe the specific problem you need solved or the task you
+                  need to be completed.
                 </FormDescription>
                 <FormControl>
                   <Input
                     disabled={isPending}
-                    placeholder="Eye-catching graphic design for your brand"
+                    placeholder="I need a React Developer for Dynamic Web Applications"
                     {...field}
                     onChange={(e) => {
                       field.onChange(e);
@@ -91,17 +89,18 @@ const ServicePostForm = () => {
           />
           <FormField
             control={form.control}
-            name="tags"
+            name="skills"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Specialization</FormLabel>
+                <FormLabel>Skills Required</FormLabel>
                 <FormDescription>
-                  Mention your expertise of the task. (separate them by a comma)
+                  Mention the skills required for the task. (separate them by a
+                  comma)
                 </FormDescription>
                 <FormControl>
                   <Input
                     disabled={isPending}
-                    placeholder="UI/UX, Graphic Design"
+                    placeholder="React, Redux, JavaScript, HTML/CSS, REST APIs"
                     {...field}
                   />
                 </FormControl>
@@ -114,9 +113,9 @@ const ServicePostForm = () => {
             name="price"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Pricing</FormLabel>
+                <FormLabel>Job Budget</FormLabel>
                 <FormDescription>
-                  Enter the price for this service
+                  Enter your budget for this project
                 </FormDescription>
                 <FormControl>
                   <Input
@@ -132,20 +131,29 @@ const ServicePostForm = () => {
           />
           <FormField
             control={form.control}
-            name="time"
+            name="location"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Delivery Time</FormLabel>
+                <FormLabel>Job Type</FormLabel>
                 <FormDescription>
-                  In how many days you will deliver it?
+                  What best describes the nature of this project?
                 </FormDescription>
                 <FormControl>
-                  <Input
-                    disabled={isPending}
-                    placeholder="3"
-                    type="number"
-                    {...field}
-                  />
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select the type of job" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="single">One-time Project</SelectItem>
+                      <SelectItem value="short">Short-term Contract</SelectItem>
+                      <SelectItem value="ongoing">
+                        Ongoing Collaboration
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -156,10 +164,9 @@ const ServicePostForm = () => {
             name="category"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Service Category</FormLabel>
+                <FormLabel>Job Category</FormLabel>
                 <FormDescription>
-                  Select a category so it's easy for clients to find your
-                  project.
+                  Select the category that best describes your project.
                 </FormDescription>
                 <FormControl>
                   <Select
@@ -167,7 +174,7 @@ const ServicePostForm = () => {
                     defaultValue={field.value}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Logo Design" />
+                      <SelectValue placeholder="Select the category of job" />
                     </SelectTrigger>
                     <SelectContent>
                       {categories.map((category) => (
@@ -184,23 +191,54 @@ const ServicePostForm = () => {
           />
           <FormField
             control={form.control}
+            name="experience"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Experience Level</FormLabel>
+                <FormDescription>
+                  What level of experience are you seeking?
+                </FormDescription>
+                <FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select the category of job" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {experienceLvl.map((exp) => (
+                        <SelectItem key={exp.value} value={exp.value}>
+                          {exp.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Service Description</FormLabel>
+                <FormLabel>Job Description</FormLabel>
                 <FormDescription>
-                  Briefly explain what sets you and your project apart.
+                  Clearly outline your project goals and the results you want to
+                  achieve.
                 </FormDescription>
                 <FormControl>
                   <Textarea
-                    placeholder="Eye-Catching Graphic Design for Your Brand..."
+                    placeholder="Help build the next generation of our e-commerce platform..."
                     rows={6}
                     {...field}
                     onChange={(e) => {
                       field.onChange(e);
                       setCharCount(e.target.value.length);
                     }}
-                    onBlur={() => form.trigger('title')}
+                    onBlur={() => form.trigger('description')}
                   />
                 </FormControl>
                 <FormDescription className="text-right">
@@ -210,10 +248,11 @@ const ServicePostForm = () => {
               </FormItem>
             )}
           />
+
           <FormError message={formMessage.error} />
           <FormSuccess message={formMessage.success} />
           <Button disabled={isPending} type="submit">
-            {isPending ? 'Publishing...' : 'Publish Service '}
+            {isPending ? 'Publishing...' : 'Publish Job'}
           </Button>
         </form>
       </Form>
@@ -221,4 +260,4 @@ const ServicePostForm = () => {
   );
 };
 
-export default ServicePostForm;
+export default JobPostForm;

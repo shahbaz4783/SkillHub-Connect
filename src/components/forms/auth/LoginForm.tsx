@@ -4,12 +4,12 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import {
   InputOTP,
@@ -21,11 +21,11 @@ import { Input } from '@/components/ui/input';
 import { loginFormInput } from '@/constants/form';
 import Link from 'next/link';
 import { loginSchema } from '@/validators/auth.schema';
-import FormError from '../feedback/FormError';
-import FormSuccess from '../feedback/FormSuccess';
+import FormError from '../../feedback/FormError';
+import FormSuccess from '../../feedback/FormSuccess';
 import { loginAction } from '@/actions/auth/login.action';
 import { FaArrowLeft } from 'react-icons/fa';
-import Submit from '../buttons/submit';
+import Submit from '../../buttons/submit';
 import { useFormState } from 'react-dom';
 
 const LoginForm = () => {

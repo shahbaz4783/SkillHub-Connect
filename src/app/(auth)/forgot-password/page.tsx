@@ -1,9 +1,7 @@
-import ForgotPassowordByEmail from '@/components/forms/forgot-password-by-email'
+import ForgotPassowordByEmail from '@/components/forms/auth/forgot-password-by-email';
 
 const page = () => {
-  return (
-    <ForgotPassowordByEmail />
-  )
-}
+  return <ForgotPassowordByEmail />;
+};
 
-export default page
+export default page;

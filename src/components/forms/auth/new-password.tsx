@@ -12,9 +12,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '../ui/button';
-import FormError from '../feedback/FormError';
-import FormSuccess from '../feedback/FormSuccess';
+import { Button } from '../../ui/button';
+import FormError from '../../feedback/FormError';
+import FormSuccess from '../../feedback/FormSuccess';
 import { newPasswordSchema } from '@/validators/auth.schema';
 import { useState, useTransition } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';

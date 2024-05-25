@@ -1,4 +1,4 @@
-import JobPostForm from '@/components/forms/JobPostForm';
+import JobPostForm from '@/components/forms/post/JobPostForm';
 import DashboardHeader from '@/components/shared/DashboardHeader';
 import React from 'react';
 

@@ -1,4 +1,4 @@
-import ServicePostForm from '@/components/forms/ServicePostForm';
+import ServicePostForm from '@/components/forms/post/ServicePostForm';
 import DashboardHeader from '@/components/shared/DashboardHeader';
 import React from 'react';
 

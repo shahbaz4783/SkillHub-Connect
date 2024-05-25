@@ -10,13 +10,13 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
-import AuthHeader from '../ui/AuthHeader';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
+import AuthHeader from '../../ui/AuthHeader';
+import { Button } from '../../ui/button';
+import { Input } from '../../ui/input';
 import { resetSchema } from '@/validators/auth.schema';
 import { useState, useTransition } from 'react';
-import FormError from '../feedback/FormError';
-import FormSuccess from '../feedback/FormSuccess';
+import FormError from '../../feedback/FormError';
+import FormSuccess from '../../feedback/FormSuccess';
 import { resetPasswordAction } from '@/actions/auth/reset-password.action';
 
 const ForgotPassowordByEmail = () => {

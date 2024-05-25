@@ -14,11 +14,11 @@ import {
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { useState, useTransition } from 'react';
-import FormError from '../feedback/FormError';
-import FormSuccess from '../feedback/FormSuccess';
+import FormError from '../../feedback/FormError';
+import FormSuccess from '../../feedback/FormSuccess';
 import { bioSchema } from '@/validators/user.schema';
 
-const UpdateSkills = () => {
+const UpdateBio = () => {
   const [isPending, startTransition] = useTransition();
   const [formMessage, setFormMessage] = useState<{
     error: string | undefined;
@@ -51,7 +51,7 @@ const UpdateSkills = () => {
             <FormItem>
               <FormControl>
                 <Textarea
-                  placeholder="Enter your skills"
+                  placeholder="Tell us a little bit about yourself"
                   className="resize-none border-none bg-slate-50"
                   rows={12}
                   {...field}
@@ -64,11 +64,11 @@ const UpdateSkills = () => {
         <FormError message={formMessage.error} />
         <FormSuccess message={formMessage.success} />
         <Button disabled={isPending} type="submit">
-          {isPending ? 'Updating Your Skills...' : 'Update Skills'}
+          {isPending ? 'Updating Your Bio...' : 'Update Bio'}
         </Button>
       </form>
     </Form>
   );
 };
 
-export default UpdateSkills;
+export default UpdateBio;
