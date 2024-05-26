@@ -20,9 +20,9 @@ import { useState, useTransition } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { newPasswordAction } from '@/actions/auth/reset-password.action';
 import { useFormState } from 'react-dom';
 import Submit from '@/components/buttons/submit';
+import { newPasswordAction } from '@/actions/auth.action';
 
 const NewPasswordForm = () => {
   const searchParams = useSearchParams();

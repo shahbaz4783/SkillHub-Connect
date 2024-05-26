@@ -11,22 +11,17 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import AuthHeader from '../../ui/AuthHeader';
-import { Button } from '../../ui/button';
 import { Input } from '../../ui/input';
 import { resetSchema } from '@/validators/auth.schema';
-import { useState, useTransition } from 'react';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
-import { resetPasswordAction } from '@/actions/auth/reset-password.action';
 import { useFormState } from 'react-dom';
 import Submit from '@/components/buttons/submit';
+import { resetPasswordAction } from '@/actions/auth.action';
 
 const ForgotPassowordByEmail = () => {
   const form = useForm<z.infer<typeof resetSchema>>({
     resolver: zodResolver(resetSchema),
-    defaultValues: {
-      email: '',
-    },
   });
 
   const [formState, formAction] = useFormState(resetPasswordAction, {

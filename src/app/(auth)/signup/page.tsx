@@ -1,7 +1,7 @@
 'use client';
 
 import AuthHeader from '@/components/ui/AuthHeader';
-import SignupForm from '../../../components/forms/auth/SignUpForm';
+import SignupForm from '../../../components/forms/auth/signup-form';
 import AuthProviders from '@/components/shared/AuthProviders';
 import { useSearchParams } from 'next/navigation';
 

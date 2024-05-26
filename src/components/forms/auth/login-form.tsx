@@ -14,7 +14,6 @@ import {
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 import { Input } from '@/components/ui/input';
@@ -23,10 +22,10 @@ import Link from 'next/link';
 import { loginSchema } from '@/validators/auth.schema';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
-import { loginAction } from '@/actions/auth/login.action';
 import { FaArrowLeft } from 'react-icons/fa';
 import Submit from '../../buttons/submit';
 import { useFormState } from 'react-dom';
+import { loginAction } from '@/actions/auth.action';
 
 const LoginForm = () => {
   const form = useForm<z.infer<typeof loginSchema>>({

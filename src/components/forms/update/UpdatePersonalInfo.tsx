@@ -17,8 +17,8 @@ import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import { useState, useTransition } from 'react';
 import { userSchema } from '@/validators/user.schema';
-import { updatePersonalInfoAction } from '@/actions/admin/user.action';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { updatePersonalInfoAction } from '@/actions/user.action';
 
 const UpdatePersonalInfo = () => {
   const user = useCurrentUser();

@@ -1,5 +1,7 @@
-import { deleteJobAction } from '@/actions/posts/jobPost.action';
-import { deleteServiceAction } from '@/actions/posts/servicePost.action';
+import {
+  deleteJobAction,
+  deleteServiceAction,
+} from '@/actions/listings.action';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

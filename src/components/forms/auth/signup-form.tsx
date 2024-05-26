@@ -16,7 +16,7 @@ import { signUpFormInput } from '@/constants/form';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import { signUpSchema } from '@/validators/auth.schema';
-import { signUpAction } from '@/actions/auth/signup.action';
+import { signUpAction } from '@/actions/auth.action';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import { useFormState } from 'react-dom';

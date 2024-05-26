@@ -24,11 +24,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { servicePostAction } from '@/actions/posts/servicePost.action';
 import { serviceSchema } from '@/validators/listing.schema';
 import { useState, useTransition } from 'react';
 import { Textarea } from '../../ui/textarea';
 import { categories } from '@/constants/options';
+import { servicePostAction } from '@/actions/listings.action';
 
 const ServicePostForm = () => {
   const [isPending, startTransition] = useTransition();

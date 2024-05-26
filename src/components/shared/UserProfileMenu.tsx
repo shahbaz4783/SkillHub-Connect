@@ -20,8 +20,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import UserAvatar from './UserAvatar';
-import { logout } from '@/actions/auth/logout.action';
 import Link from 'next/link';
+import { logout } from '@/actions/auth.action';
 
 export function UserProfileMenu() {
   return (

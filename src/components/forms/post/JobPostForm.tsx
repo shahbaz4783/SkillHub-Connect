@@ -16,7 +16,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../../ui/button';
 import { jobSchema } from '@/validators/listing.schema';
 import { useState, useTransition } from 'react';
-import { jobPostAction } from '@/actions/posts/jobPost.action';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import {
@@ -28,6 +27,7 @@ import {
 } from '@/components/ui/select';
 import { categories, experienceLvl } from '@/constants/options';
 import { Textarea } from '../../ui/textarea';
+import { jobPostAction } from '@/actions/listings.action';
 
 const JobPostForm = () => {
   const [isPending, startTransition] = useTransition();

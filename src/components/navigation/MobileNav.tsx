@@ -11,8 +11,8 @@ import { Button } from '../ui/button';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { LogOut, Menu, Settings } from 'lucide-react';
-import { logout } from '@/actions/auth/logout.action';
 import Link from 'next/link';
+import { logout } from '@/actions/auth.action';
 
 const MobileNav = ({
   menuOpen,

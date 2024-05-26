@@ -25,7 +25,7 @@ import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import { addressSchema } from '@/validators/user.schema';
 import { Input } from '../../ui/input';
-import { updateAddressAction } from '@/actions/admin/user.action';
+import { updateAddressAction } from '@/actions/user.action';
 
 const UpdateAddress = () => {
   const [isPending, startTransition] = useTransition();
