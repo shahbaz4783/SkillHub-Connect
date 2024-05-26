@@ -8,18 +8,30 @@ import { sendResetPasswordMail } from '@/lib/mail';
 import { getVerificationTokenByToken } from '@/data/verification-token';
 import { hash } from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
+import { authMessages } from '@/constants/messages';
 
 export const resetPasswordAction = async (
-  values: z.infer<typeof resetSchema>,
-) => {
-  const validateFields = resetSchema.safeParse(values);
-  if (!validateFields.success) return { error: 'Invalid Fields!' };
+  formState: FormState,
+  formData: FormData,
+): Promise<FormState> => {
+  const validateFields = resetSchema.safeParse(Object.fromEntries(formData));
+  if (!validateFields.success)
+    return {
+      message: {
+        error: authMessages.validation.invalidEmail,
+      },
+    };
 
   const { email } = validateFields.data;
 
   const existingUser = await getUserByEmail(email);
 
-  if (!existingUser) return { error: 'Email doesnt exists' };
+  if (!existingUser)
+    return {
+      message: {
+        error: authMessages.error.emailNotRegistered,
+      },
+    };
 
   const verificationToken = await generateVerificationToken(email);
 
@@ -29,7 +41,11 @@ export const resetPasswordAction = async (
     existingUser.name as string,
   );
 
-  return { success: 'Reset email sent' };
+  return {
+    message: {
+      success: authMessages.success.resetEmailSent,
+    },
+  };
 };
 
 export const newPasswordAction = async (

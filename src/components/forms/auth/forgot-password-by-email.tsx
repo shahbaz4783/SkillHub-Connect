@@ -18,18 +18,10 @@ import { useState, useTransition } from 'react';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import { resetPasswordAction } from '@/actions/auth/reset-password.action';
+import { useFormState } from 'react-dom';
+import Submit from '@/components/buttons/submit';
 
 const ForgotPassowordByEmail = () => {
-  const [isPending, startTransition] = useTransition();
-
-  const [formMessage, setFormMessage] = useState<{
-    error: string | undefined;
-    success: string | undefined;
-  }>({
-    error: '',
-    success: '',
-  });
-
   const form = useForm<z.infer<typeof resetSchema>>({
     resolver: zodResolver(resetSchema),
     defaultValues: {
@@ -37,15 +29,9 @@ const ForgotPassowordByEmail = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof resetSchema>) => {
-    setFormMessage({ error: '', success: '' });
-
-    startTransition(async () => {
-      resetPasswordAction(values).then((data) => {
-        setFormMessage({ error: data.error, success: data.success });
-      });
-    });
-  };
+  const [formState, formAction] = useFormState(resetPasswordAction, {
+    message: {},
+  });
 
   return (
     <>
@@ -56,7 +42,7 @@ const ForgotPassowordByEmail = () => {
         linkTo=""
       />
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form action={formAction} className="space-y-8">
           <FormField
             control={form.control}
             name="email"
@@ -73,11 +59,12 @@ const ForgotPassowordByEmail = () => {
               </FormItem>
             )}
           />
-          <FormError message={formMessage.error} />
-          <FormSuccess message={formMessage.success} />
-          <Button disabled={isPending} type="submit">
-            {isPending ? 'Sending verification link...' : 'Forgot Password'}
-          </Button>
+          <FormError message={formState.message.error} />
+          <FormSuccess message={formState.message.success} />
+          <Submit
+            title="Send Verification Link"
+            loadingTitle="Sending verification link..."
+          />
         </form>
       </Form>
     </>

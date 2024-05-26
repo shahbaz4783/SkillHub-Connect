@@ -1,5 +1,6 @@
 'use server';
 import { signIn } from '@/auth';
+import { authMessages } from '@/constants/messages';
 import { getUserByEmail } from '@/data/user';
 import { getVerificationOTPbyEmail } from '@/data/verification-token';
 import { sendOTPforLogin, sendVerificationMail } from '@/lib/mail';
@@ -11,32 +12,17 @@ import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { loginSchema } from '@/validators/auth.schema';
 import { AuthError } from 'next-auth';
 
-interface LoginFormState {
-  message: {
-    error?: string;
-    success?: string;
-  };
-  otpReceive?: boolean;
-}
-
 export const loginAction = async (
-  formState: LoginFormState,
+  formState: FormState,
   formData: FormData,
-): Promise<LoginFormState> => {
-  // const email = formData.get('email') as string;
-  // const password = formData.get('password') as string;
-
+): Promise<FormState> => {
   const formDataObj = Object.fromEntries(formData);
 
-  // const otp = formData.get('otp');
-
   const validateFields = loginSchema.safeParse(formDataObj);
-
   if (!validateFields.success)
     return {
       message: {
-        error:
-          'Please ensure all fields are filled out correctly and try again.',
+        error: authMessages.validation.invalidFields,
       },
     };
 
@@ -50,7 +36,7 @@ export const loginAction = async (
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return {
       message: {
-        error: 'The email address is not registered. Please sign up first.',
+        error: authMessages.error.emailNotRegistered,
       },
     };
   }
@@ -66,8 +52,7 @@ export const loginAction = async (
     );
     return {
       message: {
-        success:
-          'A confirmation email has been sent. Please verify your email to proceed.',
+        success: authMessages.success.confirmationEmailSent,
       },
     };
   }
@@ -80,17 +65,14 @@ export const loginAction = async (
         existingUser.email,
       );
 
-      if (!verificationOTP)
-        return { message: { error: 'Invalid OTP. Please try again.' } };
-      if (verificationOTP.otp !== loginOTP) {
-        return { message: { error: 'Invalid OTP. Please try again.' } };
-      }
+      if (!verificationOTP || verificationOTP.otp !== loginOTP)
+        return { message: { error: authMessages.error.invalidOTP } };
 
       const hasExpired = new Date(verificationOTP.expires) < new Date();
       if (hasExpired)
         return {
           message: {
-            error: 'The OTP has expired. Please request a new one.',
+            error: authMessages.error.otpExpired,
           },
         };
     } else {
@@ -103,8 +85,7 @@ export const loginAction = async (
 
       return {
         message: {
-          success:
-            'An OTP has been sent to your email. Please check your email and enter the OTP.',
+          success: authMessages.success.otpSent,
         },
         otpReceive: true,
       };
@@ -123,19 +104,19 @@ export const loginAction = async (
         case 'CredentialsSignin':
           return {
             message: {
-              error: 'The email or password is incorrect. Please try again.',
+              error: authMessages.error.invalidCredentials,
             },
           };
 
         default:
           return {
             message: {
-              error: 'An unexpected error occurred. Please try again later.',
+              error: authMessages.error.somethingWentWrong,
             },
           };
       }
     }
     throw error;
   }
-  return { message: { success: 'You have successfully logged in!' } };
+  return { message: { success: authMessages.success.loginSuccess } };
 };

@@ -7,27 +7,19 @@ import { getUserByEmail } from '@/data/user';
 import { generateVerificationToken } from '@/lib/tokens';
 import { sendVerificationMail } from '@/lib/mail';
 import crypto from 'crypto';
-
-interface SignUpFormState {
-  message: {
-    error?: string;
-    success?: string;
-  };
-  fields?: string;
-}
+import { authMessages } from '@/constants/messages';
 
 export const signUpAction = async (
-  formState: SignUpFormState,
+  formState: FormState,
   formData: FormData,
-): Promise<SignUpFormState> => {
+): Promise<FormState> => {
   const formDataObj = Object.fromEntries(formData);
 
   const validateFields = signUpSchema.safeParse(formDataObj);
   if (!validateFields.success) {
     return {
       message: {
-        error:
-          'Please ensure all fields are filled out correctly and try again.',
+        error: authMessages.validation.invalidFields,
       },
     };
   }
@@ -47,8 +39,7 @@ export const signUpAction = async (
   if (existingUser) {
     return {
       message: {
-        error:
-          'The email address is already associated with an account. Please use a different email.',
+        error: authMessages.error.emailAlreadyUsed,
       },
     };
   }
@@ -71,8 +62,7 @@ export const signUpAction = async (
 
   return {
     message: {
-      success:
-        'A confirmation email has been sent! Please check your inbox to verify your account.',
+      success: authMessages.success.confirmationEmailSent,
     },
   };
 };
