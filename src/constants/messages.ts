@@ -15,6 +15,7 @@ export const authMessages = {
       'An OTP has been sent to your email. Please check your email and enter the OTP.',
     loginSuccess: 'You have successfully logged in!',
     passwordUpdated: 'Your password has been updated successfully.',
+    emailVerified: 'Your email has been verified successfully.',
   },
 
   error: {

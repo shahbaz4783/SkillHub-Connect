@@ -12,7 +12,7 @@ import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { LogOut, Menu, Settings } from 'lucide-react';
 import Link from 'next/link';
-import { logout } from '@/actions/auth.action';
+import { signOut } from '@/auth';
 
 const MobileNav = ({
   menuOpen,
@@ -73,7 +73,7 @@ const MobileNav = ({
                 </li>
               </Link>
               <li
-                onClick={async () => await logout()}
+                onClick={async () => await signOut()}
                 className="flex cursor-pointer list-none items-center justify-between border-b-[1px] pb-2"
               >
                 <span>Log out</span>

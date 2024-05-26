@@ -24,7 +24,7 @@ import { prisma } from '@/lib/prisma';
 import { hash } from 'bcryptjs';
 import { authMessages } from '@/constants/messages';
 import { getUserByEmail } from '@/data/user';
-import { signIn, signOut } from '@/auth';
+import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 
@@ -197,24 +197,19 @@ export const loginAction = async (
   return { message: { success: authMessages.success.loginSuccess } };
 };
 
-//-------------- Logout Action
-export const logout = async () => {
-  await signOut();
-};
-
 //-------------- Email Verification Action
 export const newVerification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token);
 
-  if (!existingToken) return { error: 'Token does not exists' };
+  if (!existingToken) return { error: authMessages.error.tokenNotFound };
 
   const hasExpired = new Date(existingToken.expires) < new Date();
 
-  if (hasExpired) return { error: 'Token has expired' };
+  if (hasExpired) return { error: authMessages.error.tokenExpired };
 
   const existingUser = await getUserByEmail(existingToken.email);
 
-  if (!existingUser) return { error: 'Email does not exists' };
+  if (!existingUser) return { error: authMessages.error.userNotFound };
 
   await prisma?.user.update({
     where: { id: existingUser.id },
@@ -228,7 +223,7 @@ export const newVerification = async (token: string) => {
     where: { id: existingToken.id },
   });
 
-  return { success: 'Email verified successfully' };
+  return { success: authMessages.success.emailVerified };
 };
 
 //-------------- Pasword Reset Action

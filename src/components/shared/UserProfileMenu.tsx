@@ -8,7 +8,6 @@ import {
   User,
 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,7 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import UserAvatar from './UserAvatar';
 import Link from 'next/link';
-import { logout } from '@/actions/auth.action';
+import { signOut } from '@/auth';
 
 export function UserProfileMenu() {
   return (
@@ -76,7 +75,7 @@ export function UserProfileMenu() {
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={async () => await logout()}>
+        <DropdownMenuItem onClick={async () => await signOut()}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
