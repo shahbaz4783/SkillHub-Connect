@@ -21,37 +21,23 @@ import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { newPasswordAction } from '@/actions/auth/reset-password.action';
+import { useFormState } from 'react-dom';
+import Submit from '@/components/buttons/submit';
 
 const NewPasswordForm = () => {
-  const [isPending, startTransition] = useTransition();
-  const [formMessage, setFormMessage] = useState<{
-    error: string | undefined;
-    success: string | undefined;
-  }>({
-    error: '',
-    success: '',
-  });
-
   const searchParams = useSearchParams();
-  const token = searchParams.get('token');
+  const token = searchParams.get('token') ?? undefined;
 
   const form = useForm<z.infer<typeof newPasswordSchema>>({
     resolver: zodResolver(newPasswordSchema),
     defaultValues: {
-      password: '',
-      passwordConfirm: '',
+      token: token,
     },
   });
 
-  const onSubmit = (values: z.infer<typeof newPasswordSchema>) => {
-    setFormMessage({ error: '', success: '' });
-
-    startTransition(async () => {
-      newPasswordAction(values, token).then((data) => {
-        setFormMessage({ error: data.error, success: data.success });
-      });
-    });
-  };
+  const [formState, formAction] = useFormState(newPasswordAction, {
+    message: {},
+  });
 
   return (
     <>
@@ -59,10 +45,7 @@ const NewPasswordForm = () => {
         <Link href={'/signup'}>
           <FaArrowLeft size={20} />
         </Link>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-4"
-        >
+        <form action={formAction} className="flex flex-col gap-4">
           <FormField
             control={form.control}
             name="password"
@@ -71,7 +54,6 @@ const NewPasswordForm = () => {
                 <FormLabel>Enter Password</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={isPending}
                     className="border-none bg-slate-100 py-6 shadow-none"
                     type="password"
                     placeholder="Create a password"
@@ -90,7 +72,6 @@ const NewPasswordForm = () => {
                 <FormLabel>Confirm Your Password</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={isPending}
                     className="border-none bg-slate-100 py-6 shadow-none"
                     type="password"
                     placeholder="Create a password"
@@ -101,11 +82,24 @@ const NewPasswordForm = () => {
               </FormItem>
             )}
           />
-          <FormError message={formMessage.error} />
-          <FormSuccess message={formMessage.success} />
-          <Button disabled={isPending} type="submit">
-            {isPending ? 'Creating New Password...' : 'Create New Password'}
-          </Button>
+          <FormField
+            control={form.control}
+            name="token"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="hidden" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormError message={formState.message.error} />
+          <FormSuccess message={formState.message.success} />
+
+          <Submit
+            title="Create New Password"
+            loadingTitle="Creating New Password..."
+          />
         </form>
       </Form>
     </>

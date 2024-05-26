@@ -21,7 +21,6 @@ import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import { useFormState } from 'react-dom';
 import Submit from '@/components/buttons/submit';
-import { useRef } from 'react';
 
 const SignupForm = () => {
   const form = useForm<z.output<typeof signUpSchema>>({

@@ -35,6 +35,7 @@ export const signUpSchema = z
 
 export const newPasswordSchema = z
   .object({
+    token: z.optional(z.string()),
     password: z.string().min(6, {
       message: 'Password must be atleast 6 characters long',
     }),

@@ -1,6 +1,5 @@
 'use server';
 
-import * as z from 'zod';
 import { newPasswordSchema, resetSchema } from '@/validators/auth.schema';
 import { getUserByEmail } from '@/data/user';
 import { generateVerificationToken } from '@/lib/tokens';
@@ -49,24 +48,30 @@ export const resetPasswordAction = async (
 };
 
 export const newPasswordAction = async (
-  values: z.infer<typeof newPasswordSchema>,
-  token: string | null,
-) => {
-  if (!token) return { error: 'Password reset token not found' };
+  formState: FormState,
+  formData: FormData,
+): Promise<FormState> => {
+  const validateFields = newPasswordSchema.safeParse(
+    Object.fromEntries(formData),
+  );
+  if (!validateFields.success)
+    return { message: { error: authMessages.validation.invalidFields } };
 
-  const validateFields = newPasswordSchema.safeParse(values);
-  if (!validateFields.success) return { error: 'Invalid Fields!' };
+  const { password, token } = validateFields.data;
 
-  const { password } = validateFields.data;
+  if (!token) return { message: { error: authMessages.error.tokenNotFound } };
 
   const existingToken = await getVerificationTokenByToken(token);
-  if (!existingToken) return { error: 'Invalid Token' };
+  if (!existingToken)
+    return { message: { error: authMessages.error.tokenNotFound } };
 
   const hasExpired = new Date(existingToken.expires) < new Date();
-  if (hasExpired) return { error: 'Token is expired' };
+  if (hasExpired)
+    return { message: { error: authMessages.error.tokenExpired } };
 
   const existingUser = await getUserByEmail(existingToken.email);
-  if (!existingUser) return { error: 'Email does not exists' };
+  if (!existingUser)
+    return { message: { error: authMessages.error.userNotFound } };
 
   const hashedPassword = await hash(password, 10);
 
@@ -79,5 +84,5 @@ export const newPasswordAction = async (
     where: { id: existingToken.id },
   });
 
-  return { success: 'New password created successfully' };
+  return { message: { success: authMessages.success.passwordUpdated } };
 };
