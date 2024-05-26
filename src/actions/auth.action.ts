@@ -24,7 +24,7 @@ import { prisma } from '@/lib/prisma';
 import { hash } from 'bcryptjs';
 import { authMessages } from '@/constants/messages';
 import { getUserByEmail } from '@/data/user';
-import { signIn } from '@/auth';
+import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 
@@ -196,6 +196,12 @@ export const loginAction = async (
   }
   return { message: { success: authMessages.success.loginSuccess } };
 };
+
+//-------------- Logout Action
+export const logout = async () => {
+  await signOut();
+};
+
 
 //-------------- Email Verification Action
 export const newVerification = async (token: string) => {

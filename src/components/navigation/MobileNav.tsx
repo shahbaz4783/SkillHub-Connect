@@ -12,7 +12,8 @@ import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { LogOut, Menu, Settings } from 'lucide-react';
 import Link from 'next/link';
-import { signOut } from '@/auth';
+import { logout } from '@/actions/auth.action';
+
 
 const MobileNav = ({
   menuOpen,
@@ -31,10 +32,7 @@ const MobileNav = ({
         side={'left'}
         className="flex w-[400px] flex-col justify-between bg-slate-50 sm:w-[540px]"
       >
-        <nav
-          onClick={onHandleNavMenu}
-          className="mt-12 flex flex-col gap-4"
-        >
+        <nav onClick={onHandleNavMenu} className="mt-12 flex flex-col gap-4">
           {PAGES_NAV_ITEMS.map((data, index) => (
             <Link key={data.path} href={data.path}>
               <li className="flex cursor-pointer list-none items-center justify-between border-b-[1px] pb-2">
@@ -73,7 +71,7 @@ const MobileNav = ({
                 </li>
               </Link>
               <li
-                onClick={async () => await signOut()}
+                onClick={async () => await logout()}
                 className="flex cursor-pointer list-none items-center justify-between border-b-[1px] pb-2"
               >
                 <span>Log out</span>

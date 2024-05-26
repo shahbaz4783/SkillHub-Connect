@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import UserAvatar from './UserAvatar';
 import Link from 'next/link';
-import { signOut } from '@/auth';
+import { logout } from '@/actions/auth.action';
 
 export function UserProfileMenu() {
   return (
@@ -75,7 +75,7 @@ export function UserProfileMenu() {
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={async () => await signOut()}>
+        <DropdownMenuItem onClick={async () => await logout()}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
