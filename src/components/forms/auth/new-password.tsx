@@ -26,18 +26,18 @@ import { newPasswordAction } from '@/actions/auth.action';
 
 const NewPasswordForm = () => {
   const searchParams = useSearchParams();
-  const token = searchParams.get('token') ?? undefined;
+  const token = searchParams.get('token');
 
   const form = useForm<z.infer<typeof newPasswordSchema>>({
     resolver: zodResolver(newPasswordSchema),
-    defaultValues: {
-      token: token,
-    },
   });
 
-  const [formState, formAction] = useFormState(newPasswordAction, {
-    message: {},
-  });
+  const [formState, formAction] = useFormState(
+    newPasswordAction.bind(null, token),
+    {
+      message: {},
+    },
+  );
 
   return (
     <>
@@ -79,17 +79,6 @@ const NewPasswordForm = () => {
                   />
                 </FormControl>
                 <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="token"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input type="hidden" {...field} />
-                </FormControl>
               </FormItem>
             )}
           />

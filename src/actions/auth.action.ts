@@ -273,18 +273,20 @@ export const resetPasswordAction = async (
 
 //-------------- Update Password Action
 export const newPasswordAction = async (
+  token: string | null,
   formState: FormState,
   formData: FormData,
 ): Promise<FormState> => {
+  if (!token) return { message: { error: authMessages.error.tokenNotFound } };
+
   const validateFields = newPasswordSchema.safeParse(
     Object.fromEntries(formData),
   );
+
   if (!validateFields.success)
     return { message: { error: authMessages.validation.invalidFields } };
 
-  const { password, token } = validateFields.data;
-
-  if (!token) return { message: { error: authMessages.error.tokenNotFound } };
+  const { password } = validateFields.data;
 
   const existingToken = await getVerificationTokenByToken(token);
   if (!existingToken)
