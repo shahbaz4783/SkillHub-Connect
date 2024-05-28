@@ -1,28 +1,21 @@
 'use client';
 
-import { useState } from 'react';
 import { Input } from '../ui/input';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Search } from 'lucide-react';
+import { searchAction } from '@/actions/search.action';
 
 const SearchInput = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const router = useRouter();
-
-  const onSearch = (event: React.FormEvent) => {
-    event.preventDefault();
-    const encodeQuery = encodeURI(searchQuery);
-    router.push(`/search?q=${encodeQuery}`);
-  };
+  const searchParams = useSearchParams();
   return (
-    <form onSubmit={onSearch}>
+    <form action={searchAction}>
       <div className="flex items-center gap-3 rounded-md bg-slate-200 px-3">
         <Search />
         <Input
-          className="bg-slate-200 p-0 rounded-none"
-          onChange={(e) => setSearchQuery(e.target.value)}
+          className="rounded-none bg-slate-200 p-0"
+          name="q"
           type="search"
-          value={searchQuery}
+          defaultValue={searchParams.get('q') || ''}
           placeholder="Search"
         />
       </div>

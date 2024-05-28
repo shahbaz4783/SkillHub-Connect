@@ -2,8 +2,12 @@
 
 import { Button } from '@/components/ui/button';
 import NavLink from '../ui/NavLink';
-import { useState } from 'react';
-import { AUTH_NAV_ITEMS, PAGES_NAV_ITEMS, loggedInExtraNav } from '@/constants/navigation';
+import { Suspense, useState } from 'react';
+import {
+  AUTH_NAV_ITEMS,
+  PAGES_NAV_ITEMS,
+  loggedInExtraNav,
+} from '@/constants/navigation';
 import MobileNav from './MobileNav';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { UserProfileMenu } from '../shared/UserProfileMenu';
@@ -33,9 +37,10 @@ const Navbar = () => {
             ))}
           </nav>
         </div>
-
         <div className="hidden items-center gap-8 md:flex">
-          <SearchInput />
+          <Suspense>
+            <SearchInput />
+          </Suspense>
           {!user ? (
             <div className="hidden gap-4 lg:flex">
               {AUTH_NAV_ITEMS.map((data, index) => (
@@ -47,7 +52,11 @@ const Navbar = () => {
           ) : (
             <div className="hidden items-center gap-8 md:flex">
               {loggedInExtraNav.map((data) => (
-                <Link href={data.path} key={data.path} className="w-full space-y-8">
+                <Link
+                  href={data.path}
+                  key={data.path}
+                  className="w-full space-y-8"
+                >
                   <li className="flex cursor-pointer list-none items-center justify-between">
                     <span>{data.icon && <data.icon />}</span>
                   </li>

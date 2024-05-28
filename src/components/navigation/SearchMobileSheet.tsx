@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/sheet';
 import { Search } from 'lucide-react';
 import SearchInput from '../shared/SearchInput';
+import { Suspense } from 'react';
 
 const SearchMobileSheet = () => {
   return (
@@ -17,7 +18,9 @@ const SearchMobileSheet = () => {
       <SheetContent className="w-[400px] sm:w-[540px]">
         <SheetHeader>
           <SheetTitle>Search</SheetTitle>
-          <SearchInput />
+          <Suspense>
+            <SearchInput />
+          </Suspense>
         </SheetHeader>
       </SheetContent>
     </Sheet>

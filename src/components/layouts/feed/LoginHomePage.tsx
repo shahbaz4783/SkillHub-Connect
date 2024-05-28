@@ -9,9 +9,7 @@ const LoginHomePage = async () => {
   return (
     <div className="mt-8 flex min-h-svh flex-col-reverse gap-6 md:flex-row">
       <main className="space-y-16 md:w-3/4">
-        <Suspense fallback={<Heading />}>
-          <CarouselPlugin />
-        </Suspense>
+        <CarouselPlugin />
         <Suspense fallback={<Heading />}>
           <FeedJobs />
         </Suspense>
