@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import CarouselPlugin from './UserGreet';
-// import FeedServices from './FeedServices';
 import FeedJobs from './FeedJobs';
 import FeedUser from './FeedUser';
 import QuickActions from './QuickActions';
+import Heading from '@/components/loaders/Heading';
 
 const LoginHomePage = async () => {
-	return (
-		<div className='mt-8 flex flex-col-reverse min-h-svh gap-6 md:flex-row'>
-			<main className='md:w-3/4 space-y-16'>
-				<CarouselPlugin />
-				<FeedJobs />
-				{/* <FeedServices /> */}
-			</main>
-			<aside className='md:w-1/4 space-y-8'>
-				<FeedUser />
-				<QuickActions />
-			</aside>
-		</div>
-	);
+  return (
+    <div className="mt-8 flex min-h-svh flex-col-reverse gap-6 md:flex-row">
+      <main className="space-y-16 md:w-3/4">
+        <Suspense fallback={<Heading />}>
+          <CarouselPlugin />
+        </Suspense>
+        <Suspense fallback={<Heading />}>
+          <FeedJobs />
+        </Suspense>
+      </main>
+      <aside className="space-y-8 md:w-1/4">
+        <Suspense fallback={<Heading />}>
+          <FeedUser />
+        </Suspense>
+        <Suspense fallback={<Heading />}>
+          <QuickActions />
+        </Suspense>
+      </aside>
+    </div>
+  );
 };
 
 export default LoginHomePage;

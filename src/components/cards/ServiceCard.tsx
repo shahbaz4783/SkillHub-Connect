@@ -32,7 +32,7 @@ const ServiceCard = async () => {
             <CardContent className="space-y-3">
               <div className="flex items-center gap-2">
                 <CircleUserRound />
-                <CardTitle>{data.userId}</CardTitle>
+                <CardTitle>{data.user.name}</CardTitle>
               </div>
               <p className="line-clamp-2">{data.title}</p>
             </CardContent>
