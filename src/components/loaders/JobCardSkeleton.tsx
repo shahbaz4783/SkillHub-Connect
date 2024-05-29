@@ -1,7 +1,7 @@
 import React from 'react';
 import { Skeleton } from '../ui/skeleton';
 
-const JobCard = () => {
+const JobCardSkeleton = () => {
 	return (
 		<div className='animate-pulse flex flex-col w-1/2 gap-4 bg-slate-100 p-4 rounded-lg mb-16'>
 			<div className='space-y-2'>
@@ -26,4 +26,4 @@ const JobCard = () => {
 	);
 };
 
-export default JobCard;
+export default JobCardSkeleton;

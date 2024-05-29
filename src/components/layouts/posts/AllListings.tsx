@@ -1,6 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import YourPostedJobs from '@/components/layouts/posts/YourPostedJobs';
 import YourPostedServices from '@/components/layouts/posts/YourPostedServices';
+import { Suspense } from 'react';
+import ServiceCardSkeleton from '@/components/loaders/ServiceCardSkeleton';
 
 const AllListings = () => {
   return (
@@ -14,10 +16,14 @@ const AllListings = () => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="service">
-        <YourPostedServices />
+        <Suspense fallback={<ServiceCardSkeleton />}>
+          <YourPostedServices />
+        </Suspense>
       </TabsContent>
       <TabsContent value="job">
-        <YourPostedJobs />
+        <Suspense fallback={<ServiceCardSkeleton />}>
+          <YourPostedJobs />
+        </Suspense>
       </TabsContent>
     </Tabs>
   );

@@ -16,7 +16,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     <div>
       <h1 className="text-2xl font-semibold">Showing results for "{q}"</h1>
       {result.map((data) => (
-        <div>
+        <div key={data.id}>
           <p>{data.title}</p>
           <p>{data.user.name}</p>
         </div>
