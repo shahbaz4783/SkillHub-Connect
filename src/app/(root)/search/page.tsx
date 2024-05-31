@@ -1,4 +1,5 @@
-import { getJobPostsResult, getServicePostsResult } from '@/data/search';
+import JobListCard from '@/components/cards/JobListCard';
+import { redirect } from 'next/navigation';
 
 interface SearchPageProps {
   searchParams: {
@@ -8,19 +9,12 @@ interface SearchPageProps {
 
 const SearchPage = async ({ searchParams }: SearchPageProps) => {
   const { q } = searchParams;
-  console.log(q);
-  const result = await getServicePostsResult(q);
-  console.log({ result });
+  if (!q) redirect('/');
 
   return (
     <div>
       <h1 className="text-2xl font-semibold">Showing results for "{q}"</h1>
-      {result.map((data) => (
-        <div key={data.id}>
-          <p>{data.title}</p>
-          <p>{data.user.name}</p>
-        </div>
-      ))}
+      <JobListCard query={q} />
     </div>
   );
 };
