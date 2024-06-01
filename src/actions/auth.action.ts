@@ -199,7 +199,7 @@ export const loginAction = async (
 
 //-------------- Logout Action
 export const logout = async () => {
-  await signOut();
+   await signOut();
 };
 
 

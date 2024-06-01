@@ -15,24 +15,18 @@ import Link from 'next/link';
 import { logout } from '@/actions/auth.action';
 
 
-const MobileNav = ({
-  menuOpen,
-  onHandleNavMenu,
-}: {
-  menuOpen: boolean;
-  onHandleNavMenu: () => void;
-}) => {
+const MobileNav = () => {
   const user = useCurrentUser();
   return (
     <Sheet>
-      <SheetTrigger>
+      <SheetTrigger className="md:hidden">
         <Menu size={30} />
       </SheetTrigger>
       <SheetContent
         side={'left'}
         className="flex w-[400px] flex-col justify-between bg-slate-50 sm:w-[540px]"
       >
-        <nav onClick={onHandleNavMenu} className="mt-12 flex flex-col gap-4">
+        <nav className="mt-12 flex flex-col gap-4">
           {PAGES_NAV_ITEMS.map((data, index) => (
             <Link key={data.path} href={data.path}>
               <li className="flex cursor-pointer list-none items-center justify-between border-b-[1px] pb-2">

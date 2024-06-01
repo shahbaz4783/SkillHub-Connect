@@ -21,6 +21,7 @@ import {
 import UserAvatar from './UserAvatar';
 import Link from 'next/link';
 import { logout } from '@/actions/auth.action';
+import { Button } from '../ui/button';
 
 export function UserProfileMenu() {
   return (
@@ -38,19 +39,16 @@ export function UserProfileMenu() {
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
               <span>Profile</span>
-              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
           <DropdownMenuItem>
             <CreditCard className="mr-2 h-4 w-4" />
             <span>Billing</span>
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
           <Link href={'/dashboard/settings'}>
             <DropdownMenuItem>
               <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
-              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>
@@ -75,10 +73,10 @@ export function UserProfileMenu() {
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={async () => await logout()}>
+
+        <DropdownMenuItem>
           <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          <Button onClick={async () => await logout()}>Log out</Button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
