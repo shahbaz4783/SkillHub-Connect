@@ -27,6 +27,7 @@ import { getUserByEmail } from '@/data/user';
 import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
+import { redirect } from 'next/navigation';
 
 //-------------- SignUp Action
 export const signUpAction = async (

@@ -1,14 +1,13 @@
 import { getJobPostsResult } from '@/data/search';
-import { MapPin, UserRound } from 'lucide-react';
 import Link from 'next/link';
 
 const JobListCard = async ({ query }: { query: string }) => {
   const listings = await getJobPostsResult(query);
   return (
     <article className="space-y-8">
-      {listings?.map((data) => (
+      {listings?.listings?.map((data) => (
         <Link key={data.id} href={`/freelance-jobs/${data.id}`}>
-          <div className="cursor-pointer space-y-6 border-b-[1px] px-6 py-10 hover:bg-slate-100">
+          <div className="cursor-pointer space-y-6 border-b-[1px] md:px-6 pt-6 pb-10 hover:bg-slate-100">
             <div>
               <p className="text-sm text-slate-500">
                 Posted on {data.createdAt.toDateString()}
@@ -24,7 +23,7 @@ const JobListCard = async ({ query }: { query: string }) => {
             <div>
               <p className="line-clamp-2 text-slate-500">{data.description}</p>
             </div>
-            <div className="space-x-2">
+            <div className="flex-wrap flex gap-3">
               {data.skills.split(',').map((item, index) => (
                 <span
                   key={index}
