@@ -16,8 +16,8 @@ const Sortby = () => {
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="newest">Newest</SelectItem>
-        <SelectItem value="less">Less Application</SelectItem>
-        <SelectItem value="salary">Salary</SelectItem>
+        <SelectItem value="relevence">Relevence</SelectItem>
+        <SelectItem value="rating">Client rating</SelectItem>
       </SelectContent>
     </Select>
   );

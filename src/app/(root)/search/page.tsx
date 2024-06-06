@@ -30,7 +30,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
       </div>
 
       <main className="mt-8 flex gap-6">
-        <section className="hidden w-1/5 flex-col lg:flex">
+        <section className="hidden w-1/5 flex-col lg:flex gap-12">
           <JobPostFilter />
         </section>
         <section className="md:w-4/5">
