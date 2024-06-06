@@ -1,10 +1,9 @@
 'use server';
 import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
-import { getUserByEmail } from '@/data/user';
+import { getUserByEmail, updateUserSession } from '@/data/user';
 import { addressSchema, bioSchema, userSchema } from '@/validators/user.schema';
 import { currentUser } from '@/lib/auth';
-import { updateSession } from '@/auth';
 import { revalidatePath } from 'next/cache';
 
 export const updatePersonalInfoAction = async (
@@ -32,7 +31,7 @@ export const updatePersonalInfoAction = async (
     },
   });
 
-  await updateSession(user.id);
+  await updateUserSession(user.id);
 
   revalidatePath('/', 'layout');
   return { success: 'Profile Updated Successfully' };
@@ -56,8 +55,6 @@ export const updateAddressAction = async (
   }
   const user = await currentUser();
   const id = user?.id;
-
-  console.log(user);
 
   const { country, code, address, city } = validateFields.data;
   // await prisma.address.create({

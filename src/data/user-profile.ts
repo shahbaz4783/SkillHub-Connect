@@ -5,7 +5,11 @@ export const getUserProfile = async () => {
 	const user = await currentUser();
 	const userId = user?.id;
   
-	await prisma.profile.findFirst({
-		where: { userId },
-	});
+	 const profile = await prisma.profile.findFirst({
+     where: { userId },
+   });
+	 const userDetails = await prisma.user.findFirst({
+     where: { email: user?.email },
+   });
+   return { profile, userDetails };
 };

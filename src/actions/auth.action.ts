@@ -107,9 +107,6 @@ export const loginAction = async (
 
   const existingUser = await getUserByEmail(email);
 
-  console.log({ existingUser });
-  console.log({ email, password, otp });
-
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return {
       message: {

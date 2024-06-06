@@ -17,3 +17,22 @@ export const getUserByID = async (id: string) => {
 		console.log(error);
 	}
 };
+
+export const updateUserSession = async (userId: string) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { id: true, name: true, email: true, username: true, image: true },
+  });
+
+  if (!user) return;
+
+  return {
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+      image: user.image,
+    },
+  };
+};

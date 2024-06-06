@@ -42,7 +42,6 @@ const UpdateAddress = () => {
   });
 
   const onSubmitAddress = (values: z.infer<typeof addressSchema>) => {
-    console.log(values);
     setFormMessage({ error: '', success: '' });
     startTransition(async () => {
       updateAddressAction(values).then((data) => {

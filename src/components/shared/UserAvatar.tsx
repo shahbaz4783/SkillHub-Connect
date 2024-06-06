@@ -1,23 +1,18 @@
-import Image from 'next/image';
 import { User } from 'lucide-react';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
-import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { auth } from '@/auth';
 
-const UserAvatar = () => {
-  const user = useCurrentUser();
+const UserAvatar = async () => {
+  const session = await auth();
+  const image = session?.user?.image;
 
   return (
-    <>
-      {user?.image ? (
-        <Avatar>
-          <AvatarImage src={user.image} alt="Profile" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-      ) : (
+    <Avatar>
+      <AvatarImage src={image || ''} alt="Profile" />
+      <AvatarFallback>
         <User />
-      )}
-    </>
+      </AvatarFallback>
+    </Avatar>
   );
 };
 

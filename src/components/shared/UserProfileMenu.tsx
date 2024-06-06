@@ -6,6 +6,7 @@ import {
   LogOut,
   Settings,
   User,
+  User2,
 } from 'lucide-react';
 
 import {
@@ -15,7 +16,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import UserAvatar from './UserAvatar';
@@ -27,9 +27,7 @@ export function UserProfileMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div>
-          <UserAvatar />
-        </div>
+        <h1>Open</h1>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
