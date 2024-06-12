@@ -6,7 +6,10 @@ import React from 'react';
 const AdminServicePage = () => {
   return (
     <>
-      <DashboardHeader title="Your Listings" />
+      <DashboardHeader
+        title="Your Listings"
+        subTitle="Manage your listings here"
+      />
       <ListingRoutes />
       <AllListings />
     </>

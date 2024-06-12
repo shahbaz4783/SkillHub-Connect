@@ -6,7 +6,7 @@ import LocationInfo from '@/components/layouts/settings/profile/LocationInfo';
 const SettingsPage = () => {
 	return (
 		<>
-			<DashboardHeader title='Settings' />
+			<DashboardHeader title='Settings' subTitle='Manage your account here' />
 			<SettingsRoutes />
 			<AccountInfo />
 			<LocationInfo />

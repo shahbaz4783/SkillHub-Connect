@@ -9,7 +9,6 @@ import { useSession } from 'next-auth/react';
 
 const AuthNavigation = () => {
   const session = useSession();
-  console.log({ session });
   
   let authContent: React.ReactNode;
 
