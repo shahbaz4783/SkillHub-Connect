@@ -2,6 +2,7 @@ import { ADMIN_NAV_ITEMS } from '@/constants/navigation';
 import Link from 'next/link';
 import React from 'react';
 import UserAvatar from '../shared/UserAvatar';
+import LogoutIcon from '../forms/auth/logout';
 
 const AdminNavbar = async () => {
   return (
@@ -11,19 +12,24 @@ const AdminNavbar = async () => {
           SkillHub Connect
         </Link>
       </header>
-      <UserAvatar />
-      <nav className="flex flex-col gap-4 ">
-        {ADMIN_NAV_ITEMS.map((data, index) => (
-          <Link
-            key={index}
-            href={data.path}
-            className="flex items-center gap-2 rounded-md p-2 hover:bg-slate-200"
-          >
-            <span>{data.icon && <data.icon size={20} />}</span>
-            <span>{data.title}</span>
-          </Link>
-        ))}
-      </nav>
+      <section className="flex flex-1 flex-col justify-between">
+        <nav className="flex flex-col gap-4 ">
+          {ADMIN_NAV_ITEMS.map((data, index) => (
+            <Link
+              key={index}
+              href={data.path}
+              className="flex items-center gap-2 rounded-md p-2 hover:bg-slate-200"
+            >
+              <span>{data.icon && <data.icon size={20} />}</span>
+              <span>{data.title}</span>
+            </Link>
+          ))}
+        </nav>
+        <div className="flex rounded-md p-3 justify-between gap-3 bg-slate-200">
+          <UserAvatar />
+          <LogoutIcon />
+        </div>
+      </section>
     </aside>
   );
 };

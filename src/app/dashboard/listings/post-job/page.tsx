@@ -5,7 +5,7 @@ import React from 'react';
 const page = () => {
   return (
     <div className="space-y-12 md:w-2/3">
-      <DashboardHeader title="Post a Job" />
+      <DashboardHeader title="Post a Job" subTitle='' />
       <JobPostForm />
     </div>
   );
