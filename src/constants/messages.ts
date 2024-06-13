@@ -16,6 +16,7 @@ export const authMessages = {
     loginSuccess: 'You have successfully logged in!',
     passwordUpdated: 'Your password has been updated successfully.',
     emailVerified: 'Your email has been verified successfully.',
+    profileUpdate: 'Your profile has been updated successfully.',
   },
 
   error: {
@@ -28,9 +29,12 @@ export const authMessages = {
     somethingWentWrong: 'An unexpected error occurred. Please try again later.',
     emailAlreadyUsed:
       'The email address is already associated with an account. Please use a different email.',
+    usernameAlreadyUsed:
+      'The username is already associated with an account. Please use a different username.',
     emailNotRegistered:
       'The email address is not registered. Please sign up first.',
     userNotFound:
       'No account found with the provided email. Please check and try again.',
+    noChangeInUsername: 'No changes detected in the username.',
   },
 };

@@ -12,13 +12,13 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '../../ui/button';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
-import { useState, useTransition } from 'react';
 import { userSchema } from '@/validators/user.schema';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { updatePersonalInfoAction } from '@/actions/user.action';
+import { useFormState } from 'react-dom';
+import Submit from '@/components/buttons/submit';
 
 const UpdatePersonalInfo = () => {
   const user = useCurrentUser();
@@ -26,37 +26,25 @@ const UpdatePersonalInfo = () => {
   const email = user?.email as string;
   const username = user?.username as string;
 
-  const [isPending, startTransition] = useTransition();
-  const [formMessage, setFormMessage] = useState<{
-    error: string | undefined;
-    success: string | undefined;
-  }>({
-    error: '',
-    success: '',
-  });
-
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
     defaultValues: {
       name,
-      email,
       username,
     },
   });
 
-  const onSubmit = (values: z.infer<typeof userSchema>) => {
-    setFormMessage({ error: '', success: '' });
-    startTransition(async () => {
-      updatePersonalInfoAction(values).then((data) => {
-        setFormMessage({ error: data.error, success: data.success });
-      });
-    });
-  };
+  const [formState, formAction] = useFormState(
+    updatePersonalInfoAction.bind(null, email),
+    {
+      message: {},
+    },
+  );
 
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form action={formAction} className="space-y-4">
           <FormField
             control={form.control}
             name="name"
@@ -64,20 +52,7 @@ const UpdatePersonalInfo = () => {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input disabled={isPending} type="text" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input disabled={isPending} type="email" {...field} />
+                  <Input type="text" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -90,17 +65,16 @@ const UpdatePersonalInfo = () => {
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input disabled={isPending} type="text" {...field} />
+                  <Input type="text" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <FormError message={formMessage.error} />
-          <FormSuccess message={formMessage.success} />
-          <Button className="float-right" disabled={isPending} type="submit">
-            {isPending ? 'Updating Your Profile...' : 'Update'}
-          </Button>
+
+          <FormError message={formState.message.error} />
+          <FormSuccess message={formState.message.success} />
+          <Submit title={'Update'} loadingTitle={'Updating your profile...'} />
         </form>
       </Form>
     </>

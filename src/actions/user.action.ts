@@ -5,20 +5,41 @@ import { getUserByEmail, updateUserSession } from '@/data/user';
 import { addressSchema, bioSchema, userSchema } from '@/validators/user.schema';
 import { currentUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
+import { authMessages } from '@/constants/messages';
+import { error } from 'console';
 
 export const updatePersonalInfoAction = async (
-  values: z.infer<typeof userSchema>,
-) => {
-  const validateFields = userSchema.safeParse(values);
+  email: string | null,
+  formState: FormState,
+  formData: FormData,
+): Promise<FormState> => {
+  const formDataObj = Object.fromEntries(formData);
+
+  const validateFields = userSchema.safeParse(formDataObj);
   if (!validateFields.success) {
-    return { error: 'Invalid Fields!' };
+    return {
+      message: {
+        error: authMessages.validation.invalidFields,
+      },
+    };
   }
 
-  const { name, email, username } = validateFields.data;
+  if (!email) return { message: { error: authMessages.error.userNotFound } };
+
+  const { name, username } = validateFields.data;
 
   const user = await getUserByEmail(email);
+  if (!user) return { message: { error: authMessages.error.userNotFound } };
 
-  if (!user) return { error: 'Someting went wrong' };
+  if (username !== user.username) {
+    const existingUser = await prisma.user.findUnique({
+      where: { username },
+    });
+
+    if (existingUser) {
+      return { message: { error: authMessages.error.usernameAlreadyUsed } };
+    }
+  }
 
   await prisma.user.update({
     where: {
@@ -26,7 +47,6 @@ export const updatePersonalInfoAction = async (
     },
     data: {
       name,
-      email,
       username,
     },
   });
@@ -34,7 +54,7 @@ export const updatePersonalInfoAction = async (
   await updateUserSession(user.id);
 
   revalidatePath('/', 'layout');
-  return { success: 'Profile Updated Successfully' };
+  return { message: { success: authMessages.success.profileUpdate } };
 };
 
 export const updateBioAction = async (values: z.infer<typeof bioSchema>) => {

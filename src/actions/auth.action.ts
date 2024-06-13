@@ -36,6 +36,7 @@ export const signUpAction = async (
 ): Promise<FormState> => {
   const formDataObj = Object.fromEntries(formData);
 
+  // Validate and get the form data
   const validateFields = signUpSchema.safeParse(formDataObj);
   if (!validateFields.success) {
     return {
@@ -46,18 +47,22 @@ export const signUpAction = async (
   }
 
   const { name, email, password } = validateFields.data;
-
   const hashedPassword = await hash(password, 10);
 
-  // Generate random username
-  const randomDigit = crypto.randomInt(1000000, 10000000);
+  // Generate random username and ensure it's unique
   const mailID = email.split('@')[0];
-  const username = mailID + randomDigit;
-  // ----
+  let username: string;
+  let existingUser;
 
-  const existingUser = await getUserByEmail(email);
+  do {
+    const randomDigit = crypto.randomInt(100, 1000);
+    username = mailID + randomDigit;
+    existingUser = await prisma.user.findUnique({ where: { username } });
+  } while (existingUser);
 
-  if (existingUser) {
+  // Check if email is already used
+  const existingEmailUser = await getUserByEmail(email);
+  if (existingEmailUser) {
     return {
       message: {
         error: authMessages.error.emailAlreadyUsed,
@@ -65,6 +70,7 @@ export const signUpAction = async (
     };
   }
 
+  // Create the new user
   await prisma.user.create({
     data: {
       name,
@@ -74,6 +80,7 @@ export const signUpAction = async (
     },
   });
 
+  // Send verification link to mail to verify the email
   const verificationToken = await generateVerificationToken(email);
   await sendVerificationMail(
     verificationToken.token,
