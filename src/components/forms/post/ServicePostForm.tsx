@@ -13,7 +13,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '../../ui/button';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import {
@@ -25,41 +24,34 @@ import {
 } from '@/components/ui/select';
 
 import { serviceSchema } from '@/validators/listing.schema';
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import { Textarea } from '../../ui/textarea';
 import { categories } from '@/constants/options';
 import { servicePostAction } from '@/actions/listings.action';
+import { useFormState } from 'react-dom';
+import Submit from '@/components/buttons/submit';
 
 const ServicePostForm = () => {
-  const [isPending, startTransition] = useTransition();
-  const [formMessage, setFormMessage] = useState<{
-    error: string | undefined;
-    success: string | undefined;
+  const [charCount, setCharCount] = useState<{
+    title: number;
+    description: number;
   }>({
-    error: '',
-    success: '',
+    title: 0,
+    description: 0,
   });
-
-  const [charCount, setCharCount] = useState<number>(0);
 
   const form = useForm<z.infer<typeof serviceSchema>>({
     resolver: zodResolver(serviceSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof serviceSchema>) => {
-    setFormMessage({ error: '', success: '' });
-
-    startTransition(async () => {
-      servicePostAction(values).then((data) => {
-        setFormMessage({ error: data?.error, success: data?.success });
-      });
-    });
-  };
+  const [formState, formAction] = useFormState(servicePostAction, {
+    message: {},
+  });
 
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
+        <form action={formAction} className="space-y-12">
           <FormField
             control={form.control}
             name="title"
@@ -72,18 +64,20 @@ const ServicePostForm = () => {
                 </FormDescription>
                 <FormControl>
                   <Input
-                    disabled={isPending}
                     placeholder="Eye-catching graphic design for your brand"
                     {...field}
                     onChange={(e) => {
                       field.onChange(e);
-                      setCharCount(e.target.value.length);
+                      setCharCount((prev) => ({
+                        ...prev,
+                        title: e.target.value.length,
+                      }));
                     }}
                     onBlur={() => form.trigger('title')}
                   />
                 </FormControl>
                 <FormDescription className="text-right">
-                  {charCount}/75 characters (min. 7 words)
+                  {charCount.title}/75 characters (min. 7 words)
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -99,16 +93,45 @@ const ServicePostForm = () => {
                   Mention your expertise of the task. (separate them by a comma)
                 </FormDescription>
                 <FormControl>
-                  <Input
-                    disabled={isPending}
-                    placeholder="UI/UX, Graphic Design"
-                    {...field}
-                  />
+                  <Input placeholder="UI/UX, Graphic Design" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="category"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Service Category</FormLabel>
+                <FormDescription>
+                  Select a category so it's easy for clients to find your
+                  project.
+                </FormDescription>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  {...field}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Logo Design" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {categories.map((category) => (
+                      <SelectItem key={category.value} value={category.value}>
+                        {category.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name="price"
@@ -121,7 +144,6 @@ const ServicePostForm = () => {
                 <FormControl>
                   <Input
                     type="number"
-                    disabled={isPending}
                     placeholder="Enter min $5 to max $5k"
                     {...field}
                   />
@@ -140,48 +162,19 @@ const ServicePostForm = () => {
                   In how many days you will deliver it?
                 </FormDescription>
                 <FormControl>
-                  <Input
-                    disabled={isPending}
-                    placeholder="3"
-                    type="number"
-                    {...field}
-                  />
+                  <Input placeholder="3" type="number" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <FormField
+          {/* <FormField
             control={form.control}
             name="category"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Service Category</FormLabel>
-                <FormDescription>
-                  Select a category so it's easy for clients to find your
-                  project.
-                </FormDescription>
-                <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Logo Design" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem key={category.value} value={category.value}>
-                          {category.title}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              
             )}
-          />
+          /> */}
           <FormField
             control={form.control}
             name="description"
@@ -198,23 +191,26 @@ const ServicePostForm = () => {
                     {...field}
                     onChange={(e) => {
                       field.onChange(e);
-                      setCharCount(e.target.value.length);
+                      setCharCount((prev) => ({
+                        ...prev,
+                        description: e.target.value.length,
+                      }));
                     }}
                     onBlur={() => form.trigger('title')}
                   />
                 </FormControl>
                 <FormDescription className="text-right">
-                  {charCount}/1200 characters (min. 120)
+                  {charCount.description}/1200 characters (min. 120)
                 </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <FormError message={formMessage.error} />
-          <FormSuccess message={formMessage.success} />
-          <Button disabled={isPending} type="submit">
-            {isPending ? 'Publishing...' : 'Publish Service '}
-          </Button>
+
+          <FormError message={formState.message.error} />
+          <FormSuccess message={formState.message.success} />
+
+          <Submit title="Publish Service" loadingTitle="Publishing..." />
         </form>
       </Form>
     </>

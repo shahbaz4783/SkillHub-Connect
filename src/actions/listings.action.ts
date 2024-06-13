@@ -4,7 +4,10 @@ import * as z from 'zod';
 import { currentUser } from '@/lib/auth';
 import { jobSchema, serviceSchema } from '@/validators/listing.schema';
 import { prisma } from '@/lib/prisma';
+import { authMessages } from '@/constants/messages';
+import { redirect } from 'next/navigation';
 
+// Job
 export const jobPostAction = async (values: z.infer<typeof jobSchema>) => {
   const validateFields = jobSchema.safeParse(values);
   if (!validateFields.success) {
@@ -49,18 +52,21 @@ export const deleteJobAction = async (id: string) => {
 // Service
 
 export const servicePostAction = async (
-  values: z.infer<typeof serviceSchema>,
-) => {
-  const validateFields = serviceSchema.safeParse(values);
+  formState: FormState,
+  formData: FormData,
+): Promise<FormState> => {
+  const formDataObj = Object.fromEntries(formData);
+  console.log(formDataObj);
+
+  const validateFields = serviceSchema.safeParse(formDataObj);
   if (!validateFields.success) {
-    return { error: 'Invalid Fields!' };
+    return { message: { error: authMessages.validation.invalidFields } };
   }
 
   const user = await currentUser();
   if (!user?.id) {
-    return { error: 'User not found or missing user ID!' };
+    return { message: { error: authMessages.error.userNotFound } };
   }
-  const userId = user.id;
 
   const { title, description, tags, price, time, category } =
     validateFields.data;
@@ -75,13 +81,13 @@ export const servicePostAction = async (
       category,
       user: {
         connect: {
-          id: userId,
+          id: user.id,
         },
       },
     },
   });
 
-  return { success: 'Service created successfully' };
+  return { message: { success: 'Posted' } };
 };
 
 export const deleteServiceAction = async (id: string) => {
