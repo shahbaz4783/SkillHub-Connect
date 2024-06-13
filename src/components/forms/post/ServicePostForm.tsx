@@ -125,7 +125,7 @@ const ServicePostForm = () => {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Logo Design" />
+                        <SelectValue />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
