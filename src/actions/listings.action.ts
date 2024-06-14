@@ -81,9 +81,10 @@ export const servicePostAction = async (
   const buffer = Buffer.from(arrayBuffer);
 
   let imageUrl: string;
-  
+  const path = 'services';
+
   try {
-    const uploadResult = await uploadImageToCloudinary(buffer);
+    const uploadResult = await uploadImageToCloudinary(buffer, path);
     if (!uploadResult?.secure_url) {
       throw new Error('Upload failed');
     }
