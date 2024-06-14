@@ -20,9 +20,7 @@ const ServiceCard = async () => {
           <Card className="cursor-pointer hover:bg-slate-50">
             <CardHeader>
               <Image
-                src={
-                  'https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                }
+                src={data.imageUrl}
                 width={500}
                 height={500}
                 alt=""

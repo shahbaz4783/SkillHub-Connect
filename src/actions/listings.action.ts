@@ -1,11 +1,10 @@
 'use server';
 
-import * as z from 'zod';
 import { currentUser } from '@/lib/auth';
 import { jobSchema, serviceSchema } from '@/validators/listing.schema';
 import { prisma } from '@/lib/prisma';
 import { authMessages } from '@/constants/messages';
-import { redirect } from 'next/navigation';
+import { uploadImageToCloudinary } from '@/lib/cloudnary';
 
 // Job
 export const jobPostAction = async (
@@ -63,7 +62,7 @@ export const servicePostAction = async (
   formData: FormData,
 ): Promise<FormState> => {
   const formDataObj = Object.fromEntries(formData);
-
+  console.log(formDataObj);
   const validateFields = serviceSchema.safeParse(formDataObj);
   if (!validateFields.success) {
     return { message: { error: authMessages.validation.invalidFields } };
@@ -74,8 +73,25 @@ export const servicePostAction = async (
     return { message: { error: authMessages.error.userNotFound } };
   }
 
-  const { title, description, tags, price, time, category } =
+  const { title, description, tags, price, time, category, image } =
     validateFields.data;
+
+  const file = image as File;
+  const arrayBuffer = await file.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+
+  let imageUrl: string;
+  
+  try {
+    const uploadResult = await uploadImageToCloudinary(buffer);
+    if (!uploadResult?.secure_url) {
+      throw new Error('Upload failed');
+    }
+    imageUrl = uploadResult.secure_url;
+  } catch (error) {
+    console.error('Cloudinary upload error:', error);
+    return { message: { error: 'Image upload failed' } };
+  }
 
   await prisma.servicePost.create({
     data: {
@@ -85,6 +101,7 @@ export const servicePostAction = async (
       price,
       time,
       category,
+      imageUrl,
       user: {
         connect: {
           id: user.id,

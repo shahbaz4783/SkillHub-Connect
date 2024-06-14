@@ -213,6 +213,22 @@ const ServicePostForm = () => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Upload Image</FormLabel>
+                  <FormDescription>
+                    Upload an image (must be under 2MB)
+                  </FormDescription>
+                  <FormControl>
+                    <Input type="file" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
 
           <FormError message={formState.message.error} />
