@@ -5,6 +5,7 @@ import { jobSchema, serviceSchema } from '@/validators/listing.schema';
 import { prisma } from '@/lib/prisma';
 import { authMessages } from '@/constants/messages';
 import { uploadImageToCloudinary } from '@/lib/cloudnary';
+import { calculateProposalCost } from '@/lib/utils';
 
 // Job
 export const jobPostAction = async (
@@ -12,8 +13,6 @@ export const jobPostAction = async (
   formData: FormData,
 ): Promise<FormState> => {
   const formDataObj = Object.fromEntries(formData);
-
-  console.log(formDataObj);
   const validateFields = jobSchema.safeParse(formDataObj);
 
   if (!validateFields.success) {
@@ -29,6 +28,8 @@ export const jobPostAction = async (
   const { title, description, skills, price, category, experience, location } =
     validateFields.data;
 
+  const connectCost = calculateProposalCost(price);
+
   await prisma.jobPost.create({
     data: {
       title,
@@ -38,6 +39,7 @@ export const jobPostAction = async (
       location,
       price,
       category,
+      connectCost,
       user: {
         connect: {
           id: userId,

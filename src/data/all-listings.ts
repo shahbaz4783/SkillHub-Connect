@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 export const getServiceDetailsData = async (id: string) => {
   return await prisma.servicePost.findFirst({
     where: { id },
+    include: { user: true },
   });
 };
 
@@ -11,6 +12,7 @@ export const getServiceDetailsData = async (id: string) => {
 export const getJobDetailsData = async (id: string) => {
   return await prisma.jobPost.findFirst({
     where: { id },
+    include: { user: true },
   });
 };
 
