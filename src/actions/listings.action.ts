@@ -62,7 +62,6 @@ export const servicePostAction = async (
   formData: FormData,
 ): Promise<FormState> => {
   const formDataObj = Object.fromEntries(formData);
-  console.log(formDataObj);
   const validateFields = serviceSchema.safeParse(formDataObj);
   if (!validateFields.success) {
     return { message: { error: authMessages.validation.invalidFields } };
@@ -85,9 +84,7 @@ export const servicePostAction = async (
 
   try {
     const uploadResult = await uploadImageToCloudinary(buffer, path);
-    if (!uploadResult?.secure_url) {
-      throw new Error('Upload failed');
-    }
+    if (!uploadResult?.secure_url) throw new Error('Upload failed');
     imageUrl = uploadResult.secure_url;
   } catch (error) {
     console.error('Cloudinary upload error:', error);

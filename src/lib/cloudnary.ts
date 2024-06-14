@@ -4,12 +4,10 @@ cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
+  timeout: 60000,
 });
 
-export const uploadImageToCloudinary = async (
-  buffer: Buffer,
-  path: string,
-): Promise<any> => {
+export const uploadImageToCloudinary = async (buffer: Buffer, path: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       {
