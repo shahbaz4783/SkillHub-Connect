@@ -1,11 +1,16 @@
 'use server';
 
 import { currentUser } from '@/lib/auth';
-import { jobSchema, serviceSchema } from '@/validators/listing.schema';
+import {
+  jobSchema,
+  proposalSchema,
+  serviceSchema,
+} from '@/validators/listing.schema';
 import { prisma } from '@/lib/prisma';
 import { authMessages } from '@/constants/messages';
 import { uploadImageToCloudinary } from '@/lib/cloudnary';
 import { calculateProposalCost } from '@/lib/utils';
+import { getUserByID } from '@/data/user';
 
 // Job
 export const jobPostAction = async (
@@ -50,6 +55,83 @@ export const jobPostAction = async (
 
   return { message: { success: 'Posted' } };
 };
+
+export const addProposalAction = async (
+  jobPostId: string,
+  formState: FormState,
+  formData: FormData,
+): Promise<FormState> => {
+  const formDataObj = Object.fromEntries(formData);
+  const validateFields = proposalSchema.safeParse(formDataObj);
+
+  if (!validateFields.success) {
+    return { message: { error: authMessages.validation.invalidFields } };
+  }
+
+  const { bid, timeframe, description } = validateFields.data;
+
+  const existingUser = await currentUser();
+
+  if (!existingUser) {
+    return { message: { error: authMessages.error.userNotFound } };
+  }
+
+  const userId = existingUser.id;
+
+  if (!userId) {
+    return { message: { error: authMessages.error.userNotFound } };
+  }
+
+  const jobPost = await prisma.jobPost.findUnique({
+    where: { id: jobPostId },
+  });
+
+  if (!jobPost) {
+    return { message: { error: 'Job post not found' } };
+  }
+
+  const connectCost = jobPost.connectCost;
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    return { message: { error: 'User not found' } };
+  }
+
+  const connects = user.connects;
+  if (!connects) return { message: { error: 'Insufficient credits' } };
+
+  if (connects < connectCost) {
+    return { message: { error: 'Insufficient credits' } };
+  }
+
+  await prisma.$transaction(async (prisma) => {
+    await prisma.proposal.create({
+      data: {
+        bid,
+        timeframe,
+        description,
+        userId,
+        jobPostId,
+      },
+    });
+
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        connects: {
+          decrement: connectCost,
+        },
+      },
+    });
+  });
+
+  return { message: { success: 'Proposal Created Successfully' } };
+};
+
+
 
 export const deleteJobAction = async (id: string) => {
   await prisma.jobPost.delete({

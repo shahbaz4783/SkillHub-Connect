@@ -48,3 +48,13 @@ export const jobSchema = z.object({
   category: z.string(),
   experience: z.string(),
 });
+
+
+export const proposalSchema = z.object({
+  bid: z.coerce.number().min(5).max(5000),
+  timeframe: z.string(),
+  description: z
+    .string()
+    .min(120, { message: 'Description must be atleast 120 characters long' })
+    .max(1200, { message: 'Title must not exceed by 1200 characters' }),
+});

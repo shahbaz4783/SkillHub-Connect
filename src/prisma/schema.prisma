@@ -22,6 +22,7 @@ model User {
   jobs          JobPost[]
   address       Address?
   rating        Rating[]
+  proposals       Proposal[]
   connects      Int? @default(120)
   createdAt     DateTime?  @default(now()) @map(name: "created_at")
 }
@@ -117,13 +118,13 @@ model Proposal {
   userId          String
   jobPostId       String
   description     String
-  price           Int
-  timeframe       Int
+  bid             Int
+  timeframe       String
   isAccepted      Boolean     @default(false)
   createdAt       DateTime    @default(now()) @map(name: "created_at")
   updatedAt       DateTime    @updatedAt @map(name: "updated_at")
   jobPost         JobPost     @relation(fields: [jobPostId], references: [id], onDelete: Cascade)
-
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@unique([userId, jobPostId])
 }
 

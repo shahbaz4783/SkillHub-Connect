@@ -129,3 +129,23 @@ export const supportOptions = [
     icon: FileCode,
   },
 ];
+
+
+export const timeFrameOptions = [
+  {
+    title: 'More than 6 months',
+    value: 'more_than_six_months',
+  },
+  {
+    title: '3 to 6 months',
+    value: 'three_to_six_month',
+  },
+  {
+    title: '1 to 3 months',
+    value: 'one_to_three_months',
+  },
+  {
+    title: 'Less than 1 month',
+    value: 'less_than_one_month',
+  },
+];

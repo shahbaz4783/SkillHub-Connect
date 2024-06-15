@@ -24,6 +24,7 @@ const JobDetailPage = async ({ params }: ParamsProps) => {
       <JobPostDetailsAside
         connectCost={jobDetails?.connectCost as number}
         availableConnects={jobDetails?.user.connects as number}
+        jobId={jobDetails?.id as string}
       />
     </div>
   );

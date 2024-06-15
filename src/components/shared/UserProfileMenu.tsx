@@ -27,7 +27,8 @@ export function UserProfileMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <UserAvatar />
+        {/* <UserAvatar /> */}
+        <User />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>

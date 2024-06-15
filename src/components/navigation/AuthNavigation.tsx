@@ -17,8 +17,8 @@ const AuthNavigation = () => {
   } else if (session.data?.user) {
     authContent = (
       <div className="hidden items-center gap-8 md:flex">
-        {loggedInExtraNav.map((data) => (
-          <Link href={data.path} key={data.path} className="w-full space-y-8">
+        {loggedInExtraNav.map((data, index) => (
+          <Link href={data.path} key={index} className="w-full space-y-8">
             <li className="flex cursor-pointer list-none items-center justify-between">
               <span>{data.icon && <data.icon />}</span>
             </li>

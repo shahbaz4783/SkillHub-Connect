@@ -1,4 +1,5 @@
 'use server';
+
 import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail, updateUserSession } from '@/data/user';
@@ -6,7 +7,6 @@ import { addressSchema, bioSchema, userSchema } from '@/validators/user.schema';
 import { currentUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { authMessages } from '@/constants/messages';
-import { error } from 'console';
 
 export const updatePersonalInfoAction = async (
   email: string | null,
