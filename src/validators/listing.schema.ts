@@ -44,7 +44,7 @@ export const jobSchema = z.object({
 
   skills: z.string(),
   price: z.coerce.number(),
-  location: z.string(),
+  projectType: z.string(),
   category: z.string(),
   experience: z.string(),
 });

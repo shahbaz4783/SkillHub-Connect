@@ -13,14 +13,8 @@ const JobDetailPage = async ({ params }: ParamsProps) => {
 
   return (
     <div className="flex min-h-svh flex-col md:flex-row">
-      <JobDetailedInfo
-        title={jobDetails?.title as string}
-        description={jobDetails?.description as string}
-        budget={jobDetails?.price as number}
-        createdAt={jobDetails?.createdAt as Date}
-        experience={jobDetails?.experience as string}
-        skills={jobDetails?.skills as string}
-      />
+      <JobDetailedInfo jobId={params.jobId} />
+
       <JobPostDetailsAside
         connectCost={jobDetails?.connectCost as number}
         availableConnects={jobDetails?.user.connects as number}

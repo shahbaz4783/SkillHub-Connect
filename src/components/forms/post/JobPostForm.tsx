@@ -170,7 +170,7 @@ const JobPostForm = () => {
             />
             <FormField
               control={form.control}
-              name="location"
+              name="projectType"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Job Type</FormLabel>
@@ -188,10 +188,14 @@ const JobPostForm = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="single">One-time Project</SelectItem>
-                      <SelectItem value="short">Short-term Contract</SelectItem>
-                      <SelectItem value="ongoing">
-                        Ongoing Collaboration
+                      <SelectItem value="One-time Project">
+                        One-time Project
+                      </SelectItem>
+                      <SelectItem value="Short-term Contract">
+                        Short-term Contract
+                      </SelectItem>
+                      <SelectItem value="Ongoing project">
+                        Ongoing project
                       </SelectItem>
                     </SelectContent>
                   </Select>

@@ -47,7 +47,7 @@ const ProposalForm = ({ jobPostId }: { jobPostId: string }) => {
     const bidAmount = Number(bid) || 0;
     const fees = bidAmount * 0.1;
     const paymentReceive = bidAmount - fees;
-    setValue('fees', -Number(fees.toFixed(2)));
+    setValue('fees', Number(fees.toFixed(2)));
     setValue('paymentReceive', Number(paymentReceive.toFixed(2)));
   };
 

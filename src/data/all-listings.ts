@@ -10,10 +10,26 @@ export const getServiceDetailsData = async (id: string) => {
 
 // Detailed data of job post
 export const getJobDetailsData = async (id: string) => {
-  return await prisma.jobPost.findFirst({
-    where: { id },
-    include: { user: true },
+  const jobPost = await prisma.jobPost.findFirst({
+    where: { id, status: 'OPEN' },
+    include: {
+      user: true,
+      _count: {
+        select: { proposals: true },
+      },
+    },
   });
+
+  if (!jobPost) {
+    return null;
+  }
+
+  const { _count, user, ...rest } = jobPost;
+  return {
+    ...rest,
+    proposalCount: _count.proposals,
+    user,
+  };
 };
 
 export const getAllServiceListings = async () => {
@@ -32,7 +48,11 @@ export const getAllJobListings = async () => {
   let listings = null;
   let count = 0;
 
-  listings = await prisma.jobPost.findMany();
+  listings = await prisma.jobPost.findMany({
+    where: {
+      status: 'OPEN',
+    },
+  });
   count = await prisma.jobPost.count();
 
   return { listings, count };

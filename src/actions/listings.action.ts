@@ -29,8 +29,15 @@ export const jobPostAction = async (
   }
   const userId = user.id;
 
-  const { title, description, skills, price, category, experience, location } =
-    validateFields.data;
+  const {
+    title,
+    description,
+    skills,
+    price,
+    category,
+    experience,
+    projectType,
+  } = validateFields.data;
 
   const connectCost = calculateProposalCost(price);
 
@@ -40,7 +47,7 @@ export const jobPostAction = async (
       description,
       skills,
       experience,
-      location,
+      projectType,
       price,
       category,
       connectCost,
@@ -71,13 +78,11 @@ export const addProposalAction = async (
     validateFields.data;
 
   const existingUser = await currentUser();
-
   if (!existingUser) {
     return { message: { error: authMessages.error.userNotFound } };
   }
 
   const userId = existingUser.id;
-
   if (!userId) {
     return { message: { error: authMessages.error.userNotFound } };
   }
