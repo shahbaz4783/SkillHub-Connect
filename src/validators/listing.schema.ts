@@ -52,6 +52,8 @@ export const jobSchema = z.object({
 
 export const proposalSchema = z.object({
   bid: z.coerce.number().min(5).max(5000),
+  fees: z.coerce.number(),
+  paymentReceive: z.coerce.number(),
   timeframe: z.string(),
   description: z
     .string()

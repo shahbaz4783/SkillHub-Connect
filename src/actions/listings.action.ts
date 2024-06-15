@@ -10,7 +10,6 @@ import { prisma } from '@/lib/prisma';
 import { authMessages } from '@/constants/messages';
 import { uploadImageToCloudinary } from '@/lib/cloudnary';
 import { calculateProposalCost } from '@/lib/utils';
-import { getUserByID } from '@/data/user';
 
 // Job
 export const jobPostAction = async (
@@ -68,7 +67,8 @@ export const addProposalAction = async (
     return { message: { error: authMessages.validation.invalidFields } };
   }
 
-  const { bid, timeframe, description } = validateFields.data;
+  const { bid, timeframe, description, fees, paymentReceive } =
+    validateFields.data;
 
   const existingUser = await currentUser();
 
@@ -90,6 +90,9 @@ export const addProposalAction = async (
     return { message: { error: 'Job post not found' } };
   }
 
+  if (jobPost.userId === userId)
+    return { message: { error: 'You cant add proposal to your own job' } };
+
   const connectCost = jobPost.connectCost;
 
   const user = await prisma.user.findUnique({
@@ -100,11 +103,21 @@ export const addProposalAction = async (
     return { message: { error: 'User not found' } };
   }
 
-  const connects = user.connects;
-  if (!connects) return { message: { error: 'Insufficient credits' } };
+  const existingProposal = await prisma.proposal.findFirst({
+    where: {
+      userId,
+      jobPostId,
+    },
+  });
 
-  if (connects < connectCost) {
-    return { message: { error: 'Insufficient credits' } };
+  if (existingProposal) {
+    return { message: { error: 'You have already applied to this job post' } };
+  }
+
+  const availableConnects = user.connects || 0;
+
+  if (availableConnects < connectCost) {
+    return { message: { error: 'Insufficient connect to ' } };
   }
 
   await prisma.$transaction(async (prisma) => {
@@ -115,6 +128,8 @@ export const addProposalAction = async (
         description,
         userId,
         jobPostId,
+        fees,
+        paymentReceive,
       },
     });
 

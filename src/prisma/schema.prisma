@@ -118,7 +118,9 @@ model Proposal {
   userId          String
   jobPostId       String
   description     String
-  bid             Int
+  bid             Decimal
+  fees            Decimal
+  paymentReceive  Decimal
   timeframe       String
   isAccepted      Boolean     @default(false)
   createdAt       DateTime    @default(now()) @map(name: "created_at")

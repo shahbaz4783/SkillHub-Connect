@@ -1,11 +1,16 @@
 import ProposalForm from '@/components/forms/post/proposal-form';
 import SectionTop from '@/components/ui/SectionTop';
 
-const page = () => {
+interface ParamsProps {
+  params: {
+    jobId: string;
+  };
+}
+const page = ({ params }: ParamsProps) => {
   return (
     <>
       <SectionTop heading="Submit a proposal" subhead="" />
-      <ProposalForm />
+      <ProposalForm jobPostId={params.jobId} />
     </>
   );
 };

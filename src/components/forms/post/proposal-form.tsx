@@ -24,26 +24,36 @@ import {
 } from '@/components/ui/select';
 
 import { proposalSchema } from '@/validators/listing.schema';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Textarea } from '../../ui/textarea';
 import { timeFrameOptions } from '@/constants/options';
-import {
-  addProposalAction,
-  servicePostAction,
-} from '@/actions/listings.action';
+import { addProposalAction } from '@/actions/listings.action';
 import { useFormState } from 'react-dom';
 import Submit from '@/components/buttons/submit';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 
-const ProposalForm = () => {
+const ProposalForm = ({ jobPostId }: { jobPostId: string }) => {
   const [charCount, setCharCount] = useState<number>(0);
 
   const form = useForm<z.infer<typeof proposalSchema>>({
     resolver: zodResolver(proposalSchema),
   });
 
-  const jobPostId = 'clxf13w6i0000o8mf0jwyp4lz';
+  const { watch, setValue } = form;
+  const bid = watch('bid');
+
+  const updateFeesAndPayment = () => {
+    const bidAmount = Number(bid) || 0;
+    const fees = bidAmount * 0.1;
+    const paymentReceive = bidAmount - fees;
+    setValue('fees', -Number(fees.toFixed(2)));
+    setValue('paymentReceive', Number(paymentReceive.toFixed(2)));
+  };
+
+  useEffect(() => {
+    updateFeesAndPayment();
+  }, [bid]);
 
   const [formState, formAction] = useFormState(
     addProposalAction.bind(null, jobPostId),
@@ -55,41 +65,97 @@ const ProposalForm = () => {
   return (
     <Form {...form}>
       <form action={formAction} className="space-y-12">
-        <Card>
+        <Card className="md:w-2/3">
           <CardContent>
             <CardTitle>
               What is the full amount you'd like to bid for this job?
             </CardTitle>
-            <FormField
-              control={form.control}
-              name="bid"
-              render={({ field }) => (
-                <FormItem className="flex gap-8">
-                  <aside className="flex w-2/3">
+          </CardContent>
+          <CardContent className="space-y-6">
+            <div>
+              <FormField
+                control={form.control}
+                name="bid"
+                render={({ field }) => (
+                  <FormItem className="gap-8 md:flex">
                     <div className="w-2/3">
                       <FormLabel>Bid</FormLabel>
                       <FormDescription>
                         Total amount the client will see on your proposal
                       </FormDescription>
                     </div>
-                    <div className="w-1/3">
+                    <div className="md:w-1/3">
                       <FormControl>
                         <Input
                           placeholder="Enter min $5 to max $5k"
+                          className="text-right"
+                          type="number"
                           {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </div>
-                  </aside>
-                  <aside>Includes Skillhub Fixed-Price Protection.</aside>
-                </FormItem>
-              )}
-            />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <hr />
+            <div>
+              <FormField
+                control={form.control}
+                name="fees"
+                render={({ field }) => (
+                  <FormItem className="gap-8 md:flex">
+                    <div className="w-2/3">
+                      <FormLabel>10% Freelancer Service Fee</FormLabel>
+                    </div>
+                    <div className="md:w-1/3">
+                      <FormControl>
+                        <Input
+                          className="cursor-default text-right"
+                          type="number"
+                          readOnly
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
+              />
+            </div>
+            <hr />
+            <div>
+              <FormField
+                control={form.control}
+                name="paymentReceive"
+                render={({ field }) => (
+                  <FormItem className="gap-8 md:flex">
+                    <div className="w-2/3">
+                      <FormLabel>You’ll Receive</FormLabel>
+                      <FormDescription>
+                        The estimated amount you'll receive after service fees
+                      </FormDescription>
+                    </div>
+                    <div className="md:w-1/3">
+                      <FormControl>
+                        <Input
+                          readOnly
+                          className="cursor-default text-right"
+                          type="number"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
+              />
+            </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="md:w-2/3">
           <CardContent>
             <CardTitle>How long will this project take?</CardTitle>
             <FormField
@@ -136,7 +202,7 @@ const ProposalForm = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="md:w-2/3">
           <CardContent>
             <CardTitle>Cover Letter</CardTitle>
             <FormField
