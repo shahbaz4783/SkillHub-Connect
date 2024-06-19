@@ -12,7 +12,11 @@ const Submit = ({
 }) => {
   const { pending } = useFormStatus();
 
-  return <Button type='submit' disabled={pending}>{pending ? loadingTitle : title}</Button>;
+  return (
+    <Button type="submit" disabled={pending}>
+      {pending ? loadingTitle : title}
+    </Button>
+  );
 };
 
 export default Submit;

@@ -9,17 +9,11 @@ interface ParamsProps {
 }
 
 const JobDetailPage = async ({ params }: ParamsProps) => {
-  const jobDetails = await getJobDetailsData(params.jobId);
-
   return (
-    <div className="flex min-h-svh flex-col md:flex-row">
+    <div className="flex min-h-svh flex-col lg:flex-row">
       <JobDetailedInfo jobId={params.jobId} />
 
-      <JobPostDetailsAside
-        connectCost={jobDetails?.connectCost as number}
-        availableConnects={jobDetails?.user.connects as number}
-        jobId={jobDetails?.id as string}
-      />
+      <JobPostDetailsAside jobId={params.jobId} />
     </div>
   );
 };
