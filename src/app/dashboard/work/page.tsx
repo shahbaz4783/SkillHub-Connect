@@ -1,15 +1,14 @@
+import Proposals from '@/components/layouts/work/proposals';
 import DashboardHeader from '@/components/shared/DashboardHeader';
 
-const AdminJobsPage = () => {
-	return (
+const AdminJobsPage = async () => {
+  return (
     <>
       <DashboardHeader
         title="Work History"
         subTitle="Overview of your work history"
       />
-      <div>
-        <p>No work history found...</p>
-      </div>
+      <Proposals />
     </>
   );
 };
