@@ -1,9 +1,8 @@
+import UnderDevelopment from '@/components/shared/under-development';
 import React from 'react'
 
 const page = () => {
-  return (
-    <div>page</div>
-  )
+  return <UnderDevelopment />;
 }
 
 export default page

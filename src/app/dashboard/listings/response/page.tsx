@@ -1,7 +1,7 @@
 import UnderDevelopment from '@/components/shared/under-development';
 
-const page = () => {
+const ResponseOnListings = () => {
   return <UnderDevelopment />;
 };
 
-export default page;
+export default ResponseOnListings;

@@ -13,6 +13,8 @@ import {
   UserCog,
   CircleHelp,
   Send,
+  Folder,
+  MessageCircleReply,
 } from 'lucide-react';
 
 interface NavInterface {
@@ -171,14 +173,38 @@ export const LISTING_ROUTES = [
     icon: BriefcaseBusiness,
   },
   {
+    title: 'Response',
+    path: '/dashboard/listings/response',
+    icon: MessageCircleReply,
+  },
+  {
+    title: 'Archieved',
+    path: '/dashboard/listings/archieved',
+    icon: Folder,
+  },
+];
+
+// Work Routes
+export const WORK_ROUTES = [
+  {
+    title: 'Proposals',
+    path: '/dashboard/work/proposals',
+    icon: NotebookPen,
+  },
+  {
+    title: 'Post a new job',
+    path: '/dashboard/listings/post-job',
+    icon: BriefcaseBusiness,
+  },
+  {
     title: 'Draft',
     path: '/dashboard/listings/drafts',
     icon: SquarePen,
   },
   {
-    title: 'Paused',
-    path: '/dashboard/listings/paused',
-    icon: Pause,
+    title: 'Archieved',
+    path: '/dashboard/work/archieved',
+    icon: Folder,
   },
 ];
 

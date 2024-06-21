@@ -3,7 +3,6 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { getJobDetailsData } from '@/data/all-listings';
 import { getUserProposals } from '@/data/proposals';
 import Link from 'next/link';
-import React from 'react';
 
 const Proposals = async () => {
   const proposals = await getUserProposals();
