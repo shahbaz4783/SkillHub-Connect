@@ -1,10 +1,5 @@
-import {
-  getJobDetailsData,
-  getJobPosts,
-  JobPostData,
-} from '@/data/all-listings';
-import { getAllJobListingsExceptOwn } from '@/data/user-listings';
 import { timeSince } from '@/lib/utils';
+import { JobPostData } from '@/types/types';
 import { UserCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';

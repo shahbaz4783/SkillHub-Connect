@@ -1,14 +1,33 @@
+import { currentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import type { JobPost } from '@prisma/client';
+import { JobPostData } from '@/types/types';
 
-export type JobPostData = JobPost & {
-  user: { name: string | null; image: string | null };
-  _count: {
-    proposals: number;
-  };
-};
+export const getJobPosts = async (
+  filter: 'all' | 'exceptOwn',
+): Promise<JobPostData[]> => {
+  const user = await currentUser();
+  const userId = user?.id;
 
-export const getJobPosts = async (): Promise<JobPostData[]> => {
+  if (filter === 'exceptOwn') {
+    return await prisma.jobPost.findMany({
+      where: { status: 'OPEN', NOT: { userId } },
+      include: {
+        user: {
+          select: { name: true, image: true },
+        },
+        _count: {
+          select: {
+            proposals: true,
+          },
+        },
+      },
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      take: 16,
+    });
+  }
+
   return await prisma.jobPost.findMany({
     where: { status: 'OPEN' },
     include: {
@@ -23,7 +42,6 @@ export const getJobPosts = async (): Promise<JobPostData[]> => {
     },
   });
 };
-
 
 // Detailed data of service post
 export const getServiceDetailsData = async (id: string) => {

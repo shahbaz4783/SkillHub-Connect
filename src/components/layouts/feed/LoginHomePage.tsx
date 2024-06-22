@@ -15,7 +15,7 @@ const LoginHomePage = async () => {
         <CarouselPlugin />
         <Suspense fallback={<JobCardSkeleton />}>
           {/* <FeedJobs /> */}
-          <JobPostCard fetchData={() => getJobPosts()} />
+          <JobPostCard fetchData={() => getJobPosts('exceptOwn')} />
         </Suspense>
       </main>
       <aside className="space-y-8 md:w-1/4">
