@@ -1,4 +1,29 @@
 import { prisma } from '@/lib/prisma';
+import type { JobPost } from '@prisma/client';
+
+export type JobPostData = JobPost & {
+  user: { name: string | null; image: string | null };
+  _count: {
+    proposals: number;
+  };
+};
+
+export const getJobPosts = async (): Promise<JobPostData[]> => {
+  return await prisma.jobPost.findMany({
+    where: { status: 'OPEN' },
+    include: {
+      user: {
+        select: { name: true, image: true },
+      },
+      _count: {
+        select: {
+          proposals: true,
+        },
+      },
+    },
+  });
+};
+
 
 // Detailed data of service post
 export const getServiceDetailsData = async (id: string) => {

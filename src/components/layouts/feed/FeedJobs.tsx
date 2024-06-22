@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { getJobDetailsData } from '@/data/all-listings';
 import { Avatar } from '@/components/ui/avatar';
 import Image from 'next/image';
+import { timeSince } from '@/lib/utils';
 
 const FeedJobs = async () => {
   const listings = await getAllJobListingsExceptOwn();
@@ -12,19 +13,19 @@ const FeedJobs = async () => {
     <section>
       <SectionTop
         heading="Jobs you might like"
-        subhead="Check out the latest opportunities matching your profile."
+        subhead="Discover the most recent job postings tailored to your profile."
       />
+      <hr />
       <article className="space-y-8">
         {listings?.slice(0, 10).map(async (data) => {
           const jobData = await getJobDetailsData(data.id);
+          const time = timeSince(data.createdAt);
           return (
             <>
               <Link key={data.id} href={`/freelance-jobs/${data.id}`}>
                 <div className="cursor-pointer space-y-4 border-b-[1px] p-4 hover:bg-slate-100">
                   <div>
-                    <p className="text-sm text-slate-500">
-                      Posted on {data.createdAt.toDateString()}
-                    </p>
+                    <p className="text-sm text-slate-500">Posted {time}</p>
                     <h1 className="line-clamp-1 text-lg font-semibold">
                       {data.title}
                     </h1>
@@ -42,7 +43,7 @@ const FeedJobs = async () => {
                     {data.skills.split(',').map((item, index) => (
                       <span
                         key={index}
-                        className="rounded-3xl text-sm bg-slate-200 px-2 py-1 md:px-4"
+                        className="rounded-3xl bg-slate-200 px-2 py-1 text-sm md:px-4"
                       >
                         {item.trim()}
                       </span>

@@ -1,10 +1,12 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import CarouselPlugin from './UserGreet';
 import FeedJobs from './FeedJobs';
 import FeedUser from './FeedUser';
 import QuickActions from './QuickActions';
 import Heading from '@/components/loaders/Heading';
 import JobCardSkeleton from '@/components/loaders/JobCardSkeleton';
+import JobPostCard from '@/components/cards/job-post-card';
+import { getJobPosts } from '@/data/all-listings';
 
 const LoginHomePage = async () => {
   return (
@@ -12,7 +14,8 @@ const LoginHomePage = async () => {
       <main className="space-y-16 md:w-3/4">
         <CarouselPlugin />
         <Suspense fallback={<JobCardSkeleton />}>
-          <FeedJobs />
+          {/* <FeedJobs /> */}
+          <JobPostCard fetchData={() => getJobPosts()} />
         </Suspense>
       </main>
       <aside className="space-y-8 md:w-1/4">
