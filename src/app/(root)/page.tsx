@@ -1,11 +1,11 @@
 import { auth } from '@/auth';
 import LandingPage from '../../components/layouts/static/LandingPage';
-import LoginHomePage from '@/components/layouts/feed/LoginHomePage';
+import PersonaliseHomepage from '@/components/layouts/feed/personalise-homepage';
 
 const HomePage = async () => {
   const session = await auth();
 
-  return <>{session ? <LoginHomePage /> : <LandingPage />}</>;
+  return <>{session ? <PersonaliseHomepage /> : <LandingPage />}</>;
 };
 
 export default HomePage;

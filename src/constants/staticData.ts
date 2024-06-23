@@ -301,3 +301,21 @@ export const feedCaroselItem = [
     icon: TextSearch,
   },
 ];
+
+
+export const ACCORDION_QUICK_ACTION = [
+  {
+    value: 'item-2',
+    title: 'Proposals',
+    subtitle: 'Looking for work? Browse jobs and get started on a proposal.',
+    url: '/dashboard/work/proposals',
+    urlText: 'My Proposals',
+  },
+  {
+    value: 'item-3',
+    title: 'Service Catalog',
+    subtitle: 'Create a Catalog service for clients to purchase instantly',
+    url: '/dashboard/listings',
+    urlText: 'My Service Dashboard',
+  },
+];
