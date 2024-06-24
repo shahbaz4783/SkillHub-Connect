@@ -7,6 +7,7 @@ import { addressSchema, bioSchema, userSchema } from '@/validators/user.schema';
 import { currentUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { authMessages } from '@/constants/messages';
+import { FormState } from '@/types/types';
 
 export const updatePersonalInfoAction = async (
   email: string | null,

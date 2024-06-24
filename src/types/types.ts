@@ -1,6 +1,6 @@
-import type { JobPost } from '@prisma/client';
+import type { JobPost, ServicePost } from '@prisma/client';
 
-interface FormState {
+export interface FormState {
   message: {
     error?: string;
     success?: string;
@@ -8,9 +8,18 @@ interface FormState {
   otpReceive?: boolean;
 }
 
-export type JobPostData = JobPost & {
-  user: { name: string | null; image: string | null };
+interface User {
+  name: string | null;
+  image: string | null;
+}
+
+export interface JobPostData extends JobPost {
+  user: User;
   _count: {
     proposals: number;
   };
-};
+}
+
+export interface ServicePostData extends ServicePost {
+  user: User;
+}

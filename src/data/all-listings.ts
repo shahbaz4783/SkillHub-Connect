@@ -1,6 +1,6 @@
 import { currentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { JobPostData } from '@/types/types';
+import { JobPostData, ServicePostData } from '@/types/types';
 
 export const getJobPosts = async (
   filter: 'all' | 'exceptOwn',
@@ -43,6 +43,19 @@ export const getJobPosts = async (
   });
 };
 
+// Service Posts
+export const getServiceCatalog = async (): Promise<ServicePostData[]> => {
+  return await prisma.servicePost.findMany({
+    where: { status: 'OPEN' },
+    include: {
+      user: {
+        select: { name: true, image: true },
+      },
+    },
+  });
+};
+
+
 // Detailed data of service post
 export const getServiceDetailsData = async (id: string) => {
   return await prisma.servicePost.findFirst({
@@ -75,6 +88,8 @@ export const getJobDetailsData = async (id: string) => {
   };
 };
 
+
+// remove them
 export const getAllServiceListings = async () => {
   let listings = null;
   let count = 0;

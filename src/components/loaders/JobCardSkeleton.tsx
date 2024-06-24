@@ -1,6 +1,6 @@
 import { Skeleton } from '../ui/skeleton';
 
-const JobCardSkeleton = () => {
+const JobPostCardSkeleton = () => {
   return (
     <div className="mb-6 flex animate-pulse flex-col gap-4 rounded-lg bg-slate-100 p-4">
       <div className="space-y-2">
@@ -25,4 +25,4 @@ const JobCardSkeleton = () => {
   );
 };
 
-export default JobCardSkeleton;
+export default JobPostCardSkeleton;

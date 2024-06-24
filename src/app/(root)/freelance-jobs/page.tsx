@@ -1,20 +1,24 @@
+import JobPostCard from '@/components/cards/job-post-card';
 import JobCard from '@/components/cards/JobCard';
-import JobCardSkeleton from '@/components/loaders/JobCardSkeleton';
+import JobPostFilter from '@/components/filter/JobPostFilter';
 import DescHeading from '@/components/ui/DescHeading';
-import { Suspense } from 'react';
+import { getJobPosts } from '@/data/all-listings';
 
 const JobDetails = () => {
-	return (
+  return (
     <main className="my-12">
       <DescHeading
         heading="Find the best jobs"
         subhead="It takes just one job to develop a successful relationship that can propel your career forward."
       />
-      <Suspense fallback={<JobCardSkeleton />}>
-        <section className="grid gap-8 md:grid-cols-2">
-          <JobCard />
-        </section>
-      </Suspense>
+      <section className="grid gap-8 md:grid-cols-4">
+        <div>
+          <JobPostFilter />
+        </div>
+        <div className="col-span-3">
+          <JobPostCard fetchData={() => getJobPosts('all')} />
+        </div>
+      </section>
     </main>
   );
 };

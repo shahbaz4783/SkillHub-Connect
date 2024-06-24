@@ -10,6 +10,7 @@ import { prisma } from '@/lib/prisma';
 import { authMessages } from '@/constants/messages';
 import { uploadImageToCloudinary } from '@/lib/cloudnary';
 import { calculateProposalCost } from '@/lib/utils';
+import { FormState } from '@/types/types';
 
 // Job
 export const jobPostAction = async (
