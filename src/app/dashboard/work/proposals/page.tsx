@@ -2,6 +2,7 @@ import Proposals from '@/components/cards/proposals';
 import ServiceCardSkeleton from '@/components/loaders/ServiceCardSkeleton';
 import DashboardHeader from '@/components/shared/DashboardHeader';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { getUserProposals } from '@/data/proposals';
 import { Suspense } from 'react';
 
 const ProposalsPage = () => {
@@ -20,7 +21,7 @@ const ProposalsPage = () => {
         </TabsList>
         <TabsContent value="service">
           <Suspense fallback={<ServiceCardSkeleton />}>
-            <Proposals />
+            <Proposals fetchData={() => getUserProposals()} />
           </Suspense>
         </TabsContent>
         <TabsContent value="job">

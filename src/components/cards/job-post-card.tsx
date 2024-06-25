@@ -3,8 +3,6 @@ import { JobPostData } from '@/types/types';
 import { UserCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Suspense } from 'react';
-import JobPostCardSkeleton from '../loaders/JobCardSkeleton';
 
 interface JobPostProps {
   fetchData: () => Promise<JobPostData[]>;
