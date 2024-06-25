@@ -11,7 +11,7 @@ import { categories } from '@/constants/options';
 
 const JobPostFilter = () => {
   return (
-    <>
+    <section className="hidden flex-col gap-12 lg:flex">
       <div>
         <h1 className="mb-4 font-semibold">Category</h1>
         <Select>
@@ -69,7 +69,7 @@ const JobPostFilter = () => {
           </div>
         </RadioGroup>
       </div>
-    </>
+    </section>
   );
 };
 

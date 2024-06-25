@@ -17,7 +17,6 @@ const JobPostCard = async ({ fetchData }: JobPostProps) => {
     <article className="space-y-8">
       {posts.map(async (data) => (
         <>
-          <Suspense fallback={<JobPostCardSkeleton />}>
             <Link key={data.id} href={`/freelance-jobs/${data.id}`}>
               <div className="cursor-pointer space-y-4 border-b-[1px] p-4 hover:bg-slate-100">
                 <div>
@@ -73,7 +72,6 @@ const JobPostCard = async ({ fetchData }: JobPostProps) => {
                 </div>
               </div>
             </Link>
-          </Suspense>
         </>
       ))}
     </article>

@@ -27,11 +27,11 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
         </q>
       </div>
 
-      <main className="mt-8 flex gap-6">
-        <section className="hidden w-1/5 flex-col gap-12 lg:flex">
+      <main className="grid gap-8 md:grid-cols-4">
+        <section>
           <JobPostFilter />
         </section>
-        <section className="md:w-4/5">
+        <section className="col-span-3">
           <Suspense fallback={<Skeleton />}>
             <ResultStrip count={2} />
           </Suspense>

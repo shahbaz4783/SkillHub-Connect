@@ -28,6 +28,7 @@ import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { FormState } from '@/types/types';
+import { capitalizeFullName } from '@/lib/utils';
 
 //-------------- SignUp Action
 export const signUpAction = async (
@@ -48,6 +49,7 @@ export const signUpAction = async (
 
   const { name, email, password } = validateFields.data;
   const hashedPassword = await hash(password, 10);
+  const titleCasedName = capitalizeFullName(name);
 
   // Generate random username and ensure it's unique
   const mailID = email.split('@')[0];
@@ -73,7 +75,7 @@ export const signUpAction = async (
   // Create the new user
   await prisma.user.create({
     data: {
-      name,
+      name: titleCasedName,
       username,
       email,
       password: hashedPassword,
@@ -85,7 +87,7 @@ export const signUpAction = async (
   await sendVerificationMail(
     verificationToken.token,
     verificationToken.email,
-    name,
+    titleCasedName,
   );
 
   return {

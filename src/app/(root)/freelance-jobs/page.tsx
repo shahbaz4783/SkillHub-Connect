@@ -1,10 +1,11 @@
 import JobPostCard from '@/components/cards/job-post-card';
-import JobCard from '@/components/cards/JobCard';
 import JobPostFilter from '@/components/filter/JobPostFilter';
+import JobPostCardSkeleton from '@/components/loaders/JobCardSkeleton';
 import DescHeading from '@/components/ui/DescHeading';
 import { getJobPosts } from '@/data/all-listings';
+import { Suspense } from 'react';
 
-const JobDetails = () => {
+const JobPage = () => {
   return (
     <main className="my-12">
       <DescHeading
@@ -16,11 +17,13 @@ const JobDetails = () => {
           <JobPostFilter />
         </div>
         <div className="col-span-3">
-          <JobPostCard fetchData={() => getJobPosts('all')} />
+          <Suspense fallback={<JobPostCardSkeleton />}>
+            <JobPostCard fetchData={() => getJobPosts('all')} />
+          </Suspense>
         </div>
       </section>
     </main>
   );
 };
 
-export default JobDetails;
+export default JobPage;

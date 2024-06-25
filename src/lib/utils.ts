@@ -67,3 +67,11 @@ export const timeSince = (date: Date): string => {
   const yearsPast: number = Math.floor(daysPast / 365);
   return `${yearsPast} year${yearsPast !== 1 ? 's' : ''} ago`;
 };
+
+
+export const capitalizeFullName = (fullName: string) => {
+  return fullName
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+};

@@ -5,11 +5,11 @@ function Skeleton({
 	...props
 }: React.HTMLAttributes<HTMLDivElement>) {
 	return (
-		<div
-			className={cn('animate-pulse rounded-md bg-slate-300', className)}
-			{...props}
-		/>
-	);
+    <div
+      className={cn('animate-pulse rounded-md bg-slate-200', className)}
+      {...props}
+    />
+  );
 }
 
 export { Skeleton };
