@@ -41,8 +41,9 @@ model Address {
 model Profile {
   id            String    @default(cuid()) @id
   userId        String    @unique
-  bio           String
+  userTitle     String
   skills        String
+  bio           String
   user          User @relation(fields: [userId], references: [id])
 }
 

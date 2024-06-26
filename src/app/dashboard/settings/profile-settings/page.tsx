@@ -1,9 +1,9 @@
-import UnderDevelopment from '@/components/shared/under-development';
+import UpdateBio from '@/components/forms/update/UpdateBio';
 
 const page = () => {
   return (
     <>
-      <UnderDevelopment />
+      <UpdateBio />
     </>
   );
 };

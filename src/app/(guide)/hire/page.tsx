@@ -2,12 +2,11 @@ import Banner from '@/components/shared/Banner';
 import CarouselLayout from '@/components/shared/CarouselLayout';
 import SectionTop from '@/components/ui/SectionTop';
 import { categories } from '@/constants/options';
-import ServiceCard from '@/components/cards/ServiceCard';
-import { prisma } from '@/lib/prisma';
 import HowServiceWorks from '@/components/layouts/static/HowServiceWorks';
+import ServiceCatalogCard from '@/components/cards/service-catalog-card';
+import { getServiceCatalog } from '@/data/all-listings';
 
 const Services = async () => {
-  const serviceData = await prisma?.servicePost.findMany();
   return (
     <main>
       <Banner
@@ -29,7 +28,7 @@ const Services = async () => {
           subhead=""
         />
         <article className="grid gap-8 md:grid-cols-3 lg:grid-cols-4">
-          <ServiceCard />
+          <ServiceCatalogCard fetchData={() => getServiceCatalog()} />
         </article>
       </section>
     </main>

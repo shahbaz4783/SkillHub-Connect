@@ -8,15 +8,31 @@ export const userSchema = z.object({
 });
 
 
-export const bioSchema = z.object({
-	bio: z
-		.string()
-		.min(10, {
-			message: 'Bio must be at least 10 characters.',
-		})
-		.max(160, {
-			message: 'Bio must not be longer than 160 characters.',
-		}),
+export const profileSchema = z.object({
+  userTitle: z
+    .string()
+    .min(20, {
+      message: 'Bio must be at least 10 characters.',
+    })
+    .max(100, {
+      message: 'Title must not be longer than 100 characters.',
+    }),
+  skills: z
+    .string()
+    .min(20, {
+      message: 'Skills must contain at least 20 characters.',
+    })
+    .max(150, {
+      message: 'Title must not be longer than 150 characters.',
+    }),
+  bio: z
+    .string()
+    .min(60, {
+      message: 'Bio must be at least 60 characters.',
+    })
+    .max(1200, {
+      message: 'Bio must not be longer than 1200 characters.',
+    }),
 });
 
 export const addressSchema = z.object({
