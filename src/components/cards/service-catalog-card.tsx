@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { CircleUserRound, Star } from 'lucide-react';
+import { CircleUserRound, Star, UserCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -16,11 +16,11 @@ interface ServicePostProps {
   fetchData: () => Promise<ServicePostData[]>;
 }
 
-const ServicePostCard = async ({ fetchData }: ServicePostProps) => {
+const ServiceCatalogCard = async ({ fetchData }: ServicePostProps) => {
   const posts = await fetchData();
 
   return (
-    <article className="space-y-8">
+    <article className="grid lg:grid-cols-4 gap-8">
       {posts.map(async (data) => (
         <>
           <Suspense fallback={<JobPostCardSkeleton />}>
@@ -36,22 +36,28 @@ const ServicePostCard = async ({ fetchData }: ServicePostProps) => {
                   />
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <CircleUserRound />
+                  <CardTitle className="line-clamp-2">{data.title}</CardTitle>
+                  <div className="flex justify-between">
+                    <p>{data.time} day delivery</p>
+                    <p className="font-semibold">Price ${data.price}</p>
+                  </div>
+                  <CardFooter className="items-center justify-start gap-3 p-0">
+                    <div>
+                      {data.user.image ? (
+                        <Image
+                          className="rounded-full"
+                          src={data.user.image}
+                          width={30}
+                          height={30}
+                          alt="Image"
+                        />
+                      ) : (
+                        <UserCircle size={30} />
+                      )}
+                    </div>
                     <CardTitle>{data.user.name}</CardTitle>
-                  </div>
-                  <p className="line-clamp-2">{data.title}</p>
+                  </CardFooter>
                 </CardContent>
-                <CardFooter className="flex-col items-start gap-3">
-                  <div className="flex items-center gap-1">
-                    <Star />
-                    <p className="font-semibold">{3}</p>
-                    <p className="font-light">({35})</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold">From ${data.price}</p>
-                  </div>
-                </CardFooter>
               </Card>
             </Link>
           </Suspense>
@@ -61,4 +67,4 @@ const ServicePostCard = async ({ fetchData }: ServicePostProps) => {
   );
 };
 
-export default ServicePostCard;
+export default ServiceCatalogCard;

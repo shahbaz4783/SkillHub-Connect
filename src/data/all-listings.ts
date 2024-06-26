@@ -40,6 +40,10 @@ export const getJobPosts = async (
         },
       },
     },
+    orderBy: {
+      updatedAt: 'desc',
+    },
+    take: 16,
   });
 };
 
@@ -52,6 +56,10 @@ export const getServiceCatalog = async (): Promise<ServicePostData[]> => {
         select: { name: true, image: true },
       },
     },
+    orderBy: {
+      updatedAt: 'desc',
+    },
+    take: 8,
   });
 };
 
