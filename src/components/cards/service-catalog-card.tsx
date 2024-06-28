@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { CircleUserRound, Star, UserCircle } from 'lucide-react';
+import { UserCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';

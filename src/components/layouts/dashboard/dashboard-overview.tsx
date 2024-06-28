@@ -4,7 +4,7 @@ import {
   CircleDollarSign,
   NotebookPen,
 } from 'lucide-react';
-import DataCard from '@/components/cards/DataCard';
+import DataCard from '@/components/cards/data-card';
 import { getUserListingsData } from '@/data/user-listings';
 
 const DashboardOverview = async () => {

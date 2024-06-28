@@ -1,4 +1,4 @@
-import UpdatePersonalInfo from '@/components/forms/update/UpdatePersonalInfo';
+import UpdateAccountInfo from '@/components/forms/user/update-account-info';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -18,14 +18,14 @@ export async function DialogUpdatePersonalInfo() {
           <Pen />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="space-y-6 sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Update profile</DialogTitle>
+          <DialogTitle>Update Account Information</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click update when you're done.
+            Update your name or username using the form below.
           </DialogDescription>
         </DialogHeader>
-        <UpdatePersonalInfo />
+        <UpdateAccountInfo />
       </DialogContent>
     </Dialog>
   );

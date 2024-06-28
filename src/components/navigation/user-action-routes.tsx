@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import DataCard from '../cards/DataCard';
+import DataCard from '../cards/data-card';
 
 interface UserActionRoutes {
   title: string;

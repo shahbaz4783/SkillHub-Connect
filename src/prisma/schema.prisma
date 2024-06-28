@@ -31,7 +31,7 @@ model Address {
   id            String    @default(cuid()) @id
   userId        String    @unique
   address       String
-  address2      String?
+  address2      String
   country       String
   city          String
   postal_code   Int

@@ -1,4 +1,4 @@
-import UpdateAddress from '@/components/forms/update/UpdateAddress';
+import UpdateAddress from '@/components/forms/user/update-address';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -8,9 +8,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { UserAddress } from '@/types/types';
 import { Pen } from 'lucide-react';
 
-export async function DialogUpdateLocation() {
+export async function DialogUpdateLocation({
+  address,
+  address2,
+  city,
+  country,
+  postal_code,
+}: UserAddress) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -25,7 +32,13 @@ export async function DialogUpdateLocation() {
             Make changes to your profile here. Click update when you're done.
           </DialogDescription>
         </DialogHeader>
-        <UpdateAddress />
+        <UpdateAddress
+          address={address}
+          address2={address2}
+          city={city}
+          country={country}
+          postal_code={postal_code}
+        />
       </DialogContent>
     </Dialog>
   );

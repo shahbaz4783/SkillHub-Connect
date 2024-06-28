@@ -20,7 +20,7 @@ import { updatePersonalInfoAction } from '@/actions/user.action';
 import { useFormState } from 'react-dom';
 import Submit from '@/components/buttons/submit';
 
-const UpdatePersonalInfo = () => {
+const UpdateAccountInfo = () => {
   const user = useCurrentUser();
   const name = user?.name as string;
   const email = user?.email as string;
@@ -81,4 +81,4 @@ const UpdatePersonalInfo = () => {
   );
 };
 
-export default UpdatePersonalInfo;
+export default UpdateAccountInfo;

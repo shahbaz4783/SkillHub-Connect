@@ -22,20 +22,26 @@ import Submit from '@/components/buttons/submit';
 import { updateProfileAction } from '@/actions/user.action';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
+import { UserProfile } from '@/types/types';
 
-const UpdateBio = () => {
+const UpdateUserProfileForm = ({ userTitle, skills, bio }: UserProfile) => {
   const [charCount, setCharCount] = useState<{
     title: number;
     skills: number;
     bio: number;
   }>({
-    title: 0,
-    skills: 0,
-    bio: 0,
+    title: userTitle.length,
+    skills: skills.length,
+    bio: bio.length,
   });
 
   const form = useForm<z.infer<typeof profileSchema>>({
     resolver: zodResolver(profileSchema),
+    defaultValues: {
+      userTitle,
+      skills,
+      bio,
+    },
   });
 
   const [formState, formAction] = useFormState(updateProfileAction, {
@@ -50,15 +56,16 @@ const UpdateBio = () => {
           name="userTitle"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Edit your title</FormLabel>
+              <FormLabel>Professional Title</FormLabel>
               <FormDescription>
-                Enter a single sentence description of your professional
-                skills/experience (e.g. Expert Web Designer with Ajax
-                experience)
+                Enter a concise and descriptive title that summarizes your
+                professional expertise and role (e.g., "Senior Full Stack
+                Developer")
               </FormDescription>
               <FormControl>
                 <Input
-                  placeholder="I need a React Developer for Dynamic Web Applications"
+                  className="text-slate-500"
+                  type="text"
                   {...field}
                   onChange={(e) => {
                     field.onChange(e);
@@ -81,14 +88,24 @@ const UpdateBio = () => {
           name="skills"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Edit skills</FormLabel>
+              <FormLabel>Key Skills</FormLabel>
               <FormDescription>
-                Mention your skills. (separate them by a comma)
+                List your primary skills, separated by commas. This helps
+                potential clients understand your core competencies (e.g.,
+                "React, Node.js, Express, MongoDB").
               </FormDescription>
               <FormControl>
                 <Input
-                  placeholder="React, Redux, JavaScript, HTML/CSS, REST APIs"
+                  className="text-slate-500"
+                  type="text"
                   {...field}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    setCharCount((prev) => ({
+                      ...prev,
+                      skills: e.target.value.length,
+                    }));
+                  }}
                 />
               </FormControl>
               <FormDescription className="text-right">
@@ -105,12 +122,13 @@ const UpdateBio = () => {
             <FormItem>
               <FormLabel>Profile overview</FormLabel>
               <FormDescription>
-                Use this space to show clients you have the skills and
-                experience they're looking for.
+                Write a detailed overview of your professional background,
+                experience, and achievements. Use this space to highlight what
+                makes you unique and why clients should choose you.
               </FormDescription>
               <FormControl>
                 <Textarea
-                  placeholder="Help build the next generation of our e-commerce platform..."
+                  className="text-slate-500"
                   rows={6}
                   {...field}
                   onChange={(e) => {
@@ -140,4 +158,4 @@ const UpdateBio = () => {
   );
 };
 
-export default UpdateBio;
+export default UpdateUserProfileForm;

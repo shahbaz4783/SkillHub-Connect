@@ -6,24 +6,34 @@ import {
   CardTitle,
 } from '../../../ui/card';
 import { DialogUpdateLocation } from './DialogLocationUpdate';
+import { currentUser } from '@/lib/auth';
+import { getUserAddressByID } from '@/data/user';
 
-const LocationInfo = () => {
+const LocationInfo = async () => {
+  const user = await currentUser();
+  if (!user?.id) return null;
+
+  const userAddress = await getUserAddressByID(user?.id);
+  if (!userAddress) return null;
+
   return (
     <Card>
       <CardContent className="flex justify-between">
         <CardTitle className="text-2xl font-normal">Location</CardTitle>
-        <DialogUpdateLocation />
+        <DialogUpdateLocation
+          address={userAddress?.address}
+          address2={userAddress?.address2}
+          country={userAddress?.country}
+          city={userAddress?.city}
+          postal_code={userAddress?.postal_code}
+        />
       </CardContent>
       <CardContent>
-        <p>Time Zone</p>
-        <CardDescription>UTC/GMT +01:00</CardDescription>
-      </CardContent>
-      <CardContent>
-        <p>Address</p>
+        <CardDescription>{userAddress?.address}</CardDescription>
+        <CardDescription>{userAddress?.address2}</CardDescription>
         <CardDescription>
-          Schefferpark 253 III <br />
-          Noord Rijndersingen <br />
-          GA 5195 WH
+          {userAddress?.country}, {userAddress?.city} -
+          {userAddress?.postal_code}
         </CardDescription>
       </CardContent>
     </Card>

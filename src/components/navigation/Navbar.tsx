@@ -4,6 +4,7 @@ import MobileNav from './MobileNav';
 import SearchInput from '@/components/shared/SearchInput';
 import Logo from '../shared/Logo';
 import AuthNavigation from './AuthNavigation';
+import { Suspense } from 'react';
 
 const Navbar = () => {
   return (
@@ -21,9 +22,13 @@ const Navbar = () => {
         </div>
         <div className="hidden items-center gap-8 md:flex">
           <SearchInput />
-          <AuthNavigation />
+          <Suspense fallback={'Loading...'}>
+            <AuthNavigation />
+          </Suspense>
         </div>
-        <MobileNav />
+        <Suspense fallback={'Loading...'}>
+          <MobileNav />
+        </Suspense>
       </header>
     </>
   );

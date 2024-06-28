@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma';
+import { UserProfile } from '@/types/types';
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -35,4 +36,24 @@ export const updateUserSession = async (userId: string) => {
       image: user.image,
     },
   };
+};
+
+export const getUserProfileByID = async (userId: string) => {
+  return await prisma.profile.findFirst({
+    where: { userId },
+    select: { userTitle: true, skills: true, bio: true },
+  });
+};
+
+export const getUserAddressByID = async (userId: string) => {
+  return await prisma.address.findFirst({
+    where: { userId },
+    select: {
+      address: true,
+      address2: true,
+      city: true,
+      country: true,
+      postal_code: true,
+    },
+  });
 };

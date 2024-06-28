@@ -1,11 +1,14 @@
 import UserAvatar from '@/components/shared/UserAvatar';
 import { Skeleton } from '@/components/ui/skeleton';
+import { getUserProfileByID } from '@/data/user';
 import { currentUser } from '@/lib/auth';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
 const FeedUser = async () => {
   const user = await currentUser();
+  if (!user?.id) return null;
+  const userProfile = await getUserProfileByID(user?.id);
   return (
     <section className="space-y-3 rounded-md bg-slate-100 p-4 pb-5">
       <article className="flex gap-3">
@@ -18,9 +21,7 @@ const FeedUser = async () => {
           <Suspense fallback={<Skeleton className="h-4" />}>
             <p className="text-lg font-semibold">{user?.name}</p>
           </Suspense>
-          <p className="line-clamp-2 text-sm">
-            Web Development | CSS | Javascript | React{' '}
-          </p>
+          <p className="line-clamp-2 text-sm">{userProfile?.userTitle}</p>
         </div>
       </article>
       <div>

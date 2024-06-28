@@ -1,8 +1,9 @@
 import { ADMIN_NAV_ITEMS } from '@/constants/navigation';
 import Link from 'next/link';
-import React from 'react';
+import React, { Suspense } from 'react';
 import UserAvatar from '../shared/UserAvatar';
 import LogoutIcon from '../forms/auth/logout';
+import { Skeleton } from '../ui/skeleton';
 
 const AdminNavbar = async () => {
   return (
@@ -25,8 +26,10 @@ const AdminNavbar = async () => {
             </Link>
           ))}
         </nav>
-        <div className="flex rounded-md p-3 justify-between gap-3 bg-slate-200">
-          <UserAvatar />
+        <div className="flex justify-between gap-3 rounded-md bg-slate-200 p-3">
+          <Suspense fallback={<Skeleton className="rounded-full" />}>
+            <UserAvatar />
+          </Suspense>
           <LogoutIcon />
         </div>
       </section>

@@ -38,6 +38,7 @@ export const profileSchema = z.object({
 export const addressSchema = z.object({
   country: z.string(),
   city: z.string(),
-  code: z.coerce.number(),
+  postal_code: z.coerce.number(),
   address: z.string(),
+  address2: z.string(),
 });

@@ -34,3 +34,17 @@ export interface ProposalData extends Proposal {
 export interface ServicePostData extends ServicePost {
   user: User;
 }
+
+export interface UserProfile {
+  userTitle: string;
+  skills: string;
+  bio: string;
+}
+
+export interface UserAddress {
+  address: string;
+  address2: string;
+  city: string;
+  country: string;
+  postal_code: number;
+}

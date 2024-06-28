@@ -17,20 +17,20 @@ const AccountInfo = async () => {
         <DialogUpdatePersonalInfo />
       </CardContent>
       <CardContent>
-        <CardDescription>User ID</CardDescription>
-        {user?.id}
+        User ID
+        <CardDescription>{user?.id}</CardDescription>
       </CardContent>
       <CardContent>
-        <CardDescription>Name</CardDescription>
-        {user?.name}
+        Name
+        <CardDescription>{user?.name}</CardDescription>
       </CardContent>
       <CardContent>
-        <CardDescription>Username</CardDescription>
-        {user?.username}
+        Username
+        <CardDescription>{user?.username}</CardDescription>
       </CardContent>
       <CardContent>
-        <CardDescription>Email</CardDescription>
-        {user?.email}
+        Email
+        <CardDescription>{user?.email}</CardDescription>
       </CardContent>
     </Card>
   );

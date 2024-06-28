@@ -12,7 +12,7 @@ import { currentUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { authMessages } from '@/constants/messages';
 import { FormState } from '@/types/types';
-import { connect } from 'http2';
+import { capitalizeFullName } from '@/lib/utils';
 
 export const updatePersonalInfoAction = async (
   email: string | null,
@@ -34,6 +34,9 @@ export const updatePersonalInfoAction = async (
 
   const { name, username } = validateFields.data;
 
+  const formattedName = capitalizeFullName(name);
+  const formattedUsername = username.toLowerCase();
+
   const user = await getUserByEmail(email);
   if (!user) return { message: { error: authMessages.error.userNotFound } };
 
@@ -52,8 +55,8 @@ export const updatePersonalInfoAction = async (
       email: user?.email as string | undefined,
     },
     data: {
-      name,
-      username,
+      name: formattedName,
+      username: formattedUsername,
     },
   });
 
@@ -63,6 +66,7 @@ export const updatePersonalInfoAction = async (
   return { message: { success: authMessages.success.profileUpdate } };
 };
 
+// Profile Update Action
 export const updateProfileAction = async (
   formState: FormState,
   formData: FormData,
@@ -110,31 +114,61 @@ export const updateProfileAction = async (
       });
     }
 
-    return { message: { success: 'Bio Updated' } };
+    return { message: { success: 'Profile Updated Successfully' } };
   } catch (error) {
     return { message: { error: 'An error occurred while updating profile.' } };
   }
 };
 
 export const updateAddressAction = async (
-  values: z.infer<typeof addressSchema>,
-) => {
-  const validateFields = addressSchema.safeParse(values);
+  formState: FormState,
+  formData: FormData,
+): Promise<FormState> => {
+  const formDataObj = Object.fromEntries(formData);
+  const validateFields = addressSchema.safeParse(formDataObj);
   if (!validateFields.success) {
-    return { error: 'Invalid Fields!' };
+    return {
+      message: {
+        error: authMessages.validation.invalidFields,
+      },
+    };
   }
+
+  const { address, address2, city, postal_code, country } = validateFields.data;
+
   const user = await currentUser();
-  const id = user?.id;
 
-  const { country, code, address, city } = validateFields.data;
-  // await prisma.address.create({
-  //   data: { country, postal_code: code, address, city },
-  //   user: {
-  //     connect: {
-  //       id,
-  //     },
-  //   },
-  // });
+  const userId = user?.id;
+  if (!userId) return { message: { error: 'User ID not found' } };
 
-  return { success: 'Address Updated Successfully' };
+  // Check if the address exists
+  const addressExists = await prisma.address.findUnique({
+    where: { userId },
+  });
+
+  if (!addressExists) {
+    await prisma.address.create({
+      data: {
+        address,
+        address2,
+        city,
+        country,
+        postal_code,
+        user: { connect: { id: userId } },
+      },
+    });
+    return { message: { success: 'Address Created Successfully' } };
+  } else {
+    await prisma.address.update({
+      where: { userId },
+      data: {
+        address,
+        address2,
+        city,
+        country,
+        postal_code,
+      },
+    });
+    return { message: { success: 'Address Updated Successfully' } };
+  }
 };
