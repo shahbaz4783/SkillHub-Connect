@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { UserProfile } from '@/types/types';
+import { UserData, UserProfile } from '@/types/types';
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -56,4 +56,43 @@ export const getUserAddressByID = async (userId: string) => {
       postal_code: true,
     },
   });
+};
+
+export const getAllUserData = async (): Promise<UserData[]> => {
+  const users = await prisma.user.findMany({
+    where: {
+      AND: [
+        {
+          profile: {
+            isNot: null,
+          },
+        },
+        {
+          address: {
+            isNot: null,
+          },
+        },
+      ],
+    },
+    include: {
+      profile: {
+        select: {
+          bio: true,
+          userTitle: true,
+          skills: true,
+        },
+      },
+      address: {
+        select: {
+          country: true,
+        },
+      },
+    },
+    take: 9,
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
+  return users as UserData[];
 };

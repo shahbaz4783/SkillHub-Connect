@@ -1,4 +1,4 @@
-import type { JobPost, Proposal, ServicePost } from '@prisma/client';
+import type { JobPost, Proposal, ServicePost, User } from '@prisma/client';
 
 export interface FormState {
   message: {
@@ -8,7 +8,7 @@ export interface FormState {
   otpReceive?: boolean;
 }
 
-interface User {
+interface UserBrief {
   name: string | null;
   image: string | null;
 }
@@ -20,19 +20,19 @@ interface JobPostObj {
 }
 
 export interface JobPostData extends JobPost {
-  user: User;
+  user: UserBrief;
   _count: {
     proposals: number;
   };
 }
 
 export interface ProposalData extends Proposal {
-  user: User;
+  user: UserBrief;
   jobPost: JobPostObj;
 }
 
 export interface ServicePostData extends ServicePost {
-  user: User;
+  user: UserBrief;
 }
 
 export interface UserProfile {
@@ -46,5 +46,12 @@ export interface UserAddress {
   address2: string;
   city: string;
   country: string;
-  postal_code: number;
+  postal_code: number | undefined;
+}
+
+export interface UserData extends User {
+  profile: UserProfile;
+  address: {
+    country: string;
+  };
 }
