@@ -1,6 +1,5 @@
 import JobDetailedInfo from '@/components/layouts/posts/JobDetailedInfo';
 import JobPostDetailsAside from '@/components/layouts/posts/JobPostDetailsAside';
-import { getJobDetailsData } from '@/data/all-listings';
 
 interface ParamsProps {
   params: {

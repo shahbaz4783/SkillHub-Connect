@@ -9,7 +9,7 @@ import { Suspense } from 'react';
 
 const JobDetails = async () => {
   return (
-    <main className="my-12">
+    <main className="my-12 space-y-16">
       <DescHeading
         heading="Browse and buy projects"
         subhead="Complete your most pressing work with Project Catalog. Browse and buy predefined projects in just a few clicks"

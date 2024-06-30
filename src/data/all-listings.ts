@@ -1,6 +1,7 @@
 import { currentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { JobPostData, ServicePostData } from '@/types/types';
+import { getUserByUsername } from './user';
 
 export const getJobPosts = async (
   filter: 'all' | 'exceptOwn',
@@ -47,6 +48,29 @@ export const getJobPosts = async (
   });
 };
 
+export const getJobPostsByUsername = async (
+  username: string,
+): Promise<JobPostData[]> => {
+  const user = await getUserByUsername(username);
+
+  return await prisma.jobPost.findMany({
+    where: { status: 'OPEN', userId: user?.id },
+    include: {
+      user: {
+        select: { name: true, image: true },
+      },
+      _count: {
+        select: {
+          proposals: true,
+        },
+      },
+    },
+    orderBy: {
+      updatedAt: 'desc',
+    },
+  });
+};
+
 // Service Posts
 export const getServiceCatalog = async (): Promise<ServicePostData[]> => {
   return await prisma.servicePost.findMany({
@@ -60,6 +84,24 @@ export const getServiceCatalog = async (): Promise<ServicePostData[]> => {
       updatedAt: 'desc',
     },
     take: 8,
+  });
+};
+
+export const getServiceCatalogByUsername = async (
+  username: string,
+): Promise<ServicePostData[]> => {
+  const user = await getUserByUsername(username);
+
+  return await prisma.servicePost.findMany({
+    where: { status: 'OPEN', userId: user?.id },
+    include: {
+      user: {
+        select: { name: true, image: true },
+      },
+    },
+    orderBy: {
+      updatedAt: 'desc',
+    },
   });
 };
 

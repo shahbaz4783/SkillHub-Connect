@@ -10,6 +10,15 @@ export const getUserByEmail = async (email: string) => {
   }
 };
 
+export const getUserByUsername = async (username: string) => {
+  try {
+    const user = await prisma.user.findUnique({ where: { username } });
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getUserByID = async (id: string) => {
   try {
     const user = await prisma.user.findUnique({ where: { id } });
@@ -95,4 +104,41 @@ export const getAllUserData = async (): Promise<UserData[]> => {
   });
 
   return users as UserData[];
+};
+
+export const getUserDataByUsername = async (
+  username: string,
+): Promise<UserData> => {
+  const users = await prisma.user.findFirst({
+    where: {
+      username,
+      AND: [
+        {
+          profile: {
+            isNot: null,
+          },
+        },
+        {
+          address: {
+            isNot: null,
+          },
+        },
+      ],
+    },
+    include: {
+      profile: {
+        select: {
+          bio: true,
+          userTitle: true,
+          skills: true,
+        },
+      },
+      address: {
+        select: {
+          country: true,
+        },
+      },
+    },
+  });
+  return users as UserData;
 };

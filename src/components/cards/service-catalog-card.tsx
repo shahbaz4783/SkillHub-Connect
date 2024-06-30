@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import JobPostCardSkeleton from '../loaders/JobCardSkeleton';
 import { ServicePostData } from '@/types/types';
+import NoDataFound from '../ui/NoDataFound';
 
 interface ServicePostProps {
   fetchData: () => Promise<ServicePostData[]>;
@@ -18,9 +19,12 @@ interface ServicePostProps {
 
 const ServiceCatalogCard = async ({ fetchData }: ServicePostProps) => {
   const posts = await fetchData();
+  if (!posts.length) {
+    return <NoDataFound message="Service catalog is currently empty." />;
+  }
 
   return (
-    <article className="grid lg:grid-cols-4 gap-8">
+    <article className="grid gap-8 lg:grid-cols-4">
       {posts.map(async (data) => (
         <>
           <Suspense fallback={<JobPostCardSkeleton />}>

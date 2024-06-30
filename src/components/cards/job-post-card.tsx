@@ -3,6 +3,7 @@ import { JobPostData } from '@/types/types';
 import { UserCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import NoDataFound from '../ui/NoDataFound';
 
 interface JobPostProps {
   fetchData: () => Promise<JobPostData[]>;
@@ -10,7 +11,9 @@ interface JobPostProps {
 
 const JobPostCard = async ({ fetchData }: JobPostProps) => {
   const posts = await fetchData();
-
+  if (!posts.length) {
+    return <NoDataFound message="No job postings have been added yet." />;
+  }
   return (
     <article className="space-y-8">
       {posts.map(async (data) => (

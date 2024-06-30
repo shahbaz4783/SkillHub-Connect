@@ -9,7 +9,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
 	return (
     <>
       <Navbar />
-      <div className="m-auto w-11/12">{children}</div>
+      <div className="m-auto w-11/12 min-h-svh">{children}</div>
       {!user && <Footer />}
     </>
   );
