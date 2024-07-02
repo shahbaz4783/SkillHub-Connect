@@ -1,7 +1,6 @@
 import { AllSkills } from '@/components/cards/skills-list';
 import Heading from '@/components/loaders/Heading';
 import UserAvatar from '@/components/shared/UserAvatar';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import DetailsSection from '@/components/wrapper/DetailsSection';

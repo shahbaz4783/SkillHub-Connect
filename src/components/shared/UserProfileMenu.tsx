@@ -6,7 +6,7 @@ import {
   LogOut,
   Settings,
   User,
-  User2,
+  UserCircle,
 } from 'lucide-react';
 
 import {
@@ -18,7 +18,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import UserAvatar from './UserAvatar';
 import Link from 'next/link';
 import { logout } from '@/actions/auth.action';
 import { Button } from '../ui/button';
@@ -27,8 +26,7 @@ export function UserProfileMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        {/* <UserAvatar /> */}
-        <User />
+        <UserCircle size={26} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>

@@ -14,7 +14,7 @@ const FeedUser = async () => {
       <article className="flex gap-3">
         <div className="m-auto w-1/6">
           <Suspense fallback={<Skeleton className="h-12 w-12 rounded-full" />}>
-            <UserAvatar />
+            <UserAvatar imageUrl={user.image || ''} size={48} />
           </Suspense>
         </div>
         <div className="w-5/6">
