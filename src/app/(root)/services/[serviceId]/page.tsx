@@ -1,8 +1,15 @@
+import { AllSkills } from '@/components/cards/skills-list';
 import Heading from '@/components/loaders/Heading';
+import UserAvatar from '@/components/shared/UserAvatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import DetailsSection from '@/components/wrapper/DetailsSection';
 import { getServiceDetailsData } from '@/data/all-listings';
-import { CircleDollarSign, Heart, Timer } from 'lucide-react';
+import { timeSince } from '@/lib/utils';
+import { CircleDollarSign, Heart, Timer, UserCircle } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 interface ParamsProps {
@@ -13,87 +20,78 @@ interface ParamsProps {
 
 const ServiceDetails = async ({ params }: ParamsProps) => {
   const serviceDetails = await getServiceDetailsData(params.serviceId);
-
+  if (!serviceDetails) return null;
   return (
     <>
       <div className="flex min-h-svh flex-col md:flex-row">
         <Suspense fallback={<Heading />}>
           <main className="md:w-3/4">
             <DetailsSection>
-              <p className="text-xl font-semibold">{serviceDetails?.title}</p>
-              <p className="text-sm">
-                {serviceDetails?.createdAt.toDateString()}
+              <p className="text-2xl font-semibold">{serviceDetails.title}</p>
+              <p className="text-sm text-slate-500">
+                Updated {timeSince(serviceDetails.updatedAt)}
               </p>
-            </DetailsSection>
-
-            <DetailsSection>
-              <p className="text-sm">{serviceDetails?.description}</p>
-            </DetailsSection>
-
-            <DetailsSection>
-              <div className="flex gap-12">
-                <menu className="flex gap-4 p-2">
-                  <div className="pt-1">
-                    <CircleDollarSign />
-                  </div>
-                  <ul>
-                    <li className="font-semibold text-stone-600">
-                      ${serviceDetails?.price}
-                    </li>
-                    <li className="text-sm text-slate-500">Price</li>
-                  </ul>
-                </menu>
-                <menu className="flex gap-4 p-2">
-                  <div className="pt-1">
-                    <Timer />
-                  </div>
-                  <ul>
-                    <li className="font-semibold text-stone-600">
-                      {serviceDetails?.time}
-                    </li>
-                    <li className="text-sm text-slate-500">day delivery</li>
-                  </ul>
-                </menu>
+              <div className="flex items-center gap-4">
+                <UserAvatar
+                  imageUrl={serviceDetails.user.image || ''}
+                  size={48}
+                />
+                <Link
+                  className="font-semibold"
+                  href={`/profile/${serviceDetails.user.username}`}
+                >
+                  {serviceDetails.user.name}
+                </Link>
               </div>
+            </DetailsSection>
+
+            <DetailsSection>
+              <Image
+                src={serviceDetails.imageUrl}
+                width={500}
+                height={400}
+                alt="Service Image"
+              />
+            </DetailsSection>
+
+            <DetailsSection>
+              <h2 className="text-lg font-semibold">Catalog Details</h2>
+              <p className="text-sm">{serviceDetails.description}</p>
             </DetailsSection>
 
             <DetailsSection>
               <h2 className="text-lg font-semibold">Skills and Expertise</h2>
-              <div className="space-x-3 md:w-1/2">
-                {serviceDetails?.tags.split(',').map((item, index) => (
-                  <span
-                    key={index}
-                    className="rounded-3xl bg-slate-200 px-2 py-1 md:px-4"
-                  >
-                    {item.trim()}
-                  </span>
-                ))}
-              </div>
-            </DetailsSection>
-
-            <DetailsSection>
-              <h2 className="text-lg font-semibold">Activity on this job </h2>
-              <menu>
-                <div className="space-x-3 text-sm">
-                  <span>Proposals:</span>
-                  <span>Less than 5</span>
-                </div>
-                <div className="space-x-3 text-sm">
-                  <span>Proposals:</span>
-                  <span>Less than 5</span>
-                </div>
-              </menu>
+              <AllSkills skills={serviceDetails.tags} />
             </DetailsSection>
           </main>
         </Suspense>
 
         <aside className="border-l-[1px] px-6 py-8 md:w-1/4">
-          <section className="flex flex-col justify-between gap-3">
-            <Button>Buy Now</Button>
-            <Button variant={'outline'} className="space-x-2">
-              <Heart /> <span>Save Service</span>
-            </Button>
-          </section>
+          <Card>
+            <CardContent className="space-y-6">
+              <p className="font-mono text-2xl font-bold">
+                ${serviceDetails.price}
+              </p>
+              <menu>
+                <div className="flex justify-between">
+                  <p className="text-sm text-slate-500">Delivery Time</p>
+                  <p className="font-mono font-semibold">
+                    {serviceDetails.time} days
+                  </p>
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-sm text-slate-500">Number of Revisions</p>
+                  <p className="font-mono font-semibold">3</p>
+                </div>
+              </menu>
+              <div className="space-y-3">
+                <Button className="w-full">Continue</Button>
+                <Button variant={'outline'} className="w-full space-x-2">
+                  <Heart size={18} /> <span>Save Service</span>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </aside>
       </div>
     </>

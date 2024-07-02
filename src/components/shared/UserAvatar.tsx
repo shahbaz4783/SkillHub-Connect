@@ -1,16 +1,16 @@
-import { User, UserCircle } from 'lucide-react';
+import { UserCircle } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { auth } from '@/auth';
 
-const UserAvatar = async () => {
-  const session = await auth();
-  const image = session?.user?.image;
-
+interface UserAvatarProps {
+  imageUrl: string;
+  size: number;
+}
+const UserAvatar = async ({ imageUrl, size }: UserAvatarProps) => {
   return (
     <Avatar>
-      <AvatarImage src={image || ''} alt="Profile" />
+      <AvatarImage src={imageUrl} alt="Profile" />
       <AvatarFallback>
-        <UserCircle size={48} />
+        <UserCircle size={size} />
       </AvatarFallback>
     </Avatar>
   );

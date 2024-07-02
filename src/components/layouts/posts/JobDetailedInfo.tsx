@@ -1,3 +1,4 @@
+import { AllSkills } from '@/components/cards/skills-list';
 import DetailsSection from '@/components/wrapper/DetailsSection';
 import { getJobDetailsData } from '@/data/all-listings';
 import { BrainCircuit, CircleDollarSign } from 'lucide-react';
@@ -69,16 +70,7 @@ const JobDetailedInfo = async ({ jobId }: JobDetailedInfoProps) => {
 
       <DetailsSection>
         <h2 className="text-lg font-semibold">Skills and Expertise</h2>
-        <div className="space-x-3 md:w-1/2">
-          {jobDetails.skills.split(',').map((item, index) => (
-            <span
-              key={index}
-              className="rounded-3xl bg-slate-200 p-2 text-sm text-slate-600 md:px-4"
-            >
-              {item.trim()}
-            </span>
-          ))}
-        </div>
+        <AllSkills skills={jobDetails.skills} />
       </DetailsSection>
 
       <DetailsSection>

@@ -4,8 +4,13 @@ import React, { Suspense } from 'react';
 import UserAvatar from '../shared/UserAvatar';
 import LogoutIcon from '../forms/auth/logout';
 import { Skeleton } from '../ui/skeleton';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { currentUser } from '@/lib/auth';
 
 const AdminNavbar = async () => {
+  const user = await currentUser();
+  const userImg = user?.image;
+
   return (
     <aside className="sticky top-0 hidden h-svh flex-col gap-8 bg-slate-50 p-6 md:flex">
       <header className="flex items-center">
@@ -28,7 +33,7 @@ const AdminNavbar = async () => {
         </nav>
         <div className="flex justify-between gap-3 rounded-md bg-slate-200 p-3">
           <Suspense fallback={<Skeleton className="rounded-full" />}>
-            <UserAvatar />
+            <UserAvatar imageUrl={userImg || ''} size={48} />
           </Suspense>
           <LogoutIcon />
         </div>
