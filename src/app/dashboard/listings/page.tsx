@@ -1,13 +1,13 @@
 import AllListings from '@/components/layouts/posts/AllListings';
-import DashboardHeader from '@/components/shared/DashboardHeader';
 import React from 'react';
 import UserActionRoutes from '@/components/navigation/user-action-routes';
 import { LISTING_ROUTES } from '@/constants/navigation';
+import SectionHeading from '@/components/shared/SectionHeading';
 
 const AdminServicePage = () => {
   return (
     <>
-      <DashboardHeader
+      <SectionHeading
         title="Your Listings"
         subTitle="Manage your listings here"
       />

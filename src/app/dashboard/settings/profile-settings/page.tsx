@@ -1,5 +1,5 @@
 import UpdateUserProfileForm from '@/components/forms/user/update-user-profile';
-import DashboardHeader from '@/components/shared/DashboardHeader';
+import SectionHeading from '@/components/shared/SectionHeading';
 import { getUserProfileByID } from '@/data/user';
 import { currentUser } from '@/lib/auth';
 
@@ -10,7 +10,7 @@ const ProfileUpdatePage = async () => {
 
   return (
     <section className="space-y-12 lg:w-3/4">
-      <DashboardHeader
+      <SectionHeading
         title="Update your Profile"
         subTitle="Refine your professional title, highlight your key skills, and share your bio to showcase your expertise and attract the right opportunities."
       />

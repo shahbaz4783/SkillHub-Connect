@@ -7,11 +7,11 @@ interface DescHeadingInterface {
 
 const DescHeading: FC<DescHeadingInterface> = ({ heading, subhead }) => {
 	return (
-		<article className='flex flex-col mb-10 gap-6'>
-			<h2 className='text-6xl  font-serif md:w-1/2'>{heading}</h2>
-			<p className=' md:w-1/2 text-lg'>{subhead}</p>
-		</article>
-	);
+    <article className="mb-10 flex flex-col gap-3">
+      <h2 className="font-serif text-3xl md:w-1/2 lg:text-6xl">{heading}</h2>
+      <p className="text-slate-500 md:w-1/2">{subhead}</p>
+    </article>
+  );
 };
 
 export default DescHeading;

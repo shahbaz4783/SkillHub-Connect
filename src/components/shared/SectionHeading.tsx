@@ -1,4 +1,4 @@
-const DashboardHeader = ({
+const SectionHeading = ({
   title,
   subTitle,
 }: {
@@ -13,4 +13,4 @@ const DashboardHeader = ({
   );
 };
 
-export default DashboardHeader;
+export default SectionHeading;
