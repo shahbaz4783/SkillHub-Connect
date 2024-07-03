@@ -9,7 +9,7 @@ const HowToEarn = () => {
       defaultValue="talent"
       className="flex flex-col items-center justify-center"
     >
-      <TabsList className="mb-8 w-min py-9">
+      <TabsList className="mb-8 w-min py-9 px-2">
         <TabsTrigger value="talent">Talent Marketplace</TabsTrigger>
         <TabsTrigger value="project">Project Catalog</TabsTrigger>
       </TabsList>

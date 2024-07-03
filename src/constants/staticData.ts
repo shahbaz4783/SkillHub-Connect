@@ -19,6 +19,7 @@ import {
   ReceiptText,
   Rocket,
   ShoppingCart,
+  Slack,
   SquarePen,
   Target,
   TextSearch,
@@ -148,13 +149,12 @@ export const howToGetWork = [
   {
     heading: '1. Create a profile',
     subheading:
-      'Highlight your skills and experience, show your portfolio, and set your ideal pay rate',
+      'Showcase your skills, professional title, and bio to attract clients.',
     icon: UserSquare,
   },
   {
     heading: '2. Search for jobs',
-    subheading:
-      'Search on Talent Marketplace™ for the hourly or fixed-price work you’re looking for.',
+    subheading: 'Search on Talent Marketplace for the work you’re looking for.',
     icon: TextSearch,
   },
   {
@@ -178,7 +178,7 @@ export const howToGetWork = [
   {
     heading: '6. Get paid securely',
     subheading:
-      'Once the client approves your work, you will get paid and they can leave you feedback.',
+      'After client approval, you’ll receive payment and valuable feedback.',
     icon: Banknote,
   },
 ];
@@ -202,15 +202,22 @@ export const howToPostService = [
     icon: Target,
   },
   {
-    heading: '4. Complete the work',
+    heading: '4. Begin the work',
+    subheading:
+      'Start working on the project and maintain communication with the client.',
+    icon: Slack,
+  },
+  {
+    heading: '5. Complete the work',
     subheading:
       'Check steps off as you finish and work with your client if you have questions.',
     icon: Laptop,
   },
+
   {
-    heading: '5. Get paid securely',
+    heading: '6. Get paid securely',
     subheading:
-      'Once the client approves your work, you will get paid and they can leave you feedback.',
+      'After client approval, you’ll receive payment and valuable feedback.',
     icon: Banknote,
   },
 ];
