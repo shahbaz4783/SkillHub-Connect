@@ -26,15 +26,15 @@ export default SkillsList;
 
 export function AllSkills ({ skills }: { skills: string }) {
   return (
-    <div className="space-x-3 md:w-1/2">
-    {skills.split(',').map((item, index) => (
-      <span
-      key={index}
-      className="rounded-3xl bg-slate-200 p-2 text-sm text-slate-600 md:px-4"
-      >
-        {item.trim()}
-      </span>
-    ))}
-  </div>
-  )
+    <div className="flex flex-wrap gap-3">
+      {skills.split(',').map((item, index) => (
+        <span
+          key={index}
+          className="rounded-3xl bg-slate-200 p-2 text-sm text-slate-600 md:px-4"
+        >
+          {item.trim()}
+        </span>
+      ))}
+    </div>
+  );
 };

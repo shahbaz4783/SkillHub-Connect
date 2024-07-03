@@ -11,6 +11,8 @@ import { authMessages } from '@/constants/messages';
 import { uploadImageToCloudinary } from '@/lib/cloudnary';
 import { calculateProposalCost } from '@/lib/utils';
 import { FormState } from '@/types/types';
+import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 // Job
 export const jobPostAction = async (
@@ -152,8 +154,6 @@ export const addProposalAction = async (
   return { message: { success: 'Proposal Created Successfully' } };
 };
 
-
-
 export const deleteJobAction = async (id: string) => {
   await prisma.jobPost.delete({
     where: { id },
@@ -166,54 +166,65 @@ export const servicePostAction = async (
   formState: FormState,
   formData: FormData,
 ): Promise<FormState> => {
-  const formDataObj = Object.fromEntries(formData);
-  const validateFields = serviceSchema.safeParse(formDataObj);
-  if (!validateFields.success) {
-    return { message: { error: authMessages.validation.invalidFields } };
-  }
-
-  const user = await currentUser();
-  if (!user?.id) {
-    return { message: { error: authMessages.error.userNotFound } };
-  }
-
-  const { title, description, tags, price, time, category, image } =
-    validateFields.data;
-
-  const file = image as File;
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-
-  let imageUrl: string;
-  const path = 'services';
-
   try {
-    const uploadResult = await uploadImageToCloudinary(buffer, path);
-    if (!uploadResult?.secure_url) throw new Error('Upload failed');
-    imageUrl = uploadResult.secure_url;
-  } catch (error) {
-    console.error('Cloudinary upload error:', error);
-    return { message: { error: 'Image upload failed' } };
-  }
+    const formDataObj = Object.fromEntries(formData);
+    const validateFields = serviceSchema.safeParse(formDataObj);
+    if (!validateFields.success) {
+      return { message: { error: authMessages.validation.invalidFields } };
+    }
 
-  await prisma.servicePost.create({
-    data: {
-      title,
-      description,
-      tags,
-      price,
-      time,
-      category,
-      imageUrl,
-      user: {
-        connect: {
-          id: user.id,
+    const user = await currentUser();
+    if (!user?.id) {
+      return { message: { error: authMessages.error.userNotFound } };
+    }
+
+    const { title, description, tags, price, time, category, image } =
+      validateFields.data;
+
+    const file = image as File;
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    let imageUrl: string;
+    const path = 'services';
+
+    try {
+      const uploadResult = await uploadImageToCloudinary(buffer, path);
+      if (!uploadResult?.secure_url) throw new Error('Upload failed');
+      imageUrl = uploadResult.secure_url;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return { message: { error: error.message } };
+      } else {
+        return { message: { error: 'Failed to upload image' } };
+      }
+    }
+
+    await prisma.servicePost.create({
+      data: {
+        title,
+        description,
+        tags,
+        price,
+        time,
+        category,
+        imageUrl,
+        user: {
+          connect: {
+            id: user.id,
+          },
         },
       },
-    },
-  });
-
-  return { message: { success: 'Posted' } };
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { message: { error: error.message } };
+    } else {
+      return { message: { error: 'Something went wrong' } };
+    }
+  }
+  revalidatePath('/', 'layout');
+  redirect('/services');
 };
 
 export const deleteServiceAction = async (id: string) => {

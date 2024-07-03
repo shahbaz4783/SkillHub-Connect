@@ -1,3 +1,5 @@
+import DetailsPara from '@/components/cards/details-para';
+import { AllSkills } from '@/components/cards/skills-list';
 import DashboardHeader from '@/components/shared/DashboardHeader';
 import { getUserDataByUsername } from '@/data/user';
 import { cn, timeSince } from '@/lib/utils';
@@ -42,21 +44,13 @@ const UserProfileDetails = async ({ username }: { username: string }) => {
 
         <section>
           <DashboardHeader title="About Me" subTitle="" />
-          <p className="line-clamp-3 text-slate-500">{userInfo.profile.bio}</p>
+          {/* <p className="line-clamp-3 text-slate-500">{userInfo.profile.bio}</p> */}
+          <DetailsPara description={userInfo.profile.bio} />
         </section>
 
         <section className="space-y-4">
           <DashboardHeader title="Skills" subTitle="" />
-          <div className="flex flex-wrap gap-3">
-            {userInfo.profile.skills.split(',').map((item, index) => (
-              <span
-                key={index}
-                className="rounded-3xl bg-slate-200 px-2 py-1 text-sm md:px-4"
-              >
-                {item.trim()}
-              </span>
-            ))}
-          </div>
+          <AllSkills skills={userInfo.profile.skills} />
         </section>
       </div>
     </>
