@@ -1,26 +1,34 @@
-import JobPostCard from '@/components/cards/job-post-card';
-import JobPostFilter from '@/components/filter/JobPostFilter';
-import JobPostCardSkeleton from '@/components/loaders/JobCardSkeleton';
-import DescHeading from '@/components/ui/DescHeading';
-import { getJobPosts } from '@/data/all-listings';
-import { Suspense } from 'react';
+import HowToEarn from '@/components/layouts/static/HowToEarn';
+import SectionHeading from '@/components/shared/SectionHeading';
+import { Button } from '@/components/ui/button';
+import PageHeading from '@/components/ui/page-heading';
+import Link from 'next/link';
 
 const JobPage = () => {
   return (
-    <main className="my-12">
-      <DescHeading
-        heading="Find the best jobs"
-        subhead="It takes just one job to develop a successful relationship that can propel your career forward."
-      />
-      <section className="grid gap-8 md:grid-cols-4">
-        <div>
-          <JobPostFilter />
+    <main className="my-12 space-y-32">
+      <section>
+        <PageHeading
+          title="Find Your Next Opportunity"
+          subTitle="Explore and apply to projects that match your skills and interests"
+        />
+        <div className="flex gap-4">
+          <Link href={'/search?q=projects'}>
+            <Button className="w-full md:w-auto">Browse Projects</Button>
+          </Link>
+          <Link href={'/search?q=jobs'}>
+            <Button className="w-full md:w-auto" variant={'secondary'}>
+              View Job Listings
+            </Button>
+          </Link>
         </div>
-        <div className="col-span-3">
-          <Suspense fallback={<JobPostCardSkeleton />}>
-            <JobPostCard fetchData={() => getJobPosts('all')} />
-          </Suspense>
-        </div>
+      </section>
+
+      <section className='space-y-16'>
+        <h2 className="text-center font-semibold text-3xl">
+          Explore the different ways to earn
+        </h2>
+        <HowToEarn />
       </section>
     </main>
   );

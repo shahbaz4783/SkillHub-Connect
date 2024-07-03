@@ -10,11 +10,11 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import SectionTop from '@/components/ui/SectionTop';
-import ListItem from '@/components/ui/ListItem';
-import DescHeading from '@/components/ui/DescHeading';
+import ListItem from '@/components/ui/list-item';
 import { FaArrowRight } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { categories } from '@/constants/options';
+import PageHeading from '@/components/ui/page-heading';
 
 const LandingPage = () => {
   return (
@@ -42,6 +42,7 @@ const LandingPage = () => {
             ))}
           </article>
         </section>
+
         {/* Getting Started */}
         <section className="mb-24 flex flex-col justify-between gap-8 px-4 md:flex-row md:px-0">
           <aside className="flex-[4] overflow-hidden rounded-md md:flex">
@@ -79,9 +80,9 @@ const LandingPage = () => {
         >
           <h3 className="mb-24 text-xl text-stone-100">For clients</h3>
 
-          <DescHeading
-            heading="Find talent your way"
-            subhead="Work with the largest network of independent professionals and get things done—from quick turnarounds to big transformations."
+          <PageHeading
+            title="Find talent your way"
+            subTitle="Work with the largest network of independent professionals and get things done—from quick turnarounds to big transformations."
           />
           <menu className="grid gap-6 md:grid-cols-3">
             {forClient.map((data) => (
@@ -144,9 +145,9 @@ const LandingPage = () => {
           </aside>
           <aside className="flex-1 px-4 py-6">
             <h3 className="mb-10 text-xl">For talent</h3>
-            <DescHeading
-              heading="Find great work"
-              subhead="Meet clients you’re excited to work with and take your career or business to new heights."
+            <PageHeading
+              title="Find great work"
+              subTitle="Meet clients you’re excited to work with and take your career or business to new heights."
             />
             <menu className="grid gap-6 border-t-2 pt-8 md:grid-cols-3">
               {forTalent.map((data, index) => (

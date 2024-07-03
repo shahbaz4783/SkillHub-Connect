@@ -1,8 +1,8 @@
 import DetailsPara from '@/components/cards/details-para';
 import { AllSkills } from '@/components/cards/skills-list';
-import DashboardHeader from '@/components/shared/DashboardHeader';
+import SectionHeading from '@/components/shared/SectionHeading';
 import { getUserDataByUsername } from '@/data/user';
-import { cn, timeSince } from '@/lib/utils';
+import { timeSince } from '@/lib/utils';
 import { MapPin, UserCircle } from 'lucide-react';
 import Image from 'next/image';
 
@@ -43,13 +43,13 @@ const UserProfileDetails = async ({ username }: { username: string }) => {
         </section>
 
         <section>
-          <DashboardHeader title="About Me" subTitle="" />
+          <SectionHeading title="About Me" subTitle="" />
           {/* <p className="line-clamp-3 text-slate-500">{userInfo.profile.bio}</p> */}
           <DetailsPara description={userInfo.profile.bio} />
         </section>
 
         <section className="space-y-4">
-          <DashboardHeader title="Skills" subTitle="" />
+          <SectionHeading title="Skills" subTitle="" />
           <AllSkills skills={userInfo.profile.skills} />
         </section>
       </div>

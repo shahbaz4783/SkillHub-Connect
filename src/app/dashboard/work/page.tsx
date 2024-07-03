@@ -1,11 +1,11 @@
 import UserActionRoutes from '@/components/navigation/user-action-routes';
-import DashboardHeader from '@/components/shared/DashboardHeader';
+import SectionHeading from '@/components/shared/SectionHeading';
 import { WORK_ROUTES } from '@/constants/navigation';
 
 const AdminJobsPage = async () => {
   return (
     <>
-      <DashboardHeader
+      <SectionHeading
         title="Work History"
         subTitle="Overview of your work history"
       />

@@ -1,18 +1,13 @@
 import Image from 'next/image';
 import React from 'react';
-import SectionTop from '../../ui/SectionTop';
-import ListItem from '../../ui/ListItem';
+import ListItem from '../../ui/list-item';
 import { howServicesWorks } from '@/constants/staticData';
 
 const HowServiceWorks = () => {
   return (
-    <section className="mb-16 flex flex-col justify-between md:flex-row">
-      <aside>
-        <article className="flex flex-col gap-2 md:mt-16">
-          <SectionTop
-            heading="How it works"
-            subhead="Streamlined Process, Seamless Results"
-          />
+    <section className="mb-16 flex flex-col justify-between gap-10 md:flex-row">
+      <aside className="flex items-center">
+        <div className="space-y-8">
           {howServicesWorks.map((data) => (
             <ListItem
               key={data.heading}
@@ -22,15 +17,16 @@ const HowServiceWorks = () => {
               {data.icon && <data.icon />}
             </ListItem>
           ))}
-        </article>
+        </div>
       </aside>
       <aside>
         <Image
           draggable={false}
+          className="border"
           src={'/project-works.svg'}
-          alt=""
-          width={600}
-          height={600}
+          alt="Project work image"
+          width={500}
+          height={500}
         />
       </aside>
     </section>

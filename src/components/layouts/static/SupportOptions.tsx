@@ -1,9 +1,9 @@
-import ListItem from '@/components/ui/ListItem';
+import ListItem from '@/components/ui/list-item';
 import SectionTop from '@/components/ui/SectionTop';
 import { supportOptions } from '@/constants/options';
 
 const SupportOptions = () => {
-	return (
+  return (
     <section className="mb-16">
       <SectionTop heading="Search by category" subhead="" />
       <article className="grid gap-8 md:grid-cols-4">

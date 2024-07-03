@@ -1,38 +1,30 @@
-import { FaEdit, FaShoppingCart, FaUserCheck } from 'react-icons/fa';
+import { FaEdit } from 'react-icons/fa';
 import { TiPin } from 'react-icons/ti';
-import {
-  GiProgression,
-  GiMagnifyingGlass,
-  GiMoneyStack,
-  GiOnTarget,
-} from 'react-icons/gi';
+import { GiProgression, GiMagnifyingGlass } from 'react-icons/gi';
 import { GoGlobe } from 'react-icons/go';
-import {
-  FaListCheck,
-  FaAward,
-  FaStar,
-  FaEye,
-  FaSearchengin,
-  FaFileContract,
-  FaLaptopCode,
-  FaChartPie,
-  FaRegFileVideo,
-} from 'react-icons/fa6';
-import {
-  MdOutlineAccountBalanceWallet,
-  MdOutlineEngineering,
-  MdOutlineStars,
-} from 'react-icons/md';
+import { FaListCheck, FaAward, FaStar } from 'react-icons/fa6';
+import { MdOutlineStars } from 'react-icons/md';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 import { AiOutlineSafety } from 'react-icons/ai';
-import { ImProfile } from 'react-icons/im';
-import { IoNewspaperOutline, IoRocketOutline } from 'react-icons/io5';
-import { IoIosCreate, IoIosDoneAll } from 'react-icons/io';
-import { RiRobot2Line } from 'react-icons/ri';
-import { TfiWrite } from 'react-icons/tfi';
-import { CgDesignmodo } from 'react-icons/cg';
 
-import { Award, FileBadge, LineChart, Rocket, TextSearch } from 'lucide-react';
+import {
+  Award,
+  Banknote,
+  CheckCheck,
+  Eye,
+  FileBadge,
+  Laptop,
+  LineChart,
+  Newspaper,
+  ReceiptText,
+  Rocket,
+  ShoppingCart,
+  SquarePen,
+  Target,
+  TextSearch,
+  UserCheck2,
+  UserSquare,
+} from 'lucide-react';
 
 export const getStartedList = [
   {
@@ -137,18 +129,18 @@ export const howServicesWorks = [
     heading: 'Browse',
     subheading:
       'Find the type of work you need, clearly defined and ready to start.',
-    icon: FaEye,
+    icon: Eye,
   },
   {
     heading: 'Buy',
     subheading: 'Work begins as soon as you purchase and provide requirements.',
-    icon: FaShoppingCart,
+    icon: ShoppingCart,
   },
   {
     heading: 'Approve',
     subheading:
       'Receive your project by a set deadline. Review, approve, and pay.',
-    icon: FaUserCheck,
+    icon: UserCheck2,
   },
 ];
 
@@ -157,37 +149,37 @@ export const howToGetWork = [
     heading: '1. Create a profile',
     subheading:
       'Highlight your skills and experience, show your portfolio, and set your ideal pay rate',
-    icon: ImProfile,
+    icon: UserSquare,
   },
   {
     heading: '2. Search for jobs',
     subheading:
       'Search on Talent Marketplace™ for the hourly or fixed-price work you’re looking for.',
-    icon: FaSearchengin,
+    icon: TextSearch,
   },
   {
     heading: '3. Submit a proposal',
     subheading:
       'Set your rate and tell clients why you’re the right person for the job!',
-    icon: IoNewspaperOutline,
+    icon: Newspaper,
   },
   {
     heading: '4. Get contract',
     subheading:
       'If the client likes your proposal they’ll send you a contract to begin working.',
-    icon: FaFileContract,
+    icon: ReceiptText,
   },
   {
     heading: '5. Complete the work',
     subheading:
       'Check steps off as you finish and work with your client if you have questions.',
-    icon: FaLaptopCode,
+    icon: Laptop,
   },
   {
     heading: '6. Get paid securely',
     subheading:
       'Once the client approves your work, you will get paid and they can leave you feedback.',
-    icon: GiMoneyStack,
+    icon: Banknote,
   },
 ];
 
@@ -195,31 +187,31 @@ export const howToPostService = [
   {
     heading: '1. Create a project',
     subheading: 'Create a unique project that showcases your expertise.',
-    icon: IoIosCreate,
+    icon: SquarePen,
   },
   {
     heading: '2. Project is reviewed',
     subheading:
       'We will let you know if you need to make any changes before its visible to clients.',
-    icon: IoIosDoneAll,
+    icon: CheckCheck,
   },
   {
     heading: '3. Get an order',
     subheading:
       'Your timeline starts once the client provides the info you need.',
-    icon: GiOnTarget,
+    icon: Target,
   },
   {
     heading: '4. Complete the work',
     subheading:
       'Check steps off as you finish and work with your client if you have questions.',
-    icon: FaLaptopCode,
+    icon: Laptop,
   },
   {
     heading: '5. Get paid securely',
     subheading:
       'Once the client approves your work, you will get paid and they can leave you feedback.',
-    icon: GiMoneyStack,
+    icon: Banknote,
   },
 ];
 
@@ -301,7 +293,6 @@ export const feedCaroselItem = [
     icon: TextSearch,
   },
 ];
-
 
 export const ACCORDION_QUICK_ACTION = [
   {
