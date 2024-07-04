@@ -1,4 +1,4 @@
-import Hero from '@/components/layouts/static/Hero';
+import { LandingPageHero } from '@/components/layouts/static/Hero';
 import {
   getStartedList,
   forClient,
@@ -20,7 +20,7 @@ const LandingPage = () => {
   return (
     <>
       <main>
-        <Hero />
+        <LandingPageHero />
         {/* Popular Categories */}
         <section className="mb-24 px-4 md:px-0">
           <SectionTop

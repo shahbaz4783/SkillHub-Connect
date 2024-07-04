@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { Button } from '../../ui/button';
 import Link from 'next/link';
+import TrustedBy from '@/components/shared/trusted-by';
 
-const Hero = () => {
+export function LandingPageHero() {
   return (
     <section className="flex min-h-[80svh] px-4 md:px-0">
       <aside className="flex flex-1 flex-col justify-center gap-12">
@@ -29,19 +30,7 @@ const Hero = () => {
             </Link>
           </div>
         </article>
-        <article>
-          <h3 className="font-bold text-stone-500">Trusted by</h3>
-          <div className="flex gap-2">
-            <Image
-              src={'/microsoft.svg'}
-              width={100}
-              height={80}
-              alt="google"
-            />
-            <Image src={'/oracle.svg'} width={100} height={80} alt="google" />
-            <Image src={'/netflix.svg'} width={100} height={80} alt="google" />
-          </div>
-        </article>
+        <TrustedBy />
       </aside>
       <aside className="hidden flex-1 md:flex">
         <Image
@@ -54,6 +43,41 @@ const Hero = () => {
       </aside>
     </section>
   );
-};
+}
 
-export default Hero;
+export function WorkHero() {
+  return (
+    <section className="flex flex-col-reverse justify-between gap-6 lg:flex-row">
+      <aside className="space-y-10">
+        <div className="font-semibold text-3xl lg:text-5xl">
+          <h1>Do the work you love,</h1>
+          <h1>your way</h1>
+        </div>
+        <p className="text-slate-500 lg:w-3/4">
+          Build rewarding relationships in the world’s Work Marketplace. Your
+          home for the work you want.
+        </p>
+        <div className="flex gap-4">
+          <Link href={'/search?q=projects'}>
+            <Button className="w-full md:w-auto">Browse Projects</Button>
+          </Link>
+          <Link href={'/search?q=jobs'}>
+            <Button className="w-full md:w-auto" variant={'secondary'}>
+              View Job Listings
+            </Button>
+          </Link>
+        </div>
+        <TrustedBy />
+      </aside>
+      <aside>
+        <Image
+          draggable={false}
+          src={'/lady-working.webp'}
+          alt="Project work image"
+          width={700}
+          height={600}
+        />
+      </aside>
+    </section>
+  );
+}

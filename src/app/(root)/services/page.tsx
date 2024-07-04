@@ -10,7 +10,7 @@ import { getAllUserData } from '@/data/user';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-const JobDetails = async () => {
+const ServiceCatalogPage = async () => {
   return (
     <main className="my-12 space-y-32">
       <section>
@@ -74,4 +74,4 @@ const JobDetails = async () => {
   );
 };
 
-export default JobDetails;
+export default ServiceCatalogPage;
