@@ -1,9 +1,10 @@
 import JobPostCard from '@/components/cards/job-post-card';
+import FilterDrawer from '@/components/filter/filter-drawer';
 import JobPostFilter from '@/components/filter/JobPostFilter';
 import ResultStrip from '@/components/filter/result-strip';
 import Heading from '@/components/loaders/Heading';
 import JobCardSkeleton from '@/components/loaders/JobCardSkeleton';
-import { Skeleton } from '@/components/ui/skeleton';
+import { PaginationUi } from '@/components/shared/pagination';
 import { getJobPostsResult } from '@/data/search';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
@@ -20,21 +21,20 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
 
   return (
     <div>
-      <div className="mt-8">
-        <span>Showing results for </span>{' '}
-        <q className="text-xl font-semibold">
+      <div className="mb-12 mt-8 text-3xl text-slate-600">
+        <span className="">Showing results for </span>{' '}
+        <q className="font-semibold">
           <Suspense fallback={<Heading />}>{q}</Suspense>
         </q>
       </div>
 
-      <main className="grid gap-8 md:grid-cols-4">
-        <section>
+      <main className="grid items-start gap-8 md:grid-cols-4">
+        <section className="col-span-1 hidden lg:block">
           <JobPostFilter />
         </section>
+        <FilterDrawer />
+
         <section className="col-span-3">
-          <Suspense fallback={<Skeleton />}>
-            <ResultStrip count={2} />
-          </Suspense>
           <Suspense
             fallback={
               <>
@@ -45,6 +45,9 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
           >
             <JobPostCard fetchData={() => getJobPostsResult(q)} />
           </Suspense>
+          <div>
+            <PaginationUi />
+          </div>
         </section>
       </main>
     </div>

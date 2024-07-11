@@ -1,6 +1,7 @@
 import { AllSkills } from '@/components/cards/skills-list';
 import DetailsSection from '@/components/wrapper/DetailsSection';
 import { getJobDetailsData } from '@/data/all-listings';
+import { timeSince } from '@/lib/utils';
 import { BrainCircuit, CircleDollarSign } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import React from 'react';
@@ -19,7 +20,7 @@ const JobDetailedInfo = async ({ jobId }: JobDetailedInfoProps) => {
       <DetailsSection>
         <p className="text-2xl font-semibold">{jobDetails.title}</p>
         <p className="text-sm text-slate-500">
-          {jobDetails.createdAt.toDateString()}
+          Posted {timeSince(jobDetails.createdAt)}
         </p>
       </DetailsSection>
 

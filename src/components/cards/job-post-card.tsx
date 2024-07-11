@@ -28,7 +28,7 @@ const JobPostCard = async ({ fetchData }: JobPostProps) => {
                   {data.title}
                 </h1>
                 <div className="space-x-3 text-sm text-slate-500">
-                  <span>Intermediate</span>
+                  <span className='capitalize'>{data.experience}</span>
                   <span>Est. Budget: ${data.price}</span>
                 </div>
               </div>

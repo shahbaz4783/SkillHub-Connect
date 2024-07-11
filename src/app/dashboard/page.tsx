@@ -1,4 +1,5 @@
-import DashboardOverview from '@/components/layouts/dashboard/dashboard-overview';
+import DashboardAsideLeft from '@/components/layouts/dashboard/dashboard-aside-left';
+import DashboardAsideRight from '@/components/layouts/dashboard/dashboard-aside-right';
 import Heading from '@/components/loaders/Heading';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { currentUser } from '@/lib/auth';
@@ -14,7 +15,10 @@ const Dashboard = async () => {
           subTitle="This is your dashboard overview"
         />
       </Suspense>
-      <DashboardOverview />
+      <div className="grid gap-8 lg:grid-cols-2">
+        <DashboardAsideLeft />
+        <DashboardAsideRight />
+      </div>
     </>
   );
 };

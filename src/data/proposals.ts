@@ -17,3 +17,15 @@ export const getUserProposals = async (): Promise<ProposalData[]> => {
     },
   });
 };
+
+export const getActiveProposalsCount = async (): Promise<number> => {
+  const user = await currentUser();
+  const userId = user?.id;
+
+  return prisma.proposal.count({
+    where: {
+      isAccepted: false,
+      userId,
+    },
+  });
+};
