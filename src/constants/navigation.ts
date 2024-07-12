@@ -15,6 +15,7 @@ import {
   Send,
   Folder,
   MessageCircleReply,
+  User,
 } from 'lucide-react';
 
 interface NavInterface {
@@ -35,23 +36,57 @@ interface NavInterface {
     title: string;
     path: string;
     icon?: React.ElementType;
-  };
+  }[];
 }
 
 // Main Header
 export const PAGES_NAV_ITEMS: NavInterface[] = [
   {
-    title: 'Find Talent',
+    title: ' Discover',
     path: '/services',
-    submenu: false,
+    submenu: true,
+    subMenuItems: [
+      {
+        title: 'Browse Services',
+        path: '/services',
+      },
+      {
+        title: 'How to Earn',
+        path: '/earn',
+      },
+      {
+        title: 'Find Freelancers',
+        path: '/search?q=freelancer',
+      },
+    ],
   },
   {
-    title: 'Find Work',
+    title: 'My Work',
     path: '/work',
-    submenu: false,
+    submenu: true,
+    subMenuItems: [
+      {
+        title: 'My Job Post',
+        path: '/job-post',
+      },
+      {
+        title: 'All Contracts',
+        path: '/contracts',
+      },
+
+      {
+        title: 'My Service Catalog',
+        path: '/service-catalog',
+      },
+
+      {
+        title: 'Applied Proposals',
+        path: '',
+      },
+    ],
   },
   {
-    title: 'Support',
+    title: 'Activity',
     path: '/support',
     submenu: false,
   },

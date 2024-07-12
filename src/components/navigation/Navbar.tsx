@@ -1,10 +1,21 @@
-import NavLink from '../ui/NavLink';
 import { PAGES_NAV_ITEMS } from '@/constants/navigation';
 import MobileNav from './MobileNav';
 import SearchInput from '@/components/shared/SearchInput';
 import Logo from '../shared/Logo';
 import AuthNavigation from './AuthNavigation';
 import { Suspense } from 'react';
+import { ChevronDown, User } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
@@ -12,11 +23,33 @@ const Navbar = () => {
       <header className="sticky top-0 z-10 flex  justify-between bg-slate-50 px-4 py-3 shadow-sm">
         <div className="flex items-center gap-8">
           <Logo />
-          <nav className="hidden items-center gap-5 text-lg lg:flex">
+          <nav className="hidden items-center gap-1 text-lg lg:flex">
             {PAGES_NAV_ITEMS.map((data, index) => (
-              <NavLink key={index} href={data.path}>
-                {data.title}
-              </NavLink>
+              <DropdownMenu key={index}>
+                <DropdownMenuTrigger asChild>
+                  <div className="flex cursor-pointer items-center justify-center gap-1 rounded-sm px-2 py-1 hover:bg-slate-200">
+                    <p className="text-slate-600 text-sm font-semibold">
+                      {data.title}
+                    </p>
+                    {data.submenu && <ChevronDown size={14} />}
+                  </div>
+                </DropdownMenuTrigger>
+                {data.submenu && (
+                  <DropdownMenuContent className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      {data.subMenuItems?.map((item) => (
+                        <Link href={item.path}>
+                          <DropdownMenuItem>
+                            <span>{item.title}</span>
+                          </DropdownMenuItem>
+                        </Link>
+                      ))}
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                )}
+              </DropdownMenu>
             ))}
           </nav>
         </div>
