@@ -21,7 +21,7 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
   return (
     <aside className="space-y-14 border-l-[1px] px-6 py-8 lg:w-1/5">
       <section className="space-y-4">
-        <Link href={`/freelance-jobs/${jobId}/apply`}>
+        <Link href={`/client/job-post/${jobId}/apply`}>
           <Button className="w-full">Apply Now</Button>
         </Link>
         <form action="">

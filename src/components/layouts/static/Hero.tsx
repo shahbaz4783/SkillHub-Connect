@@ -9,10 +9,10 @@ export function LandingPageHero() {
       <aside className="flex flex-1 flex-col justify-center gap-12">
         <article className="flex flex-col gap-6">
           <div>
-            <h1 className="font-serif text-6xl font-semibold text-green-600">
+            <h1 className="font-serif text-6xl font-semibold text-slate-600">
               Redefine
             </h1>
-            <h1 className="font-serif text-6xl font-semibold text-green-600">
+            <h1 className="font-serif text-6xl font-semibold text-slate-600">
               the norm...
             </h1>
           </div>

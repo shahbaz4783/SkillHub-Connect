@@ -22,12 +22,16 @@ const ProfilePage = async ({ params }: ParamsProps) => {
       <section className="space-y-4">
         <SectionHeading title="My Service Catalog" subTitle="" />
         <ServiceCatalogCard
+          isOwned={true}
           fetchData={() => getServiceCatalogByUsername(params.username)}
         />
       </section>
       <section className="space-y-4 lg:w-4/6">
         <SectionHeading title="My Job Posts" subTitle="" />
-        <JobPostCard fetchData={() => getJobPostsByUsername(params.username)} />
+        <JobPostCard
+          isOwned={true}
+          fetchData={() => getJobPostsByUsername(params.username)}
+        />
       </section>
     </main>
   );

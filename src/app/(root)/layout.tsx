@@ -7,11 +7,11 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
 	const user = await currentUser();
 
 	return (
-    <>
+    <div className="min-h-svh">
       <Navbar />
-      <div className="m-auto w-11/12 min-h-svh">{children}</div>
+      <div className="m-auto w-11/12 my-8">{children}</div>
       {!user && <Footer />}
-    </>
+    </div>
   );
 };
 

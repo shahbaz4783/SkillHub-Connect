@@ -67,7 +67,7 @@ export const PAGES_NAV_ITEMS: NavInterface[] = [
     subMenuItems: [
       {
         title: 'My Job Post',
-        path: '/job-post',
+        path: '/client/job-post',
       },
       {
         title: 'All Contracts',

@@ -7,9 +7,10 @@ import NoDataFound from '../ui/NoDataFound';
 
 interface JobPostProps {
   fetchData: () => Promise<JobPostData[]>;
+  isOwned: boolean;
 }
 
-const JobPostCard = async ({ fetchData }: JobPostProps) => {
+const JobPostCard = async ({ fetchData, isOwned }: JobPostProps) => {
   const posts = await fetchData();
   if (!posts.length) {
     return <NoDataFound message="No job postings have been added yet." />;
@@ -18,7 +19,7 @@ const JobPostCard = async ({ fetchData }: JobPostProps) => {
     <article className="space-y-8">
       {posts.map(async (data) => (
         <>
-          <Link key={data.id} href={`/freelance-jobs/${data.id}`}>
+          <Link key={data.id} href={`/client/job-post/${data.id}`}>
             <div className="cursor-pointer space-y-4 border-b-[1px] p-4 hover:bg-slate-100">
               <div>
                 <p className="text-sm text-slate-500">
@@ -28,7 +29,7 @@ const JobPostCard = async ({ fetchData }: JobPostProps) => {
                   {data.title}
                 </h1>
                 <div className="space-x-3 text-sm text-slate-500">
-                  <span className='capitalize'>{data.experience}</span>
+                  <span className="capitalize">{data.experience}</span>
                   <span>Est. Budget: ${data.price}</span>
                 </div>
               </div>
@@ -47,22 +48,25 @@ const JobPostCard = async ({ fetchData }: JobPostProps) => {
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-2">
-                <div>
-                  {data.user.image ? (
-                    <Image
-                      className="rounded-full"
-                      src={data.user.image}
-                      width={30}
-                      height={30}
-                      alt="Image"
-                    />
-                  ) : (
-                    <UserCircle />
-                  )}
+              {!isOwned && (
+                <div className="flex items-center gap-2">
+                  <div>
+                    {data.user.image ? (
+                      <Image
+                        className="rounded-full"
+                        src={data.user.image}
+                        width={30}
+                        height={30}
+                        alt="Image"
+                      />
+                    ) : (
+                      <UserCircle />
+                    )}
+                  </div>
+                  <p className="text-sm font-semibold">{data.user.name}</p>
                 </div>
-                <p className="text-sm font-semibold">{data.user.name}</p>
-              </div>
+              )}
+
               <div className="space-x-6 text-sm">
                 <span>
                   {data._count.proposals === 0

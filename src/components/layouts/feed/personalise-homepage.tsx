@@ -22,7 +22,10 @@ const PersonaliseHomepage = () => {
             />
             <hr />
             <Suspense fallback={<JobCardSkeleton />}>
-              <JobPostCard fetchData={() => getJobPosts('exceptOwn')} />
+              <JobPostCard
+                isOwned={false}
+                fetchData={() => getJobPosts('exceptOwn')}
+              />
             </Suspense>
           </div>
         </main>

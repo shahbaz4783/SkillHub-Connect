@@ -43,7 +43,10 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
               </>
             }
           >
-            <JobPostCard fetchData={() => getJobPostsResult(q)} />
+            <JobPostCard
+              isOwned={false}
+              fetchData={() => getJobPostsResult(q)}
+            />
           </Suspense>
           <div>
             <PaginationUi />

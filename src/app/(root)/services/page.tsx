@@ -44,7 +44,10 @@ const ServiceCatalogPage = async () => {
             </div>
           }
         >
-          <ServiceCatalogCard fetchData={() => getServiceCatalog()} />
+          <ServiceCatalogCard
+            isOwned={false}
+            fetchData={() => getServiceCatalog()}
+          />
         </Suspense>
       </section>
       <section className="space-y-12">

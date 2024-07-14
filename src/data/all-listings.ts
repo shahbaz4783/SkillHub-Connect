@@ -4,7 +4,7 @@ import { JobPostData, ServicePostData } from '@/types/types';
 import { getUserByUsername } from './user';
 
 export const getJobPosts = async (
-  filter: 'all' | 'exceptOwn',
+  filter: 'all' | 'exceptOwn' | 'own',
 ): Promise<JobPostData[]> => {
   const user = await currentUser();
   const userId = user?.id;
@@ -12,6 +12,26 @@ export const getJobPosts = async (
   if (filter === 'exceptOwn') {
     return await prisma.jobPost.findMany({
       where: { status: 'OPEN', NOT: { userId } },
+      include: {
+        user: {
+          select: { name: true, image: true },
+        },
+        _count: {
+          select: {
+            proposals: true,
+          },
+        },
+      },
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      take: 16,
+    });
+  }
+
+  if (filter === 'own') {
+    return await prisma.jobPost.findMany({
+      where: { userId: userId, NOT: { status: 'CLOSED' } },
       include: {
         user: {
           select: { name: true, image: true },

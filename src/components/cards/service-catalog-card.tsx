@@ -15,9 +15,10 @@ import NoDataFound from '../ui/NoDataFound';
 
 interface ServicePostProps {
   fetchData: () => Promise<ServicePostData[]>;
+  isOwned: boolean;
 }
 
-const ServiceCatalogCard = async ({ fetchData }: ServicePostProps) => {
+const ServiceCatalogCard = async ({ fetchData, isOwned }: ServicePostProps) => {
   const posts = await fetchData();
   if (!posts.length) {
     return <NoDataFound message="Service catalog is currently empty." />;
@@ -45,22 +46,24 @@ const ServiceCatalogCard = async ({ fetchData }: ServicePostProps) => {
                     <p>{data.time} day delivery</p>
                     <p className="font-semibold">Price ${data.price}</p>
                   </div>
-                  <CardFooter className="items-center justify-start gap-3 p-0">
-                    <div>
-                      {data.user.image ? (
-                        <Image
-                          className="rounded-full"
-                          src={data.user.image}
-                          width={30}
-                          height={30}
-                          alt="Image"
-                        />
-                      ) : (
-                        <UserCircle size={30} />
-                      )}
-                    </div>
-                    <CardTitle>{data.user.name}</CardTitle>
-                  </CardFooter>
+                  {!isOwned && (
+                    <CardFooter className="items-center justify-start gap-3 p-0">
+                      <div>
+                        {data.user.image ? (
+                          <Image
+                            className="rounded-full"
+                            src={data.user.image}
+                            width={30}
+                            height={30}
+                            alt="Image"
+                          />
+                        ) : (
+                          <UserCircle size={30} />
+                        )}
+                      </div>
+                      <CardTitle>{data.user.name}</CardTitle>
+                    </CardFooter>
+                  )}
                 </CardContent>
               </Card>
             </Link>
