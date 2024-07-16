@@ -32,19 +32,9 @@ export function UserProfileMenu() {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <Link href={'/dashboard'}>
+          <Link href={'/settings'}>
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-            </DropdownMenuItem>
-          </Link>
-          <DropdownMenuItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
-          </DropdownMenuItem>
-          <Link href={'/dashboard/settings'}>
-            <DropdownMenuItem>
-              <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
             </DropdownMenuItem>
           </Link>
@@ -65,15 +55,11 @@ export function UserProfileMenu() {
             <span>Support</span>
           </DropdownMenuItem>
         </Link>
-        <DropdownMenuItem disabled>
-          <Cloud className="mr-2 h-4 w-4" />
-          <span>API</span>
-        </DropdownMenuItem>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={async () => await logout()}>
           <LogOut className="mr-2 h-4 w-4" />
-          <Button onClick={async () => await logout()}>Log out</Button>
+          <span>Log Out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

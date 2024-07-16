@@ -126,6 +126,8 @@ export const getServiceCatalogByUsername = async (
 };
 
 
+
+
 // Detailed data of service post
 export const getServiceDetailsData = async (id: string) => {
   return await prisma.servicePost.findFirst({
@@ -156,32 +158,4 @@ export const getJobDetailsData = async (id: string) => {
     proposalCount: _count.proposals,
     user,
   };
-};
-
-
-// remove them
-export const getAllServiceListings = async () => {
-  let listings = null;
-  let count = 0;
-
-  listings = await prisma.servicePost.findMany({
-    include: { user: true },
-  });
-  count = await prisma.servicePost.count();
-
-  return { listings, count };
-};
-
-export const getAllJobListings = async () => {
-  let listings = null;
-  let count = 0;
-
-  listings = await prisma.jobPost.findMany({
-    where: {
-      status: 'OPEN',
-    },
-  });
-  count = await prisma.jobPost.count();
-
-  return { listings, count };
 };

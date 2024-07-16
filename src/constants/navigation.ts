@@ -76,12 +76,16 @@ export const PAGES_NAV_ITEMS: NavInterface[] = [
 
       {
         title: 'My Service Catalog',
-        path: '/service-catalog',
+        path: '/freelancer/service-catalog',
       },
 
       {
         title: 'Applied Proposals',
-        path: '',
+        path: '/freelancer/proposals',
+      },
+      {
+        title: 'Orders',
+        path: '/freelancer/orders',
       },
     ],
   },
@@ -175,22 +179,22 @@ export const BOTTOM_NAV_ITEMS: NavInterface[] = [
 export const SETTINGS_ROUTES = [
   {
     title: 'Profile Settings',
-    path: '/dashboard/settings/profile-settings',
+    path: '/settings/profile-settings',
     icon: UserCog,
   },
   {
     title: 'Password & Security',
-    path: '/dashboard/settings/password-and-security',
+    path: '/settings/password-and-security',
     icon: Fingerprint,
   },
   {
     title: 'Billing & Payments',
-    path: '/dashboard/settings/payment-methods',
+    path: '/settings/payment-methods',
     icon: CreditCard,
   },
   {
     title: 'Notification settings',
-    path: '/dashboard/settings/notification-settings',
+    path: '/settings/notification-settings',
     icon: Bell,
   },
 ];

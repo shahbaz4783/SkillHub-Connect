@@ -1,6 +1,6 @@
 import { AllSkills } from '@/components/cards/skills-list';
 import DetailsSection from '@/components/wrapper/DetailsSection';
-import { getJobDetailsData } from '@/data/all-listings';
+import { getJobDetailsData } from '@/data/posts';
 import { timeSince } from '@/lib/utils';
 import { BrainCircuit, CircleDollarSign } from 'lucide-react';
 import { redirect } from 'next/navigation';

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { getJobDetailsData } from '@/data/all-listings';
+import { getJobDetailsData } from '@/data/posts';
 import { getUserByID } from '@/data/user';
 import { currentUser } from '@/lib/auth';
 import { Heart } from 'lucide-react';

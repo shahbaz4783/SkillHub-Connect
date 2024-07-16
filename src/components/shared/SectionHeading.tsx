@@ -15,7 +15,7 @@ const SectionHeading = ({
   subTitleStyle,
 }: SectionHeadingProps) => {
   return (
-    <header className={cn('mb-12 space-y-2', className)}>
+    <header className={cn('space-y-2', className)}>
       <h1 className={cn('text-2xl font-semibold', titleStyle)}>{title}</h1>
       <p className={cn('text-sm text-slate-600', subTitleStyle)}>{subTitle}</p>
     </header>

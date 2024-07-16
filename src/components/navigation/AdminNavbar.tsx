@@ -1,10 +1,9 @@
-import { ADMIN_NAV_ITEMS } from '@/constants/navigation';
+import { ADMIN_NAV_ITEMS, SETTINGS_ROUTES } from '@/constants/navigation';
 import Link from 'next/link';
 import React, { Suspense } from 'react';
 import UserAvatar from '../shared/UserAvatar';
 import LogoutIcon from '../forms/auth/logout';
 import { Skeleton } from '../ui/skeleton';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { currentUser } from '@/lib/auth';
 
 const AdminNavbar = async () => {
@@ -20,7 +19,7 @@ const AdminNavbar = async () => {
       </header>
       <section className="flex flex-1 flex-col justify-between">
         <nav className="flex flex-col gap-4 ">
-          {ADMIN_NAV_ITEMS.map((data, index) => (
+          {SETTINGS_ROUTES.map((data, index) => (
             <Link
               key={index}
               href={data.path}

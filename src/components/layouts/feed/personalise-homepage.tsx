@@ -4,7 +4,7 @@ import FeedUser from './FeedUser';
 import QuickActions from './QuickActions';
 import JobCardSkeleton from '@/components/loaders/JobCardSkeleton';
 import JobPostCard from '@/components/cards/job-post-card';
-import { getJobPosts } from '@/data/all-listings';
+import { getJobPosts } from '@/data/posts';
 import SectionTop from '@/components/ui/SectionTop';
 import { Skeleton } from '@/components/ui/skeleton';
 

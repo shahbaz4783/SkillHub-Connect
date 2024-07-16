@@ -4,7 +4,7 @@ import UserAvatar from '@/components/shared/UserAvatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import DetailsSection from '@/components/wrapper/DetailsSection';
-import { getServiceDetailsData } from '@/data/all-listings';
+import { getServiceDetailsData } from '@/data/posts';
 import { timeSince } from '@/lib/utils';
 import { CircleDollarSign, Heart, Timer, UserCircle } from 'lucide-react';
 import Image from 'next/image';

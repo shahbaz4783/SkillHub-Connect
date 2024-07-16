@@ -5,7 +5,7 @@ import ServiceCardSkeleton from '@/components/loaders/ServiceCardSkeleton';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { Button } from '@/components/ui/button';
 import PageHeading from '@/components/ui/page-heading';
-import { getServiceCatalog } from '@/data/all-listings';
+import { getServiceCatalog } from '@/data/posts';
 import { getAllUserData } from '@/data/user';
 import Link from 'next/link';
 import { Suspense } from 'react';

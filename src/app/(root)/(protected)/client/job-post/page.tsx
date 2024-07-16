@@ -1,7 +1,7 @@
 import JobPostCard from '@/components/cards/job-post-card';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { Button } from '@/components/ui/button';
-import { getJobPosts } from '@/data/all-listings';
+import { getJobPosts } from '@/data/posts';
 import Link from 'next/link';
 import React from 'react';
 

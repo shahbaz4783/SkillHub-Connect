@@ -5,7 +5,7 @@ import SectionHeading from '@/components/shared/SectionHeading';
 import {
   getJobPostsByUsername,
   getServiceCatalogByUsername,
-} from '@/data/all-listings';
+} from '@/data/posts';
 import { getAllUserData, getUserDataByUsername } from '@/data/user';
 import React from 'react';
 
