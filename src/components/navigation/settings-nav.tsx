@@ -1,4 +1,4 @@
-import { ADMIN_NAV_ITEMS, SETTINGS_ROUTES } from '@/constants/navigation';
+import { SETTINGS_ROUTES } from '@/constants/navigation';
 import Link from 'next/link';
 import React, { Suspense } from 'react';
 import UserAvatar from '../shared/UserAvatar';
@@ -6,7 +6,7 @@ import LogoutIcon from '../forms/auth/logout';
 import { Skeleton } from '../ui/skeleton';
 import { currentUser } from '@/lib/auth';
 
-const AdminNavbar = async () => {
+const SettingsNav = async () => {
   const user = await currentUser();
   const userImg = user?.image;
 
@@ -41,4 +41,4 @@ const AdminNavbar = async () => {
   );
 };
 
-export default AdminNavbar;
+export default SettingsNav;

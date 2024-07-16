@@ -1,6 +1,6 @@
+'use client';
+
 import {
-  Cloud,
-  CreditCard,
   Github,
   LifeBuoy,
   LogOut,
@@ -20,9 +20,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import { logout } from '@/actions/auth.action';
-import { Button } from '../ui/button';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 export function UserProfileMenu() {
+  const user = useCurrentUser();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -32,9 +33,15 @@ export function UserProfileMenu() {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <Link href={'/settings'}>
+          <Link href={`/profile/${user?.username}`}>
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+            </DropdownMenuItem>
+          </Link>
+          <Link href={'/settings'}>
+            <DropdownMenuItem>
+              <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
             </DropdownMenuItem>
           </Link>

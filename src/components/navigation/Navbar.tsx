@@ -4,8 +4,7 @@ import SearchInput from '@/components/shared/SearchInput';
 import Logo from '../shared/Logo';
 import AuthNavigation from './AuthNavigation';
 import { Suspense } from 'react';
-import { ChevronDown, User } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ChevronDown } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,7 +27,7 @@ const Navbar = () => {
               <DropdownMenu key={index}>
                 <DropdownMenuTrigger asChild>
                   <div className="flex cursor-pointer items-center justify-center gap-1 rounded-sm px-2 py-1 hover:bg-slate-200">
-                    <p className="text-slate-600 text-sm font-semibold">
+                    <p className="text-sm font-semibold text-slate-600">
                       {data.title}
                     </p>
                     {data.submenu && <ChevronDown size={14} />}
@@ -40,7 +39,7 @@ const Navbar = () => {
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                       {data.subMenuItems?.map((item) => (
-                        <Link href={item.path}>
+                        <Link key={item.path} href={item.path}>
                           <DropdownMenuItem>
                             <span>{item.title}</span>
                           </DropdownMenuItem>
