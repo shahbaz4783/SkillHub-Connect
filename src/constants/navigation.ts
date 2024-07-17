@@ -16,6 +16,10 @@ import {
   Folder,
   MessageCircleReply,
   User,
+  Activity,
+  Lock,
+  Link,
+  Globe,
 } from 'lucide-react';
 
 interface NavInterface {
@@ -179,25 +183,60 @@ export const BOTTOM_NAV_ITEMS: NavInterface[] = [
 export const SETTINGS_ROUTES = [
   {
     title: 'Profile Settings',
+    subtitle: 'Update your name, username, and profile picture',
     path: '/settings/profile-settings',
     icon: UserCog,
   },
   {
+    title: 'Bio & Skills',
+    subtitle: 'Edit your bio, skills, and professional title',
+    path: '/settings/bio-skills',
+    icon: User,
+  },
+  {
     title: 'Password & Security',
+    subtitle: 'Update password and security settings',
     path: '/settings/password-and-security',
     icon: Fingerprint,
   },
   {
     title: 'Billing & Payments',
+    subtitle: 'Manage payment methods and view billing history',
     path: '/settings/payment-methods',
     icon: CreditCard,
   },
   {
-    title: 'Notification settings',
+    title: 'Notification Settings',
+    subtitle: 'Customize your notification preferences',
     path: '/settings/notification-settings',
     icon: Bell,
   },
+  {
+    title: 'Privacy Settings',
+    subtitle: 'Control who can see your profile and activity',
+    path: '/settings/privacy-settings',
+    icon: Lock,
+  },
+  {
+    title: 'Account Activity',
+    subtitle: 'View and manage your account activity',
+    path: '/settings/account-activity',
+    icon: Activity,
+  },
+  {
+    title: 'Connected Apps',
+    subtitle: 'Manage apps connected to your account',
+    path: '/settings/connected-apps',
+    icon: Link,
+  },
+  {
+    title: 'Language & Region',
+    subtitle: 'Set your language and regional preferences',
+    path: '/settings/language-region',
+    icon: Globe,
+  },
 ];
+
 
 // Listing Routes
 export const LISTING_ROUTES = [

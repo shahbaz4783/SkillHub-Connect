@@ -5,6 +5,8 @@ interface ListInterface {
   subheading: string;
   className?: string;
   iconSize?: string;
+  subHeadStyle?: string;
+  titleStyle?: string;
   children: React.ReactNode;
 }
 
@@ -13,6 +15,8 @@ const ListItem = ({
   subheading,
   children,
   className,
+  subHeadStyle,
+  titleStyle,
   iconSize = '1.6em',
 }: ListInterface) => {
   return (
@@ -20,9 +24,13 @@ const ListItem = ({
       <div className="pt-1" style={{ fontSize: iconSize }}>
         {children}
       </div>
-      <ul className='space-y-1'>
-        <li className="text-xl font-semibold text-slate-700">{title}</li>
-        <li className="text-sm text-slate-500">{subheading}</li>
+      <ul className="space-y-1">
+        <li className={cn('text-xl font-semibold text-slate-700', titleStyle)}>
+          {title}
+        </li>
+        <li className={cn('text-sm text-slate-500', subHeadStyle)}>
+          {subheading}
+        </li>
       </ul>
     </menu>
   );
