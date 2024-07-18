@@ -4,6 +4,7 @@ import Link from 'next/link';
 import NoDataFound from '../ui/NoDataFound';
 import { ProposalData } from '@/types/types';
 import { timeSince } from '@/lib/utils';
+import DetailsPara from './details-para';
 
 interface ProposalProps {
   fetchData: () => Promise<ProposalData[]>;
@@ -63,7 +64,7 @@ const Proposals = async ({ fetchData }: ProposalProps) => {
           <hr />
           <CardContent className="mb-2 space-y-2">
             <h2 className="font-semibold">Cover Letter</h2>
-            <p className="text-sm text-slate-600">{data.description}</p>
+            <DetailsPara description={data.description} />
           </CardContent>
           <CardFooter className="space-x-6">
             <Button>Change terms</Button>

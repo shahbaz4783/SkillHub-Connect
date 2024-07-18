@@ -1,9 +1,10 @@
+import UpdateAccountInfo from '@/components/forms/user/update-account-info';
 import UpdateUserProfileForm from '@/components/forms/user/update-user-profile';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { getUserProfileByID } from '@/data/user';
 import { currentUser } from '@/lib/auth';
 
-const ProfileUpdatePage = async () => {
+const PersonalInfoUpdatePage = async () => {
   const user = await currentUser();
   if (!user?.id) return null;
   const profile = await getUserProfileByID(user?.id);
@@ -11,17 +12,12 @@ const ProfileUpdatePage = async () => {
   return (
     <section className="space-y-12 lg:w-3/4">
       <SectionHeading
-        title="Update your Profile"
-        subTitle="Craft a compelling title, highlight your skills, and share your bio to stand out."
+        title="Update your Personal Information"
+        subTitle="Change your name, username, and profile image"
       />
-
-      <UpdateUserProfileForm
-        userTitle={profile?.userTitle || ''}
-        skills={profile?.skills || ''}
-        bio={profile?.bio || ''}
-      />
+      <UpdateAccountInfo />
     </section>
   );
 };
 
-export default ProfileUpdatePage;
+export default PersonalInfoUpdatePage;

@@ -58,13 +58,12 @@ const UpdateUserProfileForm = ({ userTitle, skills, bio }: UserProfile) => {
             <FormItem>
               <FormLabel>Professional Title</FormLabel>
               <FormDescription>
-                Enter a concise and descriptive title that summarizes your
-                professional expertise and role (e.g., "Senior Full Stack
-                Developer")
+                Summarize your expertise with a clear, concise title
               </FormDescription>
               <FormControl>
                 <Input
                   className="text-slate-500"
+                  placeholder="Senior Full Stack Developer"
                   type="text"
                   {...field}
                   onChange={(e) => {
@@ -90,13 +89,12 @@ const UpdateUserProfileForm = ({ userTitle, skills, bio }: UserProfile) => {
             <FormItem>
               <FormLabel>Key Skills</FormLabel>
               <FormDescription>
-                List your primary skills, separated by commas. This helps
-                potential clients understand your core competencies (e.g.,
-                "React, Node.js, Express, MongoDB").
+                List your main skills, separated by commas
               </FormDescription>
               <FormControl>
                 <Input
                   className="text-slate-500"
+                  placeholder="React, Node.js, Express, MongoDB"
                   type="text"
                   {...field}
                   onChange={(e) => {
@@ -122,9 +120,7 @@ const UpdateUserProfileForm = ({ userTitle, skills, bio }: UserProfile) => {
             <FormItem>
               <FormLabel>Profile overview</FormLabel>
               <FormDescription>
-                Write a detailed overview of your professional background,
-                experience, and achievements. Use this space to highlight what
-                makes you unique and why clients should choose you.
+                Summarize your background, experience, and achievements
               </FormDescription>
               <FormControl>
                 <Textarea

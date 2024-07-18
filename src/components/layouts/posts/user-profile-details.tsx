@@ -44,7 +44,6 @@ const UserProfileDetails = async ({ username }: { username: string }) => {
 
         <section>
           <SectionHeading title="About Me" subTitle="" />
-          {/* <p className="line-clamp-3 text-slate-500">{userInfo.profile.bio}</p> */}
           <DetailsPara description={userInfo.profile.bio} />
         </section>
 

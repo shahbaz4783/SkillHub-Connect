@@ -3,14 +3,20 @@
 import { cn } from '@/lib/utils';
 import { useState, useRef, useEffect } from 'react';
 
-const DetailsPara = ({ description }: { description: string }) => {
+interface DetailsParaProps {
+  description: string;
+}
+
+const DetailsPara = ({ description }: DetailsParaProps) => {
   const [expandText, setExpandText] = useState<boolean>(false);
   const [showReadMore, setShowReadMore] = useState<boolean>(false);
   const paraRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     if (paraRef.current) {
-      const lineHeight = parseFloat(getComputedStyle(paraRef.current).lineHeight);
+      const lineHeight = parseFloat(
+        getComputedStyle(paraRef.current).lineHeight,
+      );
       const maxHeight = lineHeight * 3;
       if (paraRef.current.scrollHeight > maxHeight) {
         setShowReadMore(true);

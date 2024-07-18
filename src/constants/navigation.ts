@@ -182,16 +182,22 @@ export const BOTTOM_NAV_ITEMS: NavInterface[] = [
 // Settings Routes
 export const SETTINGS_ROUTES = [
   {
-    title: 'Profile Settings',
+    title: 'Personal Information',
     subtitle: 'Update your name, username, and profile picture',
+    path: '/settings/personal-information',
+    icon: UserCog,
+  },
+  {
+    title: 'Profile Settings',
+    subtitle: 'Edit your bio, skills, and professional title',
     path: '/settings/profile-settings',
     icon: UserCog,
   },
   {
-    title: 'Bio & Skills',
-    subtitle: 'Edit your bio, skills, and professional title',
-    path: '/settings/bio-skills',
-    icon: User,
+    title: 'Address',
+    subtitle: 'Add or update your address information',
+    path: '/settings/address-settings',
+    icon: Home,
   },
   {
     title: 'Password & Security',
@@ -206,13 +212,13 @@ export const SETTINGS_ROUTES = [
     icon: CreditCard,
   },
   {
-    title: 'Notification Settings',
+    title: 'Notifications',
     subtitle: 'Customize your notification preferences',
     path: '/settings/notification-settings',
     icon: Bell,
   },
   {
-    title: 'Privacy Settings',
+    title: 'Privacy',
     subtitle: 'Control who can see your profile and activity',
     path: '/settings/privacy-settings',
     icon: Lock,
@@ -228,12 +234,6 @@ export const SETTINGS_ROUTES = [
     subtitle: 'Manage apps connected to your account',
     path: '/settings/connected-apps',
     icon: Link,
-  },
-  {
-    title: 'Language & Region',
-    subtitle: 'Set your language and regional preferences',
-    path: '/settings/language-region',
-    icon: Globe,
   },
 ];
 
