@@ -13,7 +13,7 @@ const Submit = ({
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending}>
+    <Button className="w-full py-5 lg:w-auto" type="submit" disabled={pending}>
       {pending ? loadingTitle : title}
     </Button>
   );

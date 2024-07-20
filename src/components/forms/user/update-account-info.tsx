@@ -20,7 +20,6 @@ import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { updatePersonalInfoAction } from '@/actions/user.action';
 import { useFormState } from 'react-dom';
 import Submit from '@/components/buttons/submit';
-import { Card, CardContent, CardTitle } from '@/components/ui/card';
 
 const UpdateAccountInfo = () => {
   const user = useCurrentUser();
@@ -47,87 +46,47 @@ const UpdateAccountInfo = () => {
     <>
       <Form {...form}>
         <form action={formAction} className="space-y-4">
-          {/* <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input type="text" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input type="text" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
-
-          <Card className="md:w-2/3">
-            <CardContent className="space-y-6">
-              <div>
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem className="gap-8 md:flex">
-                      <div className="w-2/3">
-                        <FormLabel>Name</FormLabel>
-                        <FormDescription>Edit your name</FormDescription>
-                      </div>
-                      <div className="md:w-1/3">
-                        <FormControl>
-                          <Input
-                            className="text-right"
-                            type="text"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </div>
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <hr />
-              <div>
-                <FormField
-                  control={form.control}
-                  name="username"
-                  render={({ field }) => (
-                    <FormItem className="gap-8 md:flex">
-                      <div className="w-2/3">
-                        <FormLabel>Username</FormLabel>
-                        <FormDescription>Edit your username</FormDescription>
-                      </div>
-                      <div className="md:w-1/3">
-                        <FormControl>
-                          <Input
-                            className="text-right"
-                            type="text"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </div>
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </CardContent>
-          </Card>
-
+          <div>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem className="gap-8 md:flex">
+                  <div className="w-2/3">
+                    <FormLabel>Name</FormLabel>
+                    <FormDescription>Update your name</FormDescription>
+                  </div>
+                  <div className="md:w-1/3">
+                    <FormControl>
+                      <Input className="text-right" type="text" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
+          <hr />
+          <div>
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem className="gap-8 md:flex">
+                  <div className="w-2/3">
+                    <FormLabel>Username</FormLabel>
+                    <FormDescription>Change your username</FormDescription>
+                  </div>
+                  <div className="md:w-1/3">
+                    <FormControl>
+                      <Input className="text-right" type="text" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
           <FormError message={formState.message.error} />
           <FormSuccess message={formState.message.success} />
           <Submit title={'Update'} loadingTitle={'Updating your profile...'} />

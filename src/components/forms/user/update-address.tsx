@@ -14,6 +14,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -52,95 +53,145 @@ const UpdateAddressForm = ({
     <>
       <Form {...form}>
         <form action={formAction} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Address</FormLabel>
-                <FormControl>
-                  <Input
-                    className="border-none bg-slate-50 py-6 shadow-none"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="address2"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Address 2</FormLabel>
-                <FormControl>
-                  <Input
-                    className="border-none bg-slate-50 py-6 shadow-none"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="country"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Country</FormLabel>
-                <FormControl>
-                  <Input
-                    className="border-none bg-slate-50 py-6 shadow-none"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="city"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>City</FormLabel>
-                <FormControl>
-                  <Input
-                    className="border-none bg-slate-50 py-6 shadow-none"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="postal_code"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Zip/Pin Code</FormLabel>
-                <FormControl>
-                  <Input
-                    className="border-none bg-slate-50 py-6 shadow-none"
-                    type="number"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div>
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem className="gap-6 lg:flex">
+                  <div className="lg:w-1/3">
+                    <FormLabel>Address</FormLabel>
+                    <FormDescription>
+                      Your main address, like your house number and street name
+                    </FormDescription>
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <FormControl>
+                      <Input
+                        className="text-slate-500"
+                        type="text"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
+          <hr />
+          <div>
+            <FormField
+              control={form.control}
+              name="address2"
+              render={({ field }) => (
+                <FormItem className="gap-6 lg:flex">
+                  <div className="lg:w-1/3">
+                    <FormLabel>Address 2</FormLabel>
+                    <FormDescription>
+                      Include any additional location details or landmarks
+                    </FormDescription>
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <FormControl>
+                      <Input
+                        className="text-slate-500"
+                        type="text"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
+          <hr />
+          <div>
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem className="gap-6 lg:flex">
+                  <div className="lg:w-1/3">
+                    <FormLabel>Country</FormLabel>
+                    <FormDescription>
+                      Enter the country you reside in
+                    </FormDescription>
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <FormControl>
+                      <Input
+                        className="text-slate-500"
+                        type="text"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
+          <hr />
+          <div>
+            <FormField
+              control={form.control}
+              name="city"
+              render={({ field }) => (
+                <FormItem className="gap-6 lg:flex">
+                  <div className="lg:w-1/3">
+                    <FormLabel>City</FormLabel>
+                    <FormDescription>
+                      Enter the name of the city where you live
+                    </FormDescription>
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <FormControl>
+                      <Input
+                        className="text-slate-500"
+                        type="text"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
+          <hr />
+          <div>
+            <FormField
+              control={form.control}
+              name="postal_code"
+              render={({ field }) => (
+                <FormItem className="gap-6 lg:flex">
+                  <div className="lg:w-1/3">
+                    <FormLabel>Postal Code</FormLabel>
+                    <FormDescription>
+                      Fill in the postal code relevant to your address
+                    </FormDescription>
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <FormControl>
+                      <Input
+                        className="text-slate-500"
+                        type="number"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
+
           <FormError message={formState.message.error} />
           <FormSuccess message={formState.message.success} />
           <Submit
-            title="Update Profile"
+            title="Update Address"
             loadingTitle="Updating Your Profile..."
           />
         </form>

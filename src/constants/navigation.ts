@@ -196,7 +196,7 @@ export const SETTINGS_ROUTES = [
   {
     title: 'Address',
     subtitle: 'Add or update your address information',
-    path: '/settings/address-settings',
+    path: '/settings/address',
     icon: Home,
   },
   {
