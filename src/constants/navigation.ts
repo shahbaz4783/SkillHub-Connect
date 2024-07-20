@@ -220,7 +220,7 @@ export const SETTINGS_ROUTES = [
   {
     title: 'Privacy',
     subtitle: 'Control who can see your profile and activity',
-    path: '/settings/privacy-settings',
+    path: '/settings/privacy',
     icon: Lock,
   },
   {

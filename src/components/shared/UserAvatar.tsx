@@ -10,7 +10,7 @@ const UserAvatar = async ({ imageUrl, size }: UserAvatarProps) => {
     <Avatar>
       <AvatarImage src={imageUrl} alt="Profile" />
       <AvatarFallback>
-        <UserCircle size={size} />
+        <UserCircle fontSize={size} />
       </AvatarFallback>
     </Avatar>
   );

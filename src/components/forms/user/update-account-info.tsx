@@ -58,7 +58,12 @@ const UpdateAccountInfo = () => {
                   </div>
                   <div className="md:w-1/3">
                     <FormControl>
-                      <Input className="text-right" type="text" {...field} />
+                      <Input
+                        spellCheck={false}
+                        className="text-right"
+                        type="text"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </div>
@@ -75,11 +80,16 @@ const UpdateAccountInfo = () => {
                 <FormItem className="gap-8 md:flex">
                   <div className="w-2/3">
                     <FormLabel>Username</FormLabel>
-                    <FormDescription>Change your username</FormDescription>
+                    <FormDescription>Modify your username</FormDescription>
                   </div>
                   <div className="md:w-1/3">
                     <FormControl>
-                      <Input className="text-right" type="text" {...field} />
+                      <Input
+                        spellCheck={false}
+                        className="text-right"
+                        type="text"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </div>
