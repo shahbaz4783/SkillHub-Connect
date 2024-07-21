@@ -27,7 +27,7 @@ const FeedUser = async () => {
       <div>
         <Link
           className="text-sm text-slate-500 underline underline-offset-2 hover:text-slate-700"
-          href={'/dashboard/settings/profile-settings'}
+          href={'/settings/profile-settings'}
         >
           Update your profile
         </Link>

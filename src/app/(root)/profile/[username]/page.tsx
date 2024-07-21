@@ -17,7 +17,7 @@ interface ParamsProps {
 
 const ProfilePage = async ({ params }: ParamsProps) => {
   return (
-    <main className="my-12 space-y-8">
+    <main className="my-12 space-y-28">
       <UserProfileDetails username={params.username} />
       <section className="space-y-4">
         <SectionHeading title="My Service Catalog" subTitle="" />

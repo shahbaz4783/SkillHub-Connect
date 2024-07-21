@@ -10,7 +10,7 @@ const UserProfileDetails = async ({ username }: { username: string }) => {
   const userInfo = await getUserDataByUsername(username);
   return (
     <>
-      <div className="space-y-6 lg:w-4/6">
+      <div className="space-y-12 lg:w-4/6">
         <section className="items-center gap-6 space-y-3 lg:flex">
           {userInfo.image ? (
             <Image

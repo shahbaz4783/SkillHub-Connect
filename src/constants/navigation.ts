@@ -20,6 +20,7 @@ import {
   Lock,
   Link,
   Globe,
+  LayoutList,
 } from 'lucide-react';
 
 interface NavInterface {
@@ -153,27 +154,27 @@ export const BOTTOM_NAV_ITEMS: NavInterface[] = [
     icon: Home,
   },
   {
-    title: 'Work',
-    path: '/dashboard/work',
+    title: 'Service',
+    path: '/freelancer/service-catalog',
+    submenu: false,
+    icon: LayoutList,
+  },
+  {
+    title: 'Job Post',
+    path: '/client/job-post',
     submenu: false,
     icon: BriefcaseBusiness,
   },
   {
-    title: 'Listings',
-    path: '/dashboard/listings',
+    title: 'Proposals',
+    path: '/freelancer/proposals',
     submenu: false,
-    icon: CirclePlus,
-  },
-  {
-    title: 'Dashboard',
-    path: '/dashboard',
-    submenu: false,
-    icon: LayoutDashboard,
+    icon: NotebookPen,
   },
 
   {
     title: 'Settings',
-    path: '/dashboard/settings',
+    path: '/settings',
     submenu: false,
     icon: Settings,
   },
@@ -237,27 +238,26 @@ export const SETTINGS_ROUTES = [
   },
 ];
 
-
 // Listing Routes
 export const LISTING_ROUTES = [
   {
     title: 'Post a new service',
-    path: '/dashboard/listings/post-service',
+    path: '/listings/post-service',
     icon: NotebookPen,
   },
   {
     title: 'Post a new job',
-    path: '/dashboard/listings/post-job',
+    path: '/listings/post-job',
     icon: BriefcaseBusiness,
   },
   {
     title: 'Response',
-    path: '/dashboard/listings/response',
+    path: '/listings/response',
     icon: MessageCircleReply,
   },
   {
     title: 'Archieved',
-    path: '/dashboard/listings/archieved',
+    path: '/listings/archieved',
     icon: Folder,
   },
 ];
@@ -266,22 +266,22 @@ export const LISTING_ROUTES = [
 export const WORK_ROUTES = [
   {
     title: 'Proposals',
-    path: '/dashboard/work/proposals',
+    path: '/work/proposals',
     icon: NotebookPen,
   },
   {
     title: 'Post a new job',
-    path: '/dashboard/listings/post-job',
+    path: '/listings/post-job',
     icon: BriefcaseBusiness,
   },
   {
     title: 'Draft',
-    path: '/dashboard/listings/drafts',
+    path: '/listings/drafts',
     icon: SquarePen,
   },
   {
     title: 'Archieved',
-    path: '/dashboard/work/archieved',
+    path: '/work/archieved',
     icon: Folder,
   },
 ];
