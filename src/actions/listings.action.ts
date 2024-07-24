@@ -62,7 +62,8 @@ export const jobPostAction = async (
     },
   });
 
-  return { message: { success: 'Posted' } };
+  revalidatePath('/client/job-post');
+  redirect('/client/job-post');
 };
 
 export const addProposalAction = async (
@@ -158,6 +159,8 @@ export const deleteJobAction = async (id: string) => {
   await prisma.jobPost.delete({
     where: { id },
   });
+  revalidatePath('/', 'layout');
+  return { message: { success: 'Deleted Successfully' } };
 };
 
 // Service

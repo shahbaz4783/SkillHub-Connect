@@ -14,7 +14,9 @@ const AllJobPostShowPage = () => {
           <Button>Post a new job</Button>
         </Link>
       </div>
-      <JobPostCard fetchData={() => getJobPosts('own')} isOwned={true} />
+      <div className="lg:w-3/4">
+        <JobPostCard fetchData={() => getJobPosts('own')} isOwned={true} />
+      </div>
     </div>
   );
 };

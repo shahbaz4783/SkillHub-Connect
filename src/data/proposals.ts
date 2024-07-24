@@ -18,6 +18,24 @@ export const getUserProposals = async (): Promise<ProposalData[]> => {
   });
 };
 
+export const getProposalsByJobId = async (
+  jobId: string,
+): Promise<ProposalData[]> => {
+  return await prisma.proposal.findMany({
+    where: { jobPostId: jobId },
+    include: {
+      user: {
+        select: { name: true, image: true },
+      },
+      jobPost: {
+        select: { title: true, id: true, price: true },
+      },
+    },
+  });
+};
+
+
+
 export const getActiveProposalsCount = async (): Promise<number> => {
   const user = await currentUser();
   const userId = user?.id;
