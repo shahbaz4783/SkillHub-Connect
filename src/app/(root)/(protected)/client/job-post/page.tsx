@@ -7,7 +7,7 @@ import React from 'react';
 
 const AllJobPostShowPage = () => {
   return (
-    <div className='space-y-8'>
+    <div className="space-y-8">
       <div className="mt-8 flex justify-between">
         <SectionHeading title="My Job Posts" />
         <Link href={'./job-post/create'}>

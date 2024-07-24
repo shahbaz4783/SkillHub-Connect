@@ -1,6 +1,5 @@
 'use server';
 
-import * as z from 'zod';
 import { prisma } from '@/lib/prisma';
 import { getUserByEmail, updateUserSession } from '@/data/user';
 import {
@@ -14,6 +13,7 @@ import { authMessages } from '@/constants/messages';
 import { FormState } from '@/types/types';
 import { capitalizeFullName } from '@/lib/utils';
 
+// Personal Info Update Action
 export const updatePersonalInfoAction = async (
   email: string | null,
   formState: FormState,
@@ -120,6 +120,7 @@ export const updateProfileAction = async (
   }
 };
 
+// Address Update Action
 export const updateAddressAction = async (
   formState: FormState,
   formData: FormData,

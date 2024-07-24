@@ -4,7 +4,7 @@ import './globals.css';
 import BottomNavbar from '@/components/navigation/BottomNavbar';
 import { auth } from '@/auth';
 import { SessionProvider } from 'next-auth/react';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 

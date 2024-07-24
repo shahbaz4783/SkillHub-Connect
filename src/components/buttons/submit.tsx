@@ -3,13 +3,12 @@
 import { useFormStatus } from 'react-dom';
 import { Button } from '../ui/button';
 
-const Submit = ({
-  title,
-  loadingTitle,
-}: {
+interface SubmitButtonProps {
   title: string;
   loadingTitle: string;
-}) => {
+}
+
+const Submit = ({ title, loadingTitle }: SubmitButtonProps) => {
   const { pending } = useFormStatus();
 
   return (

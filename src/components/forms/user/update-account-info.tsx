@@ -99,7 +99,10 @@ const UpdateAccountInfo = () => {
           </div>
           <FormError message={formState.message.error} />
           <FormSuccess message={formState.message.success} />
-          <Submit title={'Update'} loadingTitle={'Updating your profile...'} />
+          <Submit
+            title={'Update'}
+            loadingTitle={'Updating your profile...'}
+          />
         </form>
       </Form>
     </>
