@@ -16,6 +16,7 @@ import { revalidatePath } from 'next/cache';
 
 // Job
 export const jobPostAction = async (
+  jobId: string,
   formState: FormState,
   formData: FormData,
 ): Promise<FormState> => {
@@ -44,23 +45,39 @@ export const jobPostAction = async (
 
   const connectCost = calculateProposalCost(price);
 
-  await prisma.jobPost.create({
-    data: {
-      title,
-      description,
-      skills,
-      experience,
-      projectType,
-      price,
-      category,
-      connectCost,
-      user: {
-        connect: {
-          id: userId,
+  if (!jobId) {
+    await prisma.jobPost.create({
+      data: {
+        title,
+        description,
+        skills,
+        experience,
+        projectType,
+        price,
+        category,
+        connectCost,
+        user: {
+          connect: {
+            id: userId,
+          },
         },
       },
-    },
-  });
+    });
+  } else {
+    await prisma.jobPost.update({
+      where: { id: jobId },
+      data: {
+        title,
+        description,
+        skills,
+        experience,
+        projectType,
+        price,
+        category,
+        connectCost,
+      },
+    });
+  }
 
   revalidatePath('/client/job-post');
   redirect('/client/job-post');

@@ -32,7 +32,27 @@ import { useFormState } from 'react-dom';
 import Submit from '@/components/buttons/submit';
 import { cn } from '@/lib/utils';
 
-const JobPostForm = () => {
+interface JobPostFormProps {
+  jobId?: string;
+  title?: string;
+  skills?: string;
+  category?: string;
+  price?: number;
+  projectType?: string;
+  experience?: string;
+  description?: string;
+}
+
+const JobPostForm = ({
+  jobId,
+  title,
+  skills,
+  category,
+  price,
+  projectType,
+  experience,
+  description,
+}: JobPostFormProps) => {
   const [charCount, setCharCount] = useState<{
     title: number;
     description: number;
@@ -43,12 +63,24 @@ const JobPostForm = () => {
 
   const [formStep, setFormStep] = useState<number>(0);
 
-  const [formState, formAction] = useFormState(jobPostAction, {
-    message: {},
-  });
+  const [formState, formAction] = useFormState(
+    jobPostAction.bind(null, jobId as string),
+    {
+      message: {},
+    },
+  );
 
   const form = useForm<z.infer<typeof jobSchema>>({
     resolver: zodResolver(jobSchema),
+    defaultValues: {
+      title,
+      skills,
+      category,
+      price,
+      projectType,
+      experience,
+      description,
+    },
   });
 
   return (

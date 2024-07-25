@@ -32,7 +32,9 @@ export async function ActionMenu({ postId, postType }: ActionMenuProps) {
           <DropdownMenuItem>View proposals</DropdownMenuItem>
         </Link>
         <DropdownMenuItem>Make Private</DropdownMenuItem>
-        <DropdownMenuItem>Edit Posting</DropdownMenuItem>
+        <Link href={`/client/job-post/${postId}/edit`}>
+          <DropdownMenuItem>Edit Posting</DropdownMenuItem>
+        </Link>
         <DeleteDialogConfirmation postId={postId} />
       </DropdownMenuContent>
     </DropdownMenu>

@@ -7,16 +7,19 @@ import { Suspense } from 'react';
 
 const ProposalsPage = () => {
   return (
-    <>
-      <SectionHeading title="Proposals" subTitle="Manage your proposal here" />
+    <main className="space-y-16">
+      <SectionHeading
+        title="My Applications"
+        subTitle="View and Manage Your Job Proposals"
+      />
 
       <Tabs defaultValue="service" className="">
         <TabsList className="mb-4 px-4 py-8">
           <TabsTrigger className="p-3" value="service">
-            Your applied proposals
+            Active
           </TabsTrigger>
           <TabsTrigger className="p-3" value="job">
-            Proposals received on jobs
+            Archived
           </TabsTrigger>
         </TabsList>
         <TabsContent value="service">
@@ -28,7 +31,7 @@ const ProposalsPage = () => {
           <Suspense fallback={<ServiceCardSkeleton />}></Suspense>
         </TabsContent>
       </Tabs>
-    </>
+    </main>
   );
 };
 

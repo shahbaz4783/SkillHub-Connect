@@ -1,6 +1,5 @@
 import JobPostForm from '@/components/forms/post/JobPostForm';
 import SectionHeading from '@/components/shared/SectionHeading';
-import React from 'react';
 
 const page = () => {
   return (

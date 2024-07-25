@@ -1,7 +1,6 @@
 import JobPostCard from '@/components/cards/job-post-card';
 import FilterDrawer from '@/components/filter/filter-drawer';
 import JobPostFilter from '@/components/filter/JobPostFilter';
-import ResultStrip from '@/components/filter/result-strip';
 import Heading from '@/components/loaders/Heading';
 import JobCardSkeleton from '@/components/loaders/JobCardSkeleton';
 import { PaginationUi } from '@/components/shared/pagination';
