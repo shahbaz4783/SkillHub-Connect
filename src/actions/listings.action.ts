@@ -13,6 +13,8 @@ import { calculateProposalCost } from '@/lib/utils';
 import { FormState } from '@/types/types';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import type { JobPost } from '@prisma/client';
+import paths from '@/lib/paths';
 
 // Job
 export const jobPostAction = async (
@@ -45,42 +47,51 @@ export const jobPostAction = async (
 
   const connectCost = calculateProposalCost(price);
 
-  if (!jobId) {
-    await prisma.jobPost.create({
-      data: {
-        title,
-        description,
-        skills,
-        experience,
-        projectType,
-        price,
-        category,
-        connectCost,
-        user: {
-          connect: {
-            id: userId,
+  let jobPost: JobPost;
+  try {
+    if (!jobId) {
+      jobPost = await prisma.jobPost.create({
+        data: {
+          title,
+          description,
+          skills,
+          experience,
+          projectType,
+          price,
+          category,
+          connectCost,
+          user: {
+            connect: {
+              id: userId,
+            },
           },
         },
-      },
-    });
-  } else {
-    await prisma.jobPost.update({
-      where: { id: jobId },
-      data: {
-        title,
-        description,
-        skills,
-        experience,
-        projectType,
-        price,
-        category,
-        connectCost,
-      },
-    });
+      });
+    } else {
+      jobPost = await prisma.jobPost.update({
+        where: { id: jobId },
+        data: {
+          title,
+          description,
+          skills,
+          experience,
+          projectType,
+          price,
+          category,
+          connectCost,
+        },
+      });
+    }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { message: { error: error.message } };
+    } else {
+      return { message: { error: 'Something went wrong' } };
+    }
   }
 
-  revalidatePath('/client/job-post');
-  redirect('/client/job-post');
+  revalidatePath(paths.myJobPost());
+  redirect(paths.jobPostDetails(jobPost.id));
 };
 
 export const addProposalAction = async (

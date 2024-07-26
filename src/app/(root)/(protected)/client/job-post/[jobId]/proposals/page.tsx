@@ -2,7 +2,6 @@ import Proposals from '@/components/cards/proposals';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { getJobDetailsData } from '@/data/posts';
 import { getProposalsByJobId } from '@/data/proposals';
-import { currentUser } from '@/lib/auth';
 
 interface ParamsProps {
   params: {
