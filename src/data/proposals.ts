@@ -1,6 +1,8 @@
 import { currentUser } from '@/lib/auth';
+import paths from '@/lib/paths';
 import { prisma } from '@/lib/prisma';
 import { ProposalData } from '@/types/types';
+import { redirect } from 'next/navigation';
 
 export const getUserProposals = async (): Promise<ProposalData[]> => {
   const user = await currentUser();
@@ -34,6 +36,8 @@ export const getProposalsByJobId = async (jobId: string) => {
         select: { title: true, id: true, price: true },
       },
     },
+    take: 10,
+    orderBy: { updatedAt: 'desc' },
   });
 };
 
@@ -47,7 +51,6 @@ export const getProposalDetailsById = async (proposalId: string) => {
     },
   });
 };
-
 
 export const getActiveProposalsCount = async (): Promise<number> => {
   const user = await currentUser();

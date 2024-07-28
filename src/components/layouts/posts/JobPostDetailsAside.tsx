@@ -1,7 +1,10 @@
 import { Button } from '@/components/ui/button';
+import NoDataFound from '@/components/ui/NoDataFound';
 import { getJobDetailsData } from '@/data/posts';
 import { getUserByID } from '@/data/user';
 import { currentUser } from '@/lib/auth';
+import paths from '@/lib/paths';
+import { isAddressFilled, isProfileCompleted } from '@/lib/validation';
 import { Heart } from 'lucide-react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -17,19 +20,28 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
   const user = await currentUser();
   const userInfo = await getUserByID((user && user.id) || '');
 
-  if (!jobDetails) return redirect('/');
+  if (!jobDetails) return redirect(paths.home());
+
+  const profileCompleted = await isProfileCompleted(user?.id || '');
+  const addressFilled = await isAddressFilled(user?.id || '');
+
   return (
     <aside className="space-y-14 border-l-[1px] px-6 py-8 lg:w-1/5">
-      <section className="space-y-4">
-        <Link href={`/client/job-post/${jobId}/apply`}>
-          <Button className="w-full">Apply Now</Button>
-        </Link>
-        <form action="">
-          <Button variant={'outline'} className="w-full space-x-2">
-            <Heart size={20} /> <span>Save Job</span>
-          </Button>
-        </form>
-      </section>
+      {profileCompleted && addressFilled ? (
+        <section className="space-y-4">
+          <Link href={`/client/job-post/${jobId}/apply`}>
+            <Button className="w-full">Apply Now</Button>
+          </Link>
+          <form action="">
+            <Button variant={'outline'} className="w-full space-x-2">
+              <Heart size={20} /> <span>Save Job</span>
+            </Button>
+          </form>
+        </section>
+      ) : (
+        <NoDataFound message="Please complete your address and profile information to apply." />
+      )}
+
       <div className="space-y-2">
         <p className="text-sm text-slate-700">
           Required Connects to submit a proposal: {jobDetails.connectCost}

@@ -13,8 +13,8 @@ import { timeSince } from '@/lib/utils';
 import DetailsPara from './details-para';
 import { getUsersByJobId } from '@/data/user';
 import Image from 'next/image';
-import SkillsList from './skills-list';
-import { UserCircle } from 'lucide-react';
+import SkillsList, { AllSkills } from './skills-list';
+import { ThumbsDown, UserCircle } from 'lucide-react';
 import UserAvatar from '../shared/UserAvatar';
 import { getProposalsByJobId } from '@/data/proposals';
 import paths from '@/lib/paths';
@@ -103,32 +103,50 @@ export async function ReceivedProposals({ jobId }: { jobId: string }) {
       {proposals.map((data) => (
         <>
           <Card key={data.id} className="cursor-pointer hover:bg-slate-50">
-            <CardContent className="flex items-center">
-              <UserAvatar imageUrl={data.user.image || ''} size={60} />
-              <CardContent className="w-4/5 space-y-1">
-                <Link href={paths.profile(data.userId)}>
-                  <CardDescription className="line-clamp-1 hover:text-slate-800">
-                    {data.user.name}
+            <CardContent className="flex justify-between">
+              <div className="flex items-center gap-3">
+                <UserAvatar imageUrl={data.user.image || ''} size={60} />
+                <div className="w-4/5 space-y-1">
+                  <Link href={paths.profile(data.userId)}>
+                    <CardDescription className="line-clamp-1 hover:text-slate-800">
+                      {data.user.name}
+                    </CardDescription>
+                  </Link>
+                  <CardTitle className="line-clamp-1">
+                    {data.user.profile?.userTitle}
+                  </CardTitle>
+                  <CardDescription>
+                    {data.user.address?.country}
                   </CardDescription>
-                </Link>
-                <CardTitle className="line-clamp-1">
-                  {data.user.profile?.userTitle}
-                </CardTitle>
-                <CardDescription>{data.user.address?.country}</CardDescription>
-              </CardContent>
-              <CardContent>
+                </div>
+              </div>
+              <div className="hidden justify-between gap-3 lg:flex">
+                <Button variant={'outline'}>
+                  <ThumbsDown />
+                </Button>
                 <Button>Hire</Button>
-              </CardContent>
+              </div>
             </CardContent>
 
             <CardContent className="space-y-4">
               <CardTitle className="line-clamp-1">
-                Bid: $ {data.bid.toFixed(2)}
+                Bid: ${data.bid.toFixed(2)}
               </CardTitle>
               <CardDescription className="line-clamp-2">
                 {data.description}
               </CardDescription>
-              <SkillsList skills={data.user.profile?.skills || ''} />
+              <div className="hidden lg:block">
+                <AllSkills skills={data.user.profile?.skills || ''} />
+              </div>
+              <div className="lg:hidden">
+                <SkillsList skills={data.user.profile?.skills || ''} />
+              </div>
+              <div className="flex justify-between gap-3 lg:hidden">
+                <Button className="flex-1" variant={'outline'}>
+                  <ThumbsDown />
+                </Button>
+                <Button className="flex-1">Hire</Button>
+              </div>
             </CardContent>
           </Card>
         </>

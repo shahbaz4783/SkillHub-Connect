@@ -174,3 +174,15 @@ export const getUsersByJobId = async (jobId: string) => {
     },
   });
 };
+
+
+export const getUserIdByUsername = async (username: string) => {
+  return prisma.user.findUnique({
+    where: {
+      username,
+    },
+    select: {
+      id: true,
+    },
+  });
+};

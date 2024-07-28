@@ -1,5 +1,6 @@
 import ProposalForm from '@/components/forms/post/proposal-form';
 import SectionTop from '@/components/ui/SectionTop';
+import { getUserAddressByID } from '@/data/user';
 
 interface ParamsProps {
   params: {

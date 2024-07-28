@@ -2,6 +2,8 @@ import JobPostForm from '@/components/forms/post/JobPostForm';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { getJobDetailsData } from '@/data/posts';
 import { currentUser } from '@/lib/auth';
+import paths from '@/lib/paths';
+import { isOwnedJobPost } from '@/lib/validation';
 import { redirect } from 'next/navigation';
 
 interface ParamsProps {
@@ -11,13 +13,9 @@ interface ParamsProps {
 }
 
 const EditJobPostPage = async ({ params }: ParamsProps) => {
-  const jobId = params.jobId;
-  const user = await currentUser();
-  const userId = user?.id;
-
-  const jobInfo = await getJobDetailsData(jobId);
-
-  if (jobInfo?.userId !== userId) redirect(`/client/job-post/${jobId}`);
+  const jobInfo = await getJobDetailsData(params.jobId);
+  const ownedJobPost = await isOwnedJobPost(params.jobId);
+  if (!ownedJobPost) redirect(paths.jobPost(params.jobId, ''));
 
   return (
     <div>
