@@ -1,7 +1,6 @@
-import Proposals from '@/components/cards/proposals';
+import { ReceivedProposals } from '@/components/cards/proposals';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { getJobDetailsData } from '@/data/posts';
-import { getProposalsByJobId } from '@/data/proposals';
 
 interface ParamsProps {
   params: {
@@ -16,7 +15,7 @@ const ProposalsOnJob = async ({ params }: ParamsProps) => {
   return (
     <main className="space-y-20">
       <SectionHeading title={`Proposals on "${jobPostTitle}"`} />
-      <Proposals fetchData={() => getProposalsByJobId(params.jobId)} />
+      <ReceivedProposals jobId={params.jobId} />
     </main>
   );
 };

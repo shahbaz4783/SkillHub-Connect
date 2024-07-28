@@ -91,7 +91,7 @@ export const jobPostAction = async (
   }
 
   revalidatePath(paths.myJobPost());
-  redirect(paths.jobPostDetails(jobPost.id));
+  redirect(paths.jobPost(jobPost.id, ''));
 };
 
 export const addProposalAction = async (

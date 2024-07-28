@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { UserData, UserProfile } from '@/types/types';
+import { redirect } from 'next/navigation';
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -141,4 +142,35 @@ export const getUserDataByUsername = async (
     },
   });
   return users as UserData;
+};
+
+export const getUsersByJobId = async (jobId: string) => {
+  return await prisma.user.findMany({
+    where: {
+      proposals: {
+        some: {
+          jobPostId: jobId,
+        },
+      },
+    },
+    include: {
+      profile: {
+        select: {
+          bio: true,
+          userTitle: true,
+          skills: true,
+        },
+      },
+      address: {
+        select: {
+          country: true,
+        },
+      },
+      proposals: {
+        where: {
+          jobPostId: jobId,
+        },
+      },
+    },
+  });
 };
