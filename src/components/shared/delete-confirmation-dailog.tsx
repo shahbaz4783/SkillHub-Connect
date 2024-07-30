@@ -1,40 +1,57 @@
-import { deleteJobAction } from '@/actions/listings.action';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+'use client';
+
+import { closeJobAction } from '@/actions/listings.action';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { useFormState } from 'react-dom';
+import Submit from '../buttons/submit';
 
 export function DeleteDialogConfirmation({ postId }: { postId: string }) {
+  const [formState, formAction] = useFormState(
+    closeJobAction.bind(null, postId),
+    {
+      message: {},
+    },
+  );
+
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button className="text w-full p-2 font-normal" variant="ghost">
-          Delete Posting
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          className="w-full justify-start p-2 font-normal"
+          variant="ghost"
+        >
+          Remove Posting
         </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this job
-            post.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => deleteJobAction(postId)}>
-            Continue
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader className="space-y-3">
+          <DialogTitle>Close Job</DialogTitle>
+          <DialogDescription>
+            Use this to close your job to new applicants and notify current
+            applicants. Those you have hired will not be affected.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Cancel
+            </Button>
+          </DialogClose>
+          <form action={formAction}>
+            <Submit title="Close Job" loadingTitle="Closing..." />
+          </form>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

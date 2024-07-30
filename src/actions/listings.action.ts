@@ -183,12 +183,19 @@ export const addProposalAction = async (
   return { message: { success: 'Proposal Created Successfully' } };
 };
 
-export const deleteJobAction = async (id: string) => {
-  await prisma.jobPost.delete({
-    where: { id },
+export const closeJobAction = async (
+  postId: string,
+  formState: FormState,
+  formData: FormData,
+) => {
+  await prisma.jobPost.update({
+    where: { id: postId },
+    data: {
+      status: 'CLOSED',
+    },
   });
   revalidatePath('/', 'layout');
-  return { message: { success: 'Deleted Successfully' } };
+  redirect(paths.myJobPost());
 };
 
 // Service

@@ -11,6 +11,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { DeleteDialogConfirmation } from './delete-confirmation-dailog';
 import Link from 'next/link';
+import paths from '@/lib/paths';
+import { ShareDialog } from './share';
 
 interface ActionMenuProps {
   postId: string;
@@ -28,14 +30,21 @@ export async function ActionMenu({ postId, postType }: ActionMenuProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <Link href={`/client/job-post/${postId}/proposals`}>
+        <Link href={paths.jobPost(postId, 'proposals')}>
           <DropdownMenuItem>View proposals</DropdownMenuItem>
         </Link>
-        <DropdownMenuItem>Make Private</DropdownMenuItem>
-        <Link href={`/client/job-post/${postId}/edit`}>
+        <Link href={paths.jobPost(postId, '')}>
+          <DropdownMenuItem>View Posting</DropdownMenuItem>
+        </Link>
+        <Link href={paths.jobPost(postId, 'edit')}>
           <DropdownMenuItem>Edit Posting</DropdownMenuItem>
         </Link>
-        <DeleteDialogConfirmation postId={postId} />
+        <div>
+          <DeleteDialogConfirmation postId={postId} />
+        </div>
+        <div>
+          <ShareDialog shareLink={paths.jobPost(postId, '')} />
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

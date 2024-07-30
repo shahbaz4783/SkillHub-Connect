@@ -54,17 +54,18 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
       )}
 
       {ownedJobPost && (
-        <div>
-          <ul>
-            <Link href={`/client/job-post/${jobId}/proposals`}>
-              <li>View proposals</li>
-            </Link>
-            <li>Make Private</li>
-            <Link href={`/client/job-post/${jobId}/edit`}>
-              <li>Edit Posting</li>
-            </Link>
-          </ul>
-        </div>
+        <ul>
+          <Link href={`/client/job-post/${jobId}/proposals`}>
+            <li>View proposals</li>
+          </Link>
+          <li>Make Private</li>
+          <Link href={`/client/job-post/${jobId}/edit`}>
+            <li>Edit Posting</li>
+          </Link>
+          <li className="text-left">
+            <DeleteDialogConfirmation postId={jobId} />
+          </li>
+        </ul>
       )}
 
       {!ownedJobPost && (
