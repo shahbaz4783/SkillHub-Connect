@@ -23,7 +23,7 @@ import { loginSchema } from '@/validators/auth.schema';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import { FaArrowLeft } from 'react-icons/fa';
-import Submit from '../../buttons/submit';
+import Submit from '@/components/feedback/submit';
 import { useFormState } from 'react-dom';
 import { loginAction } from '@/actions/auth.action';
 

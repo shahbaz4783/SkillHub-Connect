@@ -18,7 +18,7 @@ import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import { profileSchema } from '@/validators/user.schema';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
+import Submit from '@/components/feedback/submit';
 import { updateProfileAction } from '@/actions/user.action';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';

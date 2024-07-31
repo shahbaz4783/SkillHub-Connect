@@ -19,7 +19,7 @@ import { userSchema } from '@/validators/user.schema';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { updatePersonalInfoAction } from '@/actions/user.action';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
+import Submit from '@/components/feedback/submit';
 
 const UpdateAccountInfo = () => {
   const user = useCurrentUser();

@@ -16,7 +16,7 @@ import { resetSchema } from '@/validators/auth.schema';
 import FormError from '../../feedback/FormError';
 import FormSuccess from '../../feedback/FormSuccess';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
+import Submit from '@/components/feedback/submit';
 import { resetPasswordAction } from '@/actions/auth.action';
 
 const ForgotPassowordByEmail = () => {

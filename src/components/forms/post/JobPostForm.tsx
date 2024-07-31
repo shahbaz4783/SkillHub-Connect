@@ -29,8 +29,8 @@ import { categories, experienceLvl } from '@/constants/options';
 import { Textarea } from '../../ui/textarea';
 import { jobPostAction } from '@/actions/listings.action';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
 import { cn } from '@/lib/utils';
+import Submit from '@/components/feedback/submit';
 
 interface JobPostFormProps {
   jobId?: string;

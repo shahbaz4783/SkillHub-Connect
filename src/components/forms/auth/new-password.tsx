@@ -21,7 +21,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
+import Submit from '@/components/feedback/submit';
 import { newPasswordAction } from '@/actions/auth.action';
 
 const NewPasswordForm = () => {

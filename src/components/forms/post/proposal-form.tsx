@@ -29,9 +29,9 @@ import { Textarea } from '../../ui/textarea';
 import { timeFrameOptions } from '@/constants/options';
 import { addProposalAction } from '@/actions/listings.action';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import Submit from '@/components/feedback/submit';
 
 const ProposalForm = ({ jobPostId }: { jobPostId: string }) => {
   const [charCount, setCharCount] = useState<number>(0);

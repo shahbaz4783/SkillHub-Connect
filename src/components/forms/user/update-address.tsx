@@ -26,7 +26,7 @@ import { addressSchema } from '@/validators/user.schema';
 import { Input } from '../../ui/input';
 import { updateAddressAction } from '@/actions/user.action';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
+import Submit from '@/components/feedback/submit';
 import { UserAddress } from '@/types/types';
 
 const UpdateAddressForm = ({

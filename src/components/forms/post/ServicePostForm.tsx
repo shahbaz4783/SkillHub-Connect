@@ -29,7 +29,7 @@ import { Textarea } from '../../ui/textarea';
 import { categories } from '@/constants/options';
 import { servicePostAction } from '@/actions/listings.action';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
+import Submit from '@/components/feedback/submit';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 

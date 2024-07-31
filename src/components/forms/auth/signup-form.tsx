@@ -20,7 +20,7 @@ import { signUpAction } from '@/actions/auth.action';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import { useFormState } from 'react-dom';
-import Submit from '@/components/buttons/submit';
+import Submit from '@/components/feedback/submit';
 
 const SignupForm = () => {
   const form = useForm<z.output<typeof signUpSchema>>({

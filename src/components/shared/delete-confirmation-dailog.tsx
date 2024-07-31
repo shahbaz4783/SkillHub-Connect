@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { useFormState } from 'react-dom';
-import Submit from '../buttons/submit';
+import Submit from '../feedback/submit';
 
 export function DeleteDialogConfirmation({ postId }: { postId: string }) {
   const [formState, formAction] = useFormState(

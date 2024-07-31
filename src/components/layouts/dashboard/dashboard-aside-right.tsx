@@ -2,9 +2,7 @@ import DataCard from '@/components/cards/data-card';
 import { Proposals } from '@/components/charts/proposals';
 import { getConnectBalance } from '@/data/connects';
 import { getActiveProposalsCount } from '@/data/proposals';
-import { CircleDollarSign, Coins, NotebookPen } from 'lucide-react';
-
-import React from 'react';
+import { Coins, NotebookPen } from 'lucide-react';
 
 const DashboardAsideRight = async () => {
   const connects = await getConnectBalance();

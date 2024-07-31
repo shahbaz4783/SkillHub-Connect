@@ -96,8 +96,22 @@ export const PAGES_NAV_ITEMS: NavInterface[] = [
   },
   {
     title: 'Activity',
-    path: '/support',
-    submenu: false,
+    path: '/activity',
+    submenu: true,
+    subMenuItems: [
+      {
+        title: 'Activity',
+        path: '/activity',
+      },
+      {
+        title: 'Buy Connects',
+        path: '/connects',
+      },
+      {
+        title: 'Transaction history',
+        path: '/transaction-history',
+      },
+    ],
   },
 ];
 
