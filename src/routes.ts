@@ -2,6 +2,8 @@ export const rootRoute = '/';
 
 export const publicRoutes = [
   '/services',
+  '/client',
+  '/freelance',
   '/freelance-jobs',
   '/work',
   '/profile',

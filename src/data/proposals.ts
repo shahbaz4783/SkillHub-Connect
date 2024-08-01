@@ -63,3 +63,12 @@ export const getActiveProposalsCount = async (): Promise<number> => {
     },
   });
 };
+
+export const getLastAppliedProposalOnJob = async (jobId: string) => {
+  return await prisma.proposal.findFirst({
+    where: { jobPostId: jobId },
+    orderBy: {
+      updatedAt: 'desc',
+    },
+  });
+};

@@ -1,6 +1,7 @@
 import { AllSkills } from '@/components/cards/skills-list';
 import DetailsSection from '@/components/wrapper/DetailsSection';
 import { getJobDetailsData } from '@/data/posts';
+import { getLastAppliedProposalOnJob } from '@/data/proposals';
 import { timeSince } from '@/lib/utils';
 import { BrainCircuit, CircleDollarSign } from 'lucide-react';
 import { redirect } from 'next/navigation';
@@ -11,6 +12,8 @@ interface JobDetailedInfoProps {
 
 const JobDetailedInfo = async ({ jobId }: JobDetailedInfoProps) => {
   const jobDetails = await getJobDetailsData(jobId);
+
+  const lastAppliedProposal = await getLastAppliedProposalOnJob(jobId);
 
   if (!jobDetails) return redirect('/');
 
@@ -78,13 +81,27 @@ const JobDetailedInfo = async ({ jobId }: JobDetailedInfoProps) => {
 
       <DetailsSection>
         <h2 className="text-lg font-semibold">Activity on this job </h2>
-        <menu>
-          <div className="space-x-3 text-sm">
+        <menu className="space-y-2">
+          <div className="space-x-2 text-sm">
             <span>Proposals:</span>
             <span className="text-slate-600">
               {jobDetails.proposalCount === 0
-                ? 'No proposals yet'
+                ? 'No proposals submitted yet'
                 : jobDetails.proposalCount}
+            </span>
+          </div>
+          <div className="space-x-2 text-sm">
+            <span>Last updated:</span>
+            <span className="text-slate-600">
+              {timeSince(jobDetails.updatedAt)}
+            </span>
+          </div>
+          <div className="space-x-2 text-sm">
+            <span>Recent Proposal:</span>
+            <span className="text-slate-600">
+              {jobDetails.proposalCount === 0
+                ? 'No proposals submitted yet'
+                : timeSince(lastAppliedProposal?.createdAt || new Date())}
             </span>
           </div>
         </menu>
