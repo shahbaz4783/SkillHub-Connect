@@ -77,3 +77,37 @@ export function ShareDialog({ shareLink }: { shareLink: string }) {
     </Dialog>
   );
 }
+
+export function ShareExpaned({ shareLink }: { shareLink: string }) {
+  const [link] = useState('https://skillhub-connect.vercel.app' + shareLink);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(link);
+      toast('Link copied to clipboard', {
+        description: 'The link has been successfully copied.',
+      });
+    } catch (err) {
+      toast.error('Failed to copy link', {
+        description: 'There was an error copying the link. Please try again.',
+        action: {
+          label: 'Undo',
+          onClick: () => console.log('Undo'),
+        },
+      });
+    }
+  };
+  return (
+    <>
+      <Input
+        type="text"
+        readOnly
+        className="text-slate-500"
+        value={link}
+      />
+      <Button onClick={handleCopy} variant={'outline'}>
+        Copy Link
+      </Button>
+    </>
+  );
+}

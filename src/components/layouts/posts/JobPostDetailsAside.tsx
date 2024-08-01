@@ -1,6 +1,7 @@
 import { DeleteDialogConfirmation } from '@/components/shared/delete-confirmation-dailog';
-import { ShareDialog } from '@/components/shared/share';
+import { ShareDialog, ShareExpaned } from '@/components/shared/share';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import NoDataFound from '@/components/ui/NoDataFound';
 import { getJobDetailsData, getJobPostCountByUserId } from '@/data/posts';
 import { getUserByID } from '@/data/user';
@@ -37,7 +38,7 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
   const userJobCount = await getJobPostCountByUserId(jobDetails.userId);
 
   return (
-    <aside className="space-y-14 border-l-[1px] px-6 py-8 lg:w-1/5">
+    <aside className="space-y-14 lg:border-l-[1px] px-6 py-8 lg:w-1/5">
       {!ownedJobPost && (
         <>
           {profileCompleted && addressFilled ? (
@@ -128,9 +129,9 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
           </p>
         </div>
       </div>
-      <div className="space-y-3">
+      <div className="space-y-4">
         <h2 className="text-lg font-semibold">Job Link</h2>
-        <ShareDialog shareLink={paths.jobPost(jobDetails.id, '')} />
+        <ShareExpaned shareLink={paths.jobPost(jobDetails.id, '')} />
       </div>
     </aside>
   );
