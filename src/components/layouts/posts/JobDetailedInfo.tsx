@@ -4,7 +4,6 @@ import { getJobDetailsData } from '@/data/posts';
 import { timeSince } from '@/lib/utils';
 import { BrainCircuit, CircleDollarSign } from 'lucide-react';
 import { redirect } from 'next/navigation';
-import React from 'react';
 
 interface JobDetailedInfoProps {
   jobId: string;
@@ -66,7 +65,10 @@ const JobDetailedInfo = async ({ jobId }: JobDetailedInfoProps) => {
       </DetailsSection>
 
       <DetailsSection>
-        <p>Project Type: {jobDetails.projectType}</p>
+        <div className="space-x-3 text-sm">
+          <span>Project Type:</span>
+          <span className="text-slate-600">{jobDetails.projectType}</span>
+        </div>
       </DetailsSection>
 
       <DetailsSection>

@@ -91,6 +91,17 @@ export const getJobPostsByUsername = async (
   });
 };
 
+export const getJobPostCountByUserId = async (userId: string) => {
+  const totalJobPosts = await prisma.jobPost.count({
+    where: { userId },
+  });
+  const currentlyActiveJobPost = await prisma.jobPost.count({
+    where: { userId, status: 'OPEN' },
+  });
+
+  return { totalJobPosts, currentlyActiveJobPost };
+};
+
 // Service Posts
 export const getServiceCatalog = async (): Promise<ServicePostData[]> => {
   return await prisma.servicePost.findMany({
@@ -125,9 +136,6 @@ export const getServiceCatalogByUsername = async (
   });
 };
 
-
-
-
 // Detailed data of service post
 export const getServiceDetailsData = async (id: string) => {
   return await prisma.servicePost.findFirst({
@@ -141,7 +149,9 @@ export const getJobDetailsData = async (id: string) => {
   const jobPost = await prisma.jobPost.findFirst({
     where: { id, status: 'OPEN' },
     include: {
-      user: true,
+      user: {
+        select: { name: true, username: true, createdAt: true, address: true },
+      },
       _count: {
         select: { proposals: true },
       },

@@ -19,7 +19,7 @@ import Link from 'next/link';
 const Navbar = () => {
   return (
     <>
-      <header className="sticky top-0 z-10 flex  justify-between bg-slate-50 px-4 py-3 shadow-sm">
+      <header className="flex justify-between px-4 py-3 ">
         <div className="flex items-center gap-8">
           <Logo />
           <nav className="hidden items-center gap-1 text-lg lg:flex">

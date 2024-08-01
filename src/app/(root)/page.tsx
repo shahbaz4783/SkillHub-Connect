@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import LandingPage from '../../components/layouts/static/LandingPage';
+import LandingPage from '@/components/layouts/static/LandingPage';
 import PersonaliseHomepage from '@/components/layouts/feed/personalise-homepage';
 
 const HomePage = async () => {

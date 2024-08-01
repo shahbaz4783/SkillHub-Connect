@@ -11,7 +11,7 @@ import { currentUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { authMessages } from '@/constants/messages';
 import { FormState } from '@/types/types';
-import { capitalizeFullName } from '@/lib/utils';
+import { capitalizeFirstLetter } from '@/lib/utils';
 
 // Personal Info Update Action
 export const updatePersonalInfoAction = async (
@@ -34,7 +34,7 @@ export const updatePersonalInfoAction = async (
 
   const { name, username } = validateFields.data;
 
-  const formattedName = capitalizeFullName(name);
+  const formattedName = capitalizeFirstLetter(name);
   const formattedUsername = username.toLowerCase();
 
   const user = await getUserByEmail(email);

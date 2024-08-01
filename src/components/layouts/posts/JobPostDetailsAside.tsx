@@ -1,16 +1,18 @@
 import { DeleteDialogConfirmation } from '@/components/shared/delete-confirmation-dailog';
+import { ShareDialog } from '@/components/shared/share';
 import { Button } from '@/components/ui/button';
 import NoDataFound from '@/components/ui/NoDataFound';
-import { getJobDetailsData } from '@/data/posts';
+import { getJobDetailsData, getJobPostCountByUserId } from '@/data/posts';
 import { getUserByID } from '@/data/user';
 import { currentUser } from '@/lib/auth';
 import paths from '@/lib/paths';
+import { formatDate } from '@/lib/utils';
 import {
   isAddressFilled,
   isOwnedJobPost,
   isProfileCompleted,
 } from '@/lib/validation';
-import { Heart } from 'lucide-react';
+import { Delete, Heart, Pen } from 'lucide-react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
@@ -31,6 +33,8 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
 
   const profileCompleted = await isProfileCompleted(user?.id || '');
   const addressFilled = await isAddressFilled(user?.id || '');
+
+  const userJobCount = await getJobPostCountByUserId(jobDetails.userId);
 
   return (
     <aside className="space-y-14 border-l-[1px] px-6 py-8 lg:w-1/5">
@@ -54,15 +58,30 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
       )}
 
       {ownedJobPost && (
-        <ul>
+        <ul className="rounded-md border">
           <Link href={`/client/job-post/${jobId}/proposals`}>
-            <li>View proposals</li>
+            <Button
+              className="w-full justify-start p-2 font-normal"
+              variant={'ghost'}
+            >
+              View proposals
+            </Button>
           </Link>
-          <li>Make Private</li>
+          <Button
+            className="w-full justify-start p-2 font-normal"
+            variant={'ghost'}
+          >
+            Make Private
+          </Button>
           <Link href={`/client/job-post/${jobId}/edit`}>
-            <li>Edit Posting</li>
+            <Button
+              className="w-full justify-start p-2 font-normal"
+              variant={'ghost'}
+            >
+              Edit Posting
+            </Button>
           </Link>
-          <li className="text-left">
+          <li>
             <DeleteDialogConfirmation postId={jobId} />
           </li>
         </ul>
@@ -81,9 +100,37 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
         </div>
       )}
 
-      <div>
+      <div className="space-y-4 text-sm">
         <h2 className="text-lg font-semibold">About the client</h2>
-        {jobDetails.user.name}
+        <div>
+          <p className=" text-slate-600">{jobDetails.user.name}</p>
+          <Link href={paths.profile(jobDetails.user.username || '')}>
+            <p className="text-slate-600 hover:text-slate-800">
+              @{jobDetails.user.username}
+            </p>
+          </Link>
+        </div>
+        <div>
+          <p className=" text-slate-600">{jobDetails.user.address?.country}</p>
+          <p className=" text-slate-500">{jobDetails.user.address?.city}</p>
+        </div>
+        <div>
+          <p className=" text-slate-600">
+            {userJobCount.totalJobPosts} job posted
+          </p>
+          <p className=" text-slate-500">
+            {userJobCount.currentlyActiveJobPost} open job
+          </p>
+        </div>
+        <div>
+          <p className="text-xs text-slate-500">
+            Member since {formatDate(jobDetails.user.createdAt || new Date())}
+          </p>
+        </div>
+      </div>
+      <div className="space-y-3">
+        <h2 className="text-lg font-semibold">Job Link</h2>
+        <ShareDialog shareLink={paths.jobPost(jobDetails.id, '')} />
       </div>
     </aside>
   );

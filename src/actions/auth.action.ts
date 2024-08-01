@@ -28,7 +28,7 @@ import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { FormState } from '@/types/types';
-import { capitalizeFullName } from '@/lib/utils';
+import { capitalizeFirstLetter } from '@/lib/utils';
 
 //-------------- SignUp Action
 export const signUpAction = async (
@@ -49,7 +49,7 @@ export const signUpAction = async (
 
   const { name, email, password } = validateFields.data;
   const hashedPassword = await hash(password, 10);
-  const titleCasedName = capitalizeFullName(name);
+  const titleCasedName = capitalizeFirstLetter(name);
 
   // Generate random username and ensure it's unique
   const mailID = email.split('@')[0];

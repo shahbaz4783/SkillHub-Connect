@@ -69,8 +69,8 @@ export const timeSince = (date: Date): string => {
 };
 
 
-export const capitalizeFullName = (fullName: string) => {
-  return fullName
+export const capitalizeFirstLetter = (text: string) => {
+  return text
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(' ');
@@ -78,4 +78,13 @@ export const capitalizeFullName = (fullName: string) => {
 
 export const fakeDelay = async (duration: number) => {
   return await new Promise((resolve) => setTimeout(resolve, duration));
+};
+
+export const formatDate = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  return new Intl.DateTimeFormat('en-US', options).format(date);
 };
