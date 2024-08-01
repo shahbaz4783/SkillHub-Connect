@@ -38,7 +38,7 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
   const userJobCount = await getJobPostCountByUserId(jobDetails.userId);
 
   return (
-    <aside className="space-y-14 lg:border-l-[1px] px-6 py-8 lg:w-1/5">
+    <>
       {!ownedJobPost && (
         <>
           {profileCompleted && addressFilled ? (
@@ -133,7 +133,7 @@ const JobPostDetailsAside = async ({ jobId }: PostDetailsAsideProps) => {
         <h2 className="text-lg font-semibold">Job Link</h2>
         <ShareExpaned shareLink={paths.jobPost(jobDetails.id, '')} />
       </div>
-    </aside>
+    </>
   );
 };
 

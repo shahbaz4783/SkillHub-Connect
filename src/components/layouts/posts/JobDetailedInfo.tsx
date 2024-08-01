@@ -18,7 +18,7 @@ const JobDetailedInfo = async ({ jobId }: JobDetailedInfoProps) => {
   if (!jobDetails) return redirect('/');
 
   return (
-    <main className="lg:w-3/4">
+    <>
       <DetailsSection>
         <p className="text-2xl font-semibold">{jobDetails.title}</p>
         <p className="text-sm text-slate-500">
@@ -106,7 +106,7 @@ const JobDetailedInfo = async ({ jobId }: JobDetailedInfoProps) => {
           </div>
         </menu>
       </DetailsSection>
-    </main>
+    </>
   );
 };
 

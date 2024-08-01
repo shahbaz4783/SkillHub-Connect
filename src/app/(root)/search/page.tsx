@@ -1,8 +1,8 @@
 import JobPostCard from '@/components/cards/job-post-card';
 import FilterDrawer from '@/components/filter/filter-drawer';
 import JobPostFilter from '@/components/filter/JobPostFilter';
-import Heading from '@/components/loaders/Heading';
 import JobCardSkeleton from '@/components/loaders/JobCardSkeleton';
+import { OneAndHalf } from '@/components/loaders/text-skeletons';
 import { PaginationUi } from '@/components/shared/pagination';
 import { getJobPostsResult } from '@/data/search';
 import { redirect } from 'next/navigation';
@@ -23,7 +23,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
       <div className="mb-12 mt-8 text-3xl text-slate-600">
         <span className="">Showing results for </span>{' '}
         <q className="font-semibold">
-          <Suspense fallback={<Heading />}>{q}</Suspense>
+          <Suspense fallback={<OneAndHalf />}>{q}</Suspense>
         </q>
       </div>
 

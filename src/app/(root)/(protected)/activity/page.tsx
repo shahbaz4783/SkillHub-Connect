@@ -1,6 +1,6 @@
 import DashboardAsideLeft from '@/components/layouts/dashboard/dashboard-aside-left';
 import DashboardAsideRight from '@/components/layouts/dashboard/dashboard-aside-right';
-import Heading from '@/components/loaders/Heading';
+import { OneAndHalf } from '@/components/loaders/text-skeletons';
 import SectionHeading from '@/components/shared/SectionHeading';
 import { currentUser } from '@/lib/auth';
 import { Suspense } from 'react';
@@ -9,7 +9,7 @@ const Dashboard = async () => {
   const user = await currentUser();
   return (
     <>
-      <Suspense fallback={<Heading />}>
+      <Suspense fallback={<OneAndHalf />}>
         <SectionHeading
           title={`Hi ${user?.name}`}
           subTitle="This is your dashboard overview"

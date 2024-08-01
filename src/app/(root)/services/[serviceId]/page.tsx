@@ -1,15 +1,13 @@
 import { AllSkills } from '@/components/cards/skills-list';
-import Heading from '@/components/loaders/Heading';
 import UserAvatar from '@/components/shared/UserAvatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import DetailsSection from '@/components/wrapper/DetailsSection';
 import { getServiceDetailsData } from '@/data/posts';
 import { timeSince } from '@/lib/utils';
-import { CircleDollarSign, Heart, Timer, UserCircle } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Suspense } from 'react';
 
 interface ParamsProps {
   params: {
@@ -23,47 +21,45 @@ const ServiceDetails = async ({ params }: ParamsProps) => {
   return (
     <>
       <div className="flex min-h-svh flex-col md:flex-row">
-        <Suspense fallback={<Heading />}>
-          <main className="md:w-3/4">
-            <DetailsSection>
-              <p className="text-2xl font-semibold">{serviceDetails.title}</p>
-              <p className="text-sm text-slate-500">
-                Updated {timeSince(serviceDetails.updatedAt)}
-              </p>
-              <div className="flex items-center gap-4">
-                <UserAvatar
-                  imageUrl={serviceDetails.user.image || ''}
-                  size={48}
-                />
-                <Link
-                  className="font-semibold"
-                  href={`/profile/${serviceDetails.user.username}`}
-                >
-                  {serviceDetails.user.name}
-                </Link>
-              </div>
-            </DetailsSection>
-
-            <DetailsSection>
-              <Image
-                src={serviceDetails.imageUrl}
-                width={500}
-                height={400}
-                alt="Service Image"
+        <main className="md:w-3/4">
+          <DetailsSection>
+            <p className="text-2xl font-semibold">{serviceDetails.title}</p>
+            <p className="text-sm text-slate-500">
+              Updated {timeSince(serviceDetails.updatedAt)}
+            </p>
+            <div className="flex items-center gap-4">
+              <UserAvatar
+                imageUrl={serviceDetails.user.image || ''}
+                size={48}
               />
-            </DetailsSection>
+              <Link
+                className="font-semibold"
+                href={`/profile/${serviceDetails.user.username}`}
+              >
+                {serviceDetails.user.name}
+              </Link>
+            </div>
+          </DetailsSection>
 
-            <DetailsSection>
-              <h2 className="text-lg font-semibold">Catalog Details</h2>
-              <p className="text-sm">{serviceDetails.description}</p>
-            </DetailsSection>
+          <DetailsSection>
+            <Image
+              src={serviceDetails.imageUrl}
+              width={500}
+              height={400}
+              alt="Service Image"
+            />
+          </DetailsSection>
 
-            <DetailsSection>
-              <h2 className="text-lg font-semibold">Skills and Expertise</h2>
-              <AllSkills skills={serviceDetails.tags} />
-            </DetailsSection>
-          </main>
-        </Suspense>
+          <DetailsSection>
+            <h2 className="text-lg font-semibold">Catalog Details</h2>
+            <p className="text-sm">{serviceDetails.description}</p>
+          </DetailsSection>
+
+          <DetailsSection>
+            <h2 className="text-lg font-semibold">Skills and Expertise</h2>
+            <AllSkills skills={serviceDetails.tags} />
+          </DetailsSection>
+        </main>
 
         <aside className="border-l-[1px] px-6 py-8 md:w-1/4">
           <Card>
