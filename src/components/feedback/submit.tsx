@@ -28,7 +28,7 @@ const Submit = ({
   return (
     <Button
       variant={variant}
-      className={cn('w-full py-5 lg:w-auto', className)}
+      className={className}
       type="submit"
       disabled={pending}
     >

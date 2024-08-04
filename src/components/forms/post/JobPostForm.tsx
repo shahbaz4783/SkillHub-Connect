@@ -32,6 +32,7 @@ import { useFormState } from 'react-dom';
 import { cn } from '@/lib/utils';
 import Submit from '@/components/feedback/submit';
 import SectionHeading from '@/components/shared/SectionHeading';
+import { Progress } from '@/components/ui/progress';
 
 interface JobPostFormProps {
   jobId?: string;
@@ -91,13 +92,16 @@ const JobPostForm = ({
       <Form {...form}>
         <form
           action={formAction}
-          className="flex min-h-[80svh] flex-col justify-between space-y-12 rounded-md border p-2"
+          className="flex min-h-[80svh] flex-col justify-between space-y-12 rounded-md border p-4"
         >
           {/* FORM STEP - 1 */}
           <div
-            className={cn('m-auto grid gap-8 lg:w-3/4 lg:grid-cols-2', {
-              hidden: formStep > 1,
-            })}
+            className={cn(
+              'm-auto grid items-start gap-8 lg:w-3/4 lg:grid-cols-2',
+              {
+                hidden: formStep > 1,
+              },
+            )}
           >
             <aside className="space-y-6">
               <div className="space-x-4 text-sm">
@@ -189,7 +193,11 @@ const JobPostForm = ({
                 <span>2/4</span>
                 <span>Job post</span>
               </div>
-              <SectionHeading title="What are the main skills required for your work?" />
+              <SectionHeading
+                title="What are the main skills required for your work?"
+                subTitle="Specify the key skills and experience levels required to complete the work effectively."
+                className="space-y-6 lg:w-3/4"
+              />
             </aside>
             <section className="space-y-12">
               <FormField
@@ -257,7 +265,11 @@ const JobPostForm = ({
                 <span>3/4</span>
                 <span>Job post</span>
               </div>
-              <SectionHeading title="Next, estimate the scope of your work." />
+              <SectionHeading
+                title="Next, define your budget and project type."
+                subTitle="Specify the budget and choose the type of project to attract the right candidates."
+                className="space-y-6 lg:w-3/4"
+              />
             </aside>
             <section className="space-y-12">
               <FormField
@@ -329,7 +341,10 @@ const JobPostForm = ({
                 <span>4/4</span>
                 <span>Job post</span>
               </div>
-              <SectionHeading title="Start the conversation." />
+              <SectionHeading
+                title="Start the conversation."
+                className="space-y-6 lg:w-3/4"
+              />
               <div className="space-y-4 text-sm text-slate-600">
                 <h3>Talent are looking for:</h3>
                 <ul className="space-y-2 text-xs">
@@ -378,34 +393,39 @@ const JobPostForm = ({
           <FormError message={formState.message.error} />
           <FormSuccess message={formState.message.success} />
 
-          <menu className="flex justify-between gap-4">
-            <Button
-              type="button"
-              variant={'outline'}
-              disabled={formStep === 1}
-              onClick={decrement}
-            >
-              Back
-            </Button>
+          <div className="space-y-4">
+            <div>
+              <Progress value={formStep * 25} />
+            </div>
+            <menu className="flex justify-between gap-4">
+              <Button
+                type="button"
+                variant={'outline'}
+                disabled={formStep === 1}
+                onClick={decrement}
+              >
+                Back
+              </Button>
 
-            <Button
-              className={cn({
-                hidden: formStep === 4,
-              })}
-              type="button"
-              onClick={increment}
-            >
-              Next step
-            </Button>
+              <Button
+                className={cn({
+                  hidden: formStep === 4,
+                })}
+                type="button"
+                onClick={increment}
+              >
+                Next step
+              </Button>
 
-            <Submit
-              className={cn({
-                hidden: formStep < 4,
-              })}
-              title={jobId ? 'Edit this job' : 'Post this job'}
-              loadingTitle={jobId ? 'Editing...' : 'Posting...'}
-            />
-          </menu>
+              <Submit
+                className={cn({
+                  hidden: formStep < 4,
+                })}
+                title={jobId ? 'Edit this job' : 'Post this job'}
+                loadingTitle={jobId ? 'Editing...' : 'Posting...'}
+              />
+            </menu>
+          </div>
         </form>
       </Form>
     </>
