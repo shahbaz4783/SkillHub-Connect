@@ -12,6 +12,7 @@ const CatalogInfoAside = async ({ catalogId }: CatalogDetailedInfoProps) => {
   const serviceDetails = await getServiceDetailsData(catalogId);
   if (!serviceDetails)
     return <NoDataFound message="We cant find anything :(" />;
+
   return (
     <>
       <Card>

@@ -19,7 +19,6 @@ const EditJobPostPage = async ({ params }: ParamsProps) => {
 
   return (
     <div>
-      <SectionHeading title="Edit Job Posting" />
       <JobPostForm
         jobId={params.jobId}
         title={jobInfo?.title || ''}
