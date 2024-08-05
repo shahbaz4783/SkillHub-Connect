@@ -96,12 +96,9 @@ const JobPostForm = ({
         >
           {/* FORM STEP - 1 */}
           <div
-            className={cn(
-              'm-auto grid items-start gap-8 lg:w-3/4 lg:grid-cols-2',
-              {
-                hidden: formStep > 1,
-              },
-            )}
+            className={cn('m-auto grid gap-8 lg:w-3/4 lg:grid-cols-2', {
+              hidden: formStep > 1,
+            })}
           >
             <aside className="space-y-6">
               <div className="space-x-4 text-sm">
@@ -390,8 +387,10 @@ const JobPostForm = ({
             </section>
           </div>
 
-          <FormError message={formState.message.error} />
-          <FormSuccess message={formState.message.success} />
+          <div className="lg:w-1/2 m-auto">
+            <FormError message={formState.message.error} />
+            <FormSuccess message={formState.message.success} />
+          </div>
 
           <div className="space-y-4">
             <div>
